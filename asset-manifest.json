@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/pybricks-code/static/css/main.af5cabcd.css",
-    "main.js": "/pybricks-code/static/js/main.d2e854c5.js",
+    "main.js": "/pybricks-code/static/js/main.3fbd786b.js",
     "static/js/5550.63abdfa4.chunk.js": "/pybricks-code/static/js/5550.63abdfa4.chunk.js",
     "static/css/618.bc3ce5e5.chunk.css": "/pybricks-code/static/css/618.bc3ce5e5.chunk.css",
     "static/js/618.87da9038.chunk.js": "/pybricks-code/static/js/618.87da9038.chunk.js",
@@ -638,7 +638,7 @@
     "static/docs/v2.14.0/_static/plus.png": "/pybricks-code/static/docs/v2.14.0/_static/plus.png",
     "static/docs/v2.14.0/_static/css/blocks.css": "/pybricks-code/static/docs/v2.14.0/_static/css/blocks.css",
     "main.af5cabcd.css.map": "/pybricks-code/static/css/main.af5cabcd.css.map",
-    "main.d2e854c5.js.map": "/pybricks-code/static/js/main.d2e854c5.js.map",
+    "main.3fbd786b.js.map": "/pybricks-code/static/js/main.3fbd786b.js.map",
     "5550.63abdfa4.chunk.js.map": "/pybricks-code/static/js/5550.63abdfa4.chunk.js.map",
     "618.bc3ce5e5.chunk.css.map": "/pybricks-code/static/css/618.bc3ce5e5.chunk.css.map",
     "618.87da9038.chunk.js.map": "/pybricks-code/static/js/618.87da9038.chunk.js.map",
@@ -744,6 +744,6 @@
   },
   "entrypoints": [
     "static/css/main.af5cabcd.css",
-    "static/js/main.d2e854c5.js"
+    "static/js/main.3fbd786b.js"
   ]
 }
