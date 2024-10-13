@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Other blocks &mdash; pybricks v3.4.0b3 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/requirements.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/blocks.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/ide.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/requirements.js"></script>
+        <script src="../_static/js/ide.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Built-in classes and functions" href="../micropython/builtins.html" />
+    <link rel="prev" title="Signals and Units" href="../signaltypes.html" />
+    <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0088ce" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/pybricks-logo-rtd.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v3.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Pybricks modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hubs/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hubs</span></code> – Built-in hub functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pupdevices/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pupdevices</span></code> – Motors, sensors, lights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iodevices/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iodevices</span></code> – Custom devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parameters/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parameters</span></code> – Parameters and constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tools</span></code> – General purpose tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../robotics.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">robotics</span></code> – Robotics and drive bases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../signaltypes.html">Signals and Units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code with blocks</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Other blocks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#math">Math</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#logic">Logic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#flow">Flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#device-and-system-setup">Device and system setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#waiting">Waiting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#variables">Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#multitasking">Multitasking</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#your-own-tasks">Your own tasks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#external-tasks">External tasks</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">MicroPython modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/builtins.html">Built-in classes and functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/exceptions.html">Exceptions and errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/micropython.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">micropython</span></code> – MicroPython internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uerrno.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uerrno</span></code> – Error codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uio</span></code> – Input/output streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/ujson.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ujson</span></code> – JSON encoding and decoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/umath.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">umath</span></code> – Math functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/urandom.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urandom</span></code> – Pseudo-random numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uselect.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uselect</span></code> – Wait for events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/ustruct.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ustruct</span></code> – Pack and unpack binary data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/usys.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">usys</span></code> – System specific functions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #0088ce" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pybricks</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Other blocks</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/blocks/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toggle-header docutils container">
+</div>
+<div class="toggle-content docutils container">
+
+        <div class="wy-table-responsive">
+            <table class="docutils align-default requirements-table">
+                <tbody>
+                    <tr>
+                        
+        <th background="../_images/compat_movehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_cityhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_technichub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_primehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_inventorhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_essentialhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+<section id="other-blocks">
+<h1>Other blocks<a class="headerlink" href="#other-blocks" title="Permalink to this heading">¶</a></h1>
+<p>Most blocks correspond directly to one of the documented Python commands. This
+page lists the remaining blocks.</p>
+<p>This page will be expanded with more details in the next release.</p>
+<section id="math">
+<h2>Math<a class="headerlink" href="#math" title="Permalink to this heading">¶</a></h2>
+<p>See also <a class="reference internal" href="../micropython/umath.html#module-umath" title="umath"><code class="xref py py-mod docutils literal notranslate"><span class="pre">umath</span></code></a> for other math operations.</p>
+<p><img alt="../_images/pybricks_blockMathFormula.svg" class="block-image" height="38px" src="../_images/pybricks_blockMathFormula.svg" width="331px" /></p>
+<p><img alt="../_images/pybricks_blockMathOp_modulo.svg" class="block-image" height="38px" src="../_images/pybricks_blockMathOp_modulo.svg" width="165px" /></p>
+<p><img alt="../_images/pybricks_blockMathArithmetic_add.svg" class="block-image" height="38px" src="../_images/pybricks_blockMathArithmetic_add.svg" width="136px" /></p>
+<p><img alt="../_images/pybricks_blockMathArithmetic_minus.svg" class="block-image" height="38px" src="../_images/pybricks_blockMathArithmetic_minus.svg" width="136px" /></p>
+<p><img alt="../_images/pybricks_blockMathArithmetic_multiply.svg" class="block-image" height="38px" src="../_images/pybricks_blockMathArithmetic_multiply.svg" width="136px" /></p>
+<p><img alt="../_images/pybricks_blockMathArithmetic_divide.svg" class="block-image" height="38px" src="../_images/pybricks_blockMathArithmetic_divide.svg" width="136px" /></p>
+<p><img alt="../_images/pybricks_blockMathArithmetic_power.svg" class="block-image" height="38px" src="../_images/pybricks_blockMathArithmetic_power.svg" width="136px" /></p>
+</section>
+<section id="logic">
+<h2>Logic<a class="headerlink" href="#logic" title="Permalink to this heading">¶</a></h2>
+<p><img alt="../_images/pybricks_blockLogicCompareDouble.svg" class="block-image" height="38px" src="../_images/pybricks_blockLogicCompareDouble.svg" width="226px" /></p>
+<p><img alt="../_images/pybricks_blockLogicCompare_eq.svg" class="block-image" height="38px" src="../_images/pybricks_blockLogicCompare_eq.svg" width="145px" /></p>
+<p><img alt="../_images/pybricks_blockLogicCompare_gte.svg" class="block-image" height="38px" src="../_images/pybricks_blockLogicCompare_gte.svg" width="136px" /></p>
+<p><img alt="../_images/pybricks_blockLogicCompare_gt.svg" class="block-image" height="38px" src="../_images/pybricks_blockLogicCompare_gt.svg" width="136px" /></p>
+<p><img alt="../_images/pybricks_blockLogicCompare_lte.svg" class="block-image" height="38px" src="../_images/pybricks_blockLogicCompare_lte.svg" width="136px" /></p>
+<p><img alt="../_images/pybricks_blockLogicCompare_lt.svg" class="block-image" height="38px" src="../_images/pybricks_blockLogicCompare_lt.svg" width="136px" /></p>
+<p><img alt="../_images/pybricks_blockLogicCompare_neq.svg" class="block-image" height="38px" src="../_images/pybricks_blockLogicCompare_neq.svg" width="136px" /></p>
+<p><img alt="../_images/pybricks_blockLogicIsNone_is_none.svg" class="block-image" height="38px" src="../_images/pybricks_blockLogicIsNone_is_none.svg" width="155px" /></p>
+<p><img alt="../_images/pybricks_blockLogicIsNone_is_not_none.svg" class="block-image" height="38px" src="../_images/pybricks_blockLogicIsNone_is_not_none.svg" width="181px" /></p>
+<p><img alt="../_images/pybricks_blockLogicIsNone_not.svg" class="block-image" height="38px" src="../_images/pybricks_blockLogicIsNone_not.svg" width="127px" /></p>
+<p><img alt="../_images/pybricks_blockLogicOperation_and.svg" class="block-image" height="38px" src="../_images/pybricks_blockLogicOperation_and.svg" width="179px" /></p>
+<p><img alt="../_images/pybricks_blockLogicOperation_or.svg" class="block-image" height="38px" src="../_images/pybricks_blockLogicOperation_or.svg" width="168px" /></p>
+<p><img alt="../_images/pybricks_blockLogicTernary.svg" class="block-image" height="38px" src="../_images/pybricks_blockLogicTernary.svg" width="195px" /></p>
+</section>
+<section id="flow">
+<h2>Flow<a class="headerlink" href="#flow" title="Permalink to this heading">¶</a></h2>
+<p><img alt="../_images/pybricks_blockFlowBreakContinue_break.svg" class="block-image" height="41px" src="../_images/pybricks_blockFlowBreakContinue_break.svg" width="196px" /></p>
+<p><img alt="../_images/pybricks_blockFlowBreakContinue_continue.svg" class="block-image" height="41px" src="../_images/pybricks_blockFlowBreakContinue_continue.svg" width="319px" /></p>
+<p><img alt="../_images/pybricks_blockFlowForEach_loop_for.svg" class="block-image" height="110px" src="../_images/pybricks_blockFlowForEach_loop_for.svg" width="163px" /></p>
+<p><img alt="../_images/pybricks_blockFlowForEach_loop_for_list.svg" class="block-image" height="110px" src="../_images/pybricks_blockFlowForEach_loop_for_list.svg" width="243px" /></p>
+<p><img alt="../_images/pybricks_blockFlowForEach_loop_for_range.svg" class="block-image" height="110px" src="../_images/pybricks_blockFlowForEach_loop_for_range.svg" width="362px" /></p>
+<p><img alt="../_images/pybricks_blockFlowRepeat.svg" class="block-image" height="110px" src="../_images/pybricks_blockFlowRepeat.svg" width="149px" /></p>
+<p><img alt="../_images/pybricks_blockFlowWhile_until.svg" class="block-image" height="110px" src="../_images/pybricks_blockFlowWhile_until.svg" width="185px" /></p>
+<p><img alt="../_images/pybricks_blockFlowWhile_while.svg" class="block-image" height="110px" src="../_images/pybricks_blockFlowWhile_while.svg" width="191px" /></p>
+<p><img alt="../_images/pybricks_blockIfElse_if_else.svg" class="block-image" height="198px" src="../_images/pybricks_blockIfElse_if_else.svg" width="146px" /></p>
+<p><img alt="../_images/pybricks_blockIfElse_if_else_else.svg" class="block-image" height="274px" src="../_images/pybricks_blockIfElse_if_else_else.svg" width="146px" /></p>
+<p><img alt="../_images/pybricks_blockIfElse_if_only.svg" class="block-image" height="108px" src="../_images/pybricks_blockIfElse_if_only.svg" width="146px" /></p>
+</section>
+<section id="device-and-system-setup">
+<h2>Device and system setup<a class="headerlink" href="#device-and-system-setup" title="Permalink to this heading">¶</a></h2>
+<p><img alt="../_images/pybricks_blockGlobalSetup.svg" class="block-image" height="175px" src="../_images/pybricks_blockGlobalSetup.svg" width="371px" /></p>
+</section>
+<section id="waiting">
+<h2>Waiting<a class="headerlink" href="#waiting" title="Permalink to this heading">¶</a></h2>
+<p><img alt="../_images/pybricks_blockWaitTime.svg" class="block-image" height="51px" src="../_images/pybricks_blockWaitTime.svg" width="190px" /></p>
+<p><img alt="../_images/pybricks_blockWaitUntil.svg" class="block-image" height="47px" src="../_images/pybricks_blockWaitUntil.svg" width="177px" /></p>
+<p><img alt="../_images/pybricks_blockWaitForever.svg" class="block-image" height="41px" src="../_images/pybricks_blockWaitForever.svg" width="139px" /></p>
+</section>
+<section id="variables">
+<h2>Variables<a class="headerlink" href="#variables" title="Permalink to this heading">¶</a></h2>
+<p><img alt="../_images/pybricks_variables_setup_any.svg" class="block-image" height="47px" src="../_images/pybricks_variables_setup_any.svg" width="222px" /></p>
+<p><img alt="../_images/pybricks_blockVariableGetValue.svg" class="block-image" height="38px" src="../_images/pybricks_blockVariableGetValue.svg" width="125px" /></p>
+<p><img alt="../_images/pybricks_blockVariableSetValue.svg" class="block-image" height="47px" src="../_images/pybricks_blockVariableSetValue.svg" width="217px" /></p>
+</section>
+<section id="multitasking">
+<h2>Multitasking<a class="headerlink" href="#multitasking" title="Permalink to this heading">¶</a></h2>
+<p><img alt="../_images/pybricks_blockGlobalStart.svg" class="block-image" height="47px" src="../_images/pybricks_blockGlobalStart.svg" width="117px" /></p>
+<p><img alt="../_images/pybricks_blockMultiTask.svg" class="block-image" height="176px" src="../_images/pybricks_blockMultiTask.svg" width="253px" /></p>
+</section>
+<section id="your-own-tasks">
+<h2>Your own tasks<a class="headerlink" href="#your-own-tasks" title="Permalink to this heading">¶</a></h2>
+<p><img alt="../_images/pybricks_variables_setup_function_basic.svg" class="block-image" height="107px" src="../_images/pybricks_variables_setup_function_basic.svg" width="164px" /></p>
+<p><img alt="../_images/pybricks_variables_setup_function_with_args.svg" class="block-image" height="107px" src="../_images/pybricks_variables_setup_function_with_args.svg" width="269px" /></p>
+<p><img alt="../_images/pybricks_blockTaskReturn.svg" class="block-image" height="41px" src="../_images/pybricks_blockTaskReturn.svg" width="143px" /></p>
+</section>
+<section id="external-tasks">
+<h2>External tasks<a class="headerlink" href="#external-tasks" title="Permalink to this heading">¶</a></h2>
+<p><img alt="../_images/pybricks_variables_setup_imported_function.svg" class="block-image" height="47px" src="../_images/pybricks_variables_setup_imported_function.svg" width="354px" /></p>
+<p><img alt="../_images/pybricks_blockImportTaskCallStatement.svg" class="block-image" height="47px" src="../_images/pybricks_blockImportTaskCallStatement.svg" width="203px" /></p>
+<p><img alt="../_images/pybricks_blockImportTaskCallValue.svg" class="block-image" height="38px" src="../_images/pybricks_blockImportTaskCallValue.svg" width="208px" /></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

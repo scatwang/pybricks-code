@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>uselect – Wait for events &mdash; pybricks v3.4.0b3 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/requirements.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/blocks.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/ide.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/requirements.js"></script>
+        <script src="../_static/js/ide.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="ustruct – Pack and unpack binary data" href="ustruct.html" />
+    <link rel="prev" title="urandom – Pseudo-random numbers" href="urandom.html" />
+    <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0088ce" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/pybricks-logo-rtd.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v3.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Pybricks modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hubs/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hubs</span></code> – Built-in hub functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pupdevices/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pupdevices</span></code> – Motors, sensors, lights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iodevices/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iodevices</span></code> – Custom devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parameters/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parameters</span></code> – Parameters and constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tools</span></code> – General purpose tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../robotics.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">robotics</span></code> – Robotics and drive bases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../signaltypes.html">Signals and Units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code with blocks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../blocks/index.html">Other blocks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">MicroPython modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="builtins.html">Built-in classes and functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions and errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="micropython.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">micropython</span></code> – MicroPython internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uerrno.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uerrno</span></code> – Error codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uio</span></code> – Input/output streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ujson.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ujson</span></code> – JSON encoding and decoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="umath.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">umath</span></code> – Math functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="urandom.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urandom</span></code> – Pseudo-random numbers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uselect</span></code> – Wait for events</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ustruct.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ustruct</span></code> – Pack and unpack binary data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usys.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">usys</span></code> – System specific functions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #0088ce" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pybricks</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uselect</span></code> – Wait for events</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/micropython/uselect.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toggle-header docutils container">
+</div>
+<div class="toggle-content docutils container">
+
+        <div class="wy-table-responsive">
+            <table class="docutils align-default requirements-table">
+                <tbody>
+                    <tr>
+                        
+        <th background="../_images/compat_movehub.png" class="requirements-table-th requirements-table-th">
+        ❌
+        </th>
+        
+        <th background="../_images/compat_cityhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_technichub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_primehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_inventorhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_essentialhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+<section id="module-uselect">
+<span id="uselect-wait-for-events"></span><h1><a class="reference internal" href="#module-uselect" title="uselect"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uselect</span></code></a> – Wait for events<a class="headerlink" href="#module-uselect" title="Permalink to this heading">¶</a></h1>
+<p>This module provides functions to efficiently wait for events on multiple streams.</p>
+<p class="rubric">Poll instance and class</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="uselect.poll">
+<span class="sig-name descname"><span class="pre">poll</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#uselect.Poll" title="uselect.Poll"><span class="pre">Poll</span></a></span></span><a class="headerlink" href="#uselect.poll" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates an instance of the <a class="reference internal" href="#uselect.Poll" title="uselect.Poll"><code class="xref py py-class docutils literal notranslate"><span class="pre">Poll</span></code></a> class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The <a class="reference internal" href="#uselect.Poll" title="uselect.Poll"><code class="xref py py-class docutils literal notranslate"><span class="pre">Poll</span></code></a> instance.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="uselect.Poll">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Poll</span></span><a class="headerlink" href="#uselect.Poll" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="py method">
+<dt class="sig sig-object py" id="uselect.Poll.register">
+<span class="sig-name descname"><span class="pre">register</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eventmask</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">POLLOUT</span> <span class="pre">|</span> <span class="pre">POLLOUT</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#uselect.Poll.register" title="Permalink to this definition">¶</a></dt>
+<dd><p>Register a stream object for polling. The stream object will now be
+monitored for events. If an event happens, it becomes part of the
+return value of <a class="reference internal" href="#uselect.poll" title="uselect.poll"><code class="xref py py-meth docutils literal notranslate"><span class="pre">poll()</span></code></a>.</p>
+<p>If this method is called again for the same stream object, the object
+will not be registered again, but the <code class="docutils literal notranslate"><span class="pre">eventmask</span></code> flags will be
+updated, as if calling <a class="reference internal" href="#uselect.Poll.modify" title="uselect.Poll.modify"><code class="xref py py-meth docutils literal notranslate"><span class="pre">modify()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>object</strong> (<a class="reference internal" href="uio.html#uio.FileIO" title="uio.FileIO"><em>FileIO</em></a>) – Stream to be registered for polling.</p></li>
+<li><p><strong>eventmask</strong> (<a class="reference internal" href="builtins.html#ubuiltins.int" title="ubuiltins.int"><em>int</em></a>) – Which events to use. Should be <code class="docutils literal notranslate"><span class="pre">POLLIN</span></code>,
+<code class="docutils literal notranslate"><span class="pre">POLLOUT</span></code>, or their logical disjunction: <code class="docutils literal notranslate"><span class="pre">POLLIN</span> <span class="pre">|</span> <span class="pre">POLLOUT</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="uselect.Poll.unregister">
+<span class="sig-name descname"><span class="pre">unregister</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">poll</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#uselect.Poll.unregister" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unregister an object from polling.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>object</strong> (<a class="reference internal" href="uio.html#uio.FileIO" title="uio.FileIO"><em>FileIO</em></a>) – Stream to be unregistered from polling.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="uselect.Poll.modify">
+<span class="sig-name descname"><span class="pre">modify</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">object</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">eventmask</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#uselect.Poll.modify" title="Permalink to this definition">¶</a></dt>
+<dd><p>Modifies the event mask for the stream object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>object</strong> (<a class="reference internal" href="uio.html#uio.FileIO" title="uio.FileIO"><em>FileIO</em></a>) – Stream to be registered for polling.</p></li>
+<li><p><strong>eventmask</strong> (<a class="reference internal" href="builtins.html#ubuiltins.int" title="ubuiltins.int"><em>int</em></a>) – Which events to use.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><strong>OSError</strong> – If the object is not registered. The error is <code class="docutils literal notranslate"><span class="pre">ENOENT</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="uselect.Poll.poll">
+<span class="sig-name descname"><span class="pre">poll</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">List</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="uio.html#uio.FileIO" title="uio.FileIO"><span class="pre">FileIO</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#uselect.Poll.poll" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wait until at least one of the registered objects has a new event or
+exceptional condition ready to be handled.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>timeout</strong> (<a class="reference internal" href="builtins.html#ubuiltins.int" title="ubuiltins.int"><em>int</em></a>) – Timeout in milliseconds. Choose <code class="docutils literal notranslate"><span class="pre">0</span></code> to return
+immediately or choose <code class="docutils literal notranslate"><span class="pre">-1</span></code> to wait indefinitely.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>A list of tuples. There is one (<code class="docutils literal notranslate"><span class="pre">object</span></code>, <code class="docutils literal notranslate"><span class="pre">eventmask</span></code>, …)
+tuple for each object with an event, or no tuples if there are no
+events to be handled. The <code class="docutils literal notranslate"><span class="pre">eventmask</span></code> value
+is a combination of poll flags to indicate what happened. This may
+include <code class="docutils literal notranslate"><span class="pre">POLLERR</span></code> and <code class="docutils literal notranslate"><span class="pre">POLLHUP</span></code> even if they were not registered.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="uselect.Poll.ipoll">
+<span class="sig-name descname"><span class="pre">ipoll</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">-</span> <span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flags</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Iterator</span><span class="p"><span class="pre">[</span></span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="uio.html#uio.FileIO" title="uio.FileIO"><span class="pre">FileIO</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#uselect.Poll.ipoll" title="Permalink to this definition">¶</a></dt>
+<dd><p>First, just like <a class="reference internal" href="#uselect.poll" title="uselect.poll"><code class="xref py py-meth docutils literal notranslate"><span class="pre">poll()</span></code></a>, wait until at least one of the registered
+objects has a new event or exceptional condition ready to be handled.</p>
+<p>But instead of a list, this method returns an iterator for improved
+efficiency. The iterator yields one (<code class="docutils literal notranslate"><span class="pre">object</span></code>, <code class="docutils literal notranslate"><span class="pre">eventmask</span></code>, …)
+tuple at a time, and overwrites it when yielding the next value. If you
+need the values later, make sure to copy them explicitly.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>timeout</strong> (<a class="reference internal" href="builtins.html#ubuiltins.int" title="ubuiltins.int"><em>int</em></a>) – Timeout in milliseconds. Choose <code class="docutils literal notranslate"><span class="pre">0</span></code> to return
+immediately or choose <code class="docutils literal notranslate"><span class="pre">-1</span></code> to wait indefinitely.</p></li>
+<li><p><strong>flags</strong> (<a class="reference internal" href="builtins.html#ubuiltins.int" title="ubuiltins.int"><em>int</em></a>) – If set to <code class="docutils literal notranslate"><span class="pre">1</span></code>, one-shot behavior for events is
+employed. This means that streams for which events happened
+will have their event masks automatically reset using
+<code class="docutils literal notranslate"><span class="pre">poll.modify(obj,</span> <span class="pre">0)</span></code>. This way, new events for such a stream
+won’t be processed until a new mask is set with <a class="reference internal" href="#uselect.Poll.modify" title="uselect.Poll.modify"><code class="xref py py-meth docutils literal notranslate"><span class="pre">modify()</span></code></a>,
+which is useful for asynchronous I/O schedulers.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<p class="rubric">Event mask flags</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="uselect.POLLIN">
+<span class="sig-name descname"><span class="pre">POLLIN</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a></em><a class="headerlink" href="#uselect.POLLIN" title="Permalink to this definition">¶</a></dt>
+<dd><p>Data is available for reading.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="uselect.POLLOUT">
+<span class="sig-name descname"><span class="pre">POLLOUT</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a></em><a class="headerlink" href="#uselect.POLLOUT" title="Permalink to this definition">¶</a></dt>
+<dd><p>More data can be written.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="uselect.POLLERR">
+<span class="sig-name descname"><span class="pre">POLLERR</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a></em><a class="headerlink" href="#uselect.POLLERR" title="Permalink to this definition">¶</a></dt>
+<dd><p>Error condition happened on the associated stream. Should be handled explicitly
+or else further invocations of <a class="reference internal" href="#uselect.poll" title="uselect.poll"><code class="xref py py-meth docutils literal notranslate"><span class="pre">poll()</span></code></a> may return right away.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="uselect.POLLHUP">
+<span class="sig-name descname"><span class="pre">POLLHUP</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a></em><a class="headerlink" href="#uselect.POLLHUP" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hang up happened on the associated stream. Should be handled explicitly
+or else further invocations of <a class="reference internal" href="#uselect.poll" title="uselect.poll"><code class="xref py py-meth docutils literal notranslate"><span class="pre">poll()</span></code></a> may return right away.</p>
+</dd></dl>
+
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<p>See the <a class="reference external" href="https://pybricks.com/projects/tutorials/wireless/hub-to-device/pc-keyboard/">projects website</a> for a demo that uses this module.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

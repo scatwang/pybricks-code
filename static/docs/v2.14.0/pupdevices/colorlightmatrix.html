@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Color Light Matrix &mdash; pybricks v3.4.0b3 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/requirements.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/blocks.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/ide.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/requirements.js"></script>
+        <script src="../_static/js/ide.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Light" href="light.html" />
+    <link rel="prev" title="Force Sensor" href="forcesensor.html" />
+    <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0088ce" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/pybricks-logo-rtd.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v3.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Pybricks modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hubs/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hubs</span></code> – Built-in hub functions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pupdevices</span></code> – Motors, sensors, lights</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="dcmotor.html">Motors without rotation sensors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="motor.html">Motors with rotation sensors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tiltsensor.html">Tilt Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="infraredsensor.html">Infrared Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colordistancesensor.html">Color and Distance Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pfmotor.html">Power Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorsensor.html">Color Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ultrasonicsensor.html">Ultrasonic Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forcesensor.html">Force Sensor</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Color Light Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="light.html">Light</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote.html">Remote Control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../iodevices/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iodevices</span></code> – Custom devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parameters/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parameters</span></code> – Parameters and constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tools</span></code> – General purpose tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../robotics.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">robotics</span></code> – Robotics and drive bases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../signaltypes.html">Signals and Units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code with blocks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../blocks/index.html">Other blocks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">MicroPython modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/builtins.html">Built-in classes and functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/exceptions.html">Exceptions and errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/micropython.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">micropython</span></code> – MicroPython internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uerrno.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uerrno</span></code> – Error codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uio</span></code> – Input/output streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/ujson.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ujson</span></code> – JSON encoding and decoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/umath.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">umath</span></code> – Math functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/urandom.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urandom</span></code> – Pseudo-random numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uselect.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uselect</span></code> – Wait for events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/ustruct.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ustruct</span></code> – Pack and unpack binary data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/usys.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">usys</span></code> – System specific functions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #0088ce" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pybricks</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pupdevices</span></code> – Motors, sensors, lights</a></li>
+      <li class="breadcrumb-item active">Color Light Matrix</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/pupdevices/colorlightmatrix.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toggle-header docutils container">
+</div>
+<div class="toggle-content docutils container">
+
+        <div class="wy-table-responsive">
+            <table class="docutils align-default requirements-table">
+                <tbody>
+                    <tr>
+                        
+        <th background="../_images/compat_movehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_cityhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_technichub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_primehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_inventorhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_essentialhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+<section id="color-light-matrix">
+<h1>Color Light Matrix<a class="headerlink" href="#color-light-matrix" title="Permalink to this heading">¶</a></h1>
+<figure class="align-default">
+<img alt="../_images/sensor_colorlightmatrix.png" src="../_images/sensor_colorlightmatrix.png" style="width: 35%;" />
+</figure>
+<p><img alt="../_images/pybricks_variables_set_color_light_matrix.svg" class="block-image" height="47px" src="../_images/pybricks_variables_set_color_light_matrix.svg" width="198px" /></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pybricks.pupdevices.ColorLightMatrix">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ColorLightMatrix</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.ColorLightMatrix" title="Permalink to this definition">¶</a></dt>
+<dd><p>LEGO® SPIKE 3x3 Color Light Matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>port</strong> (<a class="reference internal" href="../parameters/port.html#Port" title="Port"><em>Port</em></a>) – Port to which the device is connected.</p>
+</dd>
+</dl>
+<p><img alt="../_images/pybricks_blockLightOnColor_colorlightmatrix_on.svg" class="block-image" height="47px" src="../_images/pybricks_blockLightOnColor_colorlightmatrix_on.svg" width="337px" /></p>
+<p><img alt="../_images/pybricks_blockLightOnColor_colorlightmatrix_on_list.svg" class="block-image" height="61px" src="../_images/pybricks_blockLightOnColor_colorlightmatrix_on_list.svg" width="776px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.ColorLightMatrix.on">
+<em class="property"><a class="reference internal" href="../tools/index.html#pybricks.tools.await" title="pybricks.tools.await"><span class="pre">await</span></a></em><span class="sig-name descname"><span class="pre">on</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">colors</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.ColorLightMatrix.on" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns the lights on.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>colors</strong> (<a class="reference internal" href="../parameters/color.html#pybricks.parameters.Color" title="pybricks.parameters.Color"><em>Color</em></a><em> or </em><a class="reference internal" href="../micropython/builtins.html#ubuiltins.list" title="ubuiltins.list"><em>list</em></a>) – If a single <a class="reference internal" href="../parameters/color.html#pybricks.parameters.Color" title="pybricks.parameters.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a> is given, then all 9 lights are set
+to that color. If a list of colors is given, then each light is
+set to that color.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockLightOnColor_colorlightmatrix_off.svg" class="block-image" height="47px" src="../_images/pybricks_blockLightOnColor_colorlightmatrix_off.svg" width="237px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.ColorLightMatrix.off">
+<em class="property"><a class="reference internal" href="../tools/index.html#pybricks.tools.await" title="pybricks.tools.await"><span class="pre">await</span></a></em><span class="sig-name descname"><span class="pre">off</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.ColorLightMatrix.off" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns all lights off.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunk_pybricks_pybricks_code=self.webpackChunk_pybricks_pybricks_code||[]).push([[1439],{59814:(e,r,t)=>{t.r(r),t.d(r,{allPathsLoader:()=>s});var n=t(71410),s=function(e,r){return(0,n.__awaiter)(void 0,void 0,void 0,(function(){return(0,n.__generator)(this,(function(n){switch(n.label){case 0:return[4,Promise.all([t.e(2680),t.e(3500),t.e(9104)]).then(t.bind(t,68328))];case 1:return[2,(0,n.sent().getIconPaths)(e,r)]}}))}))}}}]);
+//# sourceMappingURL=blueprint-icons-all-paths-loader.88a11ce2.chunk.js.map

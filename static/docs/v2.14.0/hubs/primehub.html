@@ -1,0 +1,1549 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prime Hub / Inventor Hub &mdash; pybricks v3.4.0b3 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/requirements.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/blocks.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/ide.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/requirements.js"></script>
+        <script src="../_static/js/ide.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Essential Hub" href="essentialhub.html" />
+    <link rel="prev" title="Technic Hub" href="technichub.html" />
+    <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0088ce" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/pybricks-logo-rtd.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v3.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Pybricks modules</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hubs</span></code> – Built-in hub functions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="movehub.html">Move Hub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cityhub.html">City Hub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="technichub.html">Technic Hub</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Prime Hub / Inventor Hub</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#status-light-examples">Status light examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#turning-the-light-on-and-off">Turning the light on and off</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#changing-brightness-and-using-custom-colors">Changing brightness and using custom colors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#making-the-light-blink">Making the light blink</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#creating-light-animations">Creating light animations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#matrix-display-examples">Matrix display examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#displaying-images">Displaying images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#displaying-numbers">Displaying numbers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#displaying-text">Displaying text</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#displaying-individual-pixels">Displaying individual pixels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#changing-the-display-orientation">Changing the display orientation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#making-your-own-images">Making your own images</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#combining-icons-to-make-expressions">Combining icons to make expressions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#displaying-animations">Displaying animations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#button-examples">Button examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#detecting-button-presses">Detecting button presses</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#imu-examples">IMU examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#testing-which-way-is-up">Testing which way is up</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reading-the-tilt-value">Reading the tilt value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-a-custom-hub-orientation">Using a custom hub orientation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reading-acceleration-and-angular-velocity-vectors">Reading acceleration and angular velocity vectors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reading-acceleration-and-angular-velocity-on-one-axis">Reading acceleration and angular velocity on one axis</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bluetooth-examples">Bluetooth examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#broadcasting-data-to-other-hubs">Broadcasting data to other hubs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#observing-data-from-other-hubs">Observing data from other hubs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#system-examples">System examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#changing-the-stop-button-combination">Changing the stop button combination</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#turning-the-hub-off">Turning the hub off</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="essentialhub.html">Essential Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pupdevices/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pupdevices</span></code> – Motors, sensors, lights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iodevices/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iodevices</span></code> – Custom devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parameters/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parameters</span></code> – Parameters and constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tools</span></code> – General purpose tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../robotics.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">robotics</span></code> – Robotics and drive bases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../signaltypes.html">Signals and Units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code with blocks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../blocks/index.html">Other blocks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">MicroPython modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/builtins.html">Built-in classes and functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/exceptions.html">Exceptions and errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/micropython.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">micropython</span></code> – MicroPython internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uerrno.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uerrno</span></code> – Error codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uio</span></code> – Input/output streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/ujson.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ujson</span></code> – JSON encoding and decoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/umath.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">umath</span></code> – Math functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/urandom.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urandom</span></code> – Pseudo-random numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uselect.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uselect</span></code> – Wait for events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/ustruct.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ustruct</span></code> – Pack and unpack binary data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/usys.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">usys</span></code> – System specific functions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #0088ce" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pybricks</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hubs</span></code> – Built-in hub functions</a></li>
+      <li class="breadcrumb-item active">Prime Hub / Inventor Hub</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/hubs/primehub.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toggle-header docutils container">
+</div>
+<div class="toggle-content docutils container">
+
+        <div class="wy-table-responsive">
+            <table class="docutils align-default requirements-table">
+                <tbody>
+                    <tr>
+                        
+        <th background="../_images/compat_movehub.png" class="requirements-table-th requirements-table-th">
+        ❌
+        </th>
+        
+        <th background="../_images/compat_cityhub.png" class="requirements-table-th requirements-table-th">
+        ❌
+        </th>
+        
+        <th background="../_images/compat_technichub.png" class="requirements-table-th requirements-table-th">
+        ❌
+        </th>
+        
+        <th background="../_images/compat_primehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_inventorhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_essentialhub.png" class="requirements-table-th requirements-table-th">
+        ❌
+        </th>
+        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+<section id="prime-hub-inventor-hub">
+<h1>Prime Hub / Inventor Hub<a class="headerlink" href="#prime-hub-inventor-hub" title="Permalink to this heading">¶</a></h1>
+<figure class="align-default">
+<img alt="../_images/hub-spike-inventor.png" src="../_images/hub-spike-inventor.png" style="width: 80%;" />
+</figure>
+<p><img alt="../_images/pybricks_variables_set_inventor_hub_option0.svg" class="block-image" height="47px" src="../_images/pybricks_variables_set_inventor_hub_option0.svg" width="178px" /></p>
+<p><img alt="../_images/pybricks_variables_set_inventor_hub_option4.svg" height="47px" src="../_images/pybricks_variables_set_inventor_hub_option4.svg" width="783px" /></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="InventorHub">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InventorHub</span></span><a class="headerlink" href="#InventorHub" title="Permalink to this definition">¶</a></dt>
+<dd><p>This class is the same as the <code class="docutils literal notranslate"><span class="pre">PrimeHub</span></code> class, shown below. Both classes
+work on both hubs.</p>
+<p>These hubs are completely identical. They use the same Pybricks firmware.</p>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_variables_set_prime_hub_option0.svg" class="block-image" height="47px" src="../_images/pybricks_variables_set_prime_hub_option0.svg" width="160px" /></p>
+<p><img alt="../_images/pybricks_variables_set_prime_hub_option4.svg" height="47px" src="../_images/pybricks_variables_set_prime_hub_option4.svg" width="766px" /></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PrimeHub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">top_side</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Axis.Z</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">front_side</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Axis.X</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">broadcast_channel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observe_channels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.PrimeHub" title="Permalink to this definition">¶</a></dt>
+<dd><p>LEGO® SPIKE Prime Hub.</p>
+<p>Initializes the hub. Optionally, specify how the hub is
+<a class="reference internal" href="../signaltypes.html#robotframe"><span class="std std-ref">placed in your design</span></a> by saying in which
+direction the top side (with the buttons) and front side (with the USB
+port) are pointing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>top_side</strong> (<a class="reference internal" href="../parameters/axis.html#pybricks.parameters.Axis" title="pybricks.parameters.Axis"><em>Axis</em></a>) – The axis that passes through the <em>top side</em> of
+the hub.</p></li>
+<li><p><strong>front_side</strong> (<a class="reference internal" href="../parameters/axis.html#pybricks.parameters.Axis" title="pybricks.parameters.Axis"><em>Axis</em></a>) – The axis that passes through the <em>front side</em> of
+the hub.</p></li>
+<li><p><strong>broadcast_channel</strong> – A value from 0 to 255 indicating which channel <code class="docutils literal notranslate"><span class="pre">hub.ble.broadcast()</span></code>
+will use. Default is channel 0.</p></li>
+<li><p><strong>observe_channels</strong> – A list of channels to listen to when <code class="docutils literal notranslate"><span class="pre">hub.ble.observe()</span></code> is
+called. Listening to more channels requires more memory.
+Default is an empty list (no channels).</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Using the hub status light</p>
+<figure class="align-default">
+<img alt="../_images/primehub_light.png" src="../_images/primehub_light.png" style="width: 22em;" />
+</figure>
+<p><img alt="../_images/pybricks_blockLightOnColor_primehub_on.svg" class="block-image" height="47px" src="../_images/pybricks_blockLightOnColor_primehub_on.svg" width="363px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.light.on">
+<span class="sig-prename descclassname"><span class="pre">light.</span></span><span class="sig-name descname"><span class="pre">on</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.PrimeHub.light.on" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns on the light at the specified color.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>color</strong> (<a class="reference internal" href="../parameters/color.html#pybricks.parameters.Color" title="pybricks.parameters.Color"><em>Color</em></a>) – Color of the light.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockLightOnColor_primehub_off.svg" class="block-image" height="47px" src="../_images/pybricks_blockLightOnColor_primehub_off.svg" width="263px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.light.off">
+<span class="sig-prename descclassname"><span class="pre">light.</span></span><span class="sig-name descname"><span class="pre">off</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.PrimeHub.light.off" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns off the light.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.light.blink">
+<span class="sig-prename descclassname"><span class="pre">light.</span></span><span class="sig-name descname"><span class="pre">blink</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">durations</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.PrimeHub.light.blink" title="Permalink to this definition">¶</a></dt>
+<dd><p>Blinks the light at a given color by turning it on and off for given
+durations.</p>
+<p>The light keeps blinking indefinitely while the rest of your
+program keeps running.</p>
+<p>This method provides a simple way to make basic but useful patterns.
+For more generic and multi-color patterns, use <code class="docutils literal notranslate"><span class="pre">animate()</span></code>
+instead.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>color</strong> (<a class="reference internal" href="../parameters/color.html#pybricks.parameters.Color" title="pybricks.parameters.Color"><em>Color</em></a>) – Color of the light.</p></li>
+<li><p><strong>durations</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.list" title="ubuiltins.list"><em>list</em></a>) – Sequence of time values of the
+form <code class="docutils literal notranslate"><span class="pre">[on_1,</span> <span class="pre">off_1,</span> <span class="pre">on_2,</span> <span class="pre">off_2,</span> <span class="pre">...]</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.light.animate">
+<span class="sig-prename descclassname"><span class="pre">light.</span></span><span class="sig-name descname"><span class="pre">animate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">colors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.PrimeHub.light.animate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Animates the light with a sequence of colors, shown one by
+one for the given interval.</p>
+<p>The animation runs in the background while the rest of your program
+keeps running. When the animation completes, it repeats.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>colors</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.list" title="ubuiltins.list"><em>list</em></a>) – Sequence of <a class="reference internal" href="../parameters/color.html#pybricks.parameters.Color" title="pybricks.parameters.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a>
+values.</p></li>
+<li><p><strong>interval</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>ms</em>) – Time between color updates.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Using the light matrix display</p>
+<figure class="align-default">
+<img alt="../_images/primehub_display.png" src="../_images/primehub_display.png" style="width: 22em;" />
+</figure>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.display.orientation">
+<span class="sig-prename descclassname"><span class="pre">display.</span></span><span class="sig-name descname"><span class="pre">orientation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">up</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.PrimeHub.display.orientation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the orientation of the light matrix display.</p>
+<p>Only new displayed images and pixels are affected. The existing display
+contents remain unchanged.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>top</strong> (<a class="reference internal" href="../parameters/side.html#Side" title="Side"><em>Side</em></a>) – Which side of the light matrix display is “up” in your
+design. Choose <code class="docutils literal notranslate"><span class="pre">Side.TOP</span></code>, <code class="docutils literal notranslate"><span class="pre">Side.LEFT</span></code>, <code class="docutils literal notranslate"><span class="pre">Side.RIGHT</span></code>,
+or <code class="docutils literal notranslate"><span class="pre">Side.BOTTOM</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockLightMatrixDo_light_matrix_off.svg" class="block-image" height="47px" src="../_images/pybricks_blockLightMatrixDo_light_matrix_off.svg" width="239px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.display.off">
+<span class="sig-prename descclassname"><span class="pre">display.</span></span><span class="sig-name descname"><span class="pre">off</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.PrimeHub.display.off" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns off all the pixels.</p>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockLightMatrixDo_light_matrix_pixel.svg" class="block-image" height="51px" src="../_images/pybricks_blockLightMatrixDo_light_matrix_pixel.svg" width="539px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.display.pixel">
+<span class="sig-prename descclassname"><span class="pre">display.</span></span><span class="sig-name descname"><span class="pre">pixel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">row</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">column</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">brightness</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.PrimeHub.display.pixel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns on one pixel at the specified brightness.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>row</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a>) – Vertical grid index, starting at 0 from the top.</p></li>
+<li><p><strong>column</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a>) – Horizontal grid index, starting at 0 from the left.</p></li>
+<li><p><strong>brightness</strong> (Number <a class="reference internal" href="../signaltypes.html#brightness"><span class="std std-ref">brightness: %</span></a>) – Brightness of the pixel.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.display.icon">
+<span class="sig-prename descclassname"><span class="pre">display.</span></span><span class="sig-name descname"><span class="pre">icon</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">icon</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.PrimeHub.display.icon" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays an icon, represented by a matrix of <a class="reference internal" href="../signaltypes.html#brightness"><span class="std std-ref">brightness: %</span></a>
+values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>icon</strong> (<a class="reference internal" href="../tools/index.html#pybricks.tools.Matrix" title="pybricks.tools.Matrix"><em>Matrix</em></a>) – Matrix of intensities (<a class="reference internal" href="../signaltypes.html#brightness"><span class="std std-ref">brightness: %</span></a>). A 2D
+list is also accepted.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.display.animate">
+<span class="sig-prename descclassname"><span class="pre">display.</span></span><span class="sig-name descname"><span class="pre">animate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">matrices</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.PrimeHub.display.animate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays an animation made using a list of images.</p>
+<p>Each image has the same format as above. Each image is
+shown for the given interval. The animation repeats
+forever while the rest of your program keeps running.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>matrices</strong> (<em>iter</em>) – Sequence of
+<a class="reference internal" href="../tools/index.html#pybricks.tools.Matrix" title="pybricks.tools.Matrix"><code class="xref py py-class docutils literal notranslate"><span class="pre">Matrix</span></code></a> of intensities.</p></li>
+<li><p><strong>interval</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>ms</em>) – Time to display each image in the list.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockLightMatrixDo_light_matrix_number.svg" class="block-image" height="47px" src="../_images/pybricks_blockLightMatrixDo_light_matrix_number.svg" width="319px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.display.number">
+<span class="sig-prename descclassname"><span class="pre">display.</span></span><span class="sig-name descname"><span class="pre">number</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">number</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.PrimeHub.display.number" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays a number in the range -99 to 99.</p>
+<p>A minus sign (<code class="docutils literal notranslate"><span class="pre">-</span></code>) is shown as a faint dot
+in the center of the display. Numbers greater than 99 are
+shown as <code class="docutils literal notranslate"><span class="pre">&gt;</span></code>. Numbers less than -99 are shown as <code class="docutils literal notranslate"><span class="pre">&lt;</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>number</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><em>int</em></a>) – The number to be displayed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockLightMatrixDo_light_matrix_symbol.svg" class="block-image" height="51px" src="../_images/pybricks_blockLightMatrixDo_light_matrix_symbol.svg" width="346px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.display.char">
+<span class="sig-prename descclassname"><span class="pre">display.</span></span><span class="sig-name descname"><span class="pre">char</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">char</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.PrimeHub.display.char" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays a character or symbol on the light grid. This may
+be any letter (<code class="docutils literal notranslate"><span class="pre">a</span></code>–<code class="docutils literal notranslate"><span class="pre">z</span></code>), capital letter (<code class="docutils literal notranslate"><span class="pre">A</span></code>–<code class="docutils literal notranslate"><span class="pre">Z</span></code>) or one of
+the following symbols: <code class="docutils literal notranslate"><span class="pre">!&quot;#$%&amp;'()*+,-./:;&lt;=&gt;?&#64;[\]^_`{|}</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>character</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.str" title="ubuiltins.str"><em>str</em></a>) – The character or symbol to be displayed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.display.text">
+<span class="sig-prename descclassname"><span class="pre">display.</span></span><span class="sig-name descname"><span class="pre">text</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">text</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">on</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">off</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.PrimeHub.display.text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays a text string, one character at a time, with a pause
+between each character. After the last character is shown, all lights
+turn off.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>text</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.str" title="ubuiltins.str"><em>str</em></a>) – The text to be displayed.</p></li>
+<li><p><strong>on</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>ms</em>) – For how long a character is shown.</p></li>
+<li><p><strong>off</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>ms</em>) – For how long the display is off between
+characters.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Using the buttons</p>
+<figure class="align-default">
+<img alt="../_images/primehub_buttons.png" src="../_images/primehub_buttons.png" style="width: 22em;" />
+</figure>
+<p><img alt="../_images/pybricks_blockButtonIsPressed_PrimeHub.svg" class="block-image" height="38px" src="../_images/pybricks_blockButtonIsPressed_PrimeHub.svg" width="341px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.buttons.pressed">
+<span class="sig-prename descclassname"><span class="pre">buttons.</span></span><span class="sig-name descname"><span class="pre">pressed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Collection</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../parameters/button.html#Button" title="Button"><span class="pre">Button</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pybricks.hubs.PrimeHub.buttons.pressed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks which buttons are currently pressed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Set of pressed buttons.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.system.set_stop_button">
+<span class="sig-prename descclassname"><span class="pre">system.</span></span><span class="sig-name descname"><span class="pre">set_stop_button</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">button</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.PrimeHub.system.set_stop_button" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the button or button combination that stops a running script.</p>
+<p>Normally, the center button is used to stop a running script. You can
+change or disable this behavior in order to use the button for other
+purposes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>button</strong> (<a class="reference internal" href="../parameters/button.html#Button" title="Button"><em>Button</em></a>) – A button such
+as <a class="reference internal" href="../parameters/button.html#pybricks.parameters.Button.CENTER" title="pybricks.parameters.Button.CENTER"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Button.CENTER</span></code></a>,
+or a tuple of multiple buttons. Choose <code class="docutils literal notranslate"><span class="pre">None</span></code> to disable the
+stop button altogether.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Using the IMU</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.imu.ready">
+<span class="sig-prename descclassname"><span class="pre">imu.</span></span><span class="sig-name descname"><span class="pre">ready</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../micropython/builtins.html#ubuiltins.bool" title="ubuiltins.bool"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#pybricks.hubs.PrimeHub.imu.ready" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the device is calibrated and ready for use.</p>
+<p>This becomes <code class="docutils literal notranslate"><span class="pre">True</span></code> when the robot has been sitting stationary for a
+few seconds, which allows the device to re-calibrate. It is <code class="docutils literal notranslate"><span class="pre">False</span></code>
+if the hub has just been started, or if it hasn’t had a chance to
+calibrate for more than 10 minutes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if it is ready for use, <code class="docutils literal notranslate"><span class="pre">False</span></code> if not.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.imu.stationary">
+<span class="sig-prename descclassname"><span class="pre">imu.</span></span><span class="sig-name descname"><span class="pre">stationary</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../micropython/builtins.html#ubuiltins.bool" title="ubuiltins.bool"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#pybricks.hubs.PrimeHub.imu.stationary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the device is currently stationary (not moving).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if stationary for at least a second, <code class="docutils literal notranslate"><span class="pre">False</span></code> if it is
+moving.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.imu.up">
+<span class="sig-prename descclassname"><span class="pre">imu.</span></span><span class="sig-name descname"><span class="pre">up</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../parameters/side.html#Side" title="Side"><span class="pre">Side</span></a></span></span><a class="headerlink" href="#pybricks.hubs.PrimeHub.imu.up" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks which side of the hub currently faces upward.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">Side.TOP</span></code>, <code class="docutils literal notranslate"><span class="pre">Side.BOTTOM</span></code>, <code class="docutils literal notranslate"><span class="pre">Side.LEFT</span></code>, <code class="docutils literal notranslate"><span class="pre">Side.RIGHT</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Side.FRONT</span></code> or <code class="docutils literal notranslate"><span class="pre">Side.BACK</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockTilt_PrimeHub_imu.tilt.pitch.svg" class="block-image" height="38px" src="../_images/pybricks_blockTilt_PrimeHub_imu.tilt.pitch.svg" width="275px" /></p>
+<p><img alt="../_images/pybricks_blockTilt_PrimeHub_imu.tilt.roll.svg" height="38px" src="../_images/pybricks_blockTilt_PrimeHub_imu.tilt.roll.svg" width="263px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.imu.tilt">
+<span class="sig-prename descclassname"><span class="pre">imu.</span></span><span class="sig-name descname"><span class="pre">tilt</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pybricks.hubs.PrimeHub.imu.tilt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the pitch and roll angles. This is relative to the
+<a class="reference internal" href="../signaltypes.html#robotframe"><span class="std std-ref">user-specified neutral orientation</span></a>.</p>
+<p>The order of rotation is pitch-then-roll. This is equivalent to a
+positive rotation along the robot y-axis and then a positive rotation
+along the x-axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple of pitch and roll angles in degrees.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockImuAcceleration_PrimeHub.svg" class="block-image" height="38px" src="../_images/pybricks_blockImuAcceleration_PrimeHub.svg" width="353px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.imu.acceleration">
+<span class="sig-prename descclassname"><span class="pre">imu.</span></span><span class="sig-name descname"><span class="pre">acceleration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float:</span> <span class="pre">mm/s²</span></span></span><a class="headerlink" href="#pybricks.hubs.PrimeHub.imu.acceleration" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">imu.</span></span><span class="sig-name descname"><span class="pre">acceleration</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">vector:</span> <span class="pre">mm/s²</span></span></span></dt>
+<dd><p>Gets the acceleration of the device along a given axis in the
+<a class="reference internal" href="../signaltypes.html#robotframe"><span class="std std-ref">robot reference frame</span></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>axis</strong> (<a class="reference internal" href="../parameters/axis.html#pybricks.parameters.Axis" title="pybricks.parameters.Axis"><em>Axis</em></a>) – Axis along which the acceleration should be
+measured.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Acceleration along the specified axis. If you specify no axis,
+this returns a vector of accelerations along all axes.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockImuRotation_PrimeHub_imu.angular_velocity.svg" class="block-image" height="38px" src="../_images/pybricks_blockImuRotation_PrimeHub_imu.angular_velocity.svg" width="454px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.imu.angular_velocity">
+<span class="sig-prename descclassname"><span class="pre">imu.</span></span><span class="sig-name descname"><span class="pre">angular_velocity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float:</span> <span class="pre">deg/s</span></span></span><a class="headerlink" href="#pybricks.hubs.PrimeHub.imu.angular_velocity" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">imu.</span></span><span class="sig-name descname"><span class="pre">angular_velocity</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">vector:</span> <span class="pre">deg/s</span></span></span></dt>
+<dd><p>Gets the angular velocity of the device along a given axis in
+the <a class="reference internal" href="../signaltypes.html#robotframe"><span class="std std-ref">robot reference frame</span></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>axis</strong> (<a class="reference internal" href="../parameters/axis.html#pybricks.parameters.Axis" title="pybricks.parameters.Axis"><em>Axis</em></a>) – Axis along which the angular velocity should be
+measured.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Angular velocity along the specified axis. If you specify no axis,
+this returns a vector of accelerations along all axes.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockImuGetHeading_PrimeHub.svg" class="block-image" height="38px" src="../_images/pybricks_blockImuGetHeading_PrimeHub.svg" width="263px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.imu.heading">
+<span class="sig-prename descclassname"><span class="pre">imu.</span></span><span class="sig-name descname"><span class="pre">heading</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float:</span> <span class="pre">deg</span></span></span><a class="headerlink" href="#pybricks.hubs.PrimeHub.imu.heading" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the heading angle of your robot. A positive value means a
+clockwise turn.</p>
+<p>The heading is 0 when your program starts. The value continues to grow
+even as the robot turns more than 180 degrees. It does not wrap around
+to -180 like it does in some apps.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><em>For now, this method only keeps track of the heading while
+the robot is on a flat surface.</em></p>
+<p>This means that the value is
+no longer correct if you lift it from the table. To solve
+this, you can call <code class="docutils literal notranslate"><span class="pre">reset_heading</span></code> to reset the heading to
+a known value <em>after</em> you put it back down. For example, you
+could align your robot with the side of the competition table
+and reset the heading 90 degrees as the new starting point.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Heading angle relative to starting orientation.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockImuResetHeading_PrimeHub.svg" class="block-image" height="51px" src="../_images/pybricks_blockImuResetHeading_PrimeHub.svg" width="350px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.imu.reset_heading">
+<span class="sig-prename descclassname"><span class="pre">imu.</span></span><span class="sig-name descname"><span class="pre">reset_heading</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.PrimeHub.imu.reset_heading" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the accumulated heading angle of the robot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>angle</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>deg</em>) – Value to which the heading should be reset.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockImuRotation_PrimeHub_imu.rotation.svg" class="block-image" height="38px" src="../_images/pybricks_blockImuRotation_PrimeHub_imu.rotation.svg" width="398px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.imu.rotation">
+<span class="sig-prename descclassname"><span class="pre">imu.</span></span><span class="sig-name descname"><span class="pre">rotation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">axis</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float:</span> <span class="pre">deg</span></span></span><a class="headerlink" href="#pybricks.hubs.PrimeHub.imu.rotation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the rotation of the device along a given axis in
+the <a class="reference internal" href="../signaltypes.html#robotframe"><span class="std std-ref">robot reference frame</span></a>.</p>
+<p>This value is useful if your robot <em>only</em> rotates along the requested
+axis. For general three-dimensional motion, use the
+<code class="docutils literal notranslate"><span class="pre">orientation()</span></code> method instead.</p>
+<p>The value starts counting from <code class="docutils literal notranslate"><span class="pre">0</span></code> when you initialize this class.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>axis</strong> (<a class="reference internal" href="../parameters/axis.html#pybricks.parameters.Axis" title="pybricks.parameters.Axis"><em>Axis</em></a>) – Axis along which the rotation should be measured.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The rotation angle.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.imu.orientation">
+<span class="sig-prename descclassname"><span class="pre">imu.</span></span><span class="sig-name descname"><span class="pre">orientation</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../tools/index.html#pybricks.tools.Matrix" title="pybricks.tools.Matrix"><span class="pre">Matrix</span></a></span></span><a class="headerlink" href="#pybricks.hubs.PrimeHub.imu.orientation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the three-dimensional orientation of the robot in
+the <a class="reference internal" href="../signaltypes.html#robotframe"><span class="std std-ref">robot reference frame</span></a>.</p>
+<p>It returns a rotation matrix whose columns represent the <code class="docutils literal notranslate"><span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">Y</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">Z</span></code> axis of the robot.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method is not yet implemented.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The rotation matrix.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.imu.settings">
+<span class="sig-prename descclassname"><span class="pre">imu.</span></span><span class="sig-name descname"><span class="pre">settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angular_velocity_threshold</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">acceleration_threshold</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.PrimeHub.imu.settings" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">imu.</span></span><span class="sig-name descname"><span class="pre">settings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.float" title="ubuiltins.float"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.float" title="ubuiltins.float"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dd><p>Configures the IMU settings. If no arguments are given,
+this returns the current values.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">angular_velocity_threshold</span></code> and <code class="docutils literal notranslate"><span class="pre">acceleration_threshold</span></code>
+define when the hub is considered stationary. If all
+measurements stay below these thresholds for one second, the IMU
+will recalibrate itself.</p>
+<p>In a noisy room with high ambient vibrations (such as a
+competition hall), it is recommended to increase the thresholds
+slightly to give your robot the chance to calibrate.
+To verify that your settings are working as expected, test that
+the <code class="docutils literal notranslate"><span class="pre">stationary()</span></code> method gives <code class="docutils literal notranslate"><span class="pre">False</span></code> if your robot is moving,
+and <code class="docutils literal notranslate"><span class="pre">True</span></code> if it is sitting still for at least a second.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>angular_velocity_threshold</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>deg/s</em>) – The threshold for
+angular velocity. The default value is 1.5 deg/s.</p></li>
+<li><p><strong>acceleration_threshold</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>mm/s²</em>) – The threshold for angular
+velocity. The default value is 250 mm/s².</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Using the speaker</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.speaker.volume">
+<span class="sig-prename descclassname"><span class="pre">speaker.</span></span><span class="sig-name descname"><span class="pre">volume</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">volume</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.PrimeHub.speaker.volume" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">speaker.</span></span><span class="sig-name descname"><span class="pre">volume</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int:</span> <span class="pre">%</span></span></span></dt>
+<dd><p>Gets or sets the speaker volume.</p>
+<p>If no volume is given, this method returns the current volume.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>volume</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>%</em>) – Volume of the speaker in the 0-100 range.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.speaker.beep">
+<em class="property"><a class="reference internal" href="../tools/index.html#pybricks.tools.await" title="pybricks.tools.await"><span class="pre">await</span></a></em><span class="sig-prename descclassname"><span class="pre">speaker.</span></span><span class="sig-name descname"><span class="pre">beep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">500</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duration</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.PrimeHub.speaker.beep" title="Permalink to this definition">¶</a></dt>
+<dd><p>Play a beep/tone.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frequency</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>Hz</em>) – Frequency of the beep in the 64-24000 Hz range.</p></li>
+<li><p><strong>duration</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>ms</em>) – Duration of the beep. If the duration is less
+than 0, then the method returns immediately and the frequency
+play continues to play indefinitely.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.speaker.play_notes">
+<em class="property"><a class="reference internal" href="../tools/index.html#pybricks.tools.await" title="pybricks.tools.await"><span class="pre">await</span></a></em><span class="sig-prename descclassname"><span class="pre">speaker.</span></span><span class="sig-name descname"><span class="pre">play_notes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">notes</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tempo</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">120</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.PrimeHub.speaker.play_notes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Plays a sequence of musical notes. For example:
+<code class="docutils literal notranslate"><span class="pre">[&quot;C4/4&quot;,</span> <span class="pre">&quot;C4/4&quot;,</span> <span class="pre">&quot;G4/4&quot;,</span> <span class="pre">&quot;G4/4&quot;]</span></code>.</p>
+<p>Each note is a string with the following format:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The first character is the name of the note, <code class="docutils literal notranslate"><span class="pre">A</span></code> to <code class="docutils literal notranslate"><span class="pre">G</span></code>
+or <code class="docutils literal notranslate"><span class="pre">R</span></code> for a rest.</p></li>
+<li><p>Note names can also include an accidental <code class="docutils literal notranslate"><span class="pre">#</span></code> (sharp) or
+<code class="docutils literal notranslate"><span class="pre">b</span></code> (flat). <code class="docutils literal notranslate"><span class="pre">B#</span></code>/<code class="docutils literal notranslate"><span class="pre">Cb</span></code> and <code class="docutils literal notranslate"><span class="pre">E#</span></code>/<code class="docutils literal notranslate"><span class="pre">Fb</span></code> are not
+allowed.</p></li>
+<li><p>The note name is followed by the octave number <code class="docutils literal notranslate"><span class="pre">2</span></code>
+to <code class="docutils literal notranslate"><span class="pre">8</span></code>. For example <code class="docutils literal notranslate"><span class="pre">C4</span></code> is middle C. The octave changes
+to the next number at the note C, for example, <code class="docutils literal notranslate"><span class="pre">B3</span></code> is the
+note below middle C (<code class="docutils literal notranslate"><span class="pre">C4</span></code>).</p></li>
+<li><p>The octave is followed by <code class="docutils literal notranslate"><span class="pre">/</span></code> and a number that indicates
+the size of the note. For example <code class="docutils literal notranslate"><span class="pre">/4</span></code> is a quarter note,
+<code class="docutils literal notranslate"><span class="pre">/8</span></code> is an eighth note and so on.</p></li>
+<li><p>This can optionally followed by a <code class="docutils literal notranslate"><span class="pre">.</span></code> to make a dotted
+note. Dotted notes are 1-1/2 times as long as notes without a
+dot.</p></li>
+<li><p>The note can optionally end with a <code class="docutils literal notranslate"><span class="pre">_</span></code> which is a tie or a
+slur. This causes there to be no pause between this note and
+the next note.</p></li>
+</ul>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>notes</strong> (<em>iter</em>) – A sequence of notes to be played.</p></li>
+<li><p><strong>tempo</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><em>int</em></a>) – Beats per minute. A quarter note is one beat.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Using connectionless Bluetooth messaging</p>
+<p><img alt="../_images/pybricks_blockBleBroadcast_PrimeHub.svg" class="block-image" height="47px" src="../_images/pybricks_blockBleBroadcast_PrimeHub.svg" width="492px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.ble.broadcast">
+<span class="sig-prename descclassname"><span class="pre">ble.</span></span><span class="sig-name descname"><span class="pre">broadcast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.PrimeHub.ble.broadcast" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts broadcasting the given data on
+the <em>broadcast_channel</em> you selected when initializing the hub.</p>
+<p>Data may be of type <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">str</span></code>, <code class="docutils literal notranslate"><span class="pre">bytes</span></code>,
+<code class="docutils literal notranslate"><span class="pre">True</span></code>, or <code class="docutils literal notranslate"><span class="pre">False</span></code>, or a tuple thereof.</p>
+<p>The total data size is quite limited (26 bytes). <code class="docutils literal notranslate"><span class="pre">True</span></code> and
+<code class="docutils literal notranslate"><span class="pre">False</span></code> take 1 byte each. <code class="docutils literal notranslate"><span class="pre">float</span></code> takes 5 bytes. <code class="docutils literal notranslate"><span class="pre">int</span></code> takes 2 to
+5 bytes depending on how big the number is. <code class="docutils literal notranslate"><span class="pre">str</span></code> and <code class="docutils literal notranslate"><span class="pre">bytes</span></code> take
+the number of bytes in the object plus one extra byte.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> – The value or values to be broadcast.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockBleObserve_PrimeHub.svg" class="block-image" height="38px" src="../_images/pybricks_blockBleObserve_PrimeHub.svg" width="282px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.ble.observe">
+<span class="sig-prename descclassname"><span class="pre">ble.</span></span><span class="sig-name descname"><span class="pre">observe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../micropython/builtins.html#ubuiltins.bool" title="ubuiltins.bool"><span class="pre">bool</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.float" title="ubuiltins.float"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.str" title="ubuiltins.str"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.bytes" title="ubuiltins.bytes"><span class="pre">bytes</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.tuple" title="ubuiltins.tuple"><span class="pre">tuple</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#pybricks.hubs.PrimeHub.ble.observe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the last observed data for a given channel.</p>
+<p>Receiving data is more reliable when the hub is not connected
+to a computer or other devices at the same time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>channel</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><em>int</em></a>) – The channel to observe (0 to 255).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The received data in the same format as it was sent, or <code class="docutils literal notranslate"><span class="pre">None</span></code>
+if no recent data is available.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.ble.signal_strength">
+<span class="sig-prename descclassname"><span class="pre">ble.</span></span><span class="sig-name descname"><span class="pre">signal_strength</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int:</span> <span class="pre">dBm</span></span></span><a class="headerlink" href="#pybricks.hubs.PrimeHub.ble.signal_strength" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the average signal strength in dBm for the given channel.</p>
+<p>This indicates how near the broadcasting device is. Nearby devices
+may have a signal strength around -40 dBm, while far away devices
+might have a signal strength around -70 dBm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>channel</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><em>int</em></a>) – The channel number (0 to 255).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The signal strength or <code class="docutils literal notranslate"><span class="pre">-128</span></code> if there is no recent observed data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.ble.version">
+<span class="sig-prename descclassname"><span class="pre">ble.</span></span><span class="sig-name descname"><span class="pre">version</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../micropython/builtins.html#ubuiltins.str" title="ubuiltins.str"><span class="pre">str</span></a></span></span><a class="headerlink" href="#pybricks.hubs.PrimeHub.ble.version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the firmware version from the Bluetooth chip.</p>
+</dd></dl>
+
+<p class="rubric">Using the battery</p>
+<p><img alt="../_images/pybricks_blockBatteryMeasure_PrimeHub_battery.voltage.svg" class="block-image" height="38px" src="../_images/pybricks_blockBatteryMeasure_PrimeHub_battery.voltage.svg" width="317px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.battery.voltage">
+<span class="sig-prename descclassname"><span class="pre">battery.</span></span><span class="sig-name descname"><span class="pre">voltage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int:</span> <span class="pre">mV</span></span></span><a class="headerlink" href="#pybricks.hubs.PrimeHub.battery.voltage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the voltage of the battery.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Battery voltage.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockBatteryMeasure_PrimeHub_battery.current.svg" class="block-image" height="38px" src="../_images/pybricks_blockBatteryMeasure_PrimeHub_battery.current.svg" width="317px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.battery.current">
+<span class="sig-prename descclassname"><span class="pre">battery.</span></span><span class="sig-name descname"><span class="pre">current</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int:</span> <span class="pre">mA</span></span></span><a class="headerlink" href="#pybricks.hubs.PrimeHub.battery.current" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the current supplied by the battery.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Battery current.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Getting the charger status</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.charger.connected">
+<span class="sig-prename descclassname"><span class="pre">charger.</span></span><span class="sig-name descname"><span class="pre">connected</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../micropython/builtins.html#ubuiltins.bool" title="ubuiltins.bool"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#pybricks.hubs.PrimeHub.charger.connected" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks whether a charger is connected via USB.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if a charger is connected, <code class="docutils literal notranslate"><span class="pre">False</span></code> if not.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.charger.current">
+<span class="sig-prename descclassname"><span class="pre">charger.</span></span><span class="sig-name descname"><span class="pre">current</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int:</span> <span class="pre">mA</span></span></span><a class="headerlink" href="#pybricks.hubs.PrimeHub.charger.current" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the charging current.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Charging current.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.charger.status">
+<span class="sig-prename descclassname"><span class="pre">charger.</span></span><span class="sig-name descname"><span class="pre">status</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a></span></span><a class="headerlink" href="#pybricks.hubs.PrimeHub.charger.status" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the status of the battery charger, represented by one of the
+following values. This corresponds to the battery light indicator
+right next to the USB port.</p>
+<blockquote>
+<div><ol class="arabic simple" start="0">
+<li><p>Not charging (light is off).</p></li>
+<li><p>Charging (light is red).</p></li>
+<li><p>Charging is complete (light is green).</p></li>
+<li><p>There is a problem with the charger (light is yellow).</p></li>
+</ol>
+</div></blockquote>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Status value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">System control</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.system.name">
+<span class="sig-prename descclassname"><span class="pre">system.</span></span><span class="sig-name descname"><span class="pre">name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../micropython/builtins.html#ubuiltins.str" title="ubuiltins.str"><span class="pre">str</span></a></span></span><a class="headerlink" href="#pybricks.hubs.PrimeHub.system.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the hub name. This is the name you see when connecting
+via Bluetooth.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The hub name.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.system.storage">
+<span class="sig-prename descclassname"><span class="pre">system.</span></span><span class="sig-name descname"><span class="pre">storage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">write=</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.PrimeHub.system.storage" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">system.</span></span><span class="sig-name descname"><span class="pre">storage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">read=</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../micropython/builtins.html#ubuiltins.bytes" title="ubuiltins.bytes"><span class="pre">bytes</span></a></span></span></dt>
+<dd><p>Reads or writes binary data to persistent storage.</p>
+<p>This lets you store data that can be used the next time you run the
+program.</p>
+<p>The data will be saved to flash memory when you turn the hub off
+normally. It will not be saved if the batteries are removed <em>while</em> the
+hub is still running.</p>
+<p>Once saved, the data will remain available even after you remove the
+batteries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>offset</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><em>int</em></a>) – The offset from the start of the user storage memory, in bytes.</p></li>
+<li><p><strong>read</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><em>int</em></a>) – The number of bytes to read. Omit this argument when writing.</p></li>
+<li><p><strong>write</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.bytes" title="ubuiltins.bytes"><em>bytes</em></a>) – The bytes to write. Omit this argument when reading.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The bytes read if reading, otherwise <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../micropython/exceptions.html#ubuiltins.ValueError" title="ubuiltins.ValueError"><strong>ValueError</strong></a> – If you try to read or write data outside of the allowed range.</p>
+</dd>
+</dl>
+<p>You can store up to 512 bytes of data on this hub.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.system.shutdown">
+<span class="sig-prename descclassname"><span class="pre">system.</span></span><span class="sig-name descname"><span class="pre">shutdown</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.PrimeHub.system.shutdown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops your program and shuts the hub down.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.PrimeHub.system.reset_reason">
+<span class="sig-prename descclassname"><span class="pre">system.</span></span><span class="sig-name descname"><span class="pre">reset_reason</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a></span></span><a class="headerlink" href="#pybricks.hubs.PrimeHub.system.reset_reason" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds out how and why the hub (re)booted. This can be useful to
+diagnose some problems.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if the hub was previously powered off
+normally.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> if the hub rebooted automatically, like
+after a firmware update.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> if the hub previously
+crashed due to a watchdog timeout, which indicates a firmware
+issue.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The examples below use the <code class="docutils literal notranslate"><span class="pre">PrimeHub</span></code> class. The examples work fine
+on both hubs because they are the identical. If you prefer, you can
+change this to <code class="docutils literal notranslate"><span class="pre">InventorHub</span></code>.</p>
+</div>
+<section id="status-light-examples">
+<h2>Status light examples<a class="headerlink" href="#status-light-examples" title="Permalink to this heading">¶</a></h2>
+<section id="turning-the-light-on-and-off">
+<h3>Turning the light on and off<a class="headerlink" href="#turning-the-light-on-and-off" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">PrimeHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Color</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the hub.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">PrimeHub</span><span class="p">()</span>
+
+<span class="c1"># Turn the light on and off 5 times.</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+
+    <span class="n">hub</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">RED</span><span class="p">)</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+
+    <span class="n">hub</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="changing-brightness-and-using-custom-colors">
+<h3>Changing brightness and using custom colors<a class="headerlink" href="#changing-brightness-and-using-custom-colors" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">PrimeHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Color</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the hub.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">PrimeHub</span><span class="p">()</span>
+
+<span class="c1"># Show the color at 30% brightness.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">RED</span> <span class="o">*</span> <span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">wait</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>
+
+<span class="c1"># Use your own custom color.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="mi">50</span><span class="p">))</span>
+
+<span class="n">wait</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>
+
+<span class="c1"># Go through all the colors.</span>
+<span class="k">for</span> <span class="n">hue</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">360</span><span class="p">):</span>
+    <span class="n">hub</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="n">hue</span><span class="p">))</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="making-the-light-blink">
+<h3>Making the light blink<a class="headerlink" href="#making-the-light-blink" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">PrimeHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Color</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the hub</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">PrimeHub</span><span class="p">()</span>
+
+<span class="c1"># Keep blinking red on and off.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">blink</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">RED</span><span class="p">,</span> <span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">])</span>
+
+<span class="n">wait</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+
+<span class="c1"># Keep blinking green slowly and then quickly.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">blink</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">GREEN</span><span class="p">,</span> <span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">900</span><span class="p">])</span>
+
+<span class="n">wait</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="creating-light-animations">
+<h3>Creating light animations<a class="headerlink" href="#creating-light-animations" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">PrimeHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Color</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+<span class="kn">from</span> <span class="nn">umath</span> <span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">pi</span>
+
+<span class="c1"># Initialize the hub.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">PrimeHub</span><span class="p">()</span>
+
+<span class="c1"># Make an animation with multiple colors.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">animate</span><span class="p">([</span><span class="n">Color</span><span class="o">.</span><span class="n">RED</span><span class="p">,</span> <span class="n">Color</span><span class="o">.</span><span class="n">GREEN</span><span class="p">,</span> <span class="n">Color</span><span class="o">.</span><span class="n">NONE</span><span class="p">],</span> <span class="n">interval</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="n">wait</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+
+<span class="c1"># Make the color RED grow faint and bright using a sine pattern.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">animate</span><span class="p">([</span><span class="n">Color</span><span class="o">.</span><span class="n">RED</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">sin</span><span class="p">(</span><span class="n">i</span> <span class="o">/</span> <span class="mi">15</span> <span class="o">*</span> <span class="n">pi</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">)],</span> <span class="mi">40</span><span class="p">)</span>
+
+<span class="n">wait</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+
+<span class="c1"># Cycle through a rainbow of colors.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">animate</span><span class="p">([</span><span class="n">Color</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="n">i</span> <span class="o">*</span> <span class="mi">8</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">45</span><span class="p">)],</span> <span class="n">interval</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+
+<span class="n">wait</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="matrix-display-examples">
+<h2>Matrix display examples<a class="headerlink" href="#matrix-display-examples" title="Permalink to this heading">¶</a></h2>
+<section id="displaying-images">
+<h3>Displaying images<a class="headerlink" href="#displaying-images" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">PrimeHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Icon</span>
+
+<span class="c1"># Initialize the hub.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">PrimeHub</span><span class="p">()</span>
+
+<span class="c1"># Display a big arrow pointing up.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">icon</span><span class="p">(</span><span class="n">Icon</span><span class="o">.</span><span class="n">UP</span><span class="p">)</span>
+
+<span class="c1"># Wait so we can see what is displayed.</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>
+
+<span class="c1"># Display a heart at half brightness.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">icon</span><span class="p">(</span><span class="n">Icon</span><span class="o">.</span><span class="n">HEART</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Wait so we can see what is displayed.</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="displaying-numbers">
+<h3>Displaying numbers<a class="headerlink" href="#displaying-numbers" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">PrimeHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the hub.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">PrimeHub</span><span class="p">()</span>
+
+<span class="c1"># Count from 0 to 99.</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+    <span class="n">hub</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">number</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="displaying-text">
+<h3>Displaying text<a class="headerlink" href="#displaying-text" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">PrimeHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the hub.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">PrimeHub</span><span class="p">()</span>
+
+<span class="c1"># Display the letter A for two seconds.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">char</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>
+
+<span class="c1"># Display text, one letter at a time.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;Hello, world!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="displaying-individual-pixels">
+<h3>Displaying individual pixels<a class="headerlink" href="#displaying-individual-pixels" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">PrimeHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the hub.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">PrimeHub</span><span class="p">()</span>
+
+<span class="c1"># Turn on the pixel at row 1, column 2.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">pixel</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>
+
+<span class="c1"># Turn on the pixel at row 2, column 4, at 50% brightness.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">pixel</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>
+
+<span class="c1"># Turn off the pixel at row 1, column 2.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">pixel</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="changing-the-display-orientation">
+<h3>Changing the display orientation<a class="headerlink" href="#changing-the-display-orientation" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">PrimeHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Side</span>
+
+<span class="c1"># Initialize the hub.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">PrimeHub</span><span class="p">()</span>
+
+<span class="c1"># Rotate the display. Now right is up.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">orientation</span><span class="p">(</span><span class="n">up</span><span class="o">=</span><span class="n">Side</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">)</span>
+
+<span class="c1"># Display a number. This will be shown sideways.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">number</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span>
+
+<span class="c1"># Wait so we can see what is displayed.</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">PrimeHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Icon</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the hub.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">PrimeHub</span><span class="p">()</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+
+    <span class="c1"># Check which side of the hub is up.</span>
+    <span class="n">up_side</span> <span class="o">=</span> <span class="n">hub</span><span class="o">.</span><span class="n">imu</span><span class="o">.</span><span class="n">up</span><span class="p">()</span>
+
+    <span class="c1"># Use this side to set the display orientation.</span>
+    <span class="n">hub</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">orientation</span><span class="p">(</span><span class="n">up_side</span><span class="p">)</span>
+
+    <span class="c1"># Display something, like an arrow.</span>
+    <span class="n">hub</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">icon</span><span class="p">(</span><span class="n">Icon</span><span class="o">.</span><span class="n">UP</span><span class="p">)</span>
+
+    <span class="n">wait</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="making-your-own-images">
+<span id="make-icons"></span><h3>Making your own images<a class="headerlink" href="#making-your-own-images" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">PrimeHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span><span class="p">,</span> <span class="n">Matrix</span>
+
+<span class="c1"># Initialize the hub.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">PrimeHub</span><span class="p">()</span>
+
+<span class="c1"># Make a square that is bright on the outside and faint in the middle.</span>
+<span class="n">SQUARE</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">(</span>
+    <span class="p">[</span>
+        <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+        <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+    <span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># Display the square.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">icon</span><span class="p">(</span><span class="n">SQUARE</span><span class="p">)</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">3000</span><span class="p">)</span>
+
+<span class="c1"># Make an image using a Python list comprehension. In this image, the</span>
+<span class="c1"># brightness of each pixel is the sum of the row and column index. So the</span>
+<span class="c1"># light is faint in the top left and bright in the bottom right.</span>
+<span class="n">GRADIENT</span> <span class="o">=</span> <span class="n">Matrix</span><span class="p">([[(</span><span class="n">r</span> <span class="o">+</span> <span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)])</span> <span class="o">*</span> <span class="mf">12.5</span>
+
+<span class="c1"># Display the generated gradient.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">icon</span><span class="p">(</span><span class="n">GRADIENT</span><span class="p">)</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">3000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="combining-icons-to-make-expressions">
+<h3>Combining icons to make expressions<a class="headerlink" href="#combining-icons-to-make-expressions" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">PrimeHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Icon</span><span class="p">,</span> <span class="n">Side</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="kn">from</span> <span class="nn">urandom</span> <span class="kn">import</span> <span class="n">randint</span>
+
+<span class="c1"># Initialize the hub.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">PrimeHub</span><span class="p">()</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">orientation</span><span class="p">(</span><span class="n">up</span><span class="o">=</span><span class="n">Side</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+
+    <span class="c1"># Start with random left brow: up or down.</span>
+    <span class="k">if</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">70</span><span class="p">:</span>
+        <span class="n">brows</span> <span class="o">=</span> <span class="n">Icon</span><span class="o">.</span><span class="n">EYE_LEFT_BROW</span> <span class="o">*</span> <span class="mf">0.5</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">brows</span> <span class="o">=</span> <span class="n">Icon</span><span class="o">.</span><span class="n">EYE_LEFT_BROW_UP</span> <span class="o">*</span> <span class="mf">0.5</span>
+
+    <span class="c1"># Add random right brow: up or down.</span>
+    <span class="k">if</span> <span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">70</span><span class="p">:</span>
+        <span class="n">brows</span> <span class="o">+=</span> <span class="n">Icon</span><span class="o">.</span><span class="n">EYE_RIGHT_BROW</span> <span class="o">*</span> <span class="mf">0.5</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">brows</span> <span class="o">+=</span> <span class="n">Icon</span><span class="o">.</span><span class="n">EYE_RIGHT_BROW_UP</span> <span class="o">*</span> <span class="mf">0.5</span>
+
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+        <span class="c1"># Display eyes open plus the random brows.</span>
+        <span class="n">hub</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">icon</span><span class="p">(</span><span class="n">Icon</span><span class="o">.</span><span class="n">EYE_LEFT</span> <span class="o">+</span> <span class="n">Icon</span><span class="o">.</span><span class="n">EYE_RIGHT</span> <span class="o">+</span> <span class="n">brows</span><span class="p">)</span>
+        <span class="n">wait</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>
+
+        <span class="c1"># Display eyes blinked plus the random brows.</span>
+        <span class="n">hub</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">icon</span><span class="p">(</span><span class="n">Icon</span><span class="o">.</span><span class="n">EYE_LEFT_BLINK</span> <span class="o">*</span> <span class="mf">0.7</span> <span class="o">+</span> <span class="n">Icon</span><span class="o">.</span><span class="n">EYE_RIGHT_BLINK</span> <span class="o">*</span> <span class="mf">0.7</span> <span class="o">+</span> <span class="n">brows</span><span class="p">)</span>
+        <span class="n">wait</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="displaying-animations">
+<h3>Displaying animations<a class="headerlink" href="#displaying-animations" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">PrimeHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Icon</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the hub.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">PrimeHub</span><span class="p">()</span>
+
+<span class="c1"># Turn the hub light off (optional).</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+
+<span class="c1"># Create a list of intensities from 0 to 100 and back.</span>
+<span class="n">brightness</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="c1"># Create an animation of the heart icon with changing brightness.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">animate</span><span class="p">([</span><span class="n">Icon</span><span class="o">.</span><span class="n">HEART</span> <span class="o">*</span> <span class="n">i</span> <span class="o">/</span> <span class="mi">100</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">brightness</span><span class="p">],</span> <span class="mi">30</span><span class="p">)</span>
+
+<span class="c1"># The animation repeats in the background. Here we just wait.</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="button-examples">
+<h2>Button examples<a class="headerlink" href="#button-examples" title="Permalink to this heading">¶</a></h2>
+<section id="detecting-button-presses">
+<h3>Detecting button presses<a class="headerlink" href="#detecting-button-presses" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">PrimeHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Button</span><span class="p">,</span> <span class="n">Icon</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the hub.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">PrimeHub</span><span class="p">()</span>
+
+<span class="c1"># Wait for any button to be pressed, and save the result.</span>
+<span class="n">pressed</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="nb">any</span><span class="p">(</span><span class="n">pressed</span><span class="p">):</span>
+    <span class="n">pressed</span> <span class="o">=</span> <span class="n">hub</span><span class="o">.</span><span class="n">buttons</span><span class="o">.</span><span class="n">pressed</span><span class="p">()</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Display a circle.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">icon</span><span class="p">(</span><span class="n">Icon</span><span class="o">.</span><span class="n">CIRCLE</span><span class="p">)</span>
+
+<span class="c1"># Wait for all buttons to be released.</span>
+<span class="k">while</span> <span class="nb">any</span><span class="p">(</span><span class="n">hub</span><span class="o">.</span><span class="n">buttons</span><span class="o">.</span><span class="n">pressed</span><span class="p">()):</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Display an arrow to indicate which button was pressed.</span>
+<span class="k">if</span> <span class="n">Button</span><span class="o">.</span><span class="n">LEFT</span> <span class="ow">in</span> <span class="n">pressed</span><span class="p">:</span>
+    <span class="n">hub</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">icon</span><span class="p">(</span><span class="n">Icon</span><span class="o">.</span><span class="n">ARROW_LEFT_DOWN</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">Button</span><span class="o">.</span><span class="n">RIGHT</span> <span class="ow">in</span> <span class="n">pressed</span><span class="p">:</span>
+    <span class="n">hub</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">icon</span><span class="p">(</span><span class="n">Icon</span><span class="o">.</span><span class="n">ARROW_RIGHT_DOWN</span><span class="p">)</span>
+<span class="k">elif</span> <span class="n">Button</span><span class="o">.</span><span class="n">BLUETOOTH</span> <span class="ow">in</span> <span class="n">pressed</span><span class="p">:</span>
+    <span class="n">hub</span><span class="o">.</span><span class="n">display</span><span class="o">.</span><span class="n">icon</span><span class="p">(</span><span class="n">Icon</span><span class="o">.</span><span class="n">ARROW_RIGHT_UP</span><span class="p">)</span>
+
+<span class="n">wait</span><span class="p">(</span><span class="mi">3000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="imu-examples">
+<h2>IMU examples<a class="headerlink" href="#imu-examples" title="Permalink to this heading">¶</a></h2>
+<section id="testing-which-way-is-up">
+<h3>Testing which way is up<a class="headerlink" href="#testing-which-way-is-up" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">PrimeHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Color</span><span class="p">,</span> <span class="n">Side</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the hub.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">PrimeHub</span><span class="p">()</span>
+
+<span class="c1"># Define colors for each side in a dictionary.</span>
+<span class="n">SIDE_COLORS</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Side</span><span class="o">.</span><span class="n">TOP</span><span class="p">:</span> <span class="n">Color</span><span class="o">.</span><span class="n">RED</span><span class="p">,</span>
+    <span class="n">Side</span><span class="o">.</span><span class="n">BOTTOM</span><span class="p">:</span> <span class="n">Color</span><span class="o">.</span><span class="n">BLUE</span><span class="p">,</span>
+    <span class="n">Side</span><span class="o">.</span><span class="n">LEFT</span><span class="p">:</span> <span class="n">Color</span><span class="o">.</span><span class="n">GREEN</span><span class="p">,</span>
+    <span class="n">Side</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">:</span> <span class="n">Color</span><span class="o">.</span><span class="n">YELLOW</span><span class="p">,</span>
+    <span class="n">Side</span><span class="o">.</span><span class="n">FRONT</span><span class="p">:</span> <span class="n">Color</span><span class="o">.</span><span class="n">MAGENTA</span><span class="p">,</span>
+    <span class="n">Side</span><span class="o">.</span><span class="n">BACK</span><span class="p">:</span> <span class="n">Color</span><span class="o">.</span><span class="n">BLACK</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># Keep updating the color based on detected up side.</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+
+    <span class="c1"># Check which side of the hub is up.</span>
+    <span class="n">up_side</span> <span class="o">=</span> <span class="n">hub</span><span class="o">.</span><span class="n">imu</span><span class="o">.</span><span class="n">up</span><span class="p">()</span>
+
+    <span class="c1"># Change the color based on the side.</span>
+    <span class="n">hub</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">SIDE_COLORS</span><span class="p">[</span><span class="n">up_side</span><span class="p">])</span>
+
+    <span class="c1"># Also print the result.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">up_side</span><span class="p">)</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="reading-the-tilt-value">
+<h3>Reading the tilt value<a class="headerlink" href="#reading-the-tilt-value" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">PrimeHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the hub.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">PrimeHub</span><span class="p">()</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="c1"># Read the tilt values.</span>
+    <span class="n">pitch</span><span class="p">,</span> <span class="n">roll</span> <span class="o">=</span> <span class="n">hub</span><span class="o">.</span><span class="n">imu</span><span class="o">.</span><span class="n">tilt</span><span class="p">()</span>
+
+    <span class="c1"># Print the result.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">pitch</span><span class="p">,</span> <span class="n">roll</span><span class="p">)</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="using-a-custom-hub-orientation">
+<h3>Using a custom hub orientation<a class="headerlink" href="#using-a-custom-hub-orientation" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">PrimeHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Axis</span>
+
+<span class="c1"># Initialize the hub. In this case, specify that the hub is mounted with the</span>
+<span class="c1"># top side facing forward and the front side facing to the right.</span>
+<span class="c1"># For example, this is how the hub is mounted in BLAST in the 51515 set.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">PrimeHub</span><span class="p">(</span><span class="n">top_side</span><span class="o">=</span><span class="n">Axis</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">front_side</span><span class="o">=-</span><span class="n">Axis</span><span class="o">.</span><span class="n">Y</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="c1"># Read the tilt values. Now, the values are 0 when BLAST stands upright.</span>
+    <span class="c1"># Leaning forward gives positive pitch. Leaning right gives positive roll.</span>
+    <span class="n">pitch</span><span class="p">,</span> <span class="n">roll</span> <span class="o">=</span> <span class="n">hub</span><span class="o">.</span><span class="n">imu</span><span class="o">.</span><span class="n">tilt</span><span class="p">()</span>
+
+    <span class="c1"># Print the result.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">pitch</span><span class="p">,</span> <span class="n">roll</span><span class="p">)</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="reading-acceleration-and-angular-velocity-vectors">
+<h3>Reading acceleration and angular velocity vectors<a class="headerlink" href="#reading-acceleration-and-angular-velocity-vectors" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">PrimeHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the hub.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">PrimeHub</span><span class="p">()</span>
+
+<span class="c1"># Get the acceleration vector in g&#39;s.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hub</span><span class="o">.</span><span class="n">imu</span><span class="o">.</span><span class="n">acceleration</span><span class="p">()</span> <span class="o">/</span> <span class="mi">9810</span><span class="p">)</span>
+
+<span class="c1"># Get the angular velocity vector.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">hub</span><span class="o">.</span><span class="n">imu</span><span class="o">.</span><span class="n">angular_velocity</span><span class="p">())</span>
+
+<span class="c1"># Wait so we can see what we printed</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">5000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="reading-acceleration-and-angular-velocity-on-one-axis">
+<h3>Reading acceleration and angular velocity on one axis<a class="headerlink" href="#reading-acceleration-and-angular-velocity-on-one-axis" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">PrimeHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Axis</span>
+
+<span class="c1"># Initialize the hub.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">PrimeHub</span><span class="p">()</span>
+
+<span class="c1"># Get the acceleration or angular_velocity along a single axis.</span>
+<span class="c1"># If you need only one value, this is more memory efficient.</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+
+    <span class="c1"># Read the forward acceleration.</span>
+    <span class="n">forward_acceleration</span> <span class="o">=</span> <span class="n">hub</span><span class="o">.</span><span class="n">imu</span><span class="o">.</span><span class="n">acceleration</span><span class="p">(</span><span class="n">Axis</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="c1"># Read the yaw rate.</span>
+    <span class="n">yaw_rate</span> <span class="o">=</span> <span class="n">hub</span><span class="o">.</span><span class="n">imu</span><span class="o">.</span><span class="n">angular_velocity</span><span class="p">(</span><span class="n">Axis</span><span class="o">.</span><span class="n">Z</span><span class="p">)</span>
+
+    <span class="c1"># Print the yaw rate.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">yaw_rate</span><span class="p">)</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="bluetooth-examples">
+<h2>Bluetooth examples<a class="headerlink" href="#bluetooth-examples" title="Permalink to this heading">¶</a></h2>
+<section id="broadcasting-data-to-other-hubs">
+<h3>Broadcasting data to other hubs<a class="headerlink" href="#broadcasting-data-to-other-hubs" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">PrimeHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Motor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the hub.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">PrimeHub</span><span class="p">(</span><span class="n">broadcast_channel</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Initialize the motors.</span>
+<span class="n">left_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+<span class="n">right_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">B</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="c1"># Read the motor angles to be sent to the other hub.</span>
+    <span class="n">left_angle</span> <span class="o">=</span> <span class="n">left_motor</span><span class="o">.</span><span class="n">angle</span><span class="p">()</span>
+    <span class="n">right_angle</span> <span class="o">=</span> <span class="n">right_motor</span><span class="o">.</span><span class="n">angle</span><span class="p">()</span>
+
+    <span class="c1"># Set the broadcast data and start broadcasting if not already doing so.</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">left_angle</span><span class="p">,</span> <span class="n">right_angle</span><span class="p">)</span>
+    <span class="n">hub</span><span class="o">.</span><span class="n">ble</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># Broadcasts are only sent every 100 milliseconds, so there is no reason</span>
+    <span class="c1"># to call the broadcast() method more often than that.</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="observing-data-from-other-hubs">
+<h3>Observing data from other hubs<a class="headerlink" href="#observing-data-from-other-hubs" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">PrimeHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Motor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Color</span><span class="p">,</span> <span class="n">Port</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the hub.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">PrimeHub</span><span class="p">(</span><span class="n">observe_channels</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Initialize the motors.</span>
+<span class="n">left_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+<span class="n">right_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">B</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="c1"># Receive broadcast from the other hub.</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">hub</span><span class="o">.</span><span class="n">ble</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># No data has been received in the last 1 second.</span>
+        <span class="n">hub</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">RED</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Data was received and is less that one second old.</span>
+        <span class="n">hub</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">GREEN</span><span class="p">)</span>
+
+        <span class="c1"># *data* contains the same values in the same order</span>
+        <span class="c1"># that were passed to hub.ble.broadcast() on the</span>
+        <span class="c1"># other hub.</span>
+        <span class="n">left_angle</span><span class="p">,</span> <span class="n">right_angle</span> <span class="o">=</span> <span class="n">data</span>
+
+        <span class="c1"># Make the motors on this hub mirror the position of the</span>
+        <span class="c1"># motors on the other hub.</span>
+        <span class="n">left_motor</span><span class="o">.</span><span class="n">track_target</span><span class="p">(</span><span class="n">left_angle</span><span class="p">)</span>
+        <span class="n">right_motor</span><span class="o">.</span><span class="n">track_target</span><span class="p">(</span><span class="n">right_angle</span><span class="p">)</span>
+
+    <span class="c1"># Broadcasts are only sent every 100 milliseconds, so there is</span>
+    <span class="c1"># no reason to call the observe() method more often than that.</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="system-examples">
+<h2>System examples<a class="headerlink" href="#system-examples" title="Permalink to this heading">¶</a></h2>
+<section id="changing-the-stop-button-combination">
+<h3>Changing the stop button combination<a class="headerlink" href="#changing-the-stop-button-combination" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">PrimeHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Button</span>
+
+<span class="c1"># Initialize the hub.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">PrimeHub</span><span class="p">()</span>
+
+<span class="c1"># Configure the stop button combination. Now, your program stops</span>
+<span class="c1"># if you press the center and Bluetooth buttons simultaneously.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">set_stop_button</span><span class="p">((</span><span class="n">Button</span><span class="o">.</span><span class="n">CENTER</span><span class="p">,</span> <span class="n">Button</span><span class="o">.</span><span class="n">BLUETOOTH</span><span class="p">))</span>
+
+<span class="c1"># Now we can use the center button as a normal button.</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+
+    <span class="c1"># Play a sound if the center button is pressed.</span>
+    <span class="k">if</span> <span class="n">Button</span><span class="o">.</span><span class="n">CENTER</span> <span class="ow">in</span> <span class="n">hub</span><span class="o">.</span><span class="n">buttons</span><span class="o">.</span><span class="n">pressed</span><span class="p">():</span>
+        <span class="n">hub</span><span class="o">.</span><span class="n">speaker</span><span class="o">.</span><span class="n">beep</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="turning-the-hub-off">
+<h3>Turning the hub off<a class="headerlink" href="#turning-the-hub-off" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">PrimeHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the hub.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">PrimeHub</span><span class="p">()</span>
+
+<span class="c1"># Say goodbye and give some time to send it.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Goodbye!&quot;</span><span class="p">)</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Shut the hub down.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

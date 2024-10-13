@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Exceptions and errors &mdash; pybricks v3.4.0b3 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/requirements.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/blocks.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/ide.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/requirements.js"></script>
+        <script src="../_static/js/ide.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="micropython – MicroPython internals" href="micropython.html" />
+    <link rel="prev" title="Built-in classes and functions" href="builtins.html" />
+    <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0088ce" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/pybricks-logo-rtd.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v3.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Pybricks modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hubs/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hubs</span></code> – Built-in hub functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pupdevices/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pupdevices</span></code> – Motors, sensors, lights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iodevices/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iodevices</span></code> – Custom devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parameters/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parameters</span></code> – Parameters and constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tools</span></code> – General purpose tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../robotics.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">robotics</span></code> – Robotics and drive bases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../signaltypes.html">Signals and Units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code with blocks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../blocks/index.html">Other blocks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">MicroPython modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="builtins.html">Built-in classes and functions</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Exceptions and errors</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#debugging-in-the-repl-terminal">Debugging in the REPL terminal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-code-when-the-stop-button-is-pressed">Running code when the stop button is pressed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#detecting-devices-using-oserror">Detecting devices using <code class="docutils literal notranslate"><span class="pre">OSError</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="micropython.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">micropython</span></code> – MicroPython internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uerrno.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uerrno</span></code> – Error codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uio</span></code> – Input/output streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ujson.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ujson</span></code> – JSON encoding and decoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="umath.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">umath</span></code> – Math functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="urandom.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urandom</span></code> – Pseudo-random numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uselect.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uselect</span></code> – Wait for events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ustruct.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ustruct</span></code> – Pack and unpack binary data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usys.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">usys</span></code> – System specific functions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #0088ce" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pybricks</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Exceptions and errors</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/micropython/exceptions.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="exceptions-and-errors">
+<h1>Exceptions and errors<a class="headerlink" href="#exceptions-and-errors" title="Permalink to this heading">¶</a></h1>
+<p>This section lists all available exceptions in alphabetical order.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="ubuiltins.ArithmeticError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ArithmeticError</span></span><a class="headerlink" href="#ubuiltins.ArithmeticError" title="Permalink to this definition">¶</a></dt>
+<dd><p>The base class for those built-in exceptions that are raised for various
+arithmetic errors.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ubuiltins.AssertionError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AssertionError</span></span><a class="headerlink" href="#ubuiltins.AssertionError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when an assert statement fails.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ubuiltins.AttributeError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">AttributeError</span></span><a class="headerlink" href="#ubuiltins.AttributeError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when an attribute reference or assignment fails.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ubuiltins.BaseException">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">BaseException</span></span><a class="headerlink" href="#ubuiltins.BaseException" title="Permalink to this definition">¶</a></dt>
+<dd><p>The base class for all built-in exceptions.</p>
+<p>It is not meant to be directly inherited by user-defined classes (for that,
+use <a class="reference internal" href="#ubuiltins.Exception" title="ubuiltins.Exception"><code class="xref py py-class docutils literal notranslate"><span class="pre">Exception</span></code></a>).</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ubuiltins.EOFError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">EOFError</span></span><a class="headerlink" href="#ubuiltins.EOFError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when the <a class="reference internal" href="builtins.html#ubuiltins.input" title="ubuiltins.input"><code class="xref py py-meth docutils literal notranslate"><span class="pre">input()</span></code></a> function hits an end-of-file condition (EOF)
+without reading any data.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ubuiltins.Exception">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Exception</span></span><a class="headerlink" href="#ubuiltins.Exception" title="Permalink to this definition">¶</a></dt>
+<dd><p>All built-in exceptions are derived from this class.</p>
+<p>All user-defined exceptions should also be derived from this class.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ubuiltins.GeneratorExit">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">GeneratorExit</span></span><a class="headerlink" href="#ubuiltins.GeneratorExit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when a generator or coroutine is closed.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ubuiltins.ImportError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ImportError</span></span><a class="headerlink" href="#ubuiltins.ImportError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when the <code class="docutils literal notranslate"><span class="pre">import</span></code> statement is unable to load a module.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ubuiltins.IndentationError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">IndentationError</span></span><a class="headerlink" href="#ubuiltins.IndentationError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Base class for syntax errors related to incorrect indentation.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ubuiltins.IndexError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">IndexError</span></span><a class="headerlink" href="#ubuiltins.IndexError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when a sequence subscript is out of range.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ubuiltins.KeyboardInterrupt">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">KeyboardInterrupt</span></span><a class="headerlink" href="#ubuiltins.KeyboardInterrupt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when the user hits the interrupt key (normally <kbd class="kbd docutils literal notranslate">Ctrl</kbd> <kbd class="kbd docutils literal notranslate">C</kbd>).</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ubuiltins.KeyError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">KeyError</span></span><a class="headerlink" href="#ubuiltins.KeyError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when a mapping (dictionary) key is not found in the set of existing keys.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ubuiltins.LookupError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">LookupError</span></span><a class="headerlink" href="#ubuiltins.LookupError" title="Permalink to this definition">¶</a></dt>
+<dd><p>The base class for the exceptions that are raised when a key or index used
+on a mapping or sequence is invalid.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ubuiltins.MemoryError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MemoryError</span></span><a class="headerlink" href="#ubuiltins.MemoryError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when an operation runs out of memory.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ubuiltins.NameError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NameError</span></span><a class="headerlink" href="#ubuiltins.NameError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when a local or global name is not found.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ubuiltins.NotImplementedError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">NotImplementedError</span></span><a class="headerlink" href="#ubuiltins.NotImplementedError" title="Permalink to this definition">¶</a></dt>
+<dd><p>In user defined base classes, abstract methods should raise this exception
+when they require derived classes to override the method, or while the
+class is being developed to indicate that the real implementation still
+needs to be added.</p>
+</dd></dl>
+
+<span class="target" id="oserror"></span><dl class="py class">
+<dt class="sig sig-object py">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">OSError</span></span></dt>
+<dd><p>This exception is raised by the firmware, which is
+the Operating System that runs on the hub.
+For <a class="reference internal" href="#device-detection"><span class="std std-ref">example</span></a>, it
+raises an <code class="docutils literal notranslate"><span class="pre">OSError</span></code> if you call <code class="docutils literal notranslate"><span class="pre">Motor(Port.A)</span></code> when there is no
+motor on port A.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">errno</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a></em></dt>
+<dd><p>Specifies which kind of <code class="docutils literal notranslate"><span class="pre">OSError</span></code> occurred, as listed in the
+<a class="reference internal" href="uerrno.html#module-uerrno" title="uerrno"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uerrno</span></code></a> module.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ubuiltins.OverflowError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">OverflowError</span></span><a class="headerlink" href="#ubuiltins.OverflowError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when the result of an arithmetic operation is too large to be represented.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ubuiltins.RuntimeError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">RuntimeError</span></span><a class="headerlink" href="#ubuiltins.RuntimeError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when an error is detected that doesn’t fall in any of the other categories.</p>
+<p>The associated value is a string indicating what precisely went wrong.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ubuiltins.StopIteration">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">StopIteration</span></span><a class="headerlink" href="#ubuiltins.StopIteration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised by built-in function <a class="reference internal" href="builtins.html#ubuiltins.next" title="ubuiltins.next"><code class="xref py py-meth docutils literal notranslate"><span class="pre">next()</span></code></a> and an iterator’s <code class="docutils literal notranslate"><span class="pre">__next__()</span></code>
+method to signal that there are no further items produced by the iterator.</p>
+<p>Generator functions should return instead of raising this directly.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ubuiltins.SyntaxError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SyntaxError</span></span><a class="headerlink" href="#ubuiltins.SyntaxError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when the parser encounters a syntax error.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ubuiltins.SystemExit">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SystemExit</span></span><a class="headerlink" href="#ubuiltins.SystemExit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when you press the stop button on the hub or in the Pybricks Code app.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ubuiltins.TypeError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">TypeError</span></span><a class="headerlink" href="#ubuiltins.TypeError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when an operation or function is applied to an object of inappropriate type.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ubuiltins.ValueError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ValueError</span></span><a class="headerlink" href="#ubuiltins.ValueError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when an operation or function receives an argument that has the right
+type but an inappropriate value. This is used when the situation is
+not described by a more precise exception such as <a class="reference internal" href="#ubuiltins.IndexError" title="ubuiltins.IndexError"><code class="xref py py-class docutils literal notranslate"><span class="pre">IndexError</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="ubuiltins.ZeroDivisionError">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ZeroDivisionError</span></span><a class="headerlink" href="#ubuiltins.ZeroDivisionError" title="Permalink to this definition">¶</a></dt>
+<dd><p>Raised when the second argument of a division or modulo operation is zero.</p>
+</dd></dl>
+
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<section id="debugging-in-the-repl-terminal">
+<h3>Debugging in the REPL terminal<a class="headerlink" href="#debugging-in-the-repl-terminal" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Motor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the motor.</span>
+<span class="n">test_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># Start moving at 500 deg/s.</span>
+<span class="n">test_motor</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="c1"># If you click on the terminal window and press CTRL+C,</span>
+<span class="c1"># you can continue debugging in this terminal.</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">5000</span><span class="p">)</span>
+
+<span class="c1"># You can also do this to exit the script and enter the</span>
+<span class="c1"># terminal. Variables in the global scope are still available.</span>
+<span class="k">raise</span> <span class="ne">KeyboardInterrupt</span>
+
+<span class="c1"># For example, you can copy the following line to the terminal</span>
+<span class="c1"># to get the angle, because test_motor is still available.</span>
+<span class="n">test_motor</span><span class="o">.</span><span class="n">angle</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="running-code-when-the-stop-button-is-pressed">
+<h3>Running code when the stop button is pressed<a class="headerlink" href="#running-code-when-the-stop-button-is-pressed" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Started!&quot;</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+
+    <span class="c1"># Run your script here as you normally would. In this</span>
+    <span class="c1"># example we just wait forever and do nothing.</span>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="n">wait</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="k">except</span> <span class="ne">SystemExit</span><span class="p">:</span>
+    <span class="c1"># This code will run when you press the stop button.</span>
+    <span class="c1"># This can be useful to &quot;clean up&quot;, such as to move</span>
+    <span class="c1"># the motors back to their starting positions.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You pressed the stop button!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="detecting-devices-using-oserror">
+<span id="device-detection"></span><h3>Detecting devices using <code class="docutils literal notranslate"><span class="pre">OSError</span></code><a class="headerlink" href="#detecting-devices-using-oserror" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Motor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span>
+
+<span class="kn">from</span> <span class="nn">uerrno</span> <span class="kn">import</span> <span class="n">ENODEV</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># Try to initialize a motor.</span>
+    <span class="n">my_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+
+    <span class="c1"># If all goes well, you&#39;ll see this message.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Detected a motor.&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+    <span class="c1"># If an OSError was raised, we can check what</span>
+    <span class="c1"># kind of error this was, like ENODEV.</span>
+    <span class="k">if</span> <span class="n">ex</span><span class="o">.</span><span class="n">errno</span> <span class="o">==</span> <span class="n">ENODEV</span><span class="p">:</span>
+        <span class="c1"># ENODEV is short for &quot;Error, no device.&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;There is no motor this port.&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Another error occurred.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

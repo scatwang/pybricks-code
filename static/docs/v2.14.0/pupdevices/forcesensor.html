@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Force Sensor &mdash; pybricks v3.4.0b3 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/requirements.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/blocks.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/ide.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/requirements.js"></script>
+        <script src="../_static/js/ide.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Color Light Matrix" href="colorlightmatrix.html" />
+    <link rel="prev" title="Ultrasonic Sensor" href="ultrasonicsensor.html" />
+    <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0088ce" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/pybricks-logo-rtd.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v3.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Pybricks modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hubs/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hubs</span></code> – Built-in hub functions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pupdevices</span></code> – Motors, sensors, lights</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="dcmotor.html">Motors without rotation sensors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="motor.html">Motors with rotation sensors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tiltsensor.html">Tilt Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="infraredsensor.html">Infrared Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colordistancesensor.html">Color and Distance Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pfmotor.html">Power Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorsensor.html">Color Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ultrasonicsensor.html">Ultrasonic Sensor</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Force Sensor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#measuring-force-and-movement">Measuring force and movement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#measuring-peak-force">Measuring peak force</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="colorlightmatrix.html">Color Light Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="light.html">Light</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote.html">Remote Control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../iodevices/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iodevices</span></code> – Custom devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parameters/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parameters</span></code> – Parameters and constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tools</span></code> – General purpose tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../robotics.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">robotics</span></code> – Robotics and drive bases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../signaltypes.html">Signals and Units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code with blocks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../blocks/index.html">Other blocks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">MicroPython modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/builtins.html">Built-in classes and functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/exceptions.html">Exceptions and errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/micropython.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">micropython</span></code> – MicroPython internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uerrno.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uerrno</span></code> – Error codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uio</span></code> – Input/output streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/ujson.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ujson</span></code> – JSON encoding and decoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/umath.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">umath</span></code> – Math functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/urandom.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urandom</span></code> – Pseudo-random numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uselect.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uselect</span></code> – Wait for events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/ustruct.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ustruct</span></code> – Pack and unpack binary data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/usys.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">usys</span></code> – System specific functions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #0088ce" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pybricks</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pupdevices</span></code> – Motors, sensors, lights</a></li>
+      <li class="breadcrumb-item active">Force Sensor</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/pupdevices/forcesensor.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toggle-header docutils container">
+</div>
+<div class="toggle-content docutils container">
+
+        <div class="wy-table-responsive">
+            <table class="docutils align-default requirements-table">
+                <tbody>
+                    <tr>
+                        
+        <th background="../_images/compat_movehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_cityhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_technichub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_primehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_inventorhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_essentialhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+<section id="force-sensor">
+<h1>Force Sensor<a class="headerlink" href="#force-sensor" title="Permalink to this heading">¶</a></h1>
+<figure class="align-default">
+<img alt="../_images/pupdevice-force.png" src="../_images/pupdevice-force.png" style="width: 35%;" />
+</figure>
+<p><img alt="../_images/pybricks_variables_set_force_sensor.svg" class="block-image" height="47px" src="../_images/pybricks_variables_set_force_sensor.svg" width="241px" /></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pybricks.pupdevices.ForceSensor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ForceSensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.ForceSensor" title="Permalink to this definition">¶</a></dt>
+<dd><p>LEGO® SPIKE Force Sensor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>port</strong> (<a class="reference internal" href="../parameters/port.html#Port" title="Port"><em>Port</em></a>) – Port to which the sensor is connected.</p>
+</dd>
+</dl>
+<p><img alt="../_images/pybricks_blockForce_ForceSensor.svg" class="block-image" height="38px" src="../_images/pybricks_blockForce_ForceSensor.svg" width="231px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.ForceSensor.force">
+<em class="property"><a class="reference internal" href="../tools/index.html#pybricks.tools.await" title="pybricks.tools.await"><span class="pre">await</span></a></em><span class="sig-name descname"><span class="pre">force</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float:</span> <span class="pre">N</span></span></span><a class="headerlink" href="#pybricks.pupdevices.ForceSensor.force" title="Permalink to this definition">¶</a></dt>
+<dd><p>Measures the force exerted on the sensor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Measured force (up to approximately 10.00 N).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockDistance_ForceSensor.svg" class="block-image" height="38px" src="../_images/pybricks_blockDistance_ForceSensor.svg" width="255px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.ForceSensor.distance">
+<em class="property"><a class="reference internal" href="../tools/index.html#pybricks.tools.await" title="pybricks.tools.await"><span class="pre">await</span></a></em><span class="sig-name descname"><span class="pre">distance</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float:</span> <span class="pre">mm</span></span></span><a class="headerlink" href="#pybricks.pupdevices.ForceSensor.distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Measures by how much the sensor button has moved.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Movement up to approximately 8.00 mm.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.ForceSensor.pressed">
+<em class="property"><a class="reference internal" href="../tools/index.html#pybricks.tools.await" title="pybricks.tools.await"><span class="pre">await</span></a></em><span class="sig-name descname"><span class="pre">pressed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">force</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../micropython/builtins.html#ubuiltins.bool" title="ubuiltins.bool"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#pybricks.pupdevices.ForceSensor.pressed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the sensor button is pressed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>force</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>N</em>) – Minimum force to be considered pressed.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the sensor is pressed, <code class="docutils literal notranslate"><span class="pre">False</span></code> if it is not.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.ForceSensor.touched">
+<em class="property"><a class="reference internal" href="../tools/index.html#pybricks.tools.await" title="pybricks.tools.await"><span class="pre">await</span></a></em><span class="sig-name descname"><span class="pre">touched</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../micropython/builtins.html#ubuiltins.bool" title="ubuiltins.bool"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#pybricks.pupdevices.ForceSensor.touched" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the sensor is touched.</p>
+<p>This is similar to <a class="reference internal" href="#pybricks.pupdevices.ForceSensor.pressed" title="pybricks.pupdevices.ForceSensor.pressed"><code class="xref py py-meth docutils literal notranslate"><span class="pre">pressed()</span></code></a>, but it detects slight movements of
+the button even when the measured force is still considered zero.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the sensor is touched or pressed, <code class="docutils literal notranslate"><span class="pre">False</span></code>
+if it is not.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<section id="measuring-force-and-movement">
+<h3>Measuring force and movement<a class="headerlink" href="#measuring-force-and-movement" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">ForceSensor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the sensor.</span>
+<span class="n">button</span> <span class="o">=</span> <span class="n">ForceSensor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="c1"># Read all the information we can get from this sensor.</span>
+    <span class="n">force</span> <span class="o">=</span> <span class="n">button</span><span class="o">.</span><span class="n">force</span><span class="p">()</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="n">button</span><span class="o">.</span><span class="n">distance</span><span class="p">()</span>
+    <span class="n">press</span> <span class="o">=</span> <span class="n">button</span><span class="o">.</span><span class="n">pressed</span><span class="p">()</span>
+    <span class="n">touch</span> <span class="o">=</span> <span class="n">button</span><span class="o">.</span><span class="n">touched</span><span class="p">()</span>
+
+    <span class="c1"># Print the values</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Force&quot;</span><span class="p">,</span> <span class="n">force</span><span class="p">,</span> <span class="s2">&quot;Dist:&quot;</span><span class="p">,</span> <span class="n">dist</span><span class="p">,</span> <span class="s2">&quot;Pressed:&quot;</span><span class="p">,</span> <span class="n">press</span><span class="p">,</span> <span class="s2">&quot;Touched:&quot;</span><span class="p">,</span> <span class="n">touch</span><span class="p">)</span>
+
+    <span class="c1"># Push the sensor button see what happens to the values.</span>
+
+    <span class="c1"># Wait some time so we can read what is printed.</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="measuring-peak-force">
+<h3>Measuring peak force<a class="headerlink" href="#measuring-peak-force" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">ForceSensor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the sensor.</span>
+<span class="n">button</span> <span class="o">=</span> <span class="n">ForceSensor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+
+
+<span class="c1"># This function waits until the button is pushed. It keeps track of the maximum</span>
+<span class="c1"># detected force until the button is released. Then it returns the maximum.</span>
+<span class="k">def</span> <span class="nf">wait_for_force</span><span class="p">():</span>
+
+    <span class="c1"># Wait for a force, by doing nothing for as long the force is nearly zero.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Waiting for force.&quot;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">button</span><span class="o">.</span><span class="n">force</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="mf">0.1</span><span class="p">:</span>
+        <span class="n">wait</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="c1"># Now we wait for the release, by waiting for the force to be zero again.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Waiting for release.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># While we wait for that to happen, we keep reading the force and remember</span>
+    <span class="c1"># the maximum force. We do this by initializing the maximum at 0, and</span>
+    <span class="c1"># updating it each time we detect a bigger force.</span>
+    <span class="n">maximum</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">force</span> <span class="o">=</span> <span class="mi">10</span>
+    <span class="k">while</span> <span class="n">force</span> <span class="o">&gt;</span> <span class="mf">0.1</span><span class="p">:</span>
+        <span class="c1"># Read the force.</span>
+        <span class="n">force</span> <span class="o">=</span> <span class="n">button</span><span class="o">.</span><span class="n">force</span><span class="p">()</span>
+
+        <span class="c1"># Update the maximum if the measured force is larger.</span>
+        <span class="k">if</span> <span class="n">force</span> <span class="o">&gt;</span> <span class="n">maximum</span><span class="p">:</span>
+            <span class="n">maximum</span> <span class="o">=</span> <span class="n">force</span>
+
+        <span class="c1"># Wait and then measure again.</span>
+        <span class="n">wait</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="c1"># Return the maximum force.</span>
+    <span class="k">return</span> <span class="n">maximum</span>
+
+
+<span class="c1"># Keep waiting for the sensor button to be pushed. When it is, display</span>
+<span class="c1"># the peak force and repeat.</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">peak</span> <span class="o">=</span> <span class="n">wait_for_force</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Released. Peak force: </span><span class="si">{0}</span><span class="s2"> N</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">peak</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

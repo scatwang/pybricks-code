@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Remote Control &mdash; pybricks v3.4.0b3 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/requirements.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/blocks.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/ide.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/requirements.js"></script>
+        <script src="../_static/js/ide.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="iodevices – Custom devices" href="../iodevices/index.html" />
+    <link rel="prev" title="Light" href="light.html" />
+    <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0088ce" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/pybricks-logo-rtd.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v3.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Pybricks modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hubs/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hubs</span></code> – Built-in hub functions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pupdevices</span></code> – Motors, sensors, lights</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="dcmotor.html">Motors without rotation sensors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="motor.html">Motors with rotation sensors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tiltsensor.html">Tilt Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="infraredsensor.html">Infrared Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colordistancesensor.html">Color and Distance Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pfmotor.html">Power Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorsensor.html">Color Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ultrasonicsensor.html">Ultrasonic Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forcesensor.html">Force Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorlightmatrix.html">Color Light Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="light.html">Light</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Remote Control</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#checking-which-buttons-are-pressed">Checking which buttons are pressed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#changing-the-remote-light-color">Changing the remote light color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#changing-the-light-color-using-the-buttons">Changing the light color using the buttons</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-the-timeout-setting">Using the timeout setting</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#changing-the-name-of-the-remote">Changing the name of the remote</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../iodevices/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iodevices</span></code> – Custom devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parameters/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parameters</span></code> – Parameters and constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tools</span></code> – General purpose tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../robotics.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">robotics</span></code> – Robotics and drive bases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../signaltypes.html">Signals and Units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code with blocks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../blocks/index.html">Other blocks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">MicroPython modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/builtins.html">Built-in classes and functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/exceptions.html">Exceptions and errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/micropython.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">micropython</span></code> – MicroPython internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uerrno.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uerrno</span></code> – Error codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uio</span></code> – Input/output streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/ujson.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ujson</span></code> – JSON encoding and decoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/umath.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">umath</span></code> – Math functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/urandom.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urandom</span></code> – Pseudo-random numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uselect.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uselect</span></code> – Wait for events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/ustruct.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ustruct</span></code> – Pack and unpack binary data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/usys.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">usys</span></code> – System specific functions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #0088ce" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pybricks</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pupdevices</span></code> – Motors, sensors, lights</a></li>
+      <li class="breadcrumb-item active">Remote Control</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/pupdevices/remote.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toggle-header docutils container">
+</div>
+<div class="toggle-content docutils container">
+
+        <div class="wy-table-responsive">
+            <table class="docutils align-default requirements-table">
+                <tbody>
+                    <tr>
+                        
+        <th background="../_images/compat_movehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_cityhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_technichub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_primehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_inventorhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_essentialhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+<section id="remote-control">
+<h1>Remote Control<a class="headerlink" href="#remote-control" title="Permalink to this heading">¶</a></h1>
+<figure class="align-default">
+<img alt="../_images/pupdevice-remote.png" src="../_images/pupdevice-remote.png" style="width: 60%;" />
+</figure>
+<p><img alt="../_images/pybricks_variables_set_remote_connect_any.svg" class="block-image" height="47px" src="../_images/pybricks_variables_set_remote_connect_any.svg" width="282px" /></p>
+<p><img alt="../_images/pybricks_variables_set_remote_connect_name.svg" height="51px" src="../_images/pybricks_variables_set_remote_connect_name.svg" width="385px" /></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Remote">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Remote</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10000</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.Remote" title="Permalink to this definition">¶</a></dt>
+<dd><p>LEGO® Powered Up Bluetooth Remote Control.</p>
+<p>When you instantiate this class, the hub will search for a remote
+and connect automatically.</p>
+<p>The remote must be on and ready for a connection, as indicated by a
+white blinking light.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.str" title="ubuiltins.str"><em>str</em></a>) – Bluetooth name of the remote. If no name is given,
+the hub connects to the first remote that it finds.</p></li>
+<li><p><strong>timeout</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>ms</em>) – How long to search for the remote.</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Remote.name">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.Remote.name" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../micropython/builtins.html#ubuiltins.str" title="ubuiltins.str"><span class="pre">str</span></a></span></span></dt>
+<dd><p>Sets or gets the Bluetooth name of the remote.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.str" title="ubuiltins.str"><em>str</em></a>) – New Bluetooth name of the remote. If no name is given,
+this method returns the current name.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockLightOnColor_remote_on.svg" class="block-image" height="47px" src="../_images/pybricks_blockLightOnColor_remote_on.svg" width="341px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Remote.light.on">
+<em class="property"><a class="reference internal" href="../tools/index.html#pybricks.tools.await" title="pybricks.tools.await"><span class="pre">await</span></a></em><span class="sig-prename descclassname"><span class="pre">light.</span></span><span class="sig-name descname"><span class="pre">on</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.Remote.light.on" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns on the light at the specified color.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>color</strong> (<a class="reference internal" href="../parameters/color.html#pybricks.parameters.Color" title="pybricks.parameters.Color"><em>Color</em></a>) – Color of the light.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockLightOnColor_remote_on.svg" class="block-image" height="47px" src="../_images/pybricks_blockLightOnColor_remote_on.svg" width="341px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Remote.light.off">
+<em class="property"><a class="reference internal" href="../tools/index.html#pybricks.tools.await" title="pybricks.tools.await"><span class="pre">await</span></a></em><span class="sig-prename descclassname"><span class="pre">light.</span></span><span class="sig-name descname"><span class="pre">off</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.Remote.light.off" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns off the light.</p>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockButtonIsPressed_Remote.svg" class="block-image" height="38px" src="../_images/pybricks_blockButtonIsPressed_Remote.svg" width="319px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Remote.buttons.pressed">
+<span class="sig-prename descclassname"><span class="pre">buttons.</span></span><span class="sig-name descname"><span class="pre">pressed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Collection</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../parameters/button.html#Button" title="Button"><span class="pre">Button</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pybricks.pupdevices.Remote.buttons.pressed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks which buttons are currently pressed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Set of pressed buttons.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<section id="checking-which-buttons-are-pressed">
+<h3>Checking which buttons are pressed<a class="headerlink" href="#checking-which-buttons-are-pressed" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Remote</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Button</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Connect to the remote.</span>
+<span class="n">my_remote</span> <span class="o">=</span> <span class="n">Remote</span><span class="p">()</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="c1"># Check which buttons are pressed.</span>
+    <span class="n">pressed</span> <span class="o">=</span> <span class="n">my_remote</span><span class="o">.</span><span class="n">buttons</span><span class="o">.</span><span class="n">pressed</span><span class="p">()</span>
+
+    <span class="c1"># Show the result.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;pressed:&quot;</span><span class="p">,</span> <span class="n">pressed</span><span class="p">)</span>
+
+    <span class="c1"># Check a specific button.</span>
+    <span class="k">if</span> <span class="n">Button</span><span class="o">.</span><span class="n">CENTER</span> <span class="ow">in</span> <span class="n">pressed</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;You pressed the center button!&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Wait so we can see the result.</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="changing-the-remote-light-color">
+<h3>Changing the remote light color<a class="headerlink" href="#changing-the-remote-light-color" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Remote</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Color</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Connect to the remote.</span>
+<span class="n">remote</span> <span class="o">=</span> <span class="n">Remote</span><span class="p">()</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="c1"># Set the color to red.</span>
+    <span class="n">remote</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">RED</span><span class="p">)</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+
+    <span class="c1"># Set the color to blue.</span>
+    <span class="n">remote</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">BLUE</span><span class="p">)</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="changing-the-light-color-using-the-buttons">
+<h3>Changing the light color using the buttons<a class="headerlink" href="#changing-the-light-color-using-the-buttons" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Remote</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Button</span><span class="p">,</span> <span class="n">Color</span>
+
+
+<span class="k">def</span> <span class="nf">button_to_color</span><span class="p">(</span><span class="n">buttons</span><span class="p">):</span>
+
+    <span class="c1"># Return a color depending on the button.</span>
+    <span class="k">if</span> <span class="n">Button</span><span class="o">.</span><span class="n">LEFT_PLUS</span> <span class="ow">in</span> <span class="n">buttons</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="o">.</span><span class="n">RED</span>
+    <span class="k">if</span> <span class="n">Button</span><span class="o">.</span><span class="n">LEFT_MINUS</span> <span class="ow">in</span> <span class="n">buttons</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="o">.</span><span class="n">GREEN</span>
+    <span class="k">if</span> <span class="n">Button</span><span class="o">.</span><span class="n">LEFT</span> <span class="ow">in</span> <span class="n">buttons</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="o">.</span><span class="n">ORANGE</span>
+    <span class="k">if</span> <span class="n">Button</span><span class="o">.</span><span class="n">RIGHT_PLUS</span> <span class="ow">in</span> <span class="n">buttons</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="o">.</span><span class="n">BLUE</span>
+    <span class="k">if</span> <span class="n">Button</span><span class="o">.</span><span class="n">RIGHT_MINUS</span> <span class="ow">in</span> <span class="n">buttons</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="o">.</span><span class="n">YELLOW</span>
+    <span class="k">if</span> <span class="n">Button</span><span class="o">.</span><span class="n">RIGHT</span> <span class="ow">in</span> <span class="n">buttons</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="o">.</span><span class="n">CYAN</span>
+    <span class="k">if</span> <span class="n">Button</span><span class="o">.</span><span class="n">CENTER</span> <span class="ow">in</span> <span class="n">buttons</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">Color</span><span class="o">.</span><span class="n">VIOLET</span>
+
+    <span class="c1"># Return no color by default.</span>
+    <span class="k">return</span> <span class="n">Color</span><span class="o">.</span><span class="n">NONE</span>
+
+
+<span class="c1"># Connect to the remote.</span>
+<span class="n">remote</span> <span class="o">=</span> <span class="n">Remote</span><span class="p">()</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="c1"># Wait until a button is pressed.</span>
+    <span class="n">pressed</span> <span class="o">=</span> <span class="p">()</span>
+    <span class="k">while</span> <span class="ow">not</span> <span class="n">pressed</span><span class="p">:</span>
+        <span class="n">pressed</span> <span class="o">=</span> <span class="n">remote</span><span class="o">.</span><span class="n">buttons</span><span class="o">.</span><span class="n">pressed</span><span class="p">()</span>
+
+    <span class="c1"># Convert button code to color.</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="n">button_to_color</span><span class="p">(</span><span class="n">pressed</span><span class="p">)</span>
+
+    <span class="c1"># Set the remote light color.</span>
+    <span class="n">remote</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+
+    <span class="c1"># Wait until all buttons are released.</span>
+    <span class="k">while</span> <span class="n">pressed</span><span class="p">:</span>
+        <span class="n">pressed</span> <span class="o">=</span> <span class="n">remote</span><span class="o">.</span><span class="n">buttons</span><span class="o">.</span><span class="n">pressed</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="using-the-timeout-setting">
+<h3>Using the timeout setting<a class="headerlink" href="#using-the-timeout-setting" title="Permalink to this heading">¶</a></h3>
+<p>You can use the <code class="docutils literal notranslate"><span class="pre">timeout</span></code> argument to change for how long the hub searches
+for the remote. If you choose <code class="docutils literal notranslate"><span class="pre">None</span></code>, it will search forever.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Remote</span>
+
+<span class="c1"># Connect to any remote. Search forever until we find one.</span>
+<span class="n">my_remote</span> <span class="o">=</span> <span class="n">Remote</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Connected!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If the remote was not found within the specified <code class="docutils literal notranslate"><span class="pre">timeout</span></code>,
+an <a class="reference internal" href="../micropython/exceptions.html#oserror"><span class="std std-ref">OSError</span></a> is raised. You can catch this exception to run
+other code if the remote is not available.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Remote</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="c1"># Search for a remote for 5 seconds.</span>
+    <span class="n">my_remote</span> <span class="o">=</span> <span class="n">Remote</span><span class="p">(</span><span class="n">timeout</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Connected!&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Here you can write code that uses the remote.</span>
+
+<span class="k">except</span> <span class="ne">OSError</span><span class="p">:</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Could not find the remote.&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Here you can make your robot do something</span>
+    <span class="c1"># without the remote.</span>
+</pre></div>
+</div>
+</section>
+<section id="changing-the-name-of-the-remote">
+<h3>Changing the name of the remote<a class="headerlink" href="#changing-the-name-of-the-remote" title="Permalink to this heading">¶</a></h3>
+<p>You can change the Bluetooth name of the remote. The factory default name is
+<code class="docutils literal notranslate"><span class="pre">Handset</span></code>.</p>
+<p><img alt="../_images/pybricks_variables_set_remote_connect_rename.svg" class="block-image" height="51px" src="../_images/pybricks_variables_set_remote_connect_rename.svg" width="467px" /></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Remote</span>
+
+<span class="c1"># Connect to any remote.</span>
+<span class="n">my_remote</span> <span class="o">=</span> <span class="n">Remote</span><span class="p">()</span>
+
+<span class="c1"># Print the current name of the remote.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_remote</span><span class="o">.</span><span class="n">name</span><span class="p">())</span>
+
+<span class="c1"># Choose a new name.</span>
+<span class="n">my_remote</span><span class="o">.</span><span class="n">name</span><span class="p">(</span><span class="s2">&quot;truck2&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can specify this name when connecting to the remote.
+This lets you pick the right one if multiple remotes are nearby.</p>
+<p><img alt="../_images/pybricks_variables_set_remote_connect_name.svg" class="block-image" height="51px" src="../_images/pybricks_variables_set_remote_connect_name.svg" width="385px" /></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Remote</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Connect to a remote called truck2.</span>
+<span class="n">truck_remote</span> <span class="o">=</span> <span class="n">Remote</span><span class="p">(</span><span class="s2">&quot;truck2&quot;</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Connected!&quot;</span><span class="p">)</span>
+
+<span class="n">wait</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

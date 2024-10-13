@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>usys – System specific functions &mdash; pybricks v3.4.0b3 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/requirements.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/blocks.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/ide.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/requirements.js"></script>
+        <script src="../_static/js/ide.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="ustruct – Pack and unpack binary data" href="ustruct.html" />
+    <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0088ce" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/pybricks-logo-rtd.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v3.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Pybricks modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hubs/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hubs</span></code> – Built-in hub functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pupdevices/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pupdevices</span></code> – Motors, sensors, lights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iodevices/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iodevices</span></code> – Custom devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parameters/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parameters</span></code> – Parameters and constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tools</span></code> – General purpose tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../robotics.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">robotics</span></code> – Robotics and drive bases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../signaltypes.html">Signals and Units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code with blocks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../blocks/index.html">Other blocks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">MicroPython modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="builtins.html">Built-in classes and functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions and errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="micropython.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">micropython</span></code> – MicroPython internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uerrno.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uerrno</span></code> – Error codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uio</span></code> – Input/output streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ujson.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ujson</span></code> – JSON encoding and decoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="umath.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">umath</span></code> – Math functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="urandom.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urandom</span></code> – Pseudo-random numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uselect.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uselect</span></code> – Wait for events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ustruct.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ustruct</span></code> – Pack and unpack binary data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">usys</span></code> – System specific functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#version-information">Version information</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#standard-input-and-output">Standard input and output</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #0088ce" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pybricks</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">usys</span></code> – System specific functions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/micropython/usys.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toggle-header docutils container">
+</div>
+<div class="toggle-content docutils container">
+
+        <div class="wy-table-responsive">
+            <table class="docutils align-default requirements-table">
+                <tbody>
+                    <tr>
+                        
+        <th background="../_images/compat_movehub.png" class="requirements-table-th requirements-table-th">
+        ❌
+        </th>
+        
+        <th background="../_images/compat_cityhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_technichub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_primehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_inventorhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_essentialhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+<section id="usys-system-specific-functions">
+<h1><a class="reference internal" href="#module-usys" title="usys"><code class="xref py py-mod docutils literal notranslate"><span class="pre">usys</span></code></a> – System specific functions<a class="headerlink" href="#usys-system-specific-functions" title="Permalink to this heading">¶</a></h1>
+<p>This MicroPython module is a subset of the <a class="reference external" href="https://docs.python.org/3.5/library/sys.html">sys module</a> in Python.</p>
+<p class="rubric">Input and output streams</p>
+<span class="target" id="module-usys"></span><dl class="py data">
+<dt class="sig sig-object py" id="usys.stdin">
+<span class="sig-name descname"><span class="pre">stdin</span></span><a class="headerlink" href="#usys.stdin" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a stream object (<a class="reference internal" href="uio.html#uio.FileIO" title="uio.FileIO"><code class="xref py py-class docutils literal notranslate"><span class="pre">uio.FileIO</span></code></a>) that receives input from a
+connected terminal, if any.</p>
+<p>Also see <a class="reference internal" href="micropython.html#micropython.kbd_intr" title="micropython.kbd_intr"><code class="xref py py-func docutils literal notranslate"><span class="pre">kbd_intr</span></code></a> to disable
+<code class="docutils literal notranslate"><span class="pre">KeyboardInterrupt</span></code> when passing binary data via <code class="docutils literal notranslate"><span class="pre">stdin</span></code>.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="usys.stdout">
+<span class="sig-name descname"><span class="pre">stdout</span></span><a class="headerlink" href="#usys.stdout" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is a stream object (<a class="reference internal" href="uio.html#uio.FileIO" title="uio.FileIO"><code class="xref py py-class docutils literal notranslate"><span class="pre">uio.FileIO</span></code></a>) that sends output to a connected
+terminal, if any.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="usys.stderr">
+<span class="sig-name descname"><span class="pre">stderr</span></span><a class="headerlink" href="#usys.stderr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Alias for <a class="reference internal" href="#usys.stdout" title="usys.stdout"><code class="xref py py-data docutils literal notranslate"><span class="pre">stdout</span></code></a>.</p>
+</dd></dl>
+
+<p class="rubric">Version info</p>
+<dl class="py data">
+<dt class="sig sig-object py" id="usys.implementation">
+<span class="sig-name descname"><span class="pre">implementation</span></span><a class="headerlink" href="#usys.implementation" title="Permalink to this definition">¶</a></dt>
+<dd><p>MicroPython version tuple. See format and example below.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="usys.version">
+<span class="sig-name descname"><span class="pre">version</span></span><a class="headerlink" href="#usys.version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Python compatibility version, Pybricks version, and build date.
+See format and example below.</p>
+</dd></dl>
+
+<dl class="py data">
+<dt class="sig sig-object py" id="usys.version_info">
+<span class="sig-name descname"><span class="pre">version_info</span></span><a class="headerlink" href="#usys.version_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Python compatibility version. See format and example below.</p>
+</dd></dl>
+
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<section id="version-information">
+<h3>Version information<a class="headerlink" href="#version-information" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks</span> <span class="kn">import</span> <span class="n">version</span>
+
+<span class="c1"># (&#39;essentialhub&#39;, &#39;3.2.0b5&#39;, &#39;v3.2.0b5 on 2022-11-11&#39;)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">version</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">usys</span>
+
+<span class="c1"># (&#39;micropython&#39;, (1, 19, 1), &#39;SPIKE Essential Hub with STM32F413RG&#39;, 6)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">usys</span><span class="o">.</span><span class="n">implementation</span><span class="p">)</span>
+
+<span class="c1"># &#39;3.4.0; Pybricks MicroPython v3.2.0b5 on 2022-11-11&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">usys</span><span class="o">.</span><span class="n">version</span><span class="p">)</span>
+
+<span class="c1"># (3, 4, 0)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">usys</span><span class="o">.</span><span class="n">version_info</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="standard-input-and-output">
+<h3>Standard input and output<a class="headerlink" href="#standard-input-and-output" title="Permalink to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">stdin</span></code> stream can be used to capture input via the Pybricks Code
+input/output window. See the <a class="reference external" href="https://pybricks.com/projects/tutorials/wireless/hub-to-device/pc-keyboard/">keyboard input</a> project to learn how this works.
+This approach can be extended to exchange data with any <a class="reference external" href="https://pybricks.com/projects/tutorials/wireless/hub-to-device/">other device</a> as well.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

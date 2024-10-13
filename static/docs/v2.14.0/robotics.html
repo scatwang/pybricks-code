@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>robotics – Robotics and drive bases &mdash; pybricks v3.4.0b3 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/requirements.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/blocks.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/ide.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/requirements.js"></script>
+        <script src="_static/js/ide.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Signals and Units" href="signaltypes.html" />
+    <link rel="prev" title="tools – General purpose tools" href="tools/index.html" />
+    <link rel="stylesheet" href="_static/css/theme_overrides.css" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0088ce" >
+
+          
+          
+          <a href="index.html">
+            
+              <img src="_static/pybricks-logo-rtd.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v3.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Pybricks modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="hubs/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hubs</span></code> – Built-in hub functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pupdevices/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pupdevices</span></code> – Motors, sensors, lights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="iodevices/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iodevices</span></code> – Custom devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="parameters/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parameters</span></code> – Parameters and constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tools/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tools</span></code> – General purpose tools</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">robotics</span></code> – Robotics and drive bases</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#driving-straight-and-turning-in-place-with-a-drive-base">Driving straight and turning in place with a drive base</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#remote-controlling-a-car-with-front-wheel-steering">Remote controlling a car with front wheel steering</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="signaltypes.html">Signals and Units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code with blocks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="blocks/index.html">Other blocks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">MicroPython modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="micropython/builtins.html">Built-in classes and functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="micropython/exceptions.html">Exceptions and errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="micropython/micropython.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">micropython</span></code> – MicroPython internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="micropython/uerrno.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uerrno</span></code> – Error codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="micropython/uio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uio</span></code> – Input/output streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="micropython/ujson.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ujson</span></code> – JSON encoding and decoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="micropython/umath.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">umath</span></code> – Math functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="micropython/urandom.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urandom</span></code> – Pseudo-random numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="micropython/uselect.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uselect</span></code> – Wait for events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="micropython/ustruct.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ustruct</span></code> – Pack and unpack binary data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="micropython/usys.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">usys</span></code> – System specific functions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #0088ce" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">pybricks</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">robotics</span></code> – Robotics and drive bases</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/robotics.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-pybricks.robotics">
+<span id="robotics-robotics-and-drive-bases"></span><h1><a class="reference internal" href="#module-pybricks.robotics" title="pybricks.robotics"><code class="xref py py-mod docutils literal notranslate"><span class="pre">robotics</span></code></a> – Robotics and drive bases<a class="headerlink" href="#module-pybricks.robotics" title="Permalink to this heading">¶</a></h1>
+<p>Robotics module for the Pybricks API.</p>
+<div class="toggle-header docutils container">
+</div>
+<div class="toggle-content docutils container">
+
+        <div class="wy-table-responsive">
+            <table class="docutils align-default requirements-table">
+                <tbody>
+                    <tr>
+                        
+        <th background="_images/compat_movehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="_images/compat_cityhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="_images/compat_technichub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="_images/compat_primehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="_images/compat_inventorhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="_images/compat_essentialhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+<p><img alt="_images/pybricks_variables_set_drive_base.svg" class="block-image" height="51px" src="_images/pybricks_variables_set_drive_base.svg" width="725px" /></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pybricks.robotics.DriveBase">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DriveBase</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">left_motor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">right_motor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wheel_diameter</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">axle_track</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.robotics.DriveBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>A robotic vehicle with two powered wheels and an optional support
+wheel or caster.</p>
+<p>By specifying the dimensions of your robot, this class
+makes it easy to drive a given distance in millimeters or turn by a given
+number of degrees.</p>
+<p><strong>Positive</strong> distances, radii, or drive speeds mean
+driving <strong>forward</strong>. <strong>Negative</strong> means <strong>backward</strong>.</p>
+<p><strong>Positive</strong> angles and turn rates mean turning <strong>right</strong>.
+<strong>Negative</strong> means <strong>left</strong>. So when viewed from the top,
+positive means clockwise and negative means counterclockwise.</p>
+<p>See the <a class="reference internal" href="#measuring">measuring</a> section for tips to measure and adjust the diameter
+and axle track values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>left_motor</strong> (<a class="reference internal" href="pupdevices/motor.html#pybricks.pupdevices.Motor" title="pybricks.pupdevices.Motor"><em>Motor</em></a>) – The motor that drives the left wheel.</p></li>
+<li><p><strong>right_motor</strong> (<a class="reference internal" href="pupdevices/motor.html#pybricks.pupdevices.Motor" title="pybricks.pupdevices.Motor"><em>Motor</em></a>) – The motor that drives the right wheel.</p></li>
+<li><p><strong>wheel_diameter</strong> (<a class="reference internal" href="signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>mm</em>) – Diameter of the wheels.</p></li>
+<li><p><strong>axle_track</strong> (<a class="reference internal" href="signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>mm</em>) – Distance between the points where
+both wheels touch the ground.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Driving by a given distance or angle</p>
+<p>Use the following commands to drive a given distance, or turn by a
+given angle.</p>
+<p>This is measured using the internal rotation sensors. Because wheels may
+slip while moving, the traveled distance and angle are only estimates.</p>
+<p><img alt="_images/pybricks_blockDriveBaseDrive_drivebase_drive_straight.svg" class="block-image" height="51px" src="_images/pybricks_blockDriveBaseDrive_drivebase_drive_straight.svg" width="545px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.robotics.DriveBase.straight">
+<em class="property"><a class="reference internal" href="tools/index.html#pybricks.tools.await" title="pybricks.tools.await"><span class="pre">await</span></a></em><span class="sig-name descname"><span class="pre">straight</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">distance</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">then</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Stop.HOLD</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.robotics.DriveBase.straight" title="Permalink to this definition">¶</a></dt>
+<dd><p>Drives straight for a given distance and then stops.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>distance</strong> (<a class="reference internal" href="signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>mm</em>) – Distance to travel</p></li>
+<li><p><strong>then</strong> (<a class="reference internal" href="parameters/stop.html#Stop" title="Stop"><em>Stop</em></a>) – What to do after coming to a standstill.</p></li>
+<li><p><strong>wait</strong> (<a class="reference internal" href="micropython/builtins.html#ubuiltins.bool" title="ubuiltins.bool"><em>bool</em></a>) – Wait for the maneuver to complete before continuing
+with the rest of the program.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="_images/pybricks_blockDriveBaseDrive_drivebase_drive_turn.svg" class="block-image" height="51px" src="_images/pybricks_blockDriveBaseDrive_drivebase_drive_turn.svg" width="490px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.robotics.DriveBase.turn">
+<em class="property"><a class="reference internal" href="tools/index.html#pybricks.tools.await" title="pybricks.tools.await"><span class="pre">await</span></a></em><span class="sig-name descname"><span class="pre">turn</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">then</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Stop.HOLD</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.robotics.DriveBase.turn" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns in place by a given angle and then stops.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>angle</strong> (<a class="reference internal" href="signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>deg</em>) – Angle of the turn.</p></li>
+<li><p><strong>then</strong> (<a class="reference internal" href="parameters/stop.html#Stop" title="Stop"><em>Stop</em></a>) – What to do after coming to a standstill.</p></li>
+<li><p><strong>wait</strong> (<a class="reference internal" href="micropython/builtins.html#ubuiltins.bool" title="ubuiltins.bool"><em>bool</em></a>) – Wait for the maneuver to complete before continuing
+with the rest of the program.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="_images/pybricks_blockDriveBaseDrive_drivebase_drive_curve.svg" class="block-image" height="51px" src="_images/pybricks_blockDriveBaseDrive_drivebase_drive_curve.svg" width="683px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.robotics.DriveBase.curve">
+<em class="property"><a class="reference internal" href="tools/index.html#pybricks.tools.await" title="pybricks.tools.await"><span class="pre">await</span></a></em><span class="sig-name descname"><span class="pre">curve</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">then</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Stop.HOLD</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.robotics.DriveBase.curve" title="Permalink to this definition">¶</a></dt>
+<dd><p>Drives an arc along a circle of a given radius, by a given angle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>radius</strong> (<a class="reference internal" href="signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>mm</em>) – Radius of the circle.</p></li>
+<li><p><strong>angle</strong> (<a class="reference internal" href="signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>deg</em>) – Angle along the circle.</p></li>
+<li><p><strong>then</strong> (<a class="reference internal" href="parameters/stop.html#Stop" title="Stop"><em>Stop</em></a>) – What to do after coming to a standstill.</p></li>
+<li><p><strong>wait</strong> (<a class="reference internal" href="micropython/builtins.html#ubuiltins.bool" title="ubuiltins.bool"><em>bool</em></a>) – Wait for the maneuver to complete before continuing
+with the rest of the program.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="_images/pybricks_blockDriveBaseConfigure_drivebase_straight_speed.svg" class="block-image" height="51px" src="_images/pybricks_blockDriveBaseConfigure_drivebase_straight_speed.svg" width="474px" /></p>
+<p><img alt="_images/pybricks_blockDriveBaseConfigure_drivebase_straight_acceleration.svg" class="block-image" height="51px" src="_images/pybricks_blockDriveBaseConfigure_drivebase_straight_acceleration.svg" width="521px" /></p>
+<p><img alt="_images/pybricks_blockDriveBaseConfigure_drivebase_turn_rate.svg" class="block-image" height="51px" src="_images/pybricks_blockDriveBaseConfigure_drivebase_turn_rate.svg" width="448px" /></p>
+<p><img alt="_images/pybricks_blockDriveBaseConfigure_drivebase_turn_acceleration.svg" class="block-image" height="51px" src="_images/pybricks_blockDriveBaseConfigure_drivebase_turn_acceleration.svg" width="495px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.robotics.DriveBase.settings">
+<span class="sig-name descname"><span class="pre">settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">straight_speed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">straight_acceleration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turn_rate</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turn_acceleration</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.robotics.DriveBase.settings" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">settings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dd><p>Configures the drive base speed and acceleration.</p>
+<p>If you give no arguments, this returns the current values as a tuple.</p>
+<p>The initial values are automatically configured based on your wheel
+diameter and axle track. They are selected such that your robot
+drives at about 40% of its maximum speed.</p>
+<p>The speed values given here do not apply to the <a class="reference internal" href="#pybricks.robotics.DriveBase.drive" title="pybricks.robotics.DriveBase.drive"><code class="xref py py-meth docutils literal notranslate"><span class="pre">drive()</span></code></a> method,
+since you provide your own speed values as arguments in that method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>straight_speed</strong> (<a class="reference internal" href="signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>mm/s</em>) – Straight-line speed of the robot.</p></li>
+<li><p><strong>straight_acceleration</strong> (<a class="reference internal" href="signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>mm/s²</em>) – Straight-line
+acceleration and deceleration of the robot. Provide a tuple with
+two values to set acceleration and deceleration separately.</p></li>
+<li><p><strong>turn_rate</strong> (<a class="reference internal" href="signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>deg/s</em>) – Turn rate of the robot.</p></li>
+<li><p><strong>turn_acceleration</strong> (<a class="reference internal" href="signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>deg/s²</em>) – Angular acceleration and
+deceleration of the robot. Provide a tuple with
+two values to set acceleration and deceleration separately.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.robotics.DriveBase.done">
+<span class="sig-name descname"><span class="pre">done</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="micropython/builtins.html#ubuiltins.bool" title="ubuiltins.bool"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#pybricks.robotics.DriveBase.done" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if an ongoing command or maneuver is done.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the command is done, <code class="docutils literal notranslate"><span class="pre">False</span></code> if not.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Drive forever</p>
+<p>Use <a class="reference internal" href="#pybricks.robotics.DriveBase.drive" title="pybricks.robotics.DriveBase.drive"><code class="xref py py-meth docutils literal notranslate"><span class="pre">drive()</span></code></a> to begin driving at a desired speed and steering.</p>
+<p>It keeps going until you use <a class="reference internal" href="#pybricks.robotics.DriveBase.stop" title="pybricks.robotics.DriveBase.stop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">stop()</span></code></a> or change course by
+using <a class="reference internal" href="#pybricks.robotics.DriveBase.drive" title="pybricks.robotics.DriveBase.drive"><code class="xref py py-meth docutils literal notranslate"><span class="pre">drive()</span></code></a> again. For example, you can drive until a
+sensor is triggered and then stop or turn around.</p>
+<p><img alt="_images/pybricks_blockDriveBaseDrive_drivebase_drive_forever.svg" class="block-image" height="51px" src="_images/pybricks_blockDriveBaseDrive_drivebase_drive_forever.svg" width="589px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.robotics.DriveBase.drive">
+<span class="sig-name descname"><span class="pre">drive</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">turn_rate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.robotics.DriveBase.drive" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts driving at the specified speed and turn rate. Both values are
+measured at the center point between the wheels of the robot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>speed</strong> (<a class="reference internal" href="signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>mm/s</em>) – Speed of the robot.</p></li>
+<li><p><strong>turn_rate</strong> (<a class="reference internal" href="signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>deg/s</em>) – Turn rate of the robot.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="_images/pybricks_blockDriveBaseStop_coast.svg" class="block-image" height="47px" src="_images/pybricks_blockDriveBaseStop_coast.svg" width="291px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.robotics.DriveBase.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.robotics.DriveBase.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops the robot by letting the motors spin freely.</p>
+</dd></dl>
+
+<p><img alt="_images/pybricks_blockDriveBaseStop_brake.svg" class="block-image" height="47px" src="_images/pybricks_blockDriveBaseStop_brake.svg" width="292px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.robotics.DriveBase.brake">
+<span class="sig-name descname"><span class="pre">brake</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.robotics.DriveBase.brake" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops the robot by passively braking the motors.</p>
+</dd></dl>
+
+<p><img alt="_images/pybricks_blockDriveBaseStop_hold.svg" class="block-image" height="47px" src="_images/pybricks_blockDriveBaseStop_hold.svg" width="284px" /></p>
+<p class="rubric">Measuring</p>
+<p><img alt="_images/pybricks_blockDriveBaseMeasure_drivebase_get_distance.svg" class="block-image" height="38px" src="_images/pybricks_blockDriveBaseMeasure_drivebase_get_distance.svg" width="301px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.robotics.DriveBase.distance">
+<span class="sig-name descname"><span class="pre">distance</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int:</span> <span class="pre">mm</span></span></span><a class="headerlink" href="#pybricks.robotics.DriveBase.distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the estimated driven distance.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Driven distance since last reset.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="_images/pybricks_blockDriveBaseMeasure_drivebase_get_angle.svg" class="block-image" height="38px" src="_images/pybricks_blockDriveBaseMeasure_drivebase_get_angle.svg" width="280px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.robotics.DriveBase.angle">
+<span class="sig-name descname"><span class="pre">angle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int:</span> <span class="pre">deg</span></span></span><a class="headerlink" href="#pybricks.robotics.DriveBase.angle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the estimated rotation angle of the drive base.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Accumulated angle since last reset.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="_images/pybricks_blockDriveBaseMeasure_drivebase_get_speed.svg" class="block-image" height="38px" src="_images/pybricks_blockDriveBaseMeasure_drivebase_get_speed.svg" width="284px" /></p>
+<p><img alt="_images/pybricks_blockDriveBaseMeasure_drivebase_get_turn_rate.svg" class="block-image" height="38px" src="_images/pybricks_blockDriveBaseMeasure_drivebase_get_turn_rate.svg" width="301px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.robotics.DriveBase.state">
+<span class="sig-name descname"><span class="pre">state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pybricks.robotics.DriveBase.state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the state of the robot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple of distance, drive speed, angle, and turn rate of the robot.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.robotics.DriveBase.reset">
+<span class="sig-name descname"><span class="pre">reset</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.robotics.DriveBase.reset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets the estimated driven distance and angle to 0.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.robotics.DriveBase.stalled">
+<span class="sig-name descname"><span class="pre">stalled</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="micropython/builtins.html#ubuiltins.bool" title="ubuiltins.bool"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#pybricks.robotics.DriveBase.stalled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the drive base is currently stalled.</p>
+<p>It is stalled when it cannot reach the target speed or position, even
+with the maximum actuation signal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the drivebase is stalled, <code class="docutils literal notranslate"><span class="pre">False</span></code> if not.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="toggle-header docutils container">
+</div>
+<div class="toggle-content docutils container">
+
+        <div class="wy-table-responsive">
+            <table class="docutils align-default requirements-table">
+                <tbody>
+                    <tr>
+                        
+        <th background="_images/compat_movehub.png" class="requirements-table-th requirements-table-th">
+        ❌
+        </th>
+        
+        <th background="_images/compat_cityhub.png" class="requirements-table-th requirements-table-th">
+        ❌
+        </th>
+        
+        <th background="_images/compat_technichub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="_images/compat_primehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="_images/compat_inventorhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="_images/compat_essentialhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+<p class="rubric">Driving with the gyro</p>
+<p><img alt="_images/pybricks_blockDriveBaseUseGyro.svg" class="block-image" height="47px" src="_images/pybricks_blockDriveBaseUseGyro.svg" width="272px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.robotics.DriveBase.use_gyro">
+<span class="sig-name descname"><span class="pre">use_gyro</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">use_gyro</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.robotics.DriveBase.use_gyro" title="Permalink to this definition">¶</a></dt>
+<dd><p>Choose <code class="docutils literal notranslate"><span class="pre">True</span></code> to use the gyro sensor for turning and driving
+straight. Choose <code class="docutils literal notranslate"><span class="pre">False</span></code> to rely only on the motor’s built-in
+rotation sensors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>use_gyro</strong> (<a class="reference internal" href="micropython/builtins.html#ubuiltins.bool" title="ubuiltins.bool"><em>bool</em></a>) – <code class="docutils literal notranslate"><span class="pre">True</span></code> to enable, <code class="docutils literal notranslate"><span class="pre">False</span></code> to disable.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p>If your hub is not mounted flat in your robot, make sure to specify
+the <code class="docutils literal notranslate"><span class="pre">top_side</span></code> and <code class="docutils literal notranslate"><span class="pre">front_side</span></code> parameters when you initialize the
+<a class="reference internal" href="hubs/primehub.html#pybricks.hubs.PrimeHub" title="pybricks.hubs.PrimeHub"><code class="xref py py-class docutils literal notranslate"><span class="pre">PrimeHub()</span></code></a>,
+<a class="reference internal" href="hubs/primehub.html#pybricks.hubs.PrimeHub" title="pybricks.hubs.PrimeHub"><code class="xref py py-class docutils literal notranslate"><span class="pre">InventorHub()</span></code></a>,
+<a class="reference internal" href="hubs/essentialhub.html#pybricks.hubs.EssentialHub" title="pybricks.hubs.EssentialHub"><code class="xref py py-class docutils literal notranslate"><span class="pre">EssentialHub()</span></code></a>, or
+<a class="reference internal" href="hubs/technichub.html#pybricks.hubs.TechnicHub" title="pybricks.hubs.TechnicHub"><code class="xref py py-class docutils literal notranslate"><span class="pre">TechnicHub()</span></code></a>. This way your robot
+knows which rotation to measure when turning.</p>
+<p>The gyro in each hub is a bit different, which can cause it to be a few
+degrees off for big turns, or many small turns in the same
+direction. For example, you may need to use
+<a class="reference internal" href="#pybricks.robotics.DriveBase.turn" title="pybricks.robotics.DriveBase.turn"><code class="xref py py-meth docutils literal notranslate"><span class="pre">turn(357)</span></code></a> or
+<a class="reference internal" href="#pybricks.robotics.DriveBase.turn" title="pybricks.robotics.DriveBase.turn"><code class="xref py py-meth docutils literal notranslate"><span class="pre">turn(362)</span></code></a>
+on your robot to make a full turn.</p>
+<p>By default, this class tries to maintain the robot’s position after a move
+completes. This means the wheels will spin if you pick the robot up, in an
+effort to maintain its heading angle. To avoid this, you can choose
+<code class="docutils literal notranslate"><span class="pre">then=Stop.COAST</span></code> in your last
+<a class="reference internal" href="#pybricks.robotics.DriveBase.straight" title="pybricks.robotics.DriveBase.straight"><code class="xref py py-meth docutils literal notranslate"><span class="pre">straight</span></code></a>,
+<a class="reference internal" href="#pybricks.robotics.DriveBase.turn" title="pybricks.robotics.DriveBase.turn"><code class="xref py py-meth docutils literal notranslate"><span class="pre">turn</span></code></a>, or
+<a class="reference internal" href="#pybricks.robotics.DriveBase.curve" title="pybricks.robotics.DriveBase.curve"><code class="xref py py-meth docutils literal notranslate"><span class="pre">curve</span></code></a> command.</p>
+<p class="rubric" id="measuring">Measuring and validating the robot dimensions</p>
+<p>As a first estimate, you can measure the <code class="docutils literal notranslate"><span class="pre">wheel_diameter</span></code> and the
+<code class="docutils literal notranslate"><span class="pre">axle_track</span></code> with a ruler. Because it is hard to see where the wheels
+effectively touch the ground, you can estimate the <code class="docutils literal notranslate"><span class="pre">axle_track</span></code> as
+the distance between the midpoint of the wheels.</p>
+<p>If you don’t have a ruler, you can use a LEGO beam to measure. The
+center-to-center distance of the holes is 8 mm. For some tyres, the
+diameter is printed on the side. For example, 62.4 x 20 means that the
+diameter is 62.4mm and that the width is 20 mm.</p>
+<p>In practice, most wheels compress slightly under the weight of your robot.
+To verify, make your robot drive 1000 mm using <code class="docutils literal notranslate"><span class="pre">my_robot.straight(1000)</span></code>
+and measure how far it really traveled. Compensate as follows:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If your robot drives <strong>not far enough</strong>, <strong>decrease</strong> the
+<code class="docutils literal notranslate"><span class="pre">wheel_diameter</span></code> value slightly.</p></li>
+<li><p>If your robot drives <strong>too far</strong>, <strong>increase</strong> the
+<code class="docutils literal notranslate"><span class="pre">wheel_diameter</span></code> value slightly.</p></li>
+</ul>
+</div></blockquote>
+<p>Motor shafts and axles bend slightly under the load of the
+robot, causing the ground contact point of the wheels to be closer to the
+midpoint of your robot. To verify, make your robot turn 360 degrees
+using <code class="docutils literal notranslate"><span class="pre">my_robot.turn(360)</span></code> and check that it is back in the same place:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>If your robot turns <strong>not far enough</strong>, <strong>increase</strong> the
+<code class="docutils literal notranslate"><span class="pre">axle_track</span></code> value slightly.</p></li>
+<li><p>If your robot turns <strong>too far</strong>, <strong>decrease</strong> the <code class="docutils literal notranslate"><span class="pre">axle_track</span></code>
+value slightly.</p></li>
+</ul>
+</div></blockquote>
+<p>When making these adjustments, always adjust the
+<code class="docutils literal notranslate"><span class="pre">wheel_diameter</span></code> first, as done above. Be sure to test both turning
+and driving straight after you are done.</p>
+<p class="rubric">Using the DriveBase motors individually</p>
+<p>After creating a <a class="reference internal" href="#pybricks.robotics.DriveBase" title="pybricks.robotics.DriveBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">DriveBase</span></code></a> object, you can still use its two
+motors individually. If you start one motor, the other motor will
+automatically stop. Likewise, if a motor is already running and you make
+the drive base move, the original maneuver is cancelled and the drive base
+will take over.</p>
+<p class="rubric">Advanced settings</p>
+<p>The <a class="reference internal" href="#pybricks.robotics.DriveBase.settings" title="pybricks.robotics.DriveBase.settings"><code class="xref py py-meth docutils literal notranslate"><span class="pre">settings()</span></code></a> method is used to adjust commonly used settings like
+the default speed and acceleration for straight maneuvers and turns.
+Use the following attributes to adjust more advanced control settings.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pybricks.robotics.DriveBase.distance_control">
+<span class="sig-name descname"><span class="pre">distance_control</span></span><a class="headerlink" href="#pybricks.robotics.DriveBase.distance_control" title="Permalink to this definition">¶</a></dt>
+<dd><p>The traveled distance and drive speed are controlled by a PID
+controller. You can use this attribute to change its settings.
+See the <a class="reference internal" href="pupdevices/motor.html#settings"><span class="std std-ref">motor control</span></a> attribute for an overview of
+available methods. The <code class="docutils literal notranslate"><span class="pre">distance_control</span></code> attribute has the same
+functionality, but the settings apply to every millimeter driven by the
+drive base, instead of degrees turned by one motor.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pybricks.robotics.DriveBase.heading_control">
+<span class="sig-name descname"><span class="pre">heading_control</span></span><a class="headerlink" href="#pybricks.robotics.DriveBase.heading_control" title="Permalink to this definition">¶</a></dt>
+<dd><p>The robot turn angle and turn rate are controlled by a PID
+controller. You can use this attribute to change its settings.
+See the <a class="reference internal" href="pupdevices/motor.html#settings"><span class="std std-ref">motor control</span></a> attribute for an overview of
+available methods. The <code class="docutils literal notranslate"><span class="pre">heading_control</span></code> attribute has the same
+functionality, but the settings apply to every degree of rotation of the
+whole drive base (viewed from the top) instead of degrees turned by one
+motor.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="toggle-header docutils container">
+</div>
+<div class="toggle-content docutils container">
+
+        <div class="wy-table-responsive">
+            <table class="docutils align-default requirements-table">
+                <tbody>
+                    <tr>
+                        
+        <th background="_images/compat_movehub.png" class="requirements-table-th requirements-table-th">
+        ❌
+        </th>
+        
+        <th background="_images/compat_cityhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="_images/compat_technichub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="_images/compat_primehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="_images/compat_inventorhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="_images/compat_essentialhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+<p><img alt="_images/pybricks_variables_set_car.svg" class="block-image" height="47px" src="_images/pybricks_variables_set_car.svg" width="455px" /></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pybricks.robotics.Car">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Car</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">steering_motor</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">drive_motors</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.robotics.Car" title="Permalink to this definition">¶</a></dt>
+<dd><p>A vehicle with one steering motor, and one or more motors for driving.</p>
+<p>When you use this class, the steering motor will automatically find the
+center position. This also determines which angle corresponds to 100%
+steering.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>steering_motor</strong> (<a class="reference internal" href="pupdevices/motor.html#pybricks.pupdevices.Motor" title="pybricks.pupdevices.Motor"><em>Motor</em></a>) – The motor that steers the front wheels.</p></li>
+<li><p><strong>drive_motors</strong> (<a class="reference internal" href="pupdevices/motor.html#pybricks.pupdevices.Motor" title="pybricks.pupdevices.Motor"><em>Motor</em></a>) – The motor that drives the wheels. Use a tuple
+for multiple motors.</p></li>
+</ul>
+</dd>
+</dl>
+<p><img alt="_images/pybricks_blockCarSteer.svg" class="block-image" height="51px" src="_images/pybricks_blockCarSteer.svg" width="253px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.robotics.Car.steer">
+<span class="sig-name descname"><span class="pre">steer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">percentage</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.robotics.Car.steer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Steers the front wheels by a given amount. For 100% steering, it
+steers right by the angle that was determined on initialization.
+For -100% steering, it steers left and 0% means straight.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>steering</strong> (<a class="reference internal" href="signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>%</em>) – Amount to steer the front wheels.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="_images/pybricks_blockCarDrive_car_drive_at_power.svg" class="block-image" height="51px" src="_images/pybricks_blockCarDrive_car_drive_at_power.svg" width="339px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.robotics.Car.drive_power">
+<span class="sig-name descname"><span class="pre">drive_power</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">power</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.robotics.Car.drive_power" title="Permalink to this definition">¶</a></dt>
+<dd><p>Drives the car at a given “power” level, as a percentage of the
+battery voltage. Positive values drive forward, negative values drive
+backward.</p>
+<p>For <code class="docutils literal notranslate"><span class="pre">power</span></code> values below 30%, the car will coast the wheels in order
+to roll out smoothly instead of braking abruptly.</p>
+<p>This command is useful for remote control applications where you want
+instant response to button presses or joystick movements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>speed</strong> (<a class="reference internal" href="signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>%</em>) – Speed of the car.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="_images/pybricks_blockCarDrive_car_drive_at_speed.svg" class="block-image" height="51px" src="_images/pybricks_blockCarDrive_car_drive_at_speed.svg" width="352px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.robotics.Car.drive_speed">
+<span class="sig-name descname"><span class="pre">drive_speed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.robotics.Car.drive_speed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Drives the car at a given motor speed. Positive values drive forward,
+negative values drive backward.</p>
+<p>This command is useful for more precise driving with gentle
+acceleration and deceleration. This automatically increases the power
+to maintain speed as you drive across obstacles.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>speed</strong> (<a class="reference internal" href="signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>deg/s</em>) – Angular velocity of the drive motors.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<section id="driving-straight-and-turning-in-place-with-a-drive-base">
+<h3>Driving straight and turning in place with a drive base<a class="headerlink" href="#driving-straight-and-turning-in-place-with-a-drive-base" title="Permalink to this heading">¶</a></h3>
+<p>This program shows the basics of driving and turning.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Motor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span><span class="p">,</span> <span class="n">Direction</span>
+<span class="kn">from</span> <span class="nn">pybricks.robotics</span> <span class="kn">import</span> <span class="n">DriveBase</span>
+
+<span class="c1"># Initialize both motors. In this example, the motor on the</span>
+<span class="c1"># left must turn counterclockwise to make the robot go forward.</span>
+<span class="n">left_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="n">Direction</span><span class="o">.</span><span class="n">COUNTERCLOCKWISE</span><span class="p">)</span>
+<span class="n">right_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">B</span><span class="p">)</span>
+
+<span class="c1"># Initialize the drive base. In this example, the wheel diameter is 56mm.</span>
+<span class="c1"># The distance between the two wheel-ground contact points is 112mm.</span>
+<span class="n">drive_base</span> <span class="o">=</span> <span class="n">DriveBase</span><span class="p">(</span><span class="n">left_motor</span><span class="p">,</span> <span class="n">right_motor</span><span class="p">,</span> <span class="n">wheel_diameter</span><span class="o">=</span><span class="mi">56</span><span class="p">,</span> <span class="n">axle_track</span><span class="o">=</span><span class="mi">112</span><span class="p">)</span>
+
+<span class="c1"># Optionally, uncomment the line below to use the gyro for improved accuracy.</span>
+<span class="c1"># drive_base.use_gyro(True)</span>
+
+<span class="c1"># Drive forward by 500mm (half a meter).</span>
+<span class="n">drive_base</span><span class="o">.</span><span class="n">straight</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="c1"># Turn around clockwise by 180 degrees.</span>
+<span class="n">drive_base</span><span class="o">.</span><span class="n">turn</span><span class="p">(</span><span class="mi">180</span><span class="p">)</span>
+
+<span class="c1"># Drive forward again to get back to the start.</span>
+<span class="n">drive_base</span><span class="o">.</span><span class="n">straight</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="c1"># Turn around counterclockwise.</span>
+<span class="n">drive_base</span><span class="o">.</span><span class="n">turn</span><span class="p">(</span><span class="o">-</span><span class="mi">180</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="remote-controlling-a-car-with-front-wheel-steering">
+<h3>Remote controlling a car with front wheel steering<a class="headerlink" href="#remote-controlling-a-car-with-front-wheel-steering" title="Permalink to this heading">¶</a></h3>
+<p>This program shows how you can drive a car with front wheel steering
+using the <a class="reference internal" href="pupdevices/remote.html#pybricks.pupdevices.Remote" title="pybricks.pupdevices.Remote"><code class="xref py py-class docutils literal notranslate"><span class="pre">remote</span> <span class="pre">control</span></code></a>.</p>
+<p>In this program, the ports match those of the <a class="reference external" href="https://pybricks.com/projects/sets/technic/42099-off-roader/">LEGO Technic 42099 Off-Roader</a>, but you can
+use any other car with front wheel steering. If your vehicle has only one
+drive motor, you can use a single motor instead of a tuple of the motors used
+below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Direction</span><span class="p">,</span> <span class="n">Port</span><span class="p">,</span> <span class="n">Button</span>
+<span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Motor</span><span class="p">,</span> <span class="n">Remote</span>
+<span class="kn">from</span> <span class="nn">pybricks.robotics</span> <span class="kn">import</span> <span class="n">Car</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Set up motors.</span>
+<span class="n">front</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="n">Direction</span><span class="o">.</span><span class="n">COUNTERCLOCKWISE</span><span class="p">)</span>
+<span class="n">rear</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">B</span><span class="p">,</span> <span class="n">Direction</span><span class="o">.</span><span class="n">COUNTERCLOCKWISE</span><span class="p">)</span>
+<span class="n">steer</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">C</span><span class="p">,</span> <span class="n">Direction</span><span class="o">.</span><span class="n">CLOCKWISE</span><span class="p">)</span>
+
+<span class="c1"># Connect to the remote.</span>
+<span class="n">remote</span> <span class="o">=</span> <span class="n">Remote</span><span class="p">()</span>
+
+<span class="c1"># Set up the car.</span>
+<span class="n">car</span> <span class="o">=</span> <span class="n">Car</span><span class="p">(</span><span class="n">steer</span><span class="p">,</span> <span class="p">[</span><span class="n">front</span><span class="p">,</span> <span class="n">rear</span><span class="p">])</span>
+
+<span class="c1"># The main program starts here.</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="c1"># Read remote state.</span>
+    <span class="n">pressed</span> <span class="o">=</span> <span class="n">remote</span><span class="o">.</span><span class="n">buttons</span><span class="o">.</span><span class="n">pressed</span><span class="p">()</span>
+
+    <span class="c1"># Steer using the left pad. Steering is the percentage</span>
+    <span class="c1"># of the angle determined while initializing.</span>
+    <span class="n">steering</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">Button</span><span class="o">.</span><span class="n">LEFT_PLUS</span> <span class="ow">in</span> <span class="n">pressed</span><span class="p">:</span>
+        <span class="n">steering</span> <span class="o">+=</span> <span class="mi">100</span>
+    <span class="k">elif</span> <span class="n">Button</span><span class="o">.</span><span class="n">LEFT_MINUS</span> <span class="ow">in</span> <span class="n">pressed</span><span class="p">:</span>
+        <span class="n">steering</span> <span class="o">-=</span> <span class="mi">100</span>
+    <span class="n">car</span><span class="o">.</span><span class="n">steer</span><span class="p">(</span><span class="n">steering</span><span class="p">)</span>
+
+    <span class="c1"># Drive using the right pad.</span>
+    <span class="n">power</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">if</span> <span class="n">Button</span><span class="o">.</span><span class="n">RIGHT_PLUS</span> <span class="ow">in</span> <span class="n">pressed</span><span class="p">:</span>
+        <span class="n">power</span> <span class="o">+=</span> <span class="mi">100</span>
+    <span class="k">elif</span> <span class="n">Button</span><span class="o">.</span><span class="n">RIGHT_MINUS</span> <span class="ow">in</span> <span class="n">pressed</span><span class="p">:</span>
+        <span class="n">power</span> <span class="o">-=</span> <span class="mi">100</span>
+    <span class="n">car</span><span class="o">.</span><span class="n">drive_power</span><span class="p">(</span><span class="n">power</span><span class="p">)</span>
+
+    <span class="c1"># Wait briefly.</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

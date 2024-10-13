@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Motors with rotation sensors &mdash; pybricks v3.4.0b3 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/requirements.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/blocks.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/ide.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/requirements.js"></script>
+        <script src="../_static/js/ide.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tilt Sensor" href="tiltsensor.html" />
+    <link rel="prev" title="Motors without rotation sensors" href="dcmotor.html" />
+    <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0088ce" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/pybricks-logo-rtd.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v3.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Pybricks modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hubs/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hubs</span></code> – Built-in hub functions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pupdevices</span></code> – Motors, sensors, lights</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="dcmotor.html">Motors without rotation sensors</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Motors with rotation sensors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#initialization-examples">Initialization examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#making-the-motor-move-back-and-forth">Making the motor move back and forth</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#initializing-multiple-motors">Initializing multiple motors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setting-the-positive-direction-as-counterclockwise">Setting the positive direction as counterclockwise</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-gears">Using gears</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#measurement-examples">Measurement examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#measuring-the-angle-and-speed">Measuring the angle and speed</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#resetting-the-measured-angle">Resetting the measured angle</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#getting-the-absolute-angle">Getting the absolute angle</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#movement-examples">Movement examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#basic-usage-of-all-run-methods">Basic usage of all run methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#stopping-ongoing-movements-in-different-ways">Stopping ongoing movements in different ways</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-the-then-argument-to-change-how-a-run-command-stops">Using the <code class="docutils literal notranslate"><span class="pre">then</span></code> argument to change how a run command stops</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#stall-examples">Stall examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#running-a-motor-until-a-mechanical-endpoint">Running a motor until a mechanical endpoint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#centering-a-steering-mechanism">Centering a steering mechanism</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#parallel-movement-examples">Parallel movement examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#using-the-wait-argument-to-run-motors-in-parallel">Using the <code class="docutils literal notranslate"><span class="pre">wait</span></code> argument to run motors in parallel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#waiting-for-two-parallel-actions-to-complete">Waiting for two parallel actions to complete</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tiltsensor.html">Tilt Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="infraredsensor.html">Infrared Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colordistancesensor.html">Color and Distance Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pfmotor.html">Power Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorsensor.html">Color Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ultrasonicsensor.html">Ultrasonic Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forcesensor.html">Force Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorlightmatrix.html">Color Light Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="light.html">Light</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote.html">Remote Control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../iodevices/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iodevices</span></code> – Custom devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parameters/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parameters</span></code> – Parameters and constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tools</span></code> – General purpose tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../robotics.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">robotics</span></code> – Robotics and drive bases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../signaltypes.html">Signals and Units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code with blocks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../blocks/index.html">Other blocks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">MicroPython modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/builtins.html">Built-in classes and functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/exceptions.html">Exceptions and errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/micropython.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">micropython</span></code> – MicroPython internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uerrno.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uerrno</span></code> – Error codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uio</span></code> – Input/output streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/ujson.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ujson</span></code> – JSON encoding and decoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/umath.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">umath</span></code> – Math functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/urandom.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urandom</span></code> – Pseudo-random numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uselect.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uselect</span></code> – Wait for events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/ustruct.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ustruct</span></code> – Pack and unpack binary data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/usys.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">usys</span></code> – System specific functions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #0088ce" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pybricks</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pupdevices</span></code> – Motors, sensors, lights</a></li>
+      <li class="breadcrumb-item active">Motors with rotation sensors</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/pupdevices/motor.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toggle-header docutils container">
+</div>
+<div class="toggle-content docutils container">
+
+        <div class="wy-table-responsive">
+            <table class="docutils align-default requirements-table">
+                <tbody>
+                    <tr>
+                        
+        <th background="../_images/compat_movehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_cityhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_technichub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_primehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_inventorhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_essentialhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+<section id="motors-with-rotation-sensors">
+<h1>Motors with rotation sensors<a class="headerlink" href="#motors-with-rotation-sensors" title="Permalink to this heading">¶</a></h1>
+<figure class="align-default" id="id1">
+<span id="fig-pupmotors"></span><img alt="pupmotors" src="../_images/pupmotors.png" style="width: 100%;" />
+<figcaption>
+<p><span class="caption-number">Figure 2 </span><span class="caption-text">Powered Up motors with rotation sensors. The arrows indicate the default
+positive direction. See the <a class="reference internal" href="../hubs/index.html#module-pybricks.hubs" title="pybricks.hubs"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hubs</span></code></a> module for default
+directions of built-in motors.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<p><img alt="../_images/pybricks_variables_set_motor.svg" class="block-image" height="52px" src="../_images/pybricks_variables_set_motor.svg" width="371px" /></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Motor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Motor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positive_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Direction.CLOCKWISE</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">gears</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reset_angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">profile</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.Motor" title="Permalink to this definition">¶</a></dt>
+<dd><p>LEGO® Powered Up motor with rotation sensors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>port</strong> (<a class="reference internal" href="../parameters/port.html#Port" title="Port"><em>Port</em></a>) – Port to which the motor is connected.</p></li>
+<li><p><strong>positive_direction</strong> (<a class="reference internal" href="../parameters/direction.html#Direction" title="Direction"><em>Direction</em></a>) – Which direction the motor should
+turn when you give a positive speed value or
+angle.</p></li>
+<li><p><strong>gears</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.list" title="ubuiltins.list"><em>list</em></a>) – <p>List of gears linked to the motor.</p>
+<p>For example: <code class="docutils literal notranslate"><span class="pre">[12,</span> <span class="pre">36]</span></code> represents a gear train with a
+12-tooth and a 36-tooth gear. Use a list of lists for multiple
+gear trains, such as <code class="docutils literal notranslate"><span class="pre">[[12,</span> <span class="pre">36],</span> <span class="pre">[20,</span> <span class="pre">16,</span> <span class="pre">40]]</span></code>.</p>
+<p>When you specify a gear train, all motor commands and settings
+are automatically adjusted to account for the resulting gear
+ratio.  The motor direction remains unchanged by this.</p>
+</p></li>
+<li><p><strong>reset_angle</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.bool" title="ubuiltins.bool"><em>bool</em></a>) – Choose <code class="docutils literal notranslate"><span class="pre">True</span></code> to reset the rotation sensor value to the
+absolute marker angle (between -180 and 179).
+Choose <code class="docutils literal notranslate"><span class="pre">False</span></code> to keep the
+current value, so your program knows where it left off last
+time.</p></li>
+<li><p><strong>profile</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>deg</em>) – Precision profile. This is the approximate
+position tolerance in degrees that is acceptable in your
+application. A lower value gives more precise but more erratic
+movement; a higher value gives less precise but smoother
+movement. If no value is given, a suitable profile for this
+motor type will be selected automatically (about 11 degrees).</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Measuring</p>
+<p><img alt="../_images/pybricks_blockMotorMeasure_motor_angle.svg" class="block-image" height="38px" src="../_images/pybricks_blockMotorMeasure_motor_angle.svg" width="249px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Motor.angle">
+<span class="sig-name descname"><span class="pre">angle</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int:</span> <span class="pre">deg</span></span></span><a class="headerlink" href="#pybricks.pupdevices.Motor.angle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the rotation angle of the motor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Motor angle.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockMotorResetAngle.svg" class="block-image" height="51px" src="../_images/pybricks_blockMotorResetAngle.svg" width="304px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Motor.reset_angle">
+<span class="sig-name descname"><span class="pre">reset_angle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">angle</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.Motor.reset_angle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the accumulated rotation angle of the motor to a desired value.</p>
+<p>If you don’t specify an angle, the absolute angle
+will be used if your motor supports it.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>angle</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>deg</em>) – Value to which the angle should be reset.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockMotorMeasure_motor_speed.svg" class="block-image" height="38px" src="../_images/pybricks_blockMotorMeasure_motor_speed.svg" width="253px" /></p>
+<p><img alt="../_images/pybricks_blockMotorMeasure_motor_get_speed_average.svg" class="block-image" height="42px" src="../_images/pybricks_blockMotorMeasure_motor_get_speed_average.svg" width="452px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Motor.speed">
+<span class="sig-name descname"><span class="pre">speed</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">window</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int:</span> <span class="pre">deg/s</span></span></span><a class="headerlink" href="#pybricks.pupdevices.Motor.speed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the speed of the motor.</p>
+<p>The speed is measured as the change in the motor angle during the
+given time window. A short window makes the speed value more
+responsive to motor movement, but less steady. A long window makes the
+speed value less responsive, but more steady.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>window</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>ms</em>) – The time window used to determine the speed.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Motor speed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockMotorMeasure_motor_load.svg" class="block-image" height="38px" src="../_images/pybricks_blockMotorMeasure_motor_load.svg" width="241px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Motor.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int:</span> <span class="pre">mNm</span></span></span><a class="headerlink" href="#pybricks.pupdevices.Motor.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Estimates the load that holds back the motor when it tries to move.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The load torque.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockMotorMeasure_motor_stalled.svg" class="block-image" height="38px" src="../_images/pybricks_blockMotorMeasure_motor_stalled.svg" width="257px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Motor.stalled">
+<span class="sig-name descname"><span class="pre">stalled</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../micropython/builtins.html#ubuiltins.bool" title="ubuiltins.bool"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#pybricks.pupdevices.Motor.stalled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the motor is currently stalled.</p>
+<p>It is stalled when it cannot reach the target speed or position, even
+with the maximum actuation signal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the motor is stalled, <code class="docutils literal notranslate"><span class="pre">False</span></code> if not.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Stopping</p>
+<p><img alt="../_images/pybricks_blockMotorStop_Motor_coast.svg" class="block-image" height="47px" src="../_images/pybricks_blockMotorStop_Motor_coast.svg" width="261px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Motor.stop">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.Motor.stop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops the motor and lets it spin freely.</p>
+<p>The motor gradually stops due to friction.</p>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockMotorStop_Motor_brake.svg" class="block-image" height="47px" src="../_images/pybricks_blockMotorStop_Motor_brake.svg" width="262px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Motor.brake">
+<span class="sig-name descname"><span class="pre">brake</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.Motor.brake" title="Permalink to this definition">¶</a></dt>
+<dd><p>Passively brakes the motor.</p>
+<p>The motor stops due to friction, plus the voltage that
+is generated while the motor is still moving.</p>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockMotorStop_Motor_hold.svg" class="block-image" height="47px" src="../_images/pybricks_blockMotorStop_Motor_hold.svg" width="254px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Motor.hold">
+<span class="sig-name descname"><span class="pre">hold</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.Motor.hold" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops the motor and actively holds it at its current angle.</p>
+</dd></dl>
+
+<p class="rubric">Running forever</p>
+<p><img alt="../_images/pybricks_blockMotorRun_run.svg" class="block-image" height="51px" src="../_images/pybricks_blockMotorRun_run.svg" width="367px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Motor.run">
+<span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.Motor.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs the motor at a constant speed.</p>
+<p>The motor accelerates to the given speed and keeps running at this
+speed until you give a new command.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>speed</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>deg/s</em>) – Speed of the motor.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockMotorDuty_Motor.svg" class="block-image" height="51px" src="../_images/pybricks_blockMotorDuty_Motor.svg" width="362px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Motor.dc">
+<span class="sig-name descname"><span class="pre">dc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">duty</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.Motor.dc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rotates the motor at a given duty cycle (also known as “power”).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>duty</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>%</em>) – The duty cycle (-100.0 to 100).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Running by a fixed amount</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Motor.run_time">
+<em class="property"><a class="reference internal" href="../tools/index.html#pybricks.tools.await" title="pybricks.tools.await"><span class="pre">await</span></a></em><span class="sig-name descname"><span class="pre">run_time</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">then</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Stop.HOLD</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.Motor.run_time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs the motor at a constant speed for a given amount of time.</p>
+<p>The motor accelerates to the given speed, keeps running at this speed,
+and then decelerates. The total maneuver lasts for exactly the given
+amount of <code class="docutils literal notranslate"><span class="pre">time</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>speed</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>deg/s</em>) – Speed of the motor.</p></li>
+<li><p><strong>time</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>ms</em>) – Duration of the maneuver.</p></li>
+<li><p><strong>then</strong> (<a class="reference internal" href="../parameters/stop.html#Stop" title="Stop"><em>Stop</em></a>) – What to do after coming to a standstill.</p></li>
+<li><p><strong>wait</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.bool" title="ubuiltins.bool"><em>bool</em></a>) – Wait for the maneuver to complete before continuing
+with the rest of the program.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockMotorRun_run_angle.svg" class="block-image" height="51px" src="../_images/pybricks_blockMotorRun_run_angle.svg" width="530px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Motor.run_angle">
+<em class="property"><a class="reference internal" href="../tools/index.html#pybricks.tools.await" title="pybricks.tools.await"><span class="pre">await</span></a></em><span class="sig-name descname"><span class="pre">run_angle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rotation_angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">then</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Stop.HOLD</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.Motor.run_angle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs the motor at a constant speed by a given angle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>speed</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>deg/s</em>) – Speed of the motor.</p></li>
+<li><p><strong>rotation_angle</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>deg</em>) – Angle by which the motor should
+rotate.</p></li>
+<li><p><strong>then</strong> (<a class="reference internal" href="../parameters/stop.html#Stop" title="Stop"><em>Stop</em></a>) – What to do after coming to a standstill.</p></li>
+<li><p><strong>wait</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.bool" title="ubuiltins.bool"><em>bool</em></a>) – Wait for the maneuver to complete before continuing
+with the rest of the program.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockMotorRun_run_target.svg" class="block-image" height="51px" src="../_images/pybricks_blockMotorRun_run_target.svg" width="568px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Motor.run_target">
+<em class="property"><a class="reference internal" href="../tools/index.html#pybricks.tools.await" title="pybricks.tools.await"><span class="pre">await</span></a></em><span class="sig-name descname"><span class="pre">run_target</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target_angle</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">then</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Stop.HOLD</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">wait</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.Motor.run_target" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs the motor at a constant speed towards a given target angle.</p>
+<p>The direction of rotation is automatically selected based on the target
+angle. It does not matter if <code class="docutils literal notranslate"><span class="pre">speed</span></code> is positive or negative.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>speed</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>deg/s</em>) – Speed of the motor.</p></li>
+<li><p><strong>target_angle</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>deg</em>) – Angle that the motor should rotate to.</p></li>
+<li><p><strong>then</strong> (<a class="reference internal" href="../parameters/stop.html#Stop" title="Stop"><em>Stop</em></a>) – What to do after coming to a standstill.</p></li>
+<li><p><strong>wait</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.bool" title="ubuiltins.bool"><em>bool</em></a>) – Wait for the motor to reach the target
+before continuing with the rest of the program.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockMotorRun_run_until_stalled.svg" class="block-image" height="51px" src="../_images/pybricks_blockMotorRun_run_until_stalled.svg" width="713px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Motor.run_until_stalled">
+<em class="property"><a class="reference internal" href="../tools/index.html#pybricks.tools.await" title="pybricks.tools.await"><span class="pre">await</span></a></em><span class="sig-name descname"><span class="pre">run_until_stalled</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">then</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Stop.COAST</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">duty_limit</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int:</span> <span class="pre">deg</span></span></span><a class="headerlink" href="#pybricks.pupdevices.Motor.run_until_stalled" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs the motor at a constant speed until it stalls.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>speed</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>deg/s</em>) – Speed of the motor.</p></li>
+<li><p><strong>then</strong> (<a class="reference internal" href="../parameters/stop.html#Stop" title="Stop"><em>Stop</em></a>) – What to do after coming to a standstill.</p></li>
+<li><p><strong>duty_limit</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>%</em>) – Duty cycle limit during this
+command. This is useful to avoid applying the full motor
+torque to a geared or lever mechanism. If it is <code class="docutils literal notranslate"><span class="pre">None</span></code>, the
+duty limit won’t be changed during this command.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Angle at which the motor becomes stalled.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockMotorTrack.svg" class="block-image" height="51px" src="../_images/pybricks_blockMotorTrack.svg" width="253px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Motor.track_target">
+<span class="sig-name descname"><span class="pre">track_target</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">target_angle</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.Motor.track_target" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tracks a target angle. This is similar to <a class="reference internal" href="#pybricks.pupdevices.Motor.run_target" title="pybricks.pupdevices.Motor.run_target"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run_target()</span></code></a>, but
+the usual smooth acceleration is skipped: it will move to the target
+angle as fast as possible. This method is useful if you want to
+continuously change the target angle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>target_angle</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>deg</em>) – Target angle that the motor should
+rotate to.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Motor.done">
+<span class="sig-name descname"><span class="pre">done</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../micropython/builtins.html#ubuiltins.bool" title="ubuiltins.bool"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#pybricks.pupdevices.Motor.done" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if an ongoing command or maneuver is done.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if the command is done, <code class="docutils literal notranslate"><span class="pre">False</span></code> if not.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric" id="settings">Motor settings</p>
+<p><img alt="../_images/pybricks_blockMotorConfigure_motor_max_voltage.svg" class="block-image" height="51px" src="../_images/pybricks_blockMotorConfigure_motor_max_voltage.svg" width="478px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Motor.settings">
+<span class="sig-name descname"><span class="pre">settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_voltage</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.Motor.settings" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">settings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dd><p>Configures motor settings. If no arguments are given,
+this returns the current values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>max_voltage</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>mV</em>) – Maximum voltage applied to the motor during all motor commands.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Motor.close">
+<span class="sig-name descname"><span class="pre">close</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.Motor.close" title="Permalink to this definition">¶</a></dt>
+<dd><p>Closes the motor object so you can call <code class="docutils literal notranslate"><span class="pre">Motor</span></code> again to initialize
+a new object.</p>
+<p>This allows advanced users to change properties such as gearing in the
+middle of the program, which can be useful for removeable attachments.</p>
+</dd></dl>
+
+<p class="rubric">Control settings</p>
+<div class="toggle-header docutils container">
+</div>
+<div class="toggle-content docutils container">
+
+        <div class="wy-table-responsive">
+            <table class="docutils align-default requirements-table">
+                <tbody>
+                    <tr>
+                        
+        <th background="../_images/compat_movehub.png" class="requirements-table-th requirements-table-th">
+        ❌
+        </th>
+        
+        <th background="../_images/compat_cityhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_technichub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_primehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_inventorhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_essentialhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+<p><img alt="../_images/pybricks_blockMotorConfigure_motor_max_speed.svg" class="block-image" height="51px" src="../_images/pybricks_blockMotorConfigure_motor_max_speed.svg" width="464px" /></p>
+<p><img alt="../_images/pybricks_blockMotorConfigure_motor_acceleration.svg" height="51px" src="../_images/pybricks_blockMotorConfigure_motor_acceleration.svg" width="440px" /></p>
+<p><img alt="../_images/pybricks_blockMotorConfigure_motor_max_torque.svg" height="51px" src="../_images/pybricks_blockMotorConfigure_motor_max_torque.svg" width="478px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Motor.Motor.control.limits">
+<span class="sig-prename descclassname"><span class="pre">control.</span></span><span class="sig-name descname"><span class="pre">limits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">acceleration</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">torque</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.Motor.Motor.control.limits" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">control.</span></span><span class="sig-name descname"><span class="pre">limits</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dd><p>Configures the maximum speed, acceleration, and torque.</p>
+<p>If no arguments are given, this will return the current values.</p>
+<p>The new <code class="docutils literal notranslate"><span class="pre">acceleration</span></code> and <code class="docutils literal notranslate"><span class="pre">speed</span></code> limit will become effective
+when you give a new motor command. Ongoing maneuvers are not affected.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>speed</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>deg/s</em><em> or </em><a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>mm/s</em>) – Maximum speed. All speed commands will be capped to this value.</p></li>
+<li><p><strong>acceleration</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>deg/s²</em><em> or </em><a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>mm/s²</em>) – Slope of the speed curve when accelerating or decelerating.
+Use a tuple to set acceleration and deceleration separately.
+If one value is given, it is used for both.</p></li>
+<li><p><strong>torque</strong> (<a class="reference internal" href="../signaltypes.html#torque"><span class="std std-ref">torque: mNm</span></a>) – Maximum feedback torque during control.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="toggle-header docutils container">
+</div>
+<div class="toggle-content docutils container">
+
+        <div class="wy-table-responsive">
+            <table class="docutils align-default requirements-table">
+                <tbody>
+                    <tr>
+                        
+        <th background="../_images/compat_movehub.png" class="requirements-table-th requirements-table-th">
+        ❌
+        </th>
+        
+        <th background="../_images/compat_cityhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_technichub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_primehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_inventorhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_essentialhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Motor.Motor.control.pid">
+<span class="sig-prename descclassname"><span class="pre">control.</span></span><span class="sig-name descname"><span class="pre">pid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">kp</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">ki</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">integral_deadzone</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">integral_rate</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.Motor.Motor.control.pid" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">control.</span></span><span class="sig-name descname"><span class="pre">pid</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dd><p>Gets or sets the PID values for position and speed control.</p>
+<p>If no arguments are given, this will return the current values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>kp</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><em>int</em></a>) – Proportional position control
+constant. It is the feedback torque per degree of
+error: µNm/deg.</p></li>
+<li><p><strong>ki</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><em>int</em></a>) – Integral position control constant. It is the feedback
+torque per accumulated degree of error: µNm/(deg s).</p></li>
+<li><p><strong>kd</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><em>int</em></a>) – Derivative position (or proportional speed) control
+constant. It is the feedback torque per
+unit of speed: µNm/(deg/s).</p></li>
+<li><p><strong>integral_deadzone</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>deg</em><em> or </em><a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>mm</em>) – Zone around the
+target where the error integral does not accumulate errors.</p></li>
+<li><p><strong>integral_rate</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>deg/s</em><em> or </em><a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>mm/s</em>) – Maximum rate at
+which the error integral is allowed to grow.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="toggle-header docutils container">
+</div>
+<div class="toggle-content docutils container">
+
+        <div class="wy-table-responsive">
+            <table class="docutils align-default requirements-table">
+                <tbody>
+                    <tr>
+                        
+        <th background="../_images/compat_movehub.png" class="requirements-table-th requirements-table-th">
+        ❌
+        </th>
+        
+        <th background="../_images/compat_cityhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_technichub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_primehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_inventorhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_essentialhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+<p><img alt="../_images/pybricks_blockMotorConfigure_motor_target_tolerances.svg" class="block-image" height="51px" src="../_images/pybricks_blockMotorConfigure_motor_target_tolerances.svg" width="573px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Motor.Motor.control.target_tolerances">
+<span class="sig-prename descclassname"><span class="pre">control.</span></span><span class="sig-name descname"><span class="pre">target_tolerances</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.Motor.Motor.control.target_tolerances" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">control.</span></span><span class="sig-name descname"><span class="pre">target_tolerances</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dd><p>Gets or sets the tolerances that say when a maneuver is done.</p>
+<p>If no arguments are given, this will return the current values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>speed</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>deg/s</em><em> or </em><a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>mm/s</em>) – Allowed deviation
+from zero speed before motion is considered complete.</p></li>
+<li><p><strong>position</strong> (Number, deg or <a class="reference internal" href="../signaltypes.html#distance"><span class="std std-ref">distance: mm</span></a>) – Allowed
+deviation from the target before motion is considered
+complete.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="toggle-header docutils container">
+</div>
+<div class="toggle-content docutils container">
+
+        <div class="wy-table-responsive">
+            <table class="docutils align-default requirements-table">
+                <tbody>
+                    <tr>
+                        
+        <th background="../_images/compat_movehub.png" class="requirements-table-th requirements-table-th">
+        ❌
+        </th>
+        
+        <th background="../_images/compat_cityhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_technichub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_primehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_inventorhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_essentialhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Motor.Motor.control.stall_tolerances">
+<span class="sig-prename descclassname"><span class="pre">control.</span></span><span class="sig-name descname"><span class="pre">stall_tolerances</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">speed</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">time</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.Motor.Motor.control.stall_tolerances" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">control.</span></span><span class="sig-name descname"><span class="pre">stall_tolerances</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dd><p>Gets or sets stalling tolerances.</p>
+<p>If no arguments are given, this will return the current values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>speed</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>deg/s</em><em> or </em><a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>mm/s</em>) – If the controller
+cannot reach this speed for some <code class="docutils literal notranslate"><span class="pre">time</span></code> even with maximum
+actuation, it is stalled.</p></li>
+<li><p><strong>time</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>ms</em>) – How long the controller has to be below this
+minimum <code class="docutils literal notranslate"><span class="pre">speed</span></code> before we say it is stalled.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="toggle-header docutils container">
+</div>
+<div class="toggle-content docutils container">
+
+        <div class="wy-table-responsive">
+            <table class="docutils align-default requirements-table">
+                <tbody>
+                    <tr>
+                        
+        <th background="../_images/compat_movehub.png" class="requirements-table-th requirements-table-th">
+        ❌
+        </th>
+        
+        <th background="../_images/compat_cityhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_technichub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_primehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_inventorhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_essentialhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Motor.control.scale">
+<span class="sig-prename descclassname"><span class="pre">control.</span></span><span class="sig-name descname"><span class="pre">scale</span></span><a class="headerlink" href="#pybricks.pupdevices.Motor.control.scale" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of degrees that the motor turns to complete one degree at the
+output of the gear train. This is the gear ratio determined from the
+<code class="docutils literal notranslate"><span class="pre">gears</span></code> argument when initializing the motor.</p>
+</dd></dl>
+
+<div class="toggle-header docutils container">
+</div>
+<div class="toggle-content docutils container">
+
+        <div class="wy-table-responsive">
+            <table class="docutils align-default requirements-table">
+                <tbody>
+                    <tr>
+                        
+        <th background="../_images/compat_movehub.png" class="requirements-table-th requirements-table-th">
+        ❌
+        </th>
+        
+        <th background="../_images/compat_cityhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_technichub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_primehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_inventorhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_essentialhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Motor.Motor.model.state">
+<span class="sig-prename descclassname"><span class="pre">model.</span></span><span class="sig-name descname"><span class="pre">state</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.float" title="ubuiltins.float"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.float" title="ubuiltins.float"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.float" title="ubuiltins.float"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.bool" title="ubuiltins.bool"><span class="pre">bool</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pybricks.pupdevices.Motor.Motor.model.state" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the estimated angle, speed, current, and stall state of the motor,
+using a simulation model that mimics the real motor.
+These estimates are updated faster than the real measurements,
+which can be useful when building your own PID controllers.</p>
+<p>For most applications it is better to used the <em>measured</em>
+<a class="reference internal" href="#pybricks.pupdevices.Motor.angle" title="pybricks.pupdevices.Motor.angle"><code class="xref py py-meth docutils literal notranslate"><span class="pre">angle</span></code></a>,
+<a class="reference internal" href="#pybricks.pupdevices.Motor.speed" title="pybricks.pupdevices.Motor.speed"><code class="xref py py-meth docutils literal notranslate"><span class="pre">speed</span></code></a>,
+<a class="reference internal" href="#pybricks.pupdevices.Motor.load" title="pybricks.pupdevices.Motor.load"><code class="xref py py-meth docutils literal notranslate"><span class="pre">load</span></code></a>, and
+<a class="reference internal" href="#pybricks.pupdevices.Motor.stalled" title="pybricks.pupdevices.Motor.stalled"><code class="xref py py-meth docutils literal notranslate"><span class="pre">stall</span></code></a> state instead.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Tuple with the estimated angle (deg), speed (deg/s), current (mA),
+and stall state (<code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code>).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="toggle-header docutils container">
+</div>
+<div class="toggle-content docutils container">
+
+        <div class="wy-table-responsive">
+            <table class="docutils align-default requirements-table">
+                <tbody>
+                    <tr>
+                        
+        <th background="../_images/compat_movehub.png" class="requirements-table-th requirements-table-th">
+        ❌
+        </th>
+        
+        <th background="../_images/compat_cityhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_technichub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_primehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_inventorhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_essentialhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.Motor.Motor.model.settings">
+<span class="sig-prename descclassname"><span class="pre">model.</span></span><span class="sig-name descname"><span class="pre">settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">values</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.Motor.Motor.model.settings" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">model.</span></span><span class="sig-name descname"><span class="pre">settings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span></span></span></dt>
+<dd><p>Gets or sets model settings as a tuple of integers. If no arguments are
+given, this will return the current values. This method is mainly used
+to debug the motor model class. Changing these settings should not be
+needed in user programs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>values</strong> (<em>Tuple</em>) – Tuple with <a class="reference external" href="https://docs.pybricks.com/projects/pbio/en/latest/struct__pbio__observer__settings__t.html">model settings</a>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<section id="initialization-examples">
+<h2>Initialization examples<a class="headerlink" href="#initialization-examples" title="Permalink to this heading">¶</a></h2>
+<section id="making-the-motor-move-back-and-forth">
+<h3>Making the motor move back and forth<a class="headerlink" href="#making-the-motor-move-back-and-forth" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Motor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize a motor on port A.</span>
+<span class="n">example_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># Make the motor run clockwise at 500 degrees per second.</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="c1"># Wait for three seconds.</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">3000</span><span class="p">)</span>
+
+<span class="c1"># Make the motor run counterclockwise at 500 degrees per second.</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="o">-</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="c1"># Wait for three seconds.</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">3000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="initializing-multiple-motors">
+<h3>Initializing multiple motors<a class="headerlink" href="#initializing-multiple-motors" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Motor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize motors on port A and B.</span>
+<span class="n">track_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+<span class="n">gripper_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">B</span><span class="p">)</span>
+
+<span class="c1"># Make both motors run at 500 degrees per second.</span>
+<span class="n">track_motor</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">gripper_motor</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="c1"># Wait for three seconds.</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">3000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="setting-the-positive-direction-as-counterclockwise">
+<h3>Setting the positive direction as counterclockwise<a class="headerlink" href="#setting-the-positive-direction-as-counterclockwise" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Motor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span><span class="p">,</span> <span class="n">Direction</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize a motor on port A with the positive direction as counterclockwise.</span>
+<span class="n">example_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="n">Direction</span><span class="o">.</span><span class="n">COUNTERCLOCKWISE</span><span class="p">)</span>
+
+<span class="c1"># When we choose a positive speed value, the motor now goes counterclockwise.</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="c1"># This is useful when your motor is mounted in reverse or upside down.</span>
+<span class="c1"># By changing the positive direction, your script will be easier to read,</span>
+<span class="c1"># because a positive value now makes your robot/mechanism go forward.</span>
+
+<span class="c1"># Wait for three seconds.</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">3000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="using-gears">
+<h3>Using gears<a class="headerlink" href="#using-gears" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Motor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span><span class="p">,</span> <span class="n">Direction</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize a motor on port A with the positive direction as counterclockwise.</span>
+<span class="c1"># Also specify one gear train with a 12-tooth and a 36-tooth gear. The 12-tooth</span>
+<span class="c1"># gear is attached to the motor axle. The 36-tooth gear is at the output axle.</span>
+<span class="n">geared_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="n">Direction</span><span class="o">.</span><span class="n">COUNTERCLOCKWISE</span><span class="p">,</span> <span class="p">[</span><span class="mi">12</span><span class="p">,</span> <span class="mi">36</span><span class="p">])</span>
+
+<span class="c1"># Make the output axle run at 100 degrees per second. The motor speed</span>
+<span class="c1"># is automatically increased to compensate for the gears.</span>
+<span class="n">geared_motor</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Wait for three seconds.</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">3000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="measurement-examples">
+<h2>Measurement examples<a class="headerlink" href="#measurement-examples" title="Permalink to this heading">¶</a></h2>
+<section id="measuring-the-angle-and-speed">
+<h3>Measuring the angle and speed<a class="headerlink" href="#measuring-the-angle-and-speed" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Motor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize a motor on port A.</span>
+<span class="n">example_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># Start moving at 300 degrees per second.</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">300</span><span class="p">)</span>
+
+<span class="c1"># Display the angle and speed 50 times.</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
+
+    <span class="c1"># Read the angle (degrees) and speed (degrees per second).</span>
+    <span class="n">angle</span> <span class="o">=</span> <span class="n">example_motor</span><span class="o">.</span><span class="n">angle</span><span class="p">()</span>
+    <span class="n">speed</span> <span class="o">=</span> <span class="n">example_motor</span><span class="o">.</span><span class="n">speed</span><span class="p">()</span>
+
+    <span class="c1"># Print the values.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">speed</span><span class="p">)</span>
+
+    <span class="c1"># Wait some time so we can read what is displayed.</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="resetting-the-measured-angle">
+<h3>Resetting the measured angle<a class="headerlink" href="#resetting-the-measured-angle" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Motor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span>
+
+<span class="c1"># Initialize a motor on port A.</span>
+<span class="n">example_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># Reset the angle to 0.</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">reset_angle</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Reset the angle to 1234.</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">reset_angle</span><span class="p">(</span><span class="mi">1234</span><span class="p">)</span>
+
+<span class="c1"># Reset the angle to the absolute angle.</span>
+<span class="c1"># This is only supported on motors that have</span>
+<span class="c1"># an absolute encoder. For other motors, this</span>
+<span class="c1"># will raise an error.</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">reset_angle</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="getting-the-absolute-angle">
+<h3>Getting the absolute angle<a class="headerlink" href="#getting-the-absolute-angle" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Motor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize a motor on port A.</span>
+<span class="n">example_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+
+    <span class="c1"># Get the default angle value.</span>
+    <span class="n">angle</span> <span class="o">=</span> <span class="n">example_motor</span><span class="o">.</span><span class="n">angle</span><span class="p">()</span>
+
+    <span class="c1"># Get the angle between 0 and 360.</span>
+    <span class="n">absolute_angle</span> <span class="o">=</span> <span class="n">example_motor</span><span class="o">.</span><span class="n">angle</span><span class="p">()</span> <span class="o">%</span> <span class="mi">360</span>
+
+    <span class="c1"># Get the angle between -180 and 179.</span>
+    <span class="n">wrapped_angle</span> <span class="o">=</span> <span class="p">(</span><span class="n">example_motor</span><span class="o">.</span><span class="n">angle</span><span class="p">()</span> <span class="o">+</span> <span class="mi">180</span><span class="p">)</span> <span class="o">%</span> <span class="mi">360</span> <span class="o">-</span> <span class="mi">180</span>
+
+    <span class="c1"># Print the results.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">angle</span><span class="p">,</span> <span class="n">absolute_angle</span><span class="p">,</span> <span class="n">wrapped_angle</span><span class="p">)</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="movement-examples">
+<h2>Movement examples<a class="headerlink" href="#movement-examples" title="Permalink to this heading">¶</a></h2>
+<section id="basic-usage-of-all-run-methods">
+<h3>Basic usage of all run methods<a class="headerlink" href="#basic-usage-of-all-run-methods" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Motor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize a motor on port A.</span>
+<span class="n">example_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># Run at 500 deg/s and then stop by coasting.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Demo of run&quot;</span><span class="p">)</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">1500</span><span class="p">)</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">1500</span><span class="p">)</span>
+
+<span class="c1"># Run at 70% duty cycle (&quot;power&quot;) and then stop by coasting.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Demo of dc&quot;</span><span class="p">)</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">dc</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">1500</span><span class="p">)</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">1500</span><span class="p">)</span>
+
+<span class="c1"># Run at 500 deg/s for two seconds.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Demo of run_time&quot;</span><span class="p">)</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">run_time</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">2000</span><span class="p">)</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">1500</span><span class="p">)</span>
+
+<span class="c1"># Run at 500 deg/s for 90 degrees.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Demo of run_angle&quot;</span><span class="p">)</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">run_angle</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">1500</span><span class="p">)</span>
+
+<span class="c1"># Run at 500 deg/s back to the 0 angle</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Demo of run_target to 0&quot;</span><span class="p">)</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">run_target</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">1500</span><span class="p">)</span>
+
+<span class="c1"># Run at 500 deg/s back to the -90 angle</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Demo of run_target to -90&quot;</span><span class="p">)</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">run_target</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">1500</span><span class="p">)</span>
+
+<span class="c1"># Run at 500 deg/s until the motor stalls</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Demo of run_until_stalled&quot;</span><span class="p">)</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">run_until_stalled</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Done&quot;</span><span class="p">)</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">1500</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="stopping-ongoing-movements-in-different-ways">
+<h3>Stopping ongoing movements in different ways<a class="headerlink" href="#stopping-ongoing-movements-in-different-ways" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Motor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize a motor on port A.</span>
+<span class="n">example_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># Run at 500 deg/s and then stop by coasting.</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">1500</span><span class="p">)</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">1500</span><span class="p">)</span>
+
+<span class="c1"># Run at 500 deg/s and then stop by braking.</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">1500</span><span class="p">)</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">brake</span><span class="p">()</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">1500</span><span class="p">)</span>
+
+<span class="c1"># Run at 500 deg/s and then stop by holding.</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">1500</span><span class="p">)</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">hold</span><span class="p">()</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">1500</span><span class="p">)</span>
+
+<span class="c1"># Run at 500 deg/s and then stop by running at 0 speed.</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">1500</span><span class="p">)</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">1500</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="using-the-then-argument-to-change-how-a-run-command-stops">
+<h3>Using the <code class="docutils literal notranslate"><span class="pre">then</span></code> argument to change how a run command stops<a class="headerlink" href="#using-the-then-argument-to-change-how-a-run-command-stops" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Motor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span><span class="p">,</span> <span class="n">Stop</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize a motor on port A.</span>
+<span class="n">example_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># By default, the motor holds the position. It keeps</span>
+<span class="c1"># correcting the angle if you move it.</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">run_angle</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">360</span><span class="p">)</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># This does exactly the same as above.</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">run_angle</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="n">then</span><span class="o">=</span><span class="n">Stop</span><span class="o">.</span><span class="n">HOLD</span><span class="p">)</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># You can also brake. This applies some resistance</span>
+<span class="c1"># but the motor does not move back if you move it.</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">run_angle</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="n">then</span><span class="o">=</span><span class="n">Stop</span><span class="o">.</span><span class="n">BRAKE</span><span class="p">)</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+
+<span class="c1"># This makes the motor coast freely after it stops.</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">run_angle</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="n">then</span><span class="o">=</span><span class="n">Stop</span><span class="o">.</span><span class="n">COAST</span><span class="p">)</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="stall-examples">
+<h2>Stall examples<a class="headerlink" href="#stall-examples" title="Permalink to this heading">¶</a></h2>
+<section id="running-a-motor-until-a-mechanical-endpoint">
+<h3>Running a motor until a mechanical endpoint<a class="headerlink" href="#running-a-motor-until-a-mechanical-endpoint" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Motor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span>
+
+<span class="c1"># Initialize a motor on port A.</span>
+<span class="n">example_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># We&#39;ll use a speed of 200 deg/s in all our commands.</span>
+<span class="n">speed</span> <span class="o">=</span> <span class="mi">200</span>
+
+<span class="c1"># Run the motor in reverse until it hits a mechanical stop.</span>
+<span class="c1"># The duty_limit=30 setting means that it will apply only 30%</span>
+<span class="c1"># of the maximum torque against the mechanical stop. This way,</span>
+<span class="c1"># you don&#39;t push against it with too much force.</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">run_until_stalled</span><span class="p">(</span><span class="o">-</span><span class="n">speed</span><span class="p">,</span> <span class="n">duty_limit</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="c1"># Reset the angle to 0. Now whenever the angle is 0, you know</span>
+<span class="c1"># that it has reached the mechanical endpoint.</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">reset_angle</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Now make the motor go back and forth in a loop.</span>
+<span class="c1"># This will now work the same regardless of the</span>
+<span class="c1"># initial motor angle, because we always start</span>
+<span class="c1"># from the mechanical endpoint.</span>
+<span class="k">for</span> <span class="n">count</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">example_motor</span><span class="o">.</span><span class="n">run_target</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="mi">180</span><span class="p">)</span>
+    <span class="n">example_motor</span><span class="o">.</span><span class="n">run_target</span><span class="p">(</span><span class="n">speed</span><span class="p">,</span> <span class="mi">90</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="centering-a-steering-mechanism">
+<h3>Centering a steering mechanism<a class="headerlink" href="#centering-a-steering-mechanism" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Motor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize a motor on port A.</span>
+<span class="n">example_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># Please have a look at the previous example first. This example</span>
+<span class="c1"># finds two endspoints and then makes the middle the zero point.</span>
+
+<span class="c1"># The run_until_stalled gives us the angle at which it stalled.</span>
+<span class="c1"># We want to know this value for both endpoints.</span>
+<span class="n">left_end</span> <span class="o">=</span> <span class="n">example_motor</span><span class="o">.</span><span class="n">run_until_stalled</span><span class="p">(</span><span class="o">-</span><span class="mi">200</span><span class="p">,</span> <span class="n">duty_limit</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">right_end</span> <span class="o">=</span> <span class="n">example_motor</span><span class="o">.</span><span class="n">run_until_stalled</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="n">duty_limit</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="c1"># We have just moved to the rightmost endstop. So, we can reset</span>
+<span class="c1"># this angle to be half the distance between the two endpoints.</span>
+<span class="c1"># That way, the middle corresponds to 0 degrees.</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">reset_angle</span><span class="p">((</span><span class="n">right_end</span> <span class="o">-</span> <span class="n">left_end</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># From now on we can simply run towards zero to reach the middle.</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">run_target</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="n">wait</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="parallel-movement-examples">
+<h2>Parallel movement examples<a class="headerlink" href="#parallel-movement-examples" title="Permalink to this heading">¶</a></h2>
+<section id="using-the-wait-argument-to-run-motors-in-parallel">
+<h3>Using the <code class="docutils literal notranslate"><span class="pre">wait</span></code> argument to run motors in parallel<a class="headerlink" href="#using-the-wait-argument-to-run-motors-in-parallel" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Motor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span>
+
+<span class="c1"># Initialize motors on port A and B.</span>
+<span class="n">track_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+<span class="n">gripper_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">B</span><span class="p">)</span>
+
+<span class="c1"># Make the track motor start moving,</span>
+<span class="c1"># but don&#39;t wait for it to finish.</span>
+<span class="n">track_motor</span><span class="o">.</span><span class="n">run_angle</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># Now make the gripper motor rotate. This</span>
+<span class="c1"># means they move at the same time.</span>
+<span class="n">gripper_motor</span><span class="o">.</span><span class="n">run_angle</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">720</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="waiting-for-two-parallel-actions-to-complete">
+<h3>Waiting for two parallel actions to complete<a class="headerlink" href="#waiting-for-two-parallel-actions-to-complete" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Motor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize motors on port A and B.</span>
+<span class="n">track_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+<span class="n">gripper_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">B</span><span class="p">)</span>
+
+<span class="c1"># Make both motors perform an action with wait=False</span>
+<span class="n">track_motor</span><span class="o">.</span><span class="n">run_angle</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">gripper_motor</span><span class="o">.</span><span class="n">run_angle</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">720</span><span class="p">,</span> <span class="n">wait</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+<span class="c1"># While one or both of the motors are not done yet,</span>
+<span class="c1"># do something else. In this example, just wait.</span>
+<span class="k">while</span> <span class="ow">not</span> <span class="n">track_motor</span><span class="o">.</span><span class="n">done</span><span class="p">()</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">gripper_motor</span><span class="o">.</span><span class="n">done</span><span class="p">():</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Both motors are done!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

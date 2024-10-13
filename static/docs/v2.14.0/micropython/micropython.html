@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>micropython – MicroPython internals &mdash; pybricks v3.4.0b3 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/requirements.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/blocks.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/ide.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/requirements.js"></script>
+        <script src="../_static/js/ide.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="uerrno – Error codes" href="uerrno.html" />
+    <link rel="prev" title="Exceptions and errors" href="exceptions.html" />
+    <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0088ce" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/pybricks-logo-rtd.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v3.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Pybricks modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hubs/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hubs</span></code> – Built-in hub functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pupdevices/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pupdevices</span></code> – Motors, sensors, lights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iodevices/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iodevices</span></code> – Custom devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parameters/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parameters</span></code> – Parameters and constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tools</span></code> – General purpose tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../robotics.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">robotics</span></code> – Robotics and drive bases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../signaltypes.html">Signals and Units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code with blocks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../blocks/index.html">Other blocks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">MicroPython modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="builtins.html">Built-in classes and functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions and errors</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">micropython</span></code> – MicroPython internals</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-constants-for-efficiency">Using constants for efficiency</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#checking-free-ram">Checking free RAM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getting-more-memory-statistics">Getting more memory statistics</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="uerrno.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uerrno</span></code> – Error codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uio</span></code> – Input/output streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ujson.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ujson</span></code> – JSON encoding and decoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="umath.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">umath</span></code> – Math functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="urandom.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urandom</span></code> – Pseudo-random numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uselect.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uselect</span></code> – Wait for events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ustruct.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ustruct</span></code> – Pack and unpack binary data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usys.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">usys</span></code> – System specific functions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #0088ce" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pybricks</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">micropython</span></code> – MicroPython internals</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/micropython/micropython.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toggle-header docutils container">
+</div>
+<div class="toggle-content docutils container">
+
+        <div class="wy-table-responsive">
+            <table class="docutils align-default requirements-table">
+                <tbody>
+                    <tr>
+                        
+        <th background="../_images/compat_movehub.png" class="requirements-table-th requirements-table-th">
+        ❌
+        </th>
+        
+        <th background="../_images/compat_cityhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_technichub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_primehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_inventorhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_essentialhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+<section id="module-micropython">
+<span id="micropython-micropython-internals"></span><h1><a class="reference internal" href="#module-micropython" title="micropython"><code class="xref py py-mod docutils literal notranslate"><span class="pre">micropython</span></code></a> – MicroPython internals<a class="headerlink" href="#module-micropython" title="Permalink to this heading">¶</a></h1>
+<p>Access and control MicroPython internals.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="micropython.const">
+<span class="sig-name descname"><span class="pre">const</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Any</span></span></span><a class="headerlink" href="#micropython.const" title="Permalink to this definition">¶</a></dt>
+<dd><p>Declares the value as a constant, which makes your code more efficient.</p>
+<p>To reduce memory usage further, prefix its name with an
+underscore (<code class="docutils literal notranslate"><span class="pre">_ORANGES</span></code>). This constant can only be used within the
+same file.</p>
+<p>If you want to import the value from another module, use a name without an
+underscore (<code class="docutils literal notranslate"><span class="pre">APPLES</span></code>). This uses a bit more memory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<a class="reference internal" href="builtins.html#ubuiltins.int" title="ubuiltins.int"><em>int</em></a><em> or </em><a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a><em> or </em><a class="reference internal" href="builtins.html#ubuiltins.str" title="ubuiltins.str"><em>str</em></a><em> or </em><a class="reference internal" href="builtins.html#ubuiltins.tuple" title="ubuiltins.tuple"><em>tuple</em></a>) – The literal to be made constant.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The constant value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="micropython.heap_lock">
+<span class="sig-name descname"><span class="pre">heap_lock</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#micropython.heap_lock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Locks the heap. When locked, no memory allocation can occur. A
+<code class="docutils literal notranslate"><span class="pre">MemoryError</span></code> will be raised if any heap allocation is attempted.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="micropython.heap_unlock">
+<span class="sig-name descname"><span class="pre">heap_unlock</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a></span></span><a class="headerlink" href="#micropython.heap_unlock" title="Permalink to this definition">¶</a></dt>
+<dd><p>Unlocks the heap. Memory allocation is now allowed again.</p>
+<p>If <a class="reference internal" href="#micropython.heap_lock" title="micropython.heap_lock"><code class="xref py py-func docutils literal notranslate"><span class="pre">heap_lock()</span></code></a> was called multiple times, <a class="reference internal" href="#micropython.heap_unlock" title="micropython.heap_unlock"><code class="xref py py-func docutils literal notranslate"><span class="pre">heap_unlock()</span></code></a>
+must be called the same number of times to make the heap available again.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The lock depth after unlocking. It is <code class="docutils literal notranslate"><span class="pre">0</span></code> once it is unlocked.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="micropython.kbd_intr">
+<span class="sig-name descname"><span class="pre">kbd_intr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">chr</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#micropython.kbd_intr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the character that triggers a <code class="docutils literal notranslate"><span class="pre">KeyboardInterrupt</span></code> exception when
+you type it in the input window. By default it is set to <code class="docutils literal notranslate"><span class="pre">3</span></code>,
+which corresponds to pressing <kbd class="kbd docutils literal notranslate">Ctrl</kbd> <kbd class="kbd docutils literal notranslate">C</kbd>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>chr</strong> (<a class="reference internal" href="builtins.html#ubuiltins.int" title="ubuiltins.int"><em>int</em></a>) – Character that should raise the <code class="docutils literal notranslate"><span class="pre">KeyboardInterrupt</span></code>.
+Choose <code class="docutils literal notranslate"><span class="pre">-1</span></code> to disable this feature.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="micropython.mem_info">
+<span class="sig-name descname"><span class="pre">mem_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#micropython.mem_info" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">mem_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">verbose</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span></dt>
+<dd><p>Prints information about stack and heap memory usage.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>verbose</strong> – If any value is given, it also prints out the entire heap.
+This indicates which blocks are used and which are free.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="micropython.opt_level">
+<span class="sig-name descname"><span class="pre">opt_level</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a></span></span><a class="headerlink" href="#micropython.opt_level" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">opt_level</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span></dt>
+<dd><p>Sets the optimization level for code compiled on the hub:</p>
+<ol class="arabic simple" start="0">
+<li><p>Assertion statements are enabled. The built-in <code class="docutils literal notranslate"><span class="pre">__debug__</span></code> variable
+is <code class="docutils literal notranslate"><span class="pre">True</span></code>. Script line numbers are saved, so they can be reported when
+an Exception occurs.</p></li>
+<li><p>Assertions are ignored and <code class="docutils literal notranslate"><span class="pre">__debug__</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>.
+Script line numbers are saved.</p></li>
+<li><p>Assertions are ignored and <code class="docutils literal notranslate"><span class="pre">__debug__</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>.
+Script line numbers are saved.</p></li>
+<li><p>Assertions are ignored and <code class="docutils literal notranslate"><span class="pre">__debug__</span></code> is <code class="docutils literal notranslate"><span class="pre">False</span></code>.
+Script line numbers are <em>not</em> saved.</p></li>
+</ol>
+<p>This applies only to code that you run in the REPL, because regular scripts
+are already compiled before they are sent to the hub.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>level</strong> (<a class="reference internal" href="builtins.html#ubuiltins.int" title="ubuiltins.int"><em>int</em></a>) – The level to be set.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>If no argument is given, this returns the current optimization level.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="micropython.qstr_info">
+<span class="sig-name descname"><span class="pre">qstr_info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#micropython.qstr_info" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">qstr_info</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">verbose</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span></dt>
+<dd><p>Prints how many strings are interned and how much RAM they use.</p>
+<p>MicroPython uses string interning to save both RAM and ROM.
+This avoids having to store duplicate copies of the same string.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>verbose</strong> – If any value is given, it also prints out the names of all
+RAM-interned strings.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="micropython.stack_use">
+<span class="sig-name descname"><span class="pre">stack_use</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a></span></span><a class="headerlink" href="#micropython.stack_use" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks the amount of stack that is being used. This can be used to
+compute differences in stack usage at different points in a script.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The amount of stack in use.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<section id="using-constants-for-efficiency">
+<h3>Using constants for efficiency<a class="headerlink" href="#using-constants-for-efficiency" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">micropython</span> <span class="kn">import</span> <span class="n">const</span>
+
+<span class="c1"># This value can be used here. Other files can import it too.</span>
+<span class="n">APPLES</span> <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+
+<span class="c1"># These values can only be used within this file.</span>
+<span class="n">_ORANGES</span> <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">_BANANAS</span> <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mi">789</span> <span class="o">+</span> <span class="n">_ORANGES</span><span class="p">)</span>
+
+<span class="c1"># You can read the constants as normal values. The compiler</span>
+<span class="c1"># will just insert the numeric values for you.</span>
+<span class="n">fruit</span> <span class="o">=</span> <span class="n">APPLES</span> <span class="o">+</span> <span class="n">_ORANGES</span> <span class="o">+</span> <span class="n">_BANANAS</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">fruit</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="checking-free-ram">
+<h3>Checking free RAM<a class="headerlink" href="#checking-free-ram" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">micropython</span> <span class="kn">import</span> <span class="n">mem_info</span>
+
+<span class="c1"># Print memory usage.</span>
+<span class="n">mem_info</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This prints information in the format shown below. In this example for the
+SPIKE Prime Hub, there are 257696 bytes (251 KB) worth of memory remaining for
+the variables in your code.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">stack</span><span class="p">:</span> <span class="mi">372</span> <span class="n">out</span> <span class="n">of</span> <span class="mi">40184</span>
+<span class="n">GC</span><span class="p">:</span> <span class="n">total</span><span class="p">:</span> <span class="mi">258048</span><span class="p">,</span> <span class="n">used</span><span class="p">:</span> <span class="mi">352</span><span class="p">,</span> <span class="n">free</span><span class="p">:</span> <span class="mi">257696</span>
+<span class="n">No</span><span class="o">.</span> <span class="n">of</span> <span class="mi">1</span><span class="o">-</span><span class="n">blocks</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="o">-</span><span class="n">blocks</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">max</span> <span class="n">blk</span> <span class="n">sz</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="nb">max</span> <span class="n">free</span> <span class="n">sz</span><span class="p">:</span> <span class="mi">16103</span>
+</pre></div>
+</div>
+</section>
+<section id="getting-more-memory-statistics">
+<h3>Getting more memory statistics<a class="headerlink" href="#getting-more-memory-statistics" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">micropython</span> <span class="kn">import</span> <span class="n">const</span><span class="p">,</span> <span class="n">opt_level</span><span class="p">,</span> <span class="n">mem_info</span><span class="p">,</span> <span class="n">qstr_info</span><span class="p">,</span> <span class="n">stack_use</span>
+
+<span class="c1"># Get stack at start.</span>
+<span class="n">stack_start</span> <span class="o">=</span> <span class="n">stack_use</span><span class="p">()</span>
+
+<span class="c1"># Print REPL compiler optimization level.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;level&quot;</span><span class="p">,</span> <span class="n">opt_level</span><span class="p">())</span>
+
+<span class="c1"># Print memory usage.</span>
+<span class="n">mem_info</span><span class="p">()</span>
+
+<span class="c1"># Print memory usage and a memory map.</span>
+<span class="n">mem_info</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Print interned string information.</span>
+<span class="n">qstr_info</span><span class="p">()</span>
+
+<span class="c1"># Print interned string information and their names.</span>
+<span class="n">APPLES</span> <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span>
+<span class="n">_ORANGES</span> <span class="o">=</span> <span class="n">const</span><span class="p">(</span><span class="mi">456</span><span class="p">)</span>
+<span class="n">qstr_info</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">test_stack</span><span class="p">():</span>
+    <span class="k">return</span> <span class="n">stack_use</span><span class="p">()</span>
+
+
+<span class="c1"># Check the stack.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Stack diff: &quot;</span><span class="p">,</span> <span class="n">test_stack</span><span class="p">()</span> <span class="o">-</span> <span class="n">stack_start</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

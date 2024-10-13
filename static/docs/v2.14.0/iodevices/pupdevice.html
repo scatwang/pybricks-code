@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Powered Up Device &mdash; pybricks v3.4.0b3 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/requirements.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/blocks.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/ide.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/requirements.js"></script>
+        <script src="../_static/js/ide.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="LEGO Wireless Protocol v3 device" href="lwp3device.html" />
+    <link rel="prev" title="iodevices – Custom devices" href="index.html" />
+    <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0088ce" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/pybricks-logo-rtd.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v3.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Pybricks modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hubs/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hubs</span></code> – Built-in hub functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pupdevices/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pupdevices</span></code> – Motors, sensors, lights</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iodevices</span></code> – Custom devices</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Powered Up Device</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#detecting-devices">Detecting devices</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lwp3device.html">LEGO Wireless Protocol v3 device</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../parameters/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parameters</span></code> – Parameters and constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tools</span></code> – General purpose tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../robotics.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">robotics</span></code> – Robotics and drive bases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../signaltypes.html">Signals and Units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code with blocks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../blocks/index.html">Other blocks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">MicroPython modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/builtins.html">Built-in classes and functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/exceptions.html">Exceptions and errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/micropython.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">micropython</span></code> – MicroPython internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uerrno.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uerrno</span></code> – Error codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uio</span></code> – Input/output streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/ujson.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ujson</span></code> – JSON encoding and decoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/umath.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">umath</span></code> – Math functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/urandom.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urandom</span></code> – Pseudo-random numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uselect.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uselect</span></code> – Wait for events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/ustruct.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ustruct</span></code> – Pack and unpack binary data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/usys.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">usys</span></code> – System specific functions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #0088ce" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pybricks</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iodevices</span></code> – Custom devices</a></li>
+      <li class="breadcrumb-item active">Powered Up Device</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/iodevices/pupdevice.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toggle-header docutils container">
+</div>
+<div class="toggle-content docutils container">
+
+        <div class="wy-table-responsive">
+            <table class="docutils align-default requirements-table">
+                <tbody>
+                    <tr>
+                        
+        <th background="../_images/compat_movehub.png" class="requirements-table-th requirements-table-th">
+        ❌
+        </th>
+        
+        <th background="../_images/compat_cityhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_technichub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_primehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_inventorhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_essentialhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+<section id="powered-up-device">
+<h1>Powered Up Device<a class="headerlink" href="#powered-up-device" title="Permalink to this heading">¶</a></h1>
+<figure class="align-default">
+<img alt="../_images/iodevice-pupdevice1.png" src="../_images/iodevice-pupdevice1.png" style="width: 60%;" />
+</figure>
+<dl class="py class">
+<dt class="sig sig-object py" id="pybricks.iodevices.PUPDevice">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">PUPDevice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.iodevices.PUPDevice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Powered Up motor or sensor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>port</strong> (<a class="reference internal" href="../parameters/port.html#Port" title="Port"><em>Port</em></a>) – Port to which the device is connected.</p>
+</dd>
+</dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.iodevices.PUPDevice.info">
+<span class="sig-name descname"><span class="pre">info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Dict</span></span></span><a class="headerlink" href="#pybricks.iodevices.PUPDevice.info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets information about the device.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Dictionary with information, such as the device <code class="docutils literal notranslate"><span class="pre">id</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.iodevices.PUPDevice.read">
+<em class="property"><a class="reference internal" href="../tools/index.html#pybricks.tools.await" title="pybricks.tools.await"><span class="pre">await</span></a></em><span class="sig-name descname"><span class="pre">read</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span></span></span><a class="headerlink" href="#pybricks.iodevices.PUPDevice.read" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads values from a given mode.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>mode</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><em>int</em></a>) – Device mode.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Values read from the sensor.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.iodevices.PUPDevice.write">
+<em class="property"><a class="reference internal" href="../tools/index.html#pybricks.tools.await" title="pybricks.tools.await"><span class="pre">await</span></a></em><span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">mode</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.iodevices.PUPDevice.write" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes values to the sensor. Only selected sensors and modes support
+this.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>mode</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><em>int</em></a>) – Device mode.</p></li>
+<li><p><strong>data</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.tuple" title="ubuiltins.tuple"><em>tuple</em></a>) – Values to be written.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<section id="detecting-devices">
+<h3>Detecting devices<a class="headerlink" href="#detecting-devices" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.iodevices</span> <span class="kn">import</span> <span class="n">PUPDevice</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span>
+<span class="kn">from</span> <span class="nn">uerrno</span> <span class="kn">import</span> <span class="n">ENODEV</span>
+
+<span class="c1"># Dictionary of device identifiers along with their name.</span>
+<span class="n">device_names</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># pybricks.pupdevices.DCMotor</span>
+    <span class="mi">1</span><span class="p">:</span> <span class="s2">&quot;Wedo 2.0 Medium Motor&quot;</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">:</span> <span class="s2">&quot;Powered Up Train Motor&quot;</span><span class="p">,</span>
+    <span class="c1"># pybricks.pupdevices.Light</span>
+    <span class="mi">8</span><span class="p">:</span> <span class="s2">&quot;Powered Up Light&quot;</span><span class="p">,</span>
+    <span class="c1"># pybricks.pupdevices.Motor</span>
+    <span class="mi">38</span><span class="p">:</span> <span class="s2">&quot;BOOST Interactive Motor&quot;</span><span class="p">,</span>
+    <span class="mi">46</span><span class="p">:</span> <span class="s2">&quot;Technic Large Motor&quot;</span><span class="p">,</span>
+    <span class="mi">47</span><span class="p">:</span> <span class="s2">&quot;Technic Extra Large Motor&quot;</span><span class="p">,</span>
+    <span class="mi">48</span><span class="p">:</span> <span class="s2">&quot;SPIKE Medium Angular Motor&quot;</span><span class="p">,</span>
+    <span class="mi">49</span><span class="p">:</span> <span class="s2">&quot;SPIKE Large Angular Motor&quot;</span><span class="p">,</span>
+    <span class="mi">65</span><span class="p">:</span> <span class="s2">&quot;SPIKE Small Angular Motor&quot;</span><span class="p">,</span>
+    <span class="mi">75</span><span class="p">:</span> <span class="s2">&quot;Technic Medium Angular Motor&quot;</span><span class="p">,</span>
+    <span class="mi">76</span><span class="p">:</span> <span class="s2">&quot;Technic Large Angular Motor&quot;</span><span class="p">,</span>
+    <span class="c1"># pybricks.pupdevices.TiltSensor</span>
+    <span class="mi">34</span><span class="p">:</span> <span class="s2">&quot;Wedo 2.0 Tilt Sensor&quot;</span><span class="p">,</span>
+    <span class="c1"># pybricks.pupdevices.InfraredSensor</span>
+    <span class="mi">35</span><span class="p">:</span> <span class="s2">&quot;Wedo 2.0 Infrared Motion Sensor&quot;</span><span class="p">,</span>
+    <span class="c1"># pybricks.pupdevices.ColorDistanceSensor</span>
+    <span class="mi">37</span><span class="p">:</span> <span class="s2">&quot;BOOST Color Distance Sensor&quot;</span><span class="p">,</span>
+    <span class="c1"># pybricks.pupdevices.ColorSensor</span>
+    <span class="mi">61</span><span class="p">:</span> <span class="s2">&quot;SPIKE Color Sensor&quot;</span><span class="p">,</span>
+    <span class="c1"># pybricks.pupdevices.UltrasonicSensor</span>
+    <span class="mi">62</span><span class="p">:</span> <span class="s2">&quot;SPIKE Ultrasonic Sensor&quot;</span><span class="p">,</span>
+    <span class="c1"># pybricks.pupdevices.ForceSensor</span>
+    <span class="mi">63</span><span class="p">:</span> <span class="s2">&quot;SPIKE Force Sensor&quot;</span><span class="p">,</span>
+    <span class="c1"># pybricks.pupdevices.ColorLightMatrix</span>
+    <span class="mi">64</span><span class="p">:</span> <span class="s2">&quot;SPIKE 3x3 Color Light Matrix&quot;</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="c1"># Make a list of known ports.</span>
+<span class="n">ports</span> <span class="o">=</span> <span class="p">[</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="n">Port</span><span class="o">.</span><span class="n">B</span><span class="p">]</span>
+
+<span class="c1"># On hubs that support it, add more ports.</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">ports</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">C</span><span class="p">)</span>
+    <span class="n">ports</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">D</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+<span class="c1"># On hubs that support it, add more ports.</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">ports</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">E</span><span class="p">)</span>
+    <span class="n">ports</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">F</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+<span class="c1"># Go through all available ports.</span>
+<span class="k">for</span> <span class="n">port</span> <span class="ow">in</span> <span class="n">ports</span><span class="p">:</span>
+
+    <span class="c1"># Try to get the device, if it is attached.</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">device</span> <span class="o">=</span> <span class="n">PUPDevice</span><span class="p">(</span><span class="n">port</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">OSError</span> <span class="k">as</span> <span class="n">ex</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">ex</span><span class="o">.</span><span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">ENODEV</span><span class="p">:</span>
+            <span class="c1"># No device found on this port.</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">port</span><span class="p">,</span> <span class="s2">&quot;: ---&quot;</span><span class="p">)</span>
+            <span class="k">continue</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span>
+
+    <span class="c1"># Get the device id</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="n">device</span><span class="o">.</span><span class="n">info</span><span class="p">()[</span><span class="s2">&quot;id&quot;</span><span class="p">]</span>
+
+    <span class="c1"># Look up the name.</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">port</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="n">device_names</span><span class="p">[</span><span class="nb">id</span><span class="p">])</span>
+    <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">port</span><span class="p">,</span> <span class="s2">&quot;:&quot;</span><span class="p">,</span> <span class="s2">&quot;Unknown device with ID&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

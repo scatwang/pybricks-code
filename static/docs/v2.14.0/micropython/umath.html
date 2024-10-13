@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>umath – Math functions &mdash; pybricks v3.4.0b3 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/requirements.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/blocks.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/ide.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/requirements.js"></script>
+        <script src="../_static/js/ide.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="urandom – Pseudo-random numbers" href="urandom.html" />
+    <link rel="prev" title="ujson – JSON encoding and decoding" href="ujson.html" />
+    <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0088ce" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/pybricks-logo-rtd.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v3.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Pybricks modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../hubs/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hubs</span></code> – Built-in hub functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pupdevices/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pupdevices</span></code> – Motors, sensors, lights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iodevices/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iodevices</span></code> – Custom devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parameters/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parameters</span></code> – Parameters and constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tools</span></code> – General purpose tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../robotics.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">robotics</span></code> – Robotics and drive bases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../signaltypes.html">Signals and Units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code with blocks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../blocks/index.html">Other blocks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">MicroPython modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="builtins.html">Built-in classes and functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions and errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="micropython.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">micropython</span></code> – MicroPython internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uerrno.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uerrno</span></code> – Error codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uio</span></code> – Input/output streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ujson.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ujson</span></code> – JSON encoding and decoding</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">umath</span></code> – Math functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#rounding-and-sign">Rounding and sign</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#powers-and-logarithms">Powers and logarithms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#trigonometry">Trigonometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#other-math-functions">Other math functions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="urandom.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urandom</span></code> – Pseudo-random numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="uselect.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uselect</span></code> – Wait for events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ustruct.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ustruct</span></code> – Pack and unpack binary data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="usys.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">usys</span></code> – System specific functions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #0088ce" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pybricks</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">umath</span></code> – Math functions</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/micropython/umath.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toggle-header docutils container">
+</div>
+<div class="toggle-content docutils container">
+
+        <div class="wy-table-responsive">
+            <table class="docutils align-default requirements-table">
+                <tbody>
+                    <tr>
+                        
+        <th background="../_images/compat_movehub.png" class="requirements-table-th requirements-table-th">
+        ❌
+        </th>
+        
+        <th background="../_images/compat_cityhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_technichub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_primehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_inventorhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_essentialhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+<section id="module-umath">
+<span id="umath-math-functions"></span><h1><a class="reference internal" href="#module-umath" title="umath"><code class="xref py py-mod docutils literal notranslate"><span class="pre">umath</span></code></a> – Math functions<a class="headerlink" href="#module-umath" title="Permalink to this heading">¶</a></h1>
+<p>This MicroPython module is similar to the <a class="reference external" href="https://docs.python.org/3.5/library/math.html#module-math">math module</a> in Python.</p>
+<p>See also the <a class="reference internal" href="builtins.html#builtinmath"><span class="std std-ref">built-in math functions</span></a> that can be used
+without importing anything.</p>
+<section id="rounding-and-sign">
+<h2>Rounding and sign<a class="headerlink" href="#rounding-and-sign" title="Permalink to this heading">¶</a></h2>
+<p><img alt="../_images/pybricks_blockMathOp_roundup.svg" class="block-image" height="38px" src="../_images/pybricks_blockMathOp_roundup.svg" width="116px" /></p>
+<dl class="py function">
+<dt class="sig sig-object py" id="umath.ceil">
+<span class="sig-name descname"><span class="pre">ceil</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a></span></span><a class="headerlink" href="#umath.ceil" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rounds up.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – The value to be rounded.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Value rounded towards positive infinity.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockMathOp_rounddown.svg" class="block-image" height="38px" src="../_images/pybricks_blockMathOp_rounddown.svg" width="124px" /></p>
+<dl class="py function">
+<dt class="sig sig-object py" id="umath.floor">
+<span class="sig-name descname"><span class="pre">floor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a></span></span><a class="headerlink" href="#umath.floor" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rounds down.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – The value to be rounded.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Value rounded towards negative infinity.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="umath.trunc">
+<span class="sig-name descname"><span class="pre">trunc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a></span></span><a class="headerlink" href="#umath.trunc" title="Permalink to this definition">¶</a></dt>
+<dd><p>Truncates decimals to get the integer part of a value.</p>
+<p>This is the same as rounding towards <code class="docutils literal notranslate"><span class="pre">0</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – The value to be truncated.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Integer part of the value.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="umath.fmod">
+<span class="sig-name descname"><span class="pre">fmod</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><span class="pre">float</span></a></span></span><a class="headerlink" href="#umath.fmod" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the remainder of <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">/</span> <span class="pre">y</span></code>.</p>
+<p>Not to be confused with <a class="reference internal" href="#umath.modf" title="umath.modf"><code class="xref py py-func docutils literal notranslate"><span class="pre">modf()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – The numerator.</p></li>
+<li><p><strong>y</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – The denominator.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Remainder after division</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="umath.fabs">
+<span class="sig-name descname"><span class="pre">fabs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><span class="pre">float</span></a></span></span><a class="headerlink" href="#umath.fabs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the absolute value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – The value.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Absolute value of <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="umath.copysign">
+<span class="sig-name descname"><span class="pre">copysign</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><span class="pre">float</span></a></span></span><a class="headerlink" href="#umath.copysign" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets <code class="docutils literal notranslate"><span class="pre">x</span></code> with the sign of <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – Determines the magnitude of the return value.</p></li>
+<li><p><strong>y</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – Determines the sign of the return value.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">x</span></code> with the sign of <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="powers-and-logarithms">
+<h2>Powers and logarithms<a class="headerlink" href="#powers-and-logarithms" title="Permalink to this heading">¶</a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="umath.e">
+<span class="sig-name descname"><span class="pre">e</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2.718282</span></em><a class="headerlink" href="#umath.e" title="Permalink to this definition">¶</a></dt>
+<dd><p>The mathematical constant e.</p>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockMathOp_exp.svg" class="block-image" height="38px" src="../_images/pybricks_blockMathOp_exp.svg" width="108px" /></p>
+<dl class="py function">
+<dt class="sig sig-object py" id="umath.exp">
+<span class="sig-name descname"><span class="pre">exp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><span class="pre">float</span></a></span></span><a class="headerlink" href="#umath.exp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets <a class="reference internal" href="#umath.e" title="umath.e"><code class="xref py py-attr docutils literal notranslate"><span class="pre">e</span></code></a> raised to the power of <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – The exponent.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#umath.e" title="umath.e"><code class="xref py py-attr docutils literal notranslate"><span class="pre">e</span></code></a> raised to the power of <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockMathArithmetic_power.svg" class="block-image" height="38px" src="../_images/pybricks_blockMathArithmetic_power.svg" width="136px" /></p>
+<p><img alt="../_images/pybricks_blockMathOp_pow10.svg" class="block-image" height="38px" src="../_images/pybricks_blockMathOp_pow10.svg" width="116px" /></p>
+<dl class="py function">
+<dt class="sig sig-object py" id="umath.pow">
+<span class="sig-name descname"><span class="pre">pow</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><span class="pre">float</span></a></span></span><a class="headerlink" href="#umath.pow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets <code class="docutils literal notranslate"><span class="pre">x</span></code> raised to the power of <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – The base number.</p></li>
+<li><p><strong>y</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – The exponent.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">x</span></code> raised to the power of <code class="docutils literal notranslate"><span class="pre">y</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockMathOp_ln.svg" class="block-image" height="38px" src="../_images/pybricks_blockMathOp_ln.svg" width="105px" /></p>
+<dl class="py function">
+<dt class="sig sig-object py" id="umath.log">
+<span class="sig-name descname"><span class="pre">log</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><span class="pre">float</span></a></span></span><a class="headerlink" href="#umath.log" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the natural logarithm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – The value.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The natural logarithm of <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockMathOp_root.svg" class="block-image" height="38px" src="../_images/pybricks_blockMathOp_root.svg" width="100px" /></p>
+<dl class="py function">
+<dt class="sig sig-object py" id="umath.sqrt">
+<span class="sig-name descname"><span class="pre">sqrt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><span class="pre">float</span></a></span></span><a class="headerlink" href="#umath.sqrt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the square root.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – The value <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The square root of <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="trigonometry">
+<h2>Trigonometry<a class="headerlink" href="#trigonometry" title="Permalink to this heading">¶</a></h2>
+<dl class="py data">
+<dt class="sig sig-object py" id="umath.pi">
+<span class="sig-name descname"><span class="pre">pi</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3.141593</span></em><a class="headerlink" href="#umath.pi" title="Permalink to this definition">¶</a></dt>
+<dd><p>The mathematical constant π.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="umath.degrees">
+<span class="sig-name descname"><span class="pre">degrees</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><span class="pre">float</span></a></span></span><a class="headerlink" href="#umath.degrees" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts an angle from radians to degrees.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – Angle in radians.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Angle in degrees.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="umath.radians">
+<span class="sig-name descname"><span class="pre">radians</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><span class="pre">float</span></a></span></span><a class="headerlink" href="#umath.radians" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts an angle from degrees to radians.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – Angle in degrees.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Angle in radians.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockMathOp_sin.svg" class="block-image" height="38px" src="../_images/pybricks_blockMathOp_sin.svg" width="113px" /></p>
+<dl class="py function">
+<dt class="sig sig-object py" id="umath.sin">
+<span class="sig-name descname"><span class="pre">sin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><span class="pre">float</span></a></span></span><a class="headerlink" href="#umath.sin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the sine of an angle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – Angle in radians.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Sine of <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockMathOp_asin.svg" class="block-image" height="38px" src="../_images/pybricks_blockMathOp_asin.svg" width="121px" /></p>
+<dl class="py function">
+<dt class="sig sig-object py" id="umath.asin">
+<span class="sig-name descname"><span class="pre">asin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><span class="pre">float</span></a></span></span><a class="headerlink" href="#umath.asin" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies the inverse sine operation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – Opposite / hypotenuse.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Arcsine of <code class="docutils literal notranslate"><span class="pre">x</span></code>, in radians.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockMathOp_cos.svg" class="block-image" height="38px" src="../_images/pybricks_blockMathOp_cos.svg" width="117px" /></p>
+<dl class="py function">
+<dt class="sig sig-object py" id="umath.cos">
+<span class="sig-name descname"><span class="pre">cos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><span class="pre">float</span></a></span></span><a class="headerlink" href="#umath.cos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the cosine of an angle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – Angle in radians.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Cosine of <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockMathOp_acos.svg" class="block-image" height="38px" src="../_images/pybricks_blockMathOp_acos.svg" width="125px" /></p>
+<dl class="py function">
+<dt class="sig sig-object py" id="umath.acos">
+<span class="sig-name descname"><span class="pre">acos</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><span class="pre">float</span></a></span></span><a class="headerlink" href="#umath.acos" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies the inverse cosine operation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – Adjacent / hypotenuse.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Arccosine of <code class="docutils literal notranslate"><span class="pre">x</span></code>, in radians.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockMathOp_tan.svg" class="block-image" height="38px" src="../_images/pybricks_blockMathOp_tan.svg" width="113px" /></p>
+<dl class="py function">
+<dt class="sig sig-object py" id="umath.tan">
+<span class="sig-name descname"><span class="pre">tan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><span class="pre">float</span></a></span></span><a class="headerlink" href="#umath.tan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the tangent of an angle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – Angle in radians.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tangent of <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockMathOp_atan.svg" class="block-image" height="38px" src="../_images/pybricks_blockMathOp_atan.svg" width="121px" /></p>
+<dl class="py function">
+<dt class="sig sig-object py" id="umath.atan">
+<span class="sig-name descname"><span class="pre">atan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><span class="pre">float</span></a></span></span><a class="headerlink" href="#umath.atan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies the inverse tangent operation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – Opposite / adjacent.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Arctangent of <code class="docutils literal notranslate"><span class="pre">x</span></code>, in radians.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockMathOp_atan2.svg" class="block-image" height="38px" src="../_images/pybricks_blockMathOp_atan2.svg" width="173px" /></p>
+<dl class="py function">
+<dt class="sig sig-object py" id="umath.atan2">
+<span class="sig-name descname"><span class="pre">atan2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">b</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">a</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><span class="pre">float</span></a></span></span><a class="headerlink" href="#umath.atan2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Applies the inverse tangent operation on <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">/</span> <span class="pre">a</span></code>, and accounts for
+the signs of <code class="docutils literal notranslate"><span class="pre">b</span></code> and <code class="docutils literal notranslate"><span class="pre">a</span></code> to produce the expected angle.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>b</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – Opposite side of the triangle.</p></li>
+<li><p><strong>a</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – Adjacent side of the triangle.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Arctangent of <code class="docutils literal notranslate"><span class="pre">b</span> <span class="pre">/</span> <span class="pre">a</span></code>, in radians.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="other-math-functions">
+<h2>Other math functions<a class="headerlink" href="#other-math-functions" title="Permalink to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="umath.isfinite">
+<span class="sig-name descname"><span class="pre">isfinite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="builtins.html#ubuiltins.bool" title="ubuiltins.bool"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#umath.isfinite" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a value is finite.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – The value to be checked.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if <code class="docutils literal notranslate"><span class="pre">x</span></code> is finite, else <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="umath.isinfinite">
+<span class="sig-name descname"><span class="pre">isinfinite</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="builtins.html#ubuiltins.bool" title="ubuiltins.bool"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#umath.isinfinite" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a value is infinite.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – The value to be checked.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if <code class="docutils literal notranslate"><span class="pre">x</span></code> is infinite, else <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="umath.isnan">
+<span class="sig-name descname"><span class="pre">isnan</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="builtins.html#ubuiltins.bool" title="ubuiltins.bool"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#umath.isnan" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if a value is not-a-number.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – The value to be checked.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">True</span></code> if <code class="docutils literal notranslate"><span class="pre">x</span></code> is not-a-number, else <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="umath.modf">
+<span class="sig-name descname"><span class="pre">modf</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#umath.modf" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the fractional and integral parts of <code class="docutils literal notranslate"><span class="pre">x</span></code>, both with the same sign
+as <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
+<p>Not to be confused with <a class="reference internal" href="#umath.fmod" title="umath.fmod"><code class="xref py py-func docutils literal notranslate"><span class="pre">fmod()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – The value to be decomposed.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple of fractional and integral parts.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="umath.frexp">
+<span class="sig-name descname"><span class="pre">frexp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#umath.frexp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Decomposes a value <code class="docutils literal notranslate"><span class="pre">x</span></code> into a
+tuple <code class="docutils literal notranslate"><span class="pre">(m,</span> <span class="pre">p)</span></code>, such that <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">==</span> <span class="pre">m</span> <span class="pre">*</span> <span class="pre">(2</span> <span class="pre">**</span> <span class="pre">p)</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>x</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – The value to be decomposed.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple of <code class="docutils literal notranslate"><span class="pre">m</span></code> and <code class="docutils literal notranslate"><span class="pre">p</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="umath.ldexp">
+<span class="sig-name descname"><span class="pre">ldexp</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><span class="pre">float</span></a></span></span><a class="headerlink" href="#umath.ldexp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Computes <code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">*</span> <span class="pre">(2</span> <span class="pre">**</span> <span class="pre">p)</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – The value.</p></li>
+<li><p><strong>p</strong> (<a class="reference internal" href="builtins.html#ubuiltins.float" title="ubuiltins.float"><em>float</em></a>) – The exponent.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Result of <code class="docutils literal notranslate"><span class="pre">m</span> <span class="pre">*</span> <span class="pre">(2</span> <span class="pre">**</span> <span class="pre">p)</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

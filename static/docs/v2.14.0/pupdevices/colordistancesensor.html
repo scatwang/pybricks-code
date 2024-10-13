@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Color and Distance Sensor &mdash; pybricks v3.4.0b3 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/requirements.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/blocks.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/ide.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/requirements.js"></script>
+        <script src="../_static/js/ide.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Power Functions" href="pfmotor.html" />
+    <link rel="prev" title="Infrared Sensor" href="infraredsensor.html" />
+    <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0088ce" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/pybricks-logo-rtd.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v3.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Pybricks modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hubs/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hubs</span></code> – Built-in hub functions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pupdevices</span></code> – Motors, sensors, lights</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="dcmotor.html">Motors without rotation sensors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="motor.html">Motors with rotation sensors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tiltsensor.html">Tilt Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="infraredsensor.html">Infrared Sensor</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Color and Distance Sensor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#measuring-color">Measuring color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#waiting-for-a-color">Waiting for a color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#measuring-distance-and-blinking-the-light">Measuring distance and blinking the light</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#reading-hue-saturation-value">Reading hue, saturation, value</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#changing-the-detectable-colors">Changing the detectable colors</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pfmotor.html">Power Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorsensor.html">Color Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ultrasonicsensor.html">Ultrasonic Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forcesensor.html">Force Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorlightmatrix.html">Color Light Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="light.html">Light</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote.html">Remote Control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../iodevices/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iodevices</span></code> – Custom devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parameters/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parameters</span></code> – Parameters and constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tools</span></code> – General purpose tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../robotics.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">robotics</span></code> – Robotics and drive bases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../signaltypes.html">Signals and Units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code with blocks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../blocks/index.html">Other blocks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">MicroPython modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/builtins.html">Built-in classes and functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/exceptions.html">Exceptions and errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/micropython.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">micropython</span></code> – MicroPython internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uerrno.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uerrno</span></code> – Error codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uio</span></code> – Input/output streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/ujson.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ujson</span></code> – JSON encoding and decoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/umath.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">umath</span></code> – Math functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/urandom.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urandom</span></code> – Pseudo-random numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uselect.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uselect</span></code> – Wait for events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/ustruct.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ustruct</span></code> – Pack and unpack binary data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/usys.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">usys</span></code> – System specific functions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #0088ce" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pybricks</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pupdevices</span></code> – Motors, sensors, lights</a></li>
+      <li class="breadcrumb-item active">Color and Distance Sensor</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/pupdevices/colordistancesensor.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toggle-header docutils container">
+</div>
+<div class="toggle-content docutils container">
+
+        <div class="wy-table-responsive">
+            <table class="docutils align-default requirements-table">
+                <tbody>
+                    <tr>
+                        
+        <th background="../_images/compat_movehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_cityhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_technichub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_primehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_inventorhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_essentialhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+<section id="color-and-distance-sensor">
+<h1>Color and Distance Sensor<a class="headerlink" href="#color-and-distance-sensor" title="Permalink to this heading">¶</a></h1>
+<figure class="align-default">
+<img alt="../_images/pupdevice-colordistance.png" src="../_images/pupdevice-colordistance.png" style="width: 35%;" />
+</figure>
+<p><img alt="../_images/pybricks_variables_set_color_distance_sensor_colordistancesensor_default.svg" class="block-image" height="47px" src="../_images/pybricks_variables_set_color_distance_sensor_colordistancesensor_default.svg" width="220px" /></p>
+<p><img alt="../_images/pybricks_variables_set_color_distance_sensor_colordistancesensor_detectable_colors.svg" class="block-image" height="47px" src="../_images/pybricks_variables_set_color_distance_sensor_colordistancesensor_detectable_colors.svg" width="1013px" /></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pybricks.pupdevices.ColorDistanceSensor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">ColorDistanceSensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.ColorDistanceSensor" title="Permalink to this definition">¶</a></dt>
+<dd><p>LEGO® Powered Up Color and Distance Sensor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>port</strong> (<a class="reference internal" href="../parameters/port.html#Port" title="Port"><em>Port</em></a>) – Port to which the sensor is connected.</p>
+</dd>
+</dl>
+<p><img alt="../_images/pybricks_blockColor_ColorDistanceSensor_color.svg" class="block-image" height="38px" src="../_images/pybricks_blockColor_ColorDistanceSensor_color.svg" width="225px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.ColorDistanceSensor.color">
+<em class="property"><a class="reference internal" href="../tools/index.html#pybricks.tools.await" title="pybricks.tools.await"><span class="pre">await</span></a></em><span class="sig-name descname"><span class="pre">color</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../parameters/color.html#pybricks.parameters.Color" title="pybricks.parameters.Color"><span class="pre">Color</span></a></span></span><a class="headerlink" href="#pybricks.pupdevices.ColorDistanceSensor.color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scans the color of a surface.</p>
+<p>You choose which colors are detected using the
+<code class="docutils literal notranslate"><span class="pre">detectable_colors()</span></code> method. By default, it detects
+<code class="docutils literal notranslate"><span class="pre">Color.RED</span></code>, <code class="docutils literal notranslate"><span class="pre">Color.YELLOW</span></code>, <code class="docutils literal notranslate"><span class="pre">Color.GREEN</span></code>, <code class="docutils literal notranslate"><span class="pre">Color.BLUE</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Color.WHITE</span></code>, or <code class="docutils literal notranslate"><span class="pre">Color.NONE</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Detected color.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockLightReflection_ColorDistanceSensor.svg" class="block-image" height="38px" src="../_images/pybricks_blockLightReflection_ColorDistanceSensor.svg" width="251px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.ColorDistanceSensor.reflection">
+<em class="property"><a class="reference internal" href="../tools/index.html#pybricks.tools.await" title="pybricks.tools.await"><span class="pre">await</span></a></em><span class="sig-name descname"><span class="pre">reflection</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int:</span> <span class="pre">%</span></span></span><a class="headerlink" href="#pybricks.pupdevices.ColorDistanceSensor.reflection" title="Permalink to this definition">¶</a></dt>
+<dd><p>Measures how much a surface reflects the light emitted by the
+sensor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Measured reflection, ranging from 0% (no reflection) to
+100% (high reflection).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockLightAmbient_ColorDistanceSensor.svg" class="block-image" height="38px" src="../_images/pybricks_blockLightAmbient_ColorDistanceSensor.svg" width="247px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.ColorDistanceSensor.ambient">
+<em class="property"><a class="reference internal" href="../tools/index.html#pybricks.tools.await" title="pybricks.tools.await"><span class="pre">await</span></a></em><span class="sig-name descname"><span class="pre">ambient</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int:</span> <span class="pre">%</span></span></span><a class="headerlink" href="#pybricks.pupdevices.ColorDistanceSensor.ambient" title="Permalink to this definition">¶</a></dt>
+<dd><p>Measures the ambient light intensity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Ambient light intensity, ranging from 0% (dark)
+to 100% (bright).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockDistance_ColorDistanceSensor.svg" class="block-image" height="38px" src="../_images/pybricks_blockDistance_ColorDistanceSensor.svg" width="215px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.ColorDistanceSensor.distance">
+<em class="property"><a class="reference internal" href="../tools/index.html#pybricks.tools.await" title="pybricks.tools.await"><span class="pre">await</span></a></em><span class="sig-name descname"><span class="pre">distance</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int:</span> <span class="pre">%</span></span></span><a class="headerlink" href="#pybricks.pupdevices.ColorDistanceSensor.distance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Measures the relative distance between the sensor and an object
+using infrared light.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Distance ranging from 0% (closest) to 100% (farthest).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockColor_ColorDistanceSensor_hsv.svg" class="block-image" height="38px" src="../_images/pybricks_blockColor_ColorDistanceSensor_hsv.svg" width="214px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.ColorDistanceSensor.hsv">
+<em class="property"><a class="reference internal" href="../tools/index.html#pybricks.tools.await" title="pybricks.tools.await"><span class="pre">await</span></a></em><span class="sig-name descname"><span class="pre">hsv</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../parameters/color.html#pybricks.parameters.Color" title="pybricks.parameters.Color"><span class="pre">Color</span></a></span></span><a class="headerlink" href="#pybricks.pupdevices.ColorDistanceSensor.hsv" title="Permalink to this definition">¶</a></dt>
+<dd><p>Scans the color of a surface.</p>
+<p>This method is similar to <code class="docutils literal notranslate"><span class="pre">color()</span></code>, but it gives the full range
+of hue, saturation and brightness values, instead of rounding it to the
+nearest detectable color.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Measured color. The color is described by a hue (0–359), a
+saturation (0–100), and a brightness value (0–100).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.ColorDistanceSensor.detectable_colors">
+<span class="sig-name descname"><span class="pre">detectable_colors</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">colors</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.ColorDistanceSensor.detectable_colors" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">detectable_colors</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Collection</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../parameters/color.html#pybricks.parameters.Color" title="pybricks.parameters.Color"><span class="pre">Color</span></a><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dd><p>Configures which colors the <code class="docutils literal notranslate"><span class="pre">color()</span></code> method should detect.</p>
+<p>Specify only colors that you wish to detect in your application.
+This way, the full-color measurements are rounded to the nearest
+desired color, and other colors are ignored. This improves reliability.</p>
+<p>If you give no arguments, the currently chosen colors will be returned.</p>
+<p>When coding with blocks, this is configured in the sensor setup block.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>colors</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.list" title="ubuiltins.list"><em>list</em></a><em> or </em><a class="reference internal" href="../micropython/builtins.html#ubuiltins.tuple" title="ubuiltins.tuple"><em>tuple</em></a>) – List of <a class="reference internal" href="../parameters/color.html#pybricks.parameters.Color" title="pybricks.parameters.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a>
+objects: the colors that you want to detect. You can pick
+standard colors such as <code class="docutils literal notranslate"><span class="pre">Color.MAGENTA</span></code>, or provide your
+own colors like <code class="docutils literal notranslate"><span class="pre">Color(h=348,</span> <span class="pre">s=96,</span> <span class="pre">v=40)</span></code> for even
+better results. You measure your own colors with the
+<code class="docutils literal notranslate"><span class="pre">hsv()</span></code> method.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Built-in light</p>
+<p>This sensor has a built-in light. You can make it red, green, blue, or turn
+it off. If you use the sensor to measure something afterwards, the light
+automatically turns back on at the default color for that sensing method.</p>
+<p><img alt="../_images/pybricks_blockLightOnColor_colordistancesensor_on.svg" class="block-image" height="47px" src="../_images/pybricks_blockLightOnColor_colordistancesensor_on.svg" width="341px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.ColorDistanceSensor.light.on">
+<em class="property"><a class="reference internal" href="../tools/index.html#pybricks.tools.await" title="pybricks.tools.await"><span class="pre">await</span></a></em><span class="sig-prename descclassname"><span class="pre">light.</span></span><span class="sig-name descname"><span class="pre">on</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.ColorDistanceSensor.light.on" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns on the light at the specified color.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>color</strong> (<a class="reference internal" href="../parameters/color.html#pybricks.parameters.Color" title="pybricks.parameters.Color"><em>Color</em></a>) – Color of the light.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockLightOnColor_colordistancesensor_off.svg" class="block-image" height="47px" src="../_images/pybricks_blockLightOnColor_colordistancesensor_off.svg" width="241px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.pupdevices.ColorDistanceSensor.light.off">
+<em class="property"><a class="reference internal" href="../tools/index.html#pybricks.tools.await" title="pybricks.tools.await"><span class="pre">await</span></a></em><span class="sig-prename descclassname"><span class="pre">light.</span></span><span class="sig-name descname"><span class="pre">off</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.ColorDistanceSensor.light.off" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns off the light.</p>
+</dd></dl>
+
+</dd></dl>
+
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<section id="measuring-color">
+<h3>Measuring color<a class="headerlink" href="#measuring-color" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">ColorDistanceSensor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the sensor.</span>
+<span class="n">sensor</span> <span class="o">=</span> <span class="n">ColorDistanceSensor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="c1"># Read the color.</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="n">sensor</span><span class="o">.</span><span class="n">color</span><span class="p">()</span>
+
+    <span class="c1"># Print the measured color.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+
+    <span class="c1"># Move the sensor around and see how</span>
+    <span class="c1"># well you can detect colors.</span>
+
+    <span class="c1"># Wait so we can read the value.</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="waiting-for-a-color">
+<h3>Waiting for a color<a class="headerlink" href="#waiting-for-a-color" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">ColorDistanceSensor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span><span class="p">,</span> <span class="n">Color</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the sensor.</span>
+<span class="n">sensor</span> <span class="o">=</span> <span class="n">ColorDistanceSensor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+
+
+<span class="c1"># This is a function that waits for a desired color.</span>
+<span class="k">def</span> <span class="nf">wait_for_color</span><span class="p">(</span><span class="n">desired_color</span><span class="p">):</span>
+    <span class="c1"># While the color is not the desired color, we keep waiting.</span>
+    <span class="k">while</span> <span class="n">sensor</span><span class="o">.</span><span class="n">color</span><span class="p">()</span> <span class="o">!=</span> <span class="n">desired_color</span><span class="p">:</span>
+        <span class="n">wait</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+
+
+<span class="c1"># Now we use the function we just created above.</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+
+    <span class="c1"># Here you can make your train/vehicle go forward.</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Waiting for red ...&quot;</span><span class="p">)</span>
+    <span class="n">wait_for_color</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">RED</span><span class="p">)</span>
+
+    <span class="c1"># Here you can make your train/vehicle go backward.</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Waiting for blue ...&quot;</span><span class="p">)</span>
+    <span class="n">wait_for_color</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">BLUE</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="measuring-distance-and-blinking-the-light">
+<h3>Measuring distance and blinking the light<a class="headerlink" href="#measuring-distance-and-blinking-the-light" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">ColorDistanceSensor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span><span class="p">,</span> <span class="n">Color</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the sensor.</span>
+<span class="n">sensor</span> <span class="o">=</span> <span class="n">ColorDistanceSensor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># Repeat forever.</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+
+    <span class="c1"># If the sensor sees an object nearby.</span>
+    <span class="k">if</span> <span class="n">sensor</span><span class="o">.</span><span class="n">distance</span><span class="p">()</span> <span class="o">&lt;=</span> <span class="mi">40</span><span class="p">:</span>
+
+        <span class="c1"># Then blink the light red/blue 5 times.</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+            <span class="n">sensor</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">RED</span><span class="p">)</span>
+            <span class="n">wait</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+            <span class="n">sensor</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">BLUE</span><span class="p">)</span>
+            <span class="n">wait</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># If the sensor sees nothing</span>
+        <span class="c1"># nearby, just wait briefly.</span>
+        <span class="n">wait</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="reading-hue-saturation-value">
+<h3>Reading hue, saturation, value<a class="headerlink" href="#reading-hue-saturation-value" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">ColorDistanceSensor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the sensor.</span>
+<span class="n">sensor</span> <span class="o">=</span> <span class="n">ColorDistanceSensor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="c1"># The standard color() method always &quot;rounds&quot; the</span>
+    <span class="c1"># measurement to the nearest &quot;whole&quot; color.</span>
+    <span class="c1"># That&#39;s useful for most applications.</span>
+
+    <span class="c1"># But you can get the original hue, saturation,</span>
+    <span class="c1"># and value without &quot;rounding&quot;, as follows:</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="n">sensor</span><span class="o">.</span><span class="n">hsv</span><span class="p">()</span>
+
+    <span class="c1"># Print the results.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+
+    <span class="c1"># Wait so we can read the value.</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="changing-the-detectable-colors">
+<h3>Changing the detectable colors<a class="headerlink" href="#changing-the-detectable-colors" title="Permalink to this heading">¶</a></h3>
+<p>By default, the sensor is configured to detect red, yellow, green,
+blue, white, or no color, which suits many applications.</p>
+<p>For better results in your application, you can measure your desired
+colors in advance, and tell the sensor to look only for those colors.
+Be sure to measure them at the <strong>same distance and light conditions</strong>
+as in your final application. Then you’ll get very accurate results
+even for colors that are otherwise hard to detect.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">ColorDistanceSensor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span><span class="p">,</span> <span class="n">Color</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the sensor.</span>
+<span class="n">sensor</span> <span class="o">=</span> <span class="n">ColorDistanceSensor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># First, decide which objects you want to detect, and measure their HSV values.</span>
+<span class="c1"># You can do that with the hsv() method as shown in the previous example.</span>
+<span class="c1">#</span>
+<span class="c1"># Use your measurements to override the default colors, or add new colors:</span>
+<span class="n">Color</span><span class="o">.</span><span class="n">GREEN</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="mi">132</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">94</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="mi">26</span><span class="p">)</span>
+<span class="n">Color</span><span class="o">.</span><span class="n">MAGENTA</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="mi">348</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">96</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+<span class="n">Color</span><span class="o">.</span><span class="n">BROWN</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="mi">17</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">78</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">Color</span><span class="o">.</span><span class="n">RED</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="mi">359</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">97</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="mi">39</span><span class="p">)</span>
+
+<span class="c1"># Put your colors in a list or tuple.</span>
+<span class="n">my_colors</span> <span class="o">=</span> <span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">GREEN</span><span class="p">,</span> <span class="n">Color</span><span class="o">.</span><span class="n">MAGENTA</span><span class="p">,</span> <span class="n">Color</span><span class="o">.</span><span class="n">BROWN</span><span class="p">,</span> <span class="n">Color</span><span class="o">.</span><span class="n">RED</span><span class="p">,</span> <span class="n">Color</span><span class="o">.</span><span class="n">NONE</span><span class="p">)</span>
+
+<span class="c1"># Save your colors.</span>
+<span class="n">sensor</span><span class="o">.</span><span class="n">detectable_colors</span><span class="p">(</span><span class="n">my_colors</span><span class="p">)</span>
+
+<span class="c1"># color() works as usual, but now it returns one of your specified colors.</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="n">sensor</span><span class="o">.</span><span class="n">color</span><span class="p">()</span>
+
+    <span class="c1"># Print the color.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+
+    <span class="c1"># Check which one it is.</span>
+    <span class="k">if</span> <span class="n">color</span> <span class="o">==</span> <span class="n">Color</span><span class="o">.</span><span class="n">MAGENTA</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;It works!&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Wait so we can read it.</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

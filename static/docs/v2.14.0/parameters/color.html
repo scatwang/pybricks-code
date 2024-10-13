@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Color &mdash; pybricks v3.4.0b3 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/requirements.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/blocks.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/ide.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/requirements.js"></script>
+        <script src="../_static/js/ide.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Direction" href="direction.html" />
+    <link rel="prev" title="Button" href="button.html" />
+    <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0088ce" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/pybricks-logo-rtd.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v3.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Pybricks modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hubs/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hubs</span></code> – Built-in hub functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../pupdevices/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pupdevices</span></code> – Motors, sensors, lights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iodevices/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iodevices</span></code> – Custom devices</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parameters</span></code> – Parameters and constants</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="axis.html">Axis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="button.html">Button</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Color</a></li>
+<li class="toctree-l2"><a class="reference internal" href="direction.html">Direction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="icon.html">Icon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="port.html">Port</a></li>
+<li class="toctree-l2"><a class="reference internal" href="side.html">Side</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stop.html">Stop</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tools</span></code> – General purpose tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../robotics.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">robotics</span></code> – Robotics and drive bases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../signaltypes.html">Signals and Units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code with blocks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../blocks/index.html">Other blocks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">MicroPython modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/builtins.html">Built-in classes and functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/exceptions.html">Exceptions and errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/micropython.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">micropython</span></code> – MicroPython internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uerrno.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uerrno</span></code> – Error codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uio</span></code> – Input/output streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/ujson.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ujson</span></code> – JSON encoding and decoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/umath.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">umath</span></code> – Math functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/urandom.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urandom</span></code> – Pseudo-random numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uselect.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uselect</span></code> – Wait for events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/ustruct.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ustruct</span></code> – Pack and unpack binary data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/usys.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">usys</span></code> – System specific functions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #0088ce" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pybricks</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parameters</span></code> – Parameters and constants</a></li>
+      <li class="breadcrumb-item active">Color</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/parameters/color.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toggle-header docutils container">
+</div>
+<div class="toggle-content docutils container">
+
+        <div class="wy-table-responsive">
+            <table class="docutils align-default requirements-table">
+                <tbody>
+                    <tr>
+                        
+        <th background="../_images/compat_movehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_cityhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_technichub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_primehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_inventorhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_essentialhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+<section id="color">
+<h1>Color<a class="headerlink" href="#color" title="Permalink to this heading">¶</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="pybricks.parameters.Color">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Color</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">h</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">v</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.parameters.Color" title="Permalink to this definition">¶</a></dt>
+<dd><p>Light or surface color.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>h</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>deg</em>) – Hue.</p></li>
+<li><p><strong>s</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>%</em>) – Saturation.</p></li>
+<li><p><strong>v</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>%</em>) – Brightness value.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Saturated colors</p>
+<p>These colors have maximum saturation and brightness value.
+They differ only in hue.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pybricks.parameters.Color.RED">
+<span class="sig-name descname"><span class="pre">RED</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pybricks.parameters.Color" title="pybricks.parameters.Color"><span class="pre">Color</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Color(h=0,</span> <span class="pre">s=100,</span> <span class="pre">v=100)</span></em><a class="headerlink" href="#pybricks.parameters.Color.RED" title="Permalink to this definition">¶</a></dt>
+<dd><div id="test" style="background-color: #ff0000; color: #ff0000; width: 50px;">_</div></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pybricks.parameters.Color.ORANGE">
+<span class="sig-name descname"><span class="pre">ORANGE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pybricks.parameters.Color" title="pybricks.parameters.Color"><span class="pre">Color</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Color(h=30,</span> <span class="pre">s=100,</span> <span class="pre">v=100)</span></em><a class="headerlink" href="#pybricks.parameters.Color.ORANGE" title="Permalink to this definition">¶</a></dt>
+<dd><div id="test" style="background-color: #ff8000; color: #ff8000; width: 50px;">_</div></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pybricks.parameters.Color.YELLOW">
+<span class="sig-name descname"><span class="pre">YELLOW</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pybricks.parameters.Color" title="pybricks.parameters.Color"><span class="pre">Color</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Color(h=60,</span> <span class="pre">s=100,</span> <span class="pre">v=100)</span></em><a class="headerlink" href="#pybricks.parameters.Color.YELLOW" title="Permalink to this definition">¶</a></dt>
+<dd><div id="test" style="background-color: #ffff00; color: #ffff00; width: 50px;">_</div></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pybricks.parameters.Color.GREEN">
+<span class="sig-name descname"><span class="pre">GREEN</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pybricks.parameters.Color" title="pybricks.parameters.Color"><span class="pre">Color</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Color(h=120,</span> <span class="pre">s=100,</span> <span class="pre">v=100)</span></em><a class="headerlink" href="#pybricks.parameters.Color.GREEN" title="Permalink to this definition">¶</a></dt>
+<dd><div id="test" style="background-color: #00ff00; color: #00ff00; width: 50px;">_</div></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pybricks.parameters.Color.CYAN">
+<span class="sig-name descname"><span class="pre">CYAN</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pybricks.parameters.Color" title="pybricks.parameters.Color"><span class="pre">Color</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Color(h=180,</span> <span class="pre">s=100,</span> <span class="pre">v=100)</span></em><a class="headerlink" href="#pybricks.parameters.Color.CYAN" title="Permalink to this definition">¶</a></dt>
+<dd><div id="test" style="background-color: #00ffff; color: #00ffff; width: 50px;">_</div></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pybricks.parameters.Color.BLUE">
+<span class="sig-name descname"><span class="pre">BLUE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pybricks.parameters.Color" title="pybricks.parameters.Color"><span class="pre">Color</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Color(h=240,</span> <span class="pre">s=100,</span> <span class="pre">v=100)</span></em><a class="headerlink" href="#pybricks.parameters.Color.BLUE" title="Permalink to this definition">¶</a></dt>
+<dd><div id="test" style="background-color: #0000ff; color: #0000ff; width: 50px;">_</div></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pybricks.parameters.Color.VIOLET">
+<span class="sig-name descname"><span class="pre">VIOLET</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pybricks.parameters.Color" title="pybricks.parameters.Color"><span class="pre">Color</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Color(h=270,</span> <span class="pre">s=100,</span> <span class="pre">v=100)</span></em><a class="headerlink" href="#pybricks.parameters.Color.VIOLET" title="Permalink to this definition">¶</a></dt>
+<dd><div id="test" style="background-color: #8000ff; color: #8000ff; width: 50px;">_</div></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pybricks.parameters.Color.MAGENTA">
+<span class="sig-name descname"><span class="pre">MAGENTA</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pybricks.parameters.Color" title="pybricks.parameters.Color"><span class="pre">Color</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Color(h=300,</span> <span class="pre">s=100,</span> <span class="pre">v=100)</span></em><a class="headerlink" href="#pybricks.parameters.Color.MAGENTA" title="Permalink to this definition">¶</a></dt>
+<dd><div id="test" style="background-color: #ff00ff; color: #ff00ff; width: 50px;">_</div></dd></dl>
+
+<p class="rubric">Unsaturated colors</p>
+<p>These colors have zero hue and saturation. They differ only in brightness
+value.</p>
+<p>When detecting these colors using sensors, their values depend a lot
+on the distance to the object. If the distance between the sensor and the
+object is not constant in your robot, it is better to use only one of these
+colors in your programs.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pybricks.parameters.Color.WHITE">
+<span class="sig-name descname"><span class="pre">WHITE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pybricks.parameters.Color" title="pybricks.parameters.Color"><span class="pre">Color</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Color(h=0,</span> <span class="pre">s=0,</span> <span class="pre">v=100)</span></em><a class="headerlink" href="#pybricks.parameters.Color.WHITE" title="Permalink to this definition">¶</a></dt>
+<dd><div id="test" style="background-color: #ffffff; color: #ffffff; width: 50px;border-style: solid; border-width: 0.5px;border-color: #666666;">_</div></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pybricks.parameters.Color.GRAY">
+<span class="sig-name descname"><span class="pre">GRAY</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pybricks.parameters.Color" title="pybricks.parameters.Color"><span class="pre">Color</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Color(h=0,</span> <span class="pre">s=0,</span> <span class="pre">v=50)</span></em><a class="headerlink" href="#pybricks.parameters.Color.GRAY" title="Permalink to this definition">¶</a></dt>
+<dd><div id="test" style="background-color: #808080; color: #808080; width: 50px;">_</div></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pybricks.parameters.Color.BLACK">
+<span class="sig-name descname"><span class="pre">BLACK</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pybricks.parameters.Color" title="pybricks.parameters.Color"><span class="pre">Color</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Color(h=0,</span> <span class="pre">s=0,</span> <span class="pre">v=10)</span></em><a class="headerlink" href="#pybricks.parameters.Color.BLACK" title="Permalink to this definition">¶</a></dt>
+<dd><p>This represents dark objects that still reflect
+a very small amount of light.</p>
+<div id="test" style="background-color: #1a1a1a; color: #1a1a1a; width: 50px;">_</div></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="pybricks.parameters.Color.NONE">
+<span class="sig-name descname"><span class="pre">NONE</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#pybricks.parameters.Color" title="pybricks.parameters.Color"><span class="pre">Color</span></a></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">Color(h=0,</span> <span class="pre">s=0,</span> <span class="pre">v=0)</span></em><a class="headerlink" href="#pybricks.parameters.Color.NONE" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is total darkness, with no reflection or light at all.</p>
+<div id="test" style="background-color: #000000; color: #000000; width: 50px;">_</div></dd></dl>
+
+</dd></dl>
+
+<p class="rubric">Making your own colors</p>
+<p>This example shows the basics of color properties, and how to define new colors.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Color</span>
+
+<span class="c1"># You can print colors. Colors may be obtained from the Color class, or</span>
+<span class="c1"># from sensors that return color measurements.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">RED</span><span class="p">)</span>
+
+<span class="c1"># You can read hue, saturation, and value properties.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">RED</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">Color</span><span class="o">.</span><span class="n">RED</span><span class="o">.</span><span class="n">s</span><span class="p">,</span> <span class="n">Color</span><span class="o">.</span><span class="n">RED</span><span class="o">.</span><span class="n">v</span><span class="p">)</span>
+
+<span class="c1"># You can make your own colors. Saturation and value are 100 by default.</span>
+<span class="n">my_green</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="mi">125</span><span class="p">)</span>
+<span class="n">my_dark_green</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="mi">125</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="c1"># When you print custom colors, you see exactly how they were defined.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">my_dark_green</span><span class="p">)</span>
+
+<span class="c1"># You can also add colors to the builtin colors.</span>
+<span class="n">Color</span><span class="o">.</span><span class="n">MY_DARK_BLUE</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="mi">235</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">80</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+
+<span class="c1"># When you add them like this, printing them only shows its name. But you can</span>
+<span class="c1"># still read h, s, v by reading its attributes.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">MY_DARK_BLUE</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">MY_DARK_BLUE</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">Color</span><span class="o">.</span><span class="n">MY_DARK_BLUE</span><span class="o">.</span><span class="n">s</span><span class="p">,</span> <span class="n">Color</span><span class="o">.</span><span class="n">MY_DARK_BLUE</span><span class="o">.</span><span class="n">v</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>This example shows more advanced use cases of the <code class="docutils literal notranslate"><span class="pre">Color</span></code> class.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Color</span>
+
+<span class="c1"># Two colors are equal if their h, s, and v attributes are equal.</span>
+<span class="k">if</span> <span class="n">Color</span><span class="o">.</span><span class="n">BLUE</span> <span class="o">==</span> <span class="n">Color</span><span class="p">(</span><span class="mi">240</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Yes, these colors are the same.&quot;</span><span class="p">)</span>
+
+<span class="c1"># You can scale colors to change their brightness value.</span>
+<span class="n">red_dark</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">RED</span> <span class="o">*</span> <span class="mf">0.5</span>
+
+<span class="c1"># You can shift colors to change their hue.</span>
+<span class="n">red_shifted</span> <span class="o">=</span> <span class="n">Color</span><span class="o">.</span><span class="n">RED</span> <span class="o">&gt;&gt;</span> <span class="mi">30</span>
+
+<span class="c1"># Colors are immutable, so you can&#39;t change h, s, or v of an existing object.</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">Color</span><span class="o">.</span><span class="n">GREEN</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="mi">125</span>
+<span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sorry, can&#39;t change the hue of an existing color object!&quot;</span><span class="p">)</span>
+
+<span class="c1"># But you can override builtin colors by defining a whole new color.</span>
+<span class="n">Color</span><span class="o">.</span><span class="n">GREEN</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="mi">125</span><span class="p">)</span>
+
+<span class="c1"># You can access and store colors as class attributes, or as a dictionary.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">BLUE</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Color</span><span class="p">[</span><span class="s2">&quot;BLUE&quot;</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Color</span><span class="p">[</span><span class="s2">&quot;BLUE&quot;</span><span class="p">]</span> <span class="ow">is</span> <span class="n">Color</span><span class="o">.</span><span class="n">BLUE</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Color</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">([</span><span class="n">c</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="n">Color</span><span class="p">])</span>
+
+<span class="c1"># This allows you to update existing colors in a loop.</span>
+<span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="p">(</span><span class="s2">&quot;BLUE&quot;</span><span class="p">,</span> <span class="s2">&quot;RED&quot;</span><span class="p">,</span> <span class="s2">&quot;GREEN&quot;</span><span class="p">):</span>
+    <span class="n">Color</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

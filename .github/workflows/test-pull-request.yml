@@ -1,0 +1,32 @@
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: CI Tests
+
+on:
+  pull_request:
+    branches: [ master ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
+    - uses: actions/checkout@v3
+    - run: yarn install
+    - run: |
+        yarn lint
+        git diff --exit-code
+    - run: yarn coverage
+    - uses: codecov/codecov-action@v3
+      with:
+        directory: coverage
+    - run: yarn build

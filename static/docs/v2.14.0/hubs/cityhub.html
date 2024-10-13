@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>City Hub &mdash; pybricks v3.4.0b3 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/requirements.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/blocks.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/ide.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/requirements.js"></script>
+        <script src="../_static/js/ide.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Technic Hub" href="technichub.html" />
+    <link rel="prev" title="Move Hub" href="movehub.html" />
+    <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0088ce" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/pybricks-logo-rtd.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v3.4
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Pybricks modules</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hubs</span></code> – Built-in hub functions</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="movehub.html">Move Hub</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">City Hub</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#status-light-examples">Status light examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#turning-the-light-on-and-off">Turning the light on and off</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#changing-brightness-and-using-custom-colors">Changing brightness and using custom colors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#making-the-light-blink">Making the light blink</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#creating-light-animations">Creating light animations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#bluetooth-examples">Bluetooth examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#broadcasting-data-to-other-hubs">Broadcasting data to other hubs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#observing-data-from-other-hubs">Observing data from other hubs</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#button-and-system-examples">Button and system examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#using-the-stop-button-during-your-program">Using the stop button during your program</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#turning-the-hub-off">Turning the hub off</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="technichub.html">Technic Hub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="primehub.html">Prime Hub / Inventor Hub</a></li>
+<li class="toctree-l2"><a class="reference internal" href="essentialhub.html">Essential Hub</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../pupdevices/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pupdevices</span></code> – Motors, sensors, lights</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../iodevices/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iodevices</span></code> – Custom devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parameters/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parameters</span></code> – Parameters and constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tools</span></code> – General purpose tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../robotics.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">robotics</span></code> – Robotics and drive bases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../signaltypes.html">Signals and Units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code with blocks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../blocks/index.html">Other blocks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">MicroPython modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/builtins.html">Built-in classes and functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/exceptions.html">Exceptions and errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/micropython.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">micropython</span></code> – MicroPython internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uerrno.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uerrno</span></code> – Error codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uio</span></code> – Input/output streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/ujson.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ujson</span></code> – JSON encoding and decoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/umath.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">umath</span></code> – Math functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/urandom.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urandom</span></code> – Pseudo-random numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uselect.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uselect</span></code> – Wait for events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/ustruct.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ustruct</span></code> – Pack and unpack binary data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/usys.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">usys</span></code> – System specific functions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #0088ce" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pybricks</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hubs</span></code> – Built-in hub functions</a></li>
+      <li class="breadcrumb-item active">City Hub</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/hubs/cityhub.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toggle-header docutils container">
+</div>
+<div class="toggle-content docutils container">
+
+        <div class="wy-table-responsive">
+            <table class="docutils align-default requirements-table">
+                <tbody>
+                    <tr>
+                        
+        <th background="../_images/compat_movehub.png" class="requirements-table-th requirements-table-th">
+        ❌
+        </th>
+        
+        <th background="../_images/compat_cityhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_technichub.png" class="requirements-table-th requirements-table-th">
+        ❌
+        </th>
+        
+        <th background="../_images/compat_primehub.png" class="requirements-table-th requirements-table-th">
+        ❌
+        </th>
+        
+        <th background="../_images/compat_inventorhub.png" class="requirements-table-th requirements-table-th">
+        ❌
+        </th>
+        
+        <th background="../_images/compat_essentialhub.png" class="requirements-table-th requirements-table-th">
+        ❌
+        </th>
+        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+<section id="city-hub">
+<h1>City Hub<a class="headerlink" href="#city-hub" title="Permalink to this heading">¶</a></h1>
+<figure class="align-default">
+<img alt="../_images/hub-city.png" src="../_images/hub-city.png" style="width: 30%;" />
+</figure>
+<p><img alt="../_images/pybricks_variables_set_city_hub_option0.svg" class="block-image" height="47px" src="../_images/pybricks_variables_set_city_hub_option0.svg" width="146px" /></p>
+<p><img alt="../_images/pybricks_variables_set_city_hub_option3.svg" height="47px" src="../_images/pybricks_variables_set_city_hub_option3.svg" width="443px" /></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pybricks.hubs.CityHub">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">CityHub</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">broadcast_channel</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">observe_channels</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.CityHub" title="Permalink to this definition">¶</a></dt>
+<dd><p>LEGO® City Hub.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>broadcast_channel</strong> – A value from 0 to 255 indicating which channel <code class="docutils literal notranslate"><span class="pre">hub.ble.broadcast()</span></code>
+will use. Default is channel 0.</p></li>
+<li><p><strong>observe_channels</strong> – A list of channels to listen to when <code class="docutils literal notranslate"><span class="pre">hub.ble.observe()</span></code> is
+called. Listening to more channels requires more memory.
+Default is an empty list (no channels).</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Using the hub status light</p>
+<p><img alt="../_images/pybricks_blockLightOnColor_cityhub_on.svg" class="block-image" height="47px" src="../_images/pybricks_blockLightOnColor_cityhub_on.svg" width="348px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.CityHub.light.on">
+<span class="sig-prename descclassname"><span class="pre">light.</span></span><span class="sig-name descname"><span class="pre">on</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.CityHub.light.on" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns on the light at the specified color.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>color</strong> (<a class="reference internal" href="../parameters/color.html#pybricks.parameters.Color" title="pybricks.parameters.Color"><em>Color</em></a>) – Color of the light.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockLightOnColor_cityhub_off.svg" class="block-image" height="47px" src="../_images/pybricks_blockLightOnColor_cityhub_off.svg" width="249px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.CityHub.light.off">
+<span class="sig-prename descclassname"><span class="pre">light.</span></span><span class="sig-name descname"><span class="pre">off</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.CityHub.light.off" title="Permalink to this definition">¶</a></dt>
+<dd><p>Turns off the light.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.CityHub.light.blink">
+<span class="sig-prename descclassname"><span class="pre">light.</span></span><span class="sig-name descname"><span class="pre">blink</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">color</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">durations</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.CityHub.light.blink" title="Permalink to this definition">¶</a></dt>
+<dd><p>Blinks the light at a given color by turning it on and off for given
+durations.</p>
+<p>The light keeps blinking indefinitely while the rest of your
+program keeps running.</p>
+<p>This method provides a simple way to make basic but useful patterns.
+For more generic and multi-color patterns, use <code class="docutils literal notranslate"><span class="pre">animate()</span></code>
+instead.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>color</strong> (<a class="reference internal" href="../parameters/color.html#pybricks.parameters.Color" title="pybricks.parameters.Color"><em>Color</em></a>) – Color of the light.</p></li>
+<li><p><strong>durations</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.list" title="ubuiltins.list"><em>list</em></a>) – Sequence of time values of the
+form <code class="docutils literal notranslate"><span class="pre">[on_1,</span> <span class="pre">off_1,</span> <span class="pre">on_2,</span> <span class="pre">off_2,</span> <span class="pre">...]</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.CityHub.light.animate">
+<span class="sig-prename descclassname"><span class="pre">light.</span></span><span class="sig-name descname"><span class="pre">animate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">colors</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">interval</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.CityHub.light.animate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Animates the light with a sequence of colors, shown one by
+one for the given interval.</p>
+<p>The animation runs in the background while the rest of your program
+keeps running. When the animation completes, it repeats.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>colors</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.list" title="ubuiltins.list"><em>list</em></a>) – Sequence of <a class="reference internal" href="../parameters/color.html#pybricks.parameters.Color" title="pybricks.parameters.Color"><code class="xref py py-class docutils literal notranslate"><span class="pre">Color</span></code></a>
+values.</p></li>
+<li><p><strong>interval</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>ms</em>) – Time between color updates.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Using connectionless Bluetooth messaging</p>
+<p><img alt="../_images/pybricks_blockBleBroadcast_CityHub.svg" class="block-image" height="47px" src="../_images/pybricks_blockBleBroadcast_CityHub.svg" width="477px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.CityHub.ble.broadcast">
+<span class="sig-prename descclassname"><span class="pre">ble.</span></span><span class="sig-name descname"><span class="pre">broadcast</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.CityHub.ble.broadcast" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts broadcasting the given data on
+the <em>broadcast_channel</em> you selected when initializing the hub.</p>
+<p>Data may be of type <code class="docutils literal notranslate"><span class="pre">int</span></code>, <code class="docutils literal notranslate"><span class="pre">float</span></code>, <code class="docutils literal notranslate"><span class="pre">str</span></code>, <code class="docutils literal notranslate"><span class="pre">bytes</span></code>,
+<code class="docutils literal notranslate"><span class="pre">True</span></code>, or <code class="docutils literal notranslate"><span class="pre">False</span></code>, or a tuple thereof.</p>
+<p>The total data size is quite limited (26 bytes). <code class="docutils literal notranslate"><span class="pre">True</span></code> and
+<code class="docutils literal notranslate"><span class="pre">False</span></code> take 1 byte each. <code class="docutils literal notranslate"><span class="pre">float</span></code> takes 5 bytes. <code class="docutils literal notranslate"><span class="pre">int</span></code> takes 2 to
+5 bytes depending on how big the number is. <code class="docutils literal notranslate"><span class="pre">str</span></code> and <code class="docutils literal notranslate"><span class="pre">bytes</span></code> take
+the number of bytes in the object plus one extra byte.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> – The value or values to be broadcast.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockBleObserve_CityHub.svg" class="block-image" height="38px" src="../_images/pybricks_blockBleObserve_CityHub.svg" width="268px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.CityHub.ble.observe">
+<span class="sig-prename descclassname"><span class="pre">ble.</span></span><span class="sig-name descname"><span class="pre">observe</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../micropython/builtins.html#ubuiltins.bool" title="ubuiltins.bool"><span class="pre">bool</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.float" title="ubuiltins.float"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.str" title="ubuiltins.str"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.bytes" title="ubuiltins.bytes"><span class="pre">bytes</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.tuple" title="ubuiltins.tuple"><span class="pre">tuple</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#pybricks.hubs.CityHub.ble.observe" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retrieves the last observed data for a given channel.</p>
+<p>Receiving data is more reliable when the hub is not connected
+to a computer or other devices at the same time.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>channel</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><em>int</em></a>) – The channel to observe (0 to 255).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The received data in the same format as it was sent, or <code class="docutils literal notranslate"><span class="pre">None</span></code>
+if no recent data is available.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.CityHub.ble.signal_strength">
+<span class="sig-prename descclassname"><span class="pre">ble.</span></span><span class="sig-name descname"><span class="pre">signal_strength</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">channel</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int:</span> <span class="pre">dBm</span></span></span><a class="headerlink" href="#pybricks.hubs.CityHub.ble.signal_strength" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the average signal strength in dBm for the given channel.</p>
+<p>This indicates how near the broadcasting device is. Nearby devices
+may have a signal strength around -40 dBm, while far away devices
+might have a signal strength around -70 dBm.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>channel</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><em>int</em></a>) – The channel number (0 to 255).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The signal strength or <code class="docutils literal notranslate"><span class="pre">-128</span></code> if there is no recent observed data.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.CityHub.ble.version">
+<span class="sig-prename descclassname"><span class="pre">ble.</span></span><span class="sig-name descname"><span class="pre">version</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../micropython/builtins.html#ubuiltins.str" title="ubuiltins.str"><span class="pre">str</span></a></span></span><a class="headerlink" href="#pybricks.hubs.CityHub.ble.version" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the firmware version from the Bluetooth chip.</p>
+</dd></dl>
+
+<p class="rubric">Using the battery</p>
+<p><img alt="../_images/pybricks_blockBatteryMeasure_CityHub_battery.voltage.svg" class="block-image" height="38px" src="../_images/pybricks_blockBatteryMeasure_CityHub_battery.voltage.svg" width="303px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.CityHub.battery.voltage">
+<span class="sig-prename descclassname"><span class="pre">battery.</span></span><span class="sig-name descname"><span class="pre">voltage</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int:</span> <span class="pre">mV</span></span></span><a class="headerlink" href="#pybricks.hubs.CityHub.battery.voltage" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the voltage of the battery.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Battery voltage.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p><img alt="../_images/pybricks_blockBatteryMeasure_CityHub_battery.current.svg" class="block-image" height="38px" src="../_images/pybricks_blockBatteryMeasure_CityHub_battery.current.svg" width="302px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.CityHub.battery.current">
+<span class="sig-prename descclassname"><span class="pre">battery.</span></span><span class="sig-name descname"><span class="pre">current</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int:</span> <span class="pre">mA</span></span></span><a class="headerlink" href="#pybricks.hubs.CityHub.battery.current" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the current supplied by the battery.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Battery current.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Button and system control</p>
+<p><img alt="../_images/pybricks_blockButtonIsPressed_CityHub.svg" class="block-image" height="38px" src="../_images/pybricks_blockButtonIsPressed_CityHub.svg" width="326px" /></p>
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.CityHub.button.pressed">
+<span class="sig-prename descclassname"><span class="pre">button.</span></span><span class="sig-name descname"><span class="pre">pressed</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Collection</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../parameters/button.html#Button" title="Button"><span class="pre">Button</span></a><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#pybricks.hubs.CityHub.button.pressed" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks which buttons are currently pressed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Set of pressed buttons.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.CityHub.system.set_stop_button">
+<span class="sig-prename descclassname"><span class="pre">system.</span></span><span class="sig-name descname"><span class="pre">set_stop_button</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">button</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.CityHub.system.set_stop_button" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets the button or button combination that stops a running script.</p>
+<p>Normally, the center button is used to stop a running script. You can
+change or disable this behavior in order to use the button for other
+purposes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>button</strong> (<a class="reference internal" href="../parameters/button.html#Button" title="Button"><em>Button</em></a>) – A button such
+as <a class="reference internal" href="../parameters/button.html#pybricks.parameters.Button.CENTER" title="pybricks.parameters.Button.CENTER"><code class="xref py py-attr docutils literal notranslate"><span class="pre">Button.CENTER</span></code></a>,
+or a tuple of multiple buttons. Choose <code class="docutils literal notranslate"><span class="pre">None</span></code> to disable the
+stop button altogether.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.CityHub.system.name">
+<span class="sig-prename descclassname"><span class="pre">system.</span></span><span class="sig-name descname"><span class="pre">name</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../micropython/builtins.html#ubuiltins.str" title="ubuiltins.str"><span class="pre">str</span></a></span></span><a class="headerlink" href="#pybricks.hubs.CityHub.system.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Gets the hub name. This is the name you see when connecting
+via Bluetooth.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The hub name.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.CityHub.system.storage">
+<span class="sig-prename descclassname"><span class="pre">system.</span></span><span class="sig-name descname"><span class="pre">storage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">write=</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.CityHub.system.storage" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py">
+<span class="sig-prename descclassname"><span class="pre">system.</span></span><span class="sig-name descname"><span class="pre">storage</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">offset</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">read=</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../micropython/builtins.html#ubuiltins.bytes" title="ubuiltins.bytes"><span class="pre">bytes</span></a></span></span></dt>
+<dd><p>Reads or writes binary data to persistent storage.</p>
+<p>This lets you store data that can be used the next time you run the
+program.</p>
+<p>The data will be saved to flash memory when you turn the hub off
+normally. It will not be saved if the batteries are removed <em>while</em> the
+hub is still running.</p>
+<p>Once saved, the data will remain available even after you remove the
+batteries.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>offset</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><em>int</em></a>) – The offset from the start of the user storage memory, in bytes.</p></li>
+<li><p><strong>read</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><em>int</em></a>) – The number of bytes to read. Omit this argument when writing.</p></li>
+<li><p><strong>write</strong> (<a class="reference internal" href="../micropython/builtins.html#ubuiltins.bytes" title="ubuiltins.bytes"><em>bytes</em></a>) – The bytes to write. Omit this argument when reading.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The bytes read if reading, otherwise <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="../micropython/exceptions.html#ubuiltins.ValueError" title="ubuiltins.ValueError"><strong>ValueError</strong></a> – If you try to read or write data outside of the allowed range.</p>
+</dd>
+</dl>
+<p>You can store up to 128 bytes of data on this hub. The data is cleared
+when you update the Pybricks firmware or if you restore the original
+firmware.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.CityHub.system.shutdown">
+<span class="sig-prename descclassname"><span class="pre">system.</span></span><span class="sig-name descname"><span class="pre">shutdown</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.hubs.CityHub.system.shutdown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops your program and shuts the hub down.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pybricks.hubs.CityHub.system.reset_reason">
+<span class="sig-prename descclassname"><span class="pre">system.</span></span><span class="sig-name descname"><span class="pre">reset_reason</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a></span></span><a class="headerlink" href="#pybricks.hubs.CityHub.system.reset_reason" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds out how and why the hub (re)booted. This can be useful to
+diagnose some problems.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code> if the hub was previously powered off
+normally.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">1</span></code> if the hub rebooted automatically, like
+after a firmware update.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">2</span></code> if the hub previously
+crashed due to a watchdog timeout, which indicates a firmware
+issue.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<section id="status-light-examples">
+<h2>Status light examples<a class="headerlink" href="#status-light-examples" title="Permalink to this heading">¶</a></h2>
+<section id="turning-the-light-on-and-off">
+<h3>Turning the light on and off<a class="headerlink" href="#turning-the-light-on-and-off" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">CityHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Color</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the hub.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">CityHub</span><span class="p">()</span>
+
+<span class="c1"># Turn the light on and off 5 times.</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+
+    <span class="n">hub</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">RED</span><span class="p">)</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+
+    <span class="n">hub</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">off</span><span class="p">()</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="changing-brightness-and-using-custom-colors">
+<h3>Changing brightness and using custom colors<a class="headerlink" href="#changing-brightness-and-using-custom-colors" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">CityHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Color</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the hub.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">CityHub</span><span class="p">()</span>
+
+<span class="c1"># Show the color at 30% brightness.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">RED</span> <span class="o">*</span> <span class="mf">0.3</span><span class="p">)</span>
+
+<span class="n">wait</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>
+
+<span class="c1"># Use your own custom color.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">v</span><span class="o">=</span><span class="mi">50</span><span class="p">))</span>
+
+<span class="n">wait</span><span class="p">(</span><span class="mi">2000</span><span class="p">)</span>
+
+<span class="c1"># Go through all the colors.</span>
+<span class="k">for</span> <span class="n">hue</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">360</span><span class="p">):</span>
+    <span class="n">hub</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="n">hue</span><span class="p">))</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="making-the-light-blink">
+<h3>Making the light blink<a class="headerlink" href="#making-the-light-blink" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">CityHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Color</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the hub</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">CityHub</span><span class="p">()</span>
+
+<span class="c1"># Keep blinking red on and off.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">blink</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">RED</span><span class="p">,</span> <span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">])</span>
+
+<span class="n">wait</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+
+<span class="c1"># Keep blinking green slowly and then quickly.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">blink</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">GREEN</span><span class="p">,</span> <span class="p">[</span><span class="mi">500</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">900</span><span class="p">])</span>
+
+<span class="n">wait</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="creating-light-animations">
+<h3>Creating light animations<a class="headerlink" href="#creating-light-animations" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">CityHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Color</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+<span class="kn">from</span> <span class="nn">umath</span> <span class="kn">import</span> <span class="n">sin</span><span class="p">,</span> <span class="n">pi</span>
+
+<span class="c1"># Initialize the hub.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">CityHub</span><span class="p">()</span>
+
+<span class="c1"># Make an animation with multiple colors.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">animate</span><span class="p">([</span><span class="n">Color</span><span class="o">.</span><span class="n">RED</span><span class="p">,</span> <span class="n">Color</span><span class="o">.</span><span class="n">GREEN</span><span class="p">,</span> <span class="n">Color</span><span class="o">.</span><span class="n">NONE</span><span class="p">],</span> <span class="n">interval</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+
+<span class="n">wait</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+
+<span class="c1"># Make the color RED grow faint and bright using a sine pattern.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">animate</span><span class="p">([</span><span class="n">Color</span><span class="o">.</span><span class="n">RED</span> <span class="o">*</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">sin</span><span class="p">(</span><span class="n">i</span> <span class="o">/</span> <span class="mi">15</span> <span class="o">*</span> <span class="n">pi</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">30</span><span class="p">)],</span> <span class="mi">40</span><span class="p">)</span>
+
+<span class="n">wait</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+
+<span class="c1"># Cycle through a rainbow of colors.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">animate</span><span class="p">([</span><span class="n">Color</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="n">i</span> <span class="o">*</span> <span class="mi">8</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">45</span><span class="p">)],</span> <span class="n">interval</span><span class="o">=</span><span class="mi">40</span><span class="p">)</span>
+
+<span class="n">wait</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="bluetooth-examples">
+<h2>Bluetooth examples<a class="headerlink" href="#bluetooth-examples" title="Permalink to this heading">¶</a></h2>
+<section id="broadcasting-data-to-other-hubs">
+<h3>Broadcasting data to other hubs<a class="headerlink" href="#broadcasting-data-to-other-hubs" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">CityHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Motor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the hub.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">CityHub</span><span class="p">(</span><span class="n">broadcast_channel</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Initialize the motors.</span>
+<span class="n">left_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+<span class="n">right_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">B</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="c1"># Read the motor angles to be sent to the other hub.</span>
+    <span class="n">left_angle</span> <span class="o">=</span> <span class="n">left_motor</span><span class="o">.</span><span class="n">angle</span><span class="p">()</span>
+    <span class="n">right_angle</span> <span class="o">=</span> <span class="n">right_motor</span><span class="o">.</span><span class="n">angle</span><span class="p">()</span>
+
+    <span class="c1"># Set the broadcast data and start broadcasting if not already doing so.</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="p">(</span><span class="n">left_angle</span><span class="p">,</span> <span class="n">right_angle</span><span class="p">)</span>
+    <span class="n">hub</span><span class="o">.</span><span class="n">ble</span><span class="o">.</span><span class="n">broadcast</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+
+    <span class="c1"># Broadcasts are only sent every 100 milliseconds, so there is no reason</span>
+    <span class="c1"># to call the broadcast() method more often than that.</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="observing-data-from-other-hubs">
+<h3>Observing data from other hubs<a class="headerlink" href="#observing-data-from-other-hubs" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">CityHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">Motor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Color</span><span class="p">,</span> <span class="n">Port</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the hub.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">CityHub</span><span class="p">(</span><span class="n">observe_channels</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="c1"># Initialize the motors.</span>
+<span class="n">left_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+<span class="n">right_motor</span> <span class="o">=</span> <span class="n">Motor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">B</span><span class="p">)</span>
+
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="c1"># Receive broadcast from the other hub.</span>
+
+    <span class="n">data</span> <span class="o">=</span> <span class="n">hub</span><span class="o">.</span><span class="n">ble</span><span class="o">.</span><span class="n">observe</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">data</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="c1"># No data has been received in the last 1 second.</span>
+        <span class="n">hub</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">RED</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Data was received and is less that one second old.</span>
+        <span class="n">hub</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">GREEN</span><span class="p">)</span>
+
+        <span class="c1"># *data* contains the same values in the same order</span>
+        <span class="c1"># that were passed to hub.ble.broadcast() on the</span>
+        <span class="c1"># other hub.</span>
+        <span class="n">left_angle</span><span class="p">,</span> <span class="n">right_angle</span> <span class="o">=</span> <span class="n">data</span>
+
+        <span class="c1"># Make the motors on this hub mirror the position of the</span>
+        <span class="c1"># motors on the other hub.</span>
+        <span class="n">left_motor</span><span class="o">.</span><span class="n">track_target</span><span class="p">(</span><span class="n">left_angle</span><span class="p">)</span>
+        <span class="n">right_motor</span><span class="o">.</span><span class="n">track_target</span><span class="p">(</span><span class="n">right_angle</span><span class="p">)</span>
+
+    <span class="c1"># Broadcasts are only sent every 100 milliseconds, so there is</span>
+    <span class="c1"># no reason to call the observe() method more often than that.</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="button-and-system-examples">
+<h2>Button and system examples<a class="headerlink" href="#button-and-system-examples" title="Permalink to this heading">¶</a></h2>
+<section id="using-the-stop-button-during-your-program">
+<h3>Using the stop button during your program<a class="headerlink" href="#using-the-stop-button-during-your-program" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">CityHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Color</span><span class="p">,</span> <span class="n">Button</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span><span class="p">,</span> <span class="n">StopWatch</span>
+
+<span class="c1"># Initialize the hub.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">CityHub</span><span class="p">()</span>
+
+<span class="c1"># Disable the stop button.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">set_stop_button</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="c1"># Check the button for 5 seconds.</span>
+<span class="n">watch</span> <span class="o">=</span> <span class="n">StopWatch</span><span class="p">()</span>
+<span class="k">while</span> <span class="n">watch</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">&lt;</span> <span class="mi">5000</span><span class="p">:</span>
+
+    <span class="c1"># Set light to green if pressed, else red.</span>
+    <span class="k">if</span> <span class="n">hub</span><span class="o">.</span><span class="n">button</span><span class="o">.</span><span class="n">pressed</span><span class="p">():</span>
+        <span class="n">hub</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">GREEN</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">hub</span><span class="o">.</span><span class="n">light</span><span class="o">.</span><span class="n">on</span><span class="p">(</span><span class="n">Color</span><span class="o">.</span><span class="n">RED</span><span class="p">)</span>
+
+<span class="c1"># Enable the stop button again.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">set_stop_button</span><span class="p">(</span><span class="n">Button</span><span class="o">.</span><span class="n">CENTER</span><span class="p">)</span>
+
+<span class="c1"># Now you can press the stop button as usual.</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">5000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="turning-the-hub-off">
+<h3>Turning the hub off<a class="headerlink" href="#turning-the-hub-off" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.hubs</span> <span class="kn">import</span> <span class="n">CityHub</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the hub.</span>
+<span class="n">hub</span> <span class="o">=</span> <span class="n">CityHub</span><span class="p">()</span>
+
+<span class="c1"># Say goodbye and give some time to send it.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Goodbye!&quot;</span><span class="p">)</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Shut the hub down.</span>
+<span class="n">hub</span><span class="o">.</span><span class="n">system</span><span class="o">.</span><span class="n">shutdown</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
