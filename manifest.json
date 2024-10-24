@@ -3,19 +3,19 @@
     "name": "Pybricks Code",
     "icons": [
         {
-            "src": "logo192-beta.png",
+            "src": "logo192.png",
             "type": "image/png",
             "sizes": "192x192",
             "purpose": "any"
         },
         {
-            "src": "logo192m-beta.png",
+            "src": "logo192m.png",
             "type": "image/png",
             "sizes": "192x192",
             "purpose": "maskable"
         },
         {
-            "src": "logo512-beta.png",
+            "src": "logo512.png",
             "type": "image/png",
             "sizes": "512x512"
         }
