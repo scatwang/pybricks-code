@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/pybricks-code/static/css/main.af5cabcd.css",
-    "main.js": "/pybricks-code/static/js/main.3fbd786b.js",
+    "main.js": "/pybricks-code/static/js/main.b71c5fe1.js",
     "static/js/5550.63abdfa4.chunk.js": "/pybricks-code/static/js/5550.63abdfa4.chunk.js",
     "static/css/618.bc3ce5e5.chunk.css": "/pybricks-code/static/css/618.bc3ce5e5.chunk.css",
     "static/js/618.87da9038.chunk.js": "/pybricks-code/static/js/618.87da9038.chunk.js",
@@ -100,7 +100,7 @@
     "blueprint-icons-16px-paths.js": "/pybricks-code/static/js/blueprint-icons-16px-paths.0cba6a0b.chunk.js",
     "blueprint-icons-20px-paths.js": "/pybricks-code/static/js/blueprint-icons-20px-paths.27d3fde3.chunk.js",
     "static/css/4768.69872983.chunk.css": "/pybricks-code/static/css/4768.69872983.chunk.css",
-    "static/js/4768.efbcdf61.chunk.js": "/pybricks-code/static/js/4768.efbcdf61.chunk.js",
+    "static/js/4768.10d235c1.chunk.js": "/pybricks-code/static/js/4768.10d235c1.chunk.js",
     "static/js/5653.f57fa87a.chunk.js": "/pybricks-code/static/js/5653.f57fa87a.chunk.js",
     "static/js/6821.d8406c61.chunk.js": "/pybricks-code/static/js/6821.d8406c61.chunk.js",
     "static/js/4264.3b10c68d.chunk.js": "/pybricks-code/static/js/4264.3b10c68d.chunk.js",
@@ -638,7 +638,7 @@
     "static/docs/v2.14.0/_static/plus.png": "/pybricks-code/static/docs/v2.14.0/_static/plus.png",
     "static/docs/v2.14.0/_static/css/blocks.css": "/pybricks-code/static/docs/v2.14.0/_static/css/blocks.css",
     "main.af5cabcd.css.map": "/pybricks-code/static/css/main.af5cabcd.css.map",
-    "main.3fbd786b.js.map": "/pybricks-code/static/js/main.3fbd786b.js.map",
+    "main.b71c5fe1.js.map": "/pybricks-code/static/js/main.b71c5fe1.js.map",
     "5550.63abdfa4.chunk.js.map": "/pybricks-code/static/js/5550.63abdfa4.chunk.js.map",
     "618.bc3ce5e5.chunk.css.map": "/pybricks-code/static/css/618.bc3ce5e5.chunk.css.map",
     "618.87da9038.chunk.js.map": "/pybricks-code/static/js/618.87da9038.chunk.js.map",
@@ -737,13 +737,13 @@
     "blueprint-icons-16px-paths.0cba6a0b.chunk.js.map": "/pybricks-code/static/js/blueprint-icons-16px-paths.0cba6a0b.chunk.js.map",
     "blueprint-icons-20px-paths.27d3fde3.chunk.js.map": "/pybricks-code/static/js/blueprint-icons-20px-paths.27d3fde3.chunk.js.map",
     "4768.69872983.chunk.css.map": "/pybricks-code/static/css/4768.69872983.chunk.css.map",
-    "4768.efbcdf61.chunk.js.map": "/pybricks-code/static/js/4768.efbcdf61.chunk.js.map",
+    "4768.10d235c1.chunk.js.map": "/pybricks-code/static/js/4768.10d235c1.chunk.js.map",
     "5653.f57fa87a.chunk.js.map": "/pybricks-code/static/js/5653.f57fa87a.chunk.js.map",
     "6821.d8406c61.chunk.js.map": "/pybricks-code/static/js/6821.d8406c61.chunk.js.map",
     "4264.3b10c68d.chunk.js.map": "/pybricks-code/static/js/4264.3b10c68d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.af5cabcd.css",
-    "static/js/main.3fbd786b.js"
+    "static/js/main.b71c5fe1.js"
   ]
 }
