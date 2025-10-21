@@ -1,6 +1,0 @@
-*       text eol=lf
-*.ico   binary
-*.png   binary
-
-/.yarn/releases/** binary
-/.yarn/plugins/** binary

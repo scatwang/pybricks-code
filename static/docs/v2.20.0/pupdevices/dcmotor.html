@@ -1,0 +1,4251 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Motors without rotation sensors &mdash; pybricks v3.6.0b5 documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/requirements.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/blocks.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/ide.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/requirements.js"></script>
+        <script src="../_static/js/ide.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Motors with rotation sensors" href="motor.html" />
+    <link rel="prev" title="pupdevices – Motors, sensors, lights" href="index.html" />
+    <link rel="stylesheet" href="../_static/css/theme_overrides.css" type="text/css">
+
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #0088ce" >
+
+          
+          
+          <a href="../index.html">
+            
+              <img src="../_static/pybricks-logo-rtd.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v3.6
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Pybricks modules</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../hubs/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">hubs</span></code> – Built-in hub functions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pupdevices</span></code> – Motors, sensors, lights</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Motors without rotation sensors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#making-a-train-drive-forever">Making a train drive forever</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#making-the-motor-move-back-and-forth">Making the motor move back and forth</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#changing-the-positive-direction">Changing the positive direction</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#starting-and-stopping">Starting and stopping</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="motor.html">Motors with rotation sensors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tiltsensor.html">Tilt Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="infraredsensor.html">Infrared Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colordistancesensor.html">Color and Distance Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pfmotor.html">Power Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorsensor.html">Color Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ultrasonicsensor.html">Ultrasonic Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forcesensor.html">Force Sensor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="colorlightmatrix.html">Color Light Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="light.html">Light</a></li>
+<li class="toctree-l2"><a class="reference internal" href="remote.html">Remote Control</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../iodevices/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">iodevices</span></code> – Custom devices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../parameters/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">parameters</span></code> – Parameters and constants</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../tools/index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">tools</span></code> – General purpose tools</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../robotics.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">robotics</span></code> – Robotics and drive bases</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../signaltypes.html">Signals and Units</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Code with blocks</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../blocks/index.html">Other blocks</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">MicroPython modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/builtins.html">Built-in classes and functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/exceptions.html">Exceptions and errors</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/micropython.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">micropython</span></code> – MicroPython internals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uerrno.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uerrno</span></code> – Error codes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uio.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uio</span></code> – Input/output streams</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/ujson.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ujson</span></code> – JSON encoding and decoding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/umath.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">umath</span></code> – Math functions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/urandom.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">urandom</span></code> – Pseudo-random numbers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/uselect.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">uselect</span></code> – Wait for events</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/ustruct.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ustruct</span></code> – Pack and unpack binary data</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../micropython/usys.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">usys</span></code> – System specific functions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #0088ce" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">pybricks</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pupdevices</span></code> – Motors, sensors, lights</a></li>
+      <li class="breadcrumb-item active">Motors without rotation sensors</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="toggle-header docutils container">
+</div>
+<div class="toggle-content docutils container">
+
+        <div class="wy-table-responsive">
+            <table class="docutils align-default requirements-table">
+                <tbody>
+                    <tr>
+                        
+        <th background="../_images/compat_movehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_cityhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_technichub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_primehub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_inventorhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+        <th background="../_images/compat_essentialhub.png" class="requirements-table-th requirements-table-th">
+        ✅
+        </th>
+        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+<section id="motors-without-rotation-sensors">
+<h1>Motors without rotation sensors<a class="headerlink" href="#motors-without-rotation-sensors" title="Permalink to this heading">¶</a></h1>
+<figure class="align-center" id="id1">
+<span id="fig-pupdcmotors"></span><img alt="pupmotors" src="../_images/pupdcmotors.png" style="width: 70%;" />
+<figcaption>
+<p><span class="caption-number">Figure 1 </span><span class="caption-text">Powered Up motors without rotation sensors. The arrows indicate the default
+positive direction.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
+<div class="svg-container"><!-- Copyright (c) 2023 The Pybricks Authors. All rights reserved. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 467.471875 58" class="blocklySvg pybricks_renderer-renderer pybricks-zelos-light-theme" width="467.471875" height="58" style="background-color: transparent"><style xmlns="http://www.w3.org/1999/xhtml">.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyText,
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyFlyoutLabelText {
+font: bold 12pt "Helvetica Neue", "Segoe UI", Helvetica, sans-serif;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyText {
+fill: #fff;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyNonEditableText&gt;rect:not(.blocklyDropdownRect),
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyEditableText&gt;rect:not(.blocklyDropdownRect) {
+fill: #fff;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyNonEditableText&gt;text,
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyEditableText&gt;text,
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyNonEditableText&gt;g&gt;text,
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyEditableText&gt;g&gt;text {
+fill: #575E75;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyFlyoutLabelText {
+fill: #575E75;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyText.blocklyBubbleText {
+fill: #575E75;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyDraggable:not(.blocklyDisabled)
+ .blocklyEditableText:not(.editing):hover&gt;rect,
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyDraggable:not(.blocklyDisabled)
+ .blocklyEditableText:not(.editing):hover&gt;.blocklyPath {
+stroke: #fff;
+stroke-width: 2;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyHtmlInput {
+font-family: "Helvetica Neue", "Segoe UI", Helvetica, sans-serif;
+font-weight: bold;
+color: #575E75;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyDropdownText {
+fill: #fff !important;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme.blocklyWidgetDiv .goog-menuitem,
+.pybricks_renderer-renderer.pybricks-zelos-light-theme.blocklyDropDownDiv .goog-menuitem {
+font-family: "Helvetica Neue", "Segoe UI", Helvetica, sans-serif;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme.blocklyDropDownDiv .goog-menuitem-content {
+color: #fff;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyHighlightedConnectionPath {
+stroke: #ffffff;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyDisabled &gt; .blocklyOutlinePath {
+fill: url(#blocklyDisabledPattern8106945446883995)
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyInsertionMarker&gt;.blocklyPath {
+fill-opacity: 0.2;
+stroke: none;
+}
+
+.blocklySvg {
+  background-color: #fff;
+  outline: none;
+  overflow: hidden;  /* IE overflows by default. */
+  position: absolute;
+  display: block;
+}
+
+.blocklyWidgetDiv {
+  display: none;
+  position: absolute;
+  z-index: 99999;  /* big value for bootstrap3 compatibility */
+}
+
+.injectionDiv {
+  height: 100%;
+  position: relative;
+  overflow: hidden;  /* So blocks in drag surface disappear at edges */
+  touch-action: none;
+}
+
+.blocklyNonSelectable {
+  user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+}
+
+.blocklyBlockCanvas.blocklyCanvasTransitioning,
+.blocklyBubbleCanvas.blocklyCanvasTransitioning {
+  transition: transform .5s;
+}
+
+.blocklyTooltipDiv {
+  background-color: #ffffc7;
+  border: 1px solid #ddc;
+  box-shadow: 4px 4px 20px 1px rgba(0,0,0,.15);
+  color: #000;
+  display: none;
+  font: 9pt sans-serif;
+  opacity: .9;
+  padding: 2px;
+  position: absolute;
+  z-index: 100000;  /* big value for bootstrap3 compatibility */
+}
+
+.blocklyDropDownDiv {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  display: none;
+  border: 1px solid;
+  border-color: #dadce0;
+  background-color: #fff;
+  border-radius: 2px;
+  padding: 4px;
+  box-shadow: 0 0 3px 1px rgba(0,0,0,.3);
+}
+
+.blocklyDropDownDiv.blocklyFocused {
+  box-shadow: 0 0 6px 1px rgba(0,0,0,.3);
+}
+
+.blocklyDropDownContent {
+  max-height: 300px;  /* @todo: spec for maximum height. */
+  overflow: auto;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.blocklyDropDownArrow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  z-index: -1;
+  background-color: inherit;
+  border-color: inherit;
+}
+
+.blocklyDropDownButton {
+  display: inline-block;
+  float: left;
+  padding: 0;
+  margin: 4px;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid;
+  transition: box-shadow .1s;
+  cursor: pointer;
+}
+
+.blocklyArrowTop {
+  border-top: 1px solid;
+  border-left: 1px solid;
+  border-top-left-radius: 4px;
+  border-color: inherit;
+}
+
+.blocklyArrowBottom {
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+  border-bottom-right-radius: 4px;
+  border-color: inherit;
+}
+
+.blocklyResizeSE {
+  cursor: se-resize;
+  fill: #aaa;
+}
+
+.blocklyResizeSW {
+  cursor: sw-resize;
+  fill: #aaa;
+}
+
+.blocklyResizeLine {
+  stroke: #515A5A;
+  stroke-width: 1;
+}
+
+.blocklyHighlightedConnectionPath {
+  fill: none;
+  stroke: #fc3;
+  stroke-width: 4px;
+}
+
+.blocklyPathLight {
+  fill: none;
+  stroke-linecap: round;
+  stroke-width: 1;
+}
+
+.blocklySelected&gt;.blocklyPathLight {
+  display: none;
+}
+
+.blocklyDraggable {
+  cursor: grab;
+  cursor: -webkit-grab;
+}
+
+.blocklyDragging {
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+
+  /* Changes cursor on mouse down. Not effective in Firefox because of
+     https://bugzilla.mozilla.org/show_bug.cgi?id=771241 */
+.blocklyDraggable:active {
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+
+.blocklyDragging.blocklyDraggingDelete {
+  cursor: url("https://blockly-demo.appspot.com/static/media/handdelete.cur"), auto;
+}
+
+.blocklyDragging&gt;.blocklyPath,
+.blocklyDragging&gt;.blocklyPathLight {
+  fill-opacity: .8;
+  stroke-opacity: .8;
+}
+
+.blocklyDragging&gt;.blocklyPathDark {
+  display: none;
+}
+
+.blocklyDisabled&gt;.blocklyPath {
+  fill-opacity: .5;
+  stroke-opacity: .5;
+}
+
+.blocklyDisabled&gt;.blocklyPathLight,
+.blocklyDisabled&gt;.blocklyPathDark {
+  display: none;
+}
+
+.blocklyInsertionMarker&gt;.blocklyPath,
+.blocklyInsertionMarker&gt;.blocklyPathLight,
+.blocklyInsertionMarker&gt;.blocklyPathDark {
+  fill-opacity: .2;
+  stroke: none;
+}
+
+.blocklyMultilineText {
+  font-family: monospace;
+}
+
+.blocklyNonEditableText&gt;text {
+  pointer-events: none;
+}
+
+.blocklyFlyout {
+  position: absolute;
+  z-index: 20;
+}
+
+.blocklyText text {
+  cursor: default;
+}
+
+/*
+  Don't allow users to select text.  It gets annoying when trying to
+  drag a block and selected text moves instead.
+*/
+.blocklySvg text {
+  user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  cursor: inherit;
+}
+
+.blocklyHidden {
+  display: none;
+}
+
+.blocklyFieldDropdown:not(.blocklyHidden) {
+  display: block;
+}
+
+.blocklyIconGroup {
+  cursor: default;
+}
+
+.blocklyIconGroup:not(:hover),
+.blocklyIconGroupReadonly {
+  opacity: .6;
+}
+
+.blocklyIconShape {
+  fill: #00f;
+  stroke: #fff;
+  stroke-width: 1px;
+}
+
+.blocklyIconSymbol {
+  fill: #fff;
+}
+
+.blocklyMinimalBody {
+  margin: 0;
+  padding: 0;
+}
+
+.blocklyHtmlInput {
+  border: none;
+  border-radius: 4px;
+  height: 100%;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+  display: block;
+  box-sizing: border-box;
+}
+
+/* Remove the increase and decrease arrows on the field number editor */
+input.blocklyHtmlInput[type=number]::-webkit-inner-spin-button,
+input.blocklyHtmlInput[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.blocklyMainBackground {
+  stroke-width: 1;
+  stroke: #c6c6c6;  /* Equates to #ddd due to border being off-pixel. */
+}
+
+.blocklyMutatorBackground {
+  fill: #fff;
+  stroke: #ddd;
+  stroke-width: 1;
+}
+
+.blocklyFlyoutBackground {
+  fill: #ddd;
+  fill-opacity: .8;
+}
+
+.blocklyMainWorkspaceScrollbar {
+  z-index: 20;
+}
+
+.blocklyFlyoutScrollbar {
+  z-index: 30;
+}
+
+.blocklyScrollbarHorizontal,
+.blocklyScrollbarVertical {
+  position: absolute;
+  outline: none;
+}
+
+.blocklyScrollbarBackground {
+  opacity: 0;
+}
+
+.blocklyScrollbarHandle {
+  fill: #ccc;
+}
+
+.blocklyScrollbarBackground:hover+.blocklyScrollbarHandle,
+.blocklyScrollbarHandle:hover {
+  fill: #bbb;
+}
+
+/* Darken flyout scrollbars due to being on a grey background. */
+/* By contrast, workspace scrollbars are on a white background. */
+.blocklyFlyout .blocklyScrollbarHandle {
+  fill: #bbb;
+}
+
+.blocklyFlyout .blocklyScrollbarBackground:hover+.blocklyScrollbarHandle,
+.blocklyFlyout .blocklyScrollbarHandle:hover {
+  fill: #aaa;
+}
+
+.blocklyInvalidInput {
+  background: #faa;
+}
+
+.blocklyVerticalMarker {
+  stroke-width: 3px;
+  fill: rgba(255,255,255,.5);
+  pointer-events: none;
+}
+
+.blocklyComputeCanvas {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.blocklyNoPointerEvents {
+  pointer-events: none;
+}
+
+.blocklyContextMenu {
+  border-radius: 4px;
+  max-height: 100%;
+}
+
+.blocklyDropdownMenu {
+  border-radius: 2px;
+  padding: 0 !important;
+}
+
+.blocklyDropdownMenu .blocklyMenuItem {
+  /* 28px on the left for icon or checkbox. */
+  padding-left: 28px;
+}
+
+/* BiDi override for the resting state. */
+.blocklyDropdownMenu .blocklyMenuItemRtl {
+  /* Flip left/right padding for BiDi. */
+  padding-left: 5px;
+  padding-right: 28px;
+}
+
+.blocklyWidgetDiv .blocklyMenu {
+  background: #fff;
+  border: 1px solid transparent;
+  box-shadow: 0 0 3px 1px rgba(0,0,0,.3);
+  font: normal 13px Arial, sans-serif;
+  margin: 0;
+  outline: none;
+  padding: 4px 0;
+  position: absolute;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 100%;
+  z-index: 20000;  /* Arbitrary, but some apps depend on it... */
+}
+
+.blocklyWidgetDiv .blocklyMenu.blocklyFocused {
+  box-shadow: 0 0 6px 1px rgba(0,0,0,.3);
+}
+
+.blocklyDropDownDiv .blocklyMenu {
+  background: inherit;  /* Compatibility with gapi, reset from goog-menu */
+  border: inherit;  /* Compatibility with gapi, reset from goog-menu */
+  font: normal 13px "Helvetica Neue", Helvetica, sans-serif;
+  outline: none;
+  position: relative;  /* Compatibility with gapi, reset from goog-menu */
+  z-index: 20000;  /* Arbitrary, but some apps depend on it... */
+}
+
+/* State: resting. */
+.blocklyMenuItem {
+  border: none;
+  color: #000;
+  cursor: pointer;
+  list-style: none;
+  margin: 0;
+  /* 7em on the right for shortcut. */
+  min-width: 7em;
+  padding: 6px 15px;
+  white-space: nowrap;
+}
+
+/* State: disabled. */
+.blocklyMenuItemDisabled {
+  color: #ccc;
+  cursor: inherit;
+}
+
+/* State: hover. */
+.blocklyMenuItemHighlight {
+  background-color: rgba(0,0,0,.1);
+}
+
+/* State: selected/checked. */
+.blocklyMenuItemCheckbox {
+  height: 16px;
+  position: absolute;
+  width: 16px;
+}
+
+.blocklyMenuItemSelected .blocklyMenuItemCheckbox {
+  background: url(https://blockly-demo.appspot.com/static/media/sprites.png) no-repeat -48px -16px;
+  float: left;
+  margin-left: -24px;
+  position: static;  /* Scroll with the menu. */
+}
+
+.blocklyMenuItemRtl .blocklyMenuItemCheckbox {
+  float: right;
+  margin-right: -24px;
+}
+
+
+.blocklyZoom&gt;image, .blocklyZoom&gt;svg&gt;image {
+  opacity: .4;
+}
+
+.blocklyZoom&gt;image:hover, .blocklyZoom&gt;svg&gt;image:hover {
+  opacity: .6;
+}
+
+.blocklyZoom&gt;image:active, .blocklyZoom&gt;svg&gt;image:active {
+  opacity: .8;
+}
+
+
+.blocklyCommentForeignObject {
+  position: relative;
+  z-index: 0;
+}
+
+.blocklyCommentRect {
+  fill: #E7DE8E;
+  stroke: #bcA903;
+  stroke-width: 1px;
+}
+
+.blocklyCommentTarget {
+  fill: transparent;
+  stroke: #bcA903;
+}
+
+.blocklyCommentTargetFocused {
+  fill: none;
+}
+
+.blocklyCommentHandleTarget {
+  fill: none;
+}
+
+.blocklyCommentHandleTargetFocused {
+  fill: transparent;
+}
+
+.blocklyFocused&gt;.blocklyCommentRect {
+  fill: #B9B272;
+  stroke: #B9B272;
+}
+
+.blocklySelected&gt;.blocklyCommentTarget {
+  stroke: #fc3;
+  stroke-width: 3px;
+}
+
+.blocklyCommentDeleteIcon {
+  cursor: pointer;
+  fill: #000;
+  display: none;
+}
+
+.blocklySelected &gt; .blocklyCommentDeleteIcon {
+  display: block;
+}
+
+.blocklyDeleteIconShape {
+  fill: #000;
+  stroke: #000;
+  stroke-width: 1px;
+}
+
+.blocklyDeleteIconShape.blocklyDeleteIconHighlighted {
+  stroke: #fc3;
+}
+
+
+.blocklyCommentTextarea {
+  background-color: #fef49c;
+  border: 0;
+  display: block;
+  margin: 0;
+  outline: 0;
+  padding: 3px;
+  resize: none;
+  text-overflow: hidden;
+}
+
+
+.blocklyAngleCircle {
+  stroke: #444;
+  stroke-width: 1;
+  fill: #ddd;
+  fill-opacity: 0.8;
+}
+
+.blocklyAngleMarks {
+  stroke: #444;
+  stroke-width: 1;
+}
+
+.blocklyAngleGauge {
+  fill: #f88;
+  fill-opacity: 0.8;
+  pointer-events: none;
+}
+
+.blocklyAngleLine {
+  stroke: #f00;
+  stroke-width: 2;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+
+
+.blocklyColourTable {
+  border-collapse: collapse;
+  display: block;
+  outline: none;
+  padding: 1px;
+}
+
+.blocklyColourTable&gt;tr&gt;td {
+  border: 0.5px solid #888;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  height: 20px;
+  padding: 0;
+  width: 20px;
+}
+
+.blocklyColourTable&gt;tr&gt;td.blocklyColourHighlighted {
+  border-color: #eee;
+  box-shadow: 2px 2px 7px 2px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.blocklyColourSelected, .blocklyColourSelected:hover {
+  border-color: #eee !important;
+  outline: 1px solid #333;
+  position: relative;
+}
+
+
+.blocklyHtmlTextAreaInput {
+  font-family: monospace;
+  resize: none;
+  overflow: hidden;
+  height: 100%;
+  text-align: left;
+}
+
+.blocklyHtmlTextAreaInputOverflowedY {
+  overflow-y: scroll;
+}
+
+
+.blocklyFlyoutButton {
+  fill: #888;
+  cursor: default;
+}
+
+.blocklyFlyoutButtonShadow {
+  fill: #666;
+}
+
+.blocklyFlyoutButton:hover {
+  fill: #aaa;
+}
+
+.blocklyFlyoutLabel {
+  cursor: default;
+}
+
+.blocklyFlyoutLabelBackground {
+  opacity: 0;
+}
+
+
+.blocklyTreeRow:not(.blocklyTreeSelected):hover {
+  background-color: rgba(255, 255, 255, .2);
+}
+
+.blocklyToolboxDiv[layout="h"] .blocklyToolboxCategory {
+  margin: 1px 5px 1px 0;
+}
+
+.blocklyToolboxDiv[dir="RTL"][layout="h"] .blocklyToolboxCategory {
+  margin: 1px 0 1px 5px;
+}
+
+.blocklyTreeRow {
+  height: 22px;
+  line-height: 22px;
+  margin-bottom: 3px;
+  padding-right: 8px;
+  white-space: nowrap;
+}
+
+.blocklyToolboxDiv[dir="RTL"] .blocklyTreeRow {
+  margin-left: 8px;
+  padding-right: 0;
+}
+
+.blocklyTreeIcon {
+  background-image: url(https://blockly-demo.appspot.com/static/media/sprites.png);
+  height: 16px;
+  vertical-align: middle;
+  visibility: hidden;
+  width: 16px;
+}
+
+.blocklyTreeIconClosed {
+  background-position: -32px -1px;
+}
+
+.blocklyToolboxDiv[dir="RTL"] .blocklyTreeIconClosed {
+  background-position: 0 -1px;
+}
+
+.blocklyTreeSelected&gt;.blocklyTreeIconClosed {
+  background-position: -32px -17px;
+}
+
+.blocklyToolboxDiv[dir="RTL"] .blocklyTreeSelected&gt;.blocklyTreeIconClosed {
+  background-position: 0 -17px;
+}
+
+.blocklyTreeIconOpen {
+  background-position: -16px -1px;
+}
+
+.blocklyTreeSelected&gt;.blocklyTreeIconOpen {
+  background-position: -16px -17px;
+}
+
+.blocklyTreeLabel {
+  cursor: default;
+  font: 16px sans-serif;
+  padding: 0 3px;
+  vertical-align: middle;
+}
+
+.blocklyToolboxDelete .blocklyTreeLabel {
+  cursor: url("https://blockly-demo.appspot.com/static/media/handdelete.cur"), auto;
+}
+
+.blocklyTreeSelected .blocklyTreeLabel {
+  color: #fff;
+}
+
+
+.blocklyTreeSeparator {
+  border-bottom: solid #e5e5e5 1px;
+  height: 0;
+  margin: 5px 0;
+}
+
+.blocklyToolboxDiv[layout="h"] .blocklyTreeSeparator {
+  border-right: solid #e5e5e5 1px;
+  border-bottom: none;
+  height: auto;
+  margin: 0 5px 0 5px;
+  padding: 5px 0;
+  width: 0;
+}
+
+
+.blocklyToolboxDelete {
+  cursor: url("https://blockly-demo.appspot.com/static/media/handdelete.cur"), auto;
+}
+
+.blocklyToolboxGrab {
+  cursor: url("https://blockly-demo.appspot.com/static/media/handclosed.cur"), auto;
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+
+/* Category tree in Toolbox. */
+.blocklyToolboxDiv {
+  background-color: #ddd;
+  overflow-x: visible;
+  overflow-y: auto;
+  padding: 4px 0 4px 0;
+  position: absolute;
+  z-index: 70;  /* so blocks go under toolbox when dragging */
+  -webkit-tap-highlight-color: transparent;  /* issue #1345 */
+}
+
+.blocklyToolboxContents {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.blocklyToolboxContents:focus {
+  outline: none;
+}
+
+
+.blocklyColourTable {
+  border-collapse: collapse;
+  display: block;
+  outline: none;
+  padding: 1px;
+}
+
+.blocklyColourTable&gt;tr&gt;td {
+  border: 0.5px solid #888;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  height: 20px;
+  padding: 0;
+  width: 20px;
+}
+
+.blocklyColourTable&gt;tr&gt;td.blocklyColourHighlighted {
+  border-color: #eee;
+  box-shadow: 2px 2px 7px 2px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.blocklyColourSelected, .blocklyColourSelected:hover {
+  border-color: #eee !important;
+  outline: 1px solid #333;
+  position: relative;
+}
+
+
+.fieldColourSliderContainer {
+  padding: 4px;
+}
+.fieldColourSliderContainer hr {
+  border: none;
+  border-top: 1px solid #bbb;
+}
+.fieldColourSliderLabel {
+  display: flex;
+  justify-content: space-between;
+  font: 12pt "Helvetica Neue", "Segoe UI", Helvetica, sans-serif;
+}
+.fieldColourEyedropper {
+  appearance: none;
+  position: relative;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.fieldColourEyedropper:hover {
+  background: rgba(0,0,0,0.1)
+}
+.fieldColourEyedropper input {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.fieldColourEyedropper::before {
+  content: "Eyedropper";
+}
+.fieldColourEyedropper::after {
+  content: "";
+  margin-left: 8px;
+  width: 24px;
+  height: 24px;
+  background: currentColor;
+  pointer-events: none;
+  -webkit-mask-image: var(--customize-dial-symbol);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-image: var(--customize-dial-symbol);
+  mask-repeat: no-repeat;
+  mask-position: center;
+  --customize-dial-symbol: url('data:image/svg+xml,    &lt;svg xmlns="http://www.w3.org/2000/svg"          width="24px" height="24px"          viewBox="0 0 24 24"&gt;       &lt;path stroke="black" strokewidth="1.414" fill="none"             d="m 13 8 L 6 15 Q 3 18 2 21 Q 0 23 .5 23.5 Q 1 24 3 22                 Q 6 21 9 18 L 16 11"/&gt;       &lt;path fill="black"             d="m 12 7 Q 11 6 12 5 Q 13 4 14 5 Q 15 6 16 5 Q 20 -1 22.5 1.5                 Q 25 4 19 8 Q 18 9 19 10 Q 20 11 19 12 Q 18 13 17 12"/&gt;     &lt;/svg&gt;');
+}
+.fieldColourSlider {
+  -webkit-appearance: none;
+  width: 150px;
+  height: 24px;
+  margin: 4px 8px 24px 8px;
+  padding: 0;
+}
+.fieldColourSlider:last-child {
+  margin-bottom: 4px;
+}
+.fieldColourSlider:focus {
+  outline: none;
+}
+/* Webkit */
+.fieldColourSlider::-webkit-slider-runnable-track {
+  background: var(--slider-track-background);
+  border-radius: 8px;
+  height: 16px;
+}
+.fieldColourSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(0,0,0,.15);
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  margin-top: -4px;
+}
+/* Firefox */
+.fieldColourSlider::-moz-range-track {
+  background: var(--slider-track-background);
+  border-radius: 8px;
+  height: 16px;
+}
+.fieldColourSlider::-moz-range-thumb {
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(0,0,0,.15);
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+}
+.fieldColourSlider::-moz-focus-outer {
+  /* override the focus border style */
+  border: 0;
+}
+/* IE */
+.fieldColourSlider::-ms-track {
+  background: var(--slider-track-background);
+  border-radius: 12px;
+  width: 100%;
+  height: 24px;
+  /* remove default tick marks */
+  color: transparent;
+}
+.fieldColourSlider::-ms-fill-lower  {
+  background: transparent;
+}
+.fieldColourSlider::-ms-fill-upper  {
+  background: transparent;
+}
+.fieldColourSlider::-ms-thumb {
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(0,0,0,.15);
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+}
+
+
+  .controlsIconStyle {
+    opacity: 0.2;
+  }
+  .controlsIconStyle:hover {
+    opacity: 0.4;
+  }
+  .controlsIconStyle:active {
+    opacity: 0.6;
+  }
+  
+
+.blocklyMultiselect&gt;image, .blocklyMultiselect&gt;svg&gt;image {
+  opacity: .2;
+}
+
+.blocklyMultiselect&gt;image:hover, .blocklyMultiselect&gt;svg&gt;image:hover {
+  opacity: .4;
+}
+
+.blocklyMultiselect&gt;image:active, .blocklyMultiselect&gt;svg&gt;image:active {
+  opacity: .6;
+}
+
+</style><g transform="translate(1, 5)"><g data-id="7SoA/^1?^^3ki3|K|/iq" class="blocklyDraggable"><path class="blocklyPath" stroke="#3971bf" fill="#4c97ff" d=" m 0,0  m 0,4 a 4 4 0 0,1 4,-4  h 5  l 0,-4  10,0  0,4  10,0  0,-4  10,0  0,4  h 422.471875 a 4 4 0 0,1 4,4  v 6  V 44  V 46  V 46 a 4 4 0 0,1 -4,4  h -422.471875  l 0,-4  -10,0  0,4  -10,0  0,-4  -10,0  0,4  h -5 a 4 4 0 0,1 -4,-4 z&#10;"/><g data-id="::Y$z`FKH{?uC7])6+B9" transform="translate(206.8078125, 9)" style="display: block;"><path class="blocklyPath" stroke="#3971bf" fill="#4180d9" d=" m 16,0  h 23.5546875 a 16 16 0 0,1 16,16  v 0 a 16 16 0 0,1 -16,16  V 32  h -23.5546875 a 16 16 0 0,1 -16,-16  v 0 a 16 16 0 0,1 16,-16 z&#10;"/><g class="blocklyEditableText" transform="translate(12,7)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="9">A</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(19.5546875,3)"/></g></g><g data-id="l2}e?hBag|VQdSCRByz1" transform="translate(373.471875, 6)" style="display: block;"><path class="blocklyPath" stroke="#3971bf" fill="#4180d9" d=" m 19,0  h 46 a 19 19 0 0,1 19,19  v 0 a 19 19 0 0,1 -19,19  V 38  h -46 a 19 19 0 0,1 -19,-19  v 0 a 19 19 0 0,1 19,-19 z&#10;"/><g class="blocklyEditableText" transform="translate(12,4)" style="cursor: default;"><text class="blocklyText" dominant-baseline="central" text-anchor="end" x="60" y="15"></text><image xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA0MCAyMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLCAwKSI+CiAgICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCguODAwMjQgMCAwIC44MDAyNCAtNTUyLjY4IC0xMjI0LjMpIiBzdHlsZT0iLXdlYmtpdC1mb250LXNtb290aGluZzphbnRpYWxpYXNlZCI+CjxjaXJjbGUgY3g9IjcwMy4xMyIgY3k9IjE1NDIuNCIgcj0iMTIuNDk2IiBmaWxsPSIjMDA3OGNjIiBzdHlsZT0iLXdlYmtpdC1mb250LXNtb290aGluZzphbnRpYWxpYXNlZCIvPgo8cGF0aCBkPSJtNzAzLjEzIDE1MzAuNmExMS43NTMgMTEuNzUzIDAgMCAwLTExLjc1NCAxMS43NTQgMTEuNzUzIDExLjc1MyAwIDAgMCAxMS43NTQgMTEuNzUyIDExLjc1MyAxMS43NTMgMCAwIDAgMTEuNzUyLTExLjc1MiAxMS43NTMgMTEuNzUzIDAgMCAwLTExLjc1Mi0xMS43NTR6bTAgMS41MjM1YTMuMzY1NCAzLjM2NTQgMCAwIDEgMy4zNjUyIDMuMzY1MiAzLjM2NTQgMy4zNjU0IDAgMCAxLTMuMzY1MiAzLjM2NTIgMy4zNjU0IDMuMzY1NCAwIDAgMS0zLjM2NTItMy4zNjUyIDMuMzY1NCAzLjM2NTQgMCAwIDEgMy4zNjUyLTMuMzY1MnptLTYuODY1MiA2Ljg2NTJhMy4zNjU0IDMuMzY1NCAwIDAgMSAzLjM2NTIgMy4zNjUyIDMuMzY1NCAzLjM2NTQgMCAwIDEtMy4zNjUyIDMuMzY1MyAzLjM2NTQgMy4zNjU0IDAgMCAxLTMuMzY1Mi0zLjM2NTMgMy4zNjU0IDMuMzY1NCAwIDAgMSAzLjM2NTItMy4zNjUyem0xMy43MyAwYTMuMzY1NCAzLjM2NTQgMCAwIDEgMy4zNjUyIDMuMzY1MiAzLjM2NTQgMy4zNjU0IDAgMCAxLTMuMzY1MiAzLjM2NTMgMy4zNjU0IDMuMzY1NCAwIDAgMS0zLjM2NTItMy4zNjUzIDMuMzY1NCAzLjM2NTQgMCAwIDEgMy4zNjUyLTMuMzY1MnptLTcuNTM1MiAxLjA0MWgxLjMzNzl2MS42NTYzaDEuNjU0M3YxLjMzNzloLTEuNjU0M3YxLjY1NDNoLTEuMzM3OXYtMS42NTQzaC0xLjY1NDN2LTEuMzM3OWgxLjY1NDN6bTAuNjY5OTMgNS44MjQyYTMuMzY1NCAzLjM2NTQgMCAwIDEgMy4zNjUyIDMuMzY1MyAzLjM2NTQgMy4zNjU0IDAgMCAxLTMuMzY1MiAzLjM2NTIgMy4zNjU0IDMuMzY1NCAwIDAgMS0zLjM2NTItMy4zNjUyIDMuMzY1NCAzLjM2NTQgMCAwIDEgMy4zNjUyLTMuMzY1M3oiIGZpbGw9IiNmZmYiIHN0eWxlPSItd2Via2l0LWZvbnQtc21vb3RoaW5nOmFudGlhbGlhc2VkIi8+CjwvZz4KPHBhdGggdHJhbnNmb3JtPSJtYXRyaXgoLjk3MjQgLS4yMzMzIC4yMjQ3OSAuOTc0NDEgMCAwKSIgZD0ibTIyLjc1NSA2LjQ3NjRhOS41MTM0IDkuNjgxOCAwIDAgMSAxLjIxMzUgMTEuMzY5IiBmaWxsPSJub25lIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLWxpbmVqb2luPSJyb3VuZCIgc3Ryb2tlLXdpZHRoPSIyIi8+CjxnIHRyYW5zZm9ybT0ibWF0cml4KDIuMzkwOCAwIDAgMi4zOTA4IDEwLjY3OCAtMS45NzQ3KSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmIiBzdHJva2Utd2lkdGg9Ii42NjkyMiI+CjxwYXRoIGQ9Im04Ljc5OTcgMi44OTI3aDMuMTM2Ii8+CjxwYXRoIGQ9Im0xMC4zNjggMS4zMjQ3djMuMTM2Ii8+CjwvZz4KPGcgdHJhbnNmb3JtPSJtYXRyaXgoMi41Mzg0IC0uODIzMjYgLjgyMzI2IDIuNTM4NCAzLjMzMTEgMy44OTIxKSIgc3Ryb2tlLXdpZHRoPSIxLjEzMyI+CjxwYXRoIGQ9Im03LjAwNTkgNi4xMjExYTAuMjY0NTggMC4yNjQ1OCAwIDAgMC0wLjMxNjQxIDAuMTk5MjJjLTAuMDcyOTM2IDAuMzE4ODQtMC4xOTM4OCAwLjYyNDk1LTAuMzU3NDIgMC45MDgyYTAuMjY0NTggMC4yNjQ1OCAwIDAgMCAwLjA5NzY1NiAwLjM2MTMzIDAuMjY0NTggMC4yNjQ1OCAwIDAgMCAwLjM2MTMzLTAuMDk3NjU2YzAuMTg5OTMtMC4zMjg5NyAwLjMyOTM2LTAuNjg0MzkgMC40MTQwNi0xLjA1NDdhMC4yNjQ1OCAwLjI2NDU4IDAgMCAwLTAuMTk5MjItMC4zMTY0MXoiIGNvbG9yPSIjMDAwMDAwIiBmaWxsPSIjZmZmIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0eWxlPSItaW5rc2NhcGUtc3Ryb2tlOm5vbmUiLz4KPGcgZmlsbD0iI2ZmZiIgZmlsbC1ydWxlPSJldmVub2RkIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj4KPHBhdGggZD0ibTkuMDU0NyA1LjYwMzEtMi44MzkyIDIuMzY2NCAwLjYyOTc1LTMuNjQyYzAuMzc1MTMgMC44NTY1MSAxLjI2OTEgMS4zNjkgMi4yMDk1IDEuMjc1NnoiIGNvbG9yPSIjMDAwMDAwIiBzdHJva2Utd2lkdGg9Ii4yMjQ4NCIgc3R5bGU9Ii1pbmtzY2FwZS1zdHJva2U6bm9uZSIvPgo8cGF0aCBkPSJtNi44MzQgNC4yMjg1YTAuMDk5MjI5IDAuMDk5MjI5IDAgMCAwLTAuMDg1OTM3IDAuMDgyMDMxbC0wLjYzMDg2IDMuNjQyNmEwLjA5OTIyOSAwLjA5OTIyOSAwIDAgMCAwLjE2MjExIDAuMDkxNzk3bDIuODM5OC0yLjM2NTJhMC4wOTkyMjkgMC4wOTkyMjkgMCAwIDAtMC4wNzQyMTktMC4xNzU3OGMtMC44OTg2OSAwLjA4OTE5Mi0xLjc1MTYtMC40MDAwMi0yLjEwOTQtMS4yMTY4YTAuMDk5MjI5IDAuMDk5MjI5IDAgMCAwLTAuMTAxNTYtMC4wNTg1OTR6bTAuMDc2MTcyIDAuMzEyNWMwLjQwMDYgMC42OTYxOCAxLjExOTEgMS4xMDc5IDEuOTI5NyAxLjExMTNsLTIuNDgwNSAyLjA2ODR6IiBjb2xvcj0iIzAwMDAwMCIgc3Ryb2tlLXdpZHRoPSIxLjEzMyIgc3R5bGU9Ii1pbmtzY2FwZS1zdHJva2U6bm9uZSIvPgo8L2c+CjwvZz4KICA8L2c+Cjwvc3ZnPg==" height="20" width="40" x="0" y="5" style=""/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(48,9)"/></g></g><g transform="translate(8,9.5)"><image height="30px" width="28.8px" alt="*" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAyNSAyNiIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwLCAwKSI+CiAgICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCguMjY0NjYgMCAwIC4yNjQ2NiAtMTkwLjgxIC00MDUuNzkpIiBzdHlsZT0iLXdlYmtpdC1mb250LXNtb290aGluZzphbnRpYWxpYXNlZCI+CjxwYXRoIGQ9Im04OTUuNzEgMTU1OS41YzIxLjg5My0xOC4wMjYgNDUuODE3LTMwLjcyMiA2OS4wMDctMS44NzM2IiBmaWxsPSJub25lIiBzdHJva2U9IiMzMzMiIHN0cm9rZS13aWR0aD0iMy44MDg1cHgiLz4KPHBhdGggZD0ibTkzOC44NCAxNjAwLjh2LTQxLjE4NWgtMy45MjAydi00LjQyODhoLTEyLjk1NnY0LjI3NjhoLTI2LjI1NXYtMTYuODM1aC0xMzAuNDR2MTYuODQ4aC0yNS40OTJ2LTQuMDM4M2gtMTMuNDMzdjQuMDY2OGgtNC43NzgxbC0wLjAzMDUgNDEuMjkzeiIgZmlsbD0iIzMzMyIgc3Ryb2tlPSIjZDZkNmQ2IiBzdHJva2Utd2lkdGg9IjEuMTQyNSIvPgo8cmVjdCB4PSI3NDguMzEiIHk9IjE1NzIuOCIgd2lkdGg9IjMzLjIxMyIgaGVpZ2h0PSIyOS41MSIgZmlsbD0iI2ZmZiIvPgo8cmVjdCB4PSI3NDguMzEiIHk9IjE1NzIuOCIgd2lkdGg9IjMzLjIxMyIgaGVpZ2h0PSIyOS41MSIgZmlsbD0iI2ZmZiIvPgo8ZyB0cmFuc2Zvcm09Im1hdHJpeCgyLjg4ODYgMCAwIDIuODg4NiAtMTM2OC44IC0yODcwLjYpIiBzdHJva2U9IiNkNmQ2ZDYiPgo8ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLjAyOTIgMCAwIDEuMDI5MSAxNS4zOTEgLTQzLjM3MSkiIGZpbGw9IiMzMzMiIHN0cm9rZS13aWR0aD0iLjM4NDMyIiBzdHlsZT0iLXdlYmtpdC1mb250LXNtb290aGluZzphbnRpYWxpYXNlZCI+CjxwYXRoIGQ9Im03MDIuODYgMTUzMC41Yy02LjYyNjMtNWUtNCAtMTEuOTk4IDUuMzcxMi0xMS45OTcgMTEuOTk3IDQuNmUtNCA2LjYyNTQgNS4zNzE5IDExLjk5NiAxMS45OTcgMTEuOTk1IDYuNjI0Ny02ZS00IDExLjk5NS01LjM3MDggMTEuOTk1LTExLjk5NSA2LjRlLTQgLTYuNjI1NC01LjM2OTktMTEuOTk3LTExLjk5NS0xMS45OTd6bS0wLjY4MzggOS42MjVoMS4zNjU2djEuNjkwNmgxLjY4ODZ2MS4zNjU2aC0xLjY4ODZ2MS42ODg2aC0xLjM2NTZ2LTEuNjg4NmgtMS42ODg2di0xLjM2NTZoMS42ODg2eiIgZmlsbD0iIzMzMyIgc3Ryb2tlPSIjZDZkNmQ2IiBzdHJva2Utd2lkdGg9Ii4zODQzMiIgc3R5bGU9Ii13ZWJraXQtZm9udC1zbW9vdGhpbmc6YW50aWFsaWFzZWQiLz4KPC9nPgo8ZWxsaXBzZSBjeD0iNzM4Ljc1IiBjeT0iMTU0NCIgcng9IjguNTQ5MyIgcnk9IjguNTQ4NSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBzdHJva2Utd2lkdGg9Ii4zOTU1MyIvPgo8L2c+CjxyZWN0IHg9Ijg4Mi42MiIgeT0iMTU3NC43IiB3aWR0aD0iMzMuMjEzIiBoZWlnaHQ9IjI5LjUxIiBmaWxsPSIjZmZmIi8+CjxnIHRyYW5zZm9ybT0ibWF0cml4KDIuODg4NiAwIDAgMi44ODg2IC0xMjM2LjMgLTI4NzAuNikiIHN0cm9rZT0iI2Q2ZDZkNiI+CjxnIHRyYW5zZm9ybT0ibWF0cml4KDEuMDI5MiAwIDAgMS4wMjkxIDE1LjM5MSAtNDMuMzcxKSIgZmlsbD0iIzMzMyIgc3Ryb2tlLXdpZHRoPSIuMzg0MzIiIHN0eWxlPSItd2Via2l0LWZvbnQtc21vb3RoaW5nOmFudGlhbGlhc2VkIj4KPHBhdGggZD0ibTcwMi44NiAxNTMwLjVjLTYuNjI2My01ZS00IC0xMS45OTggNS4zNzEyLTExLjk5NyAxMS45OTcgNC42ZS00IDYuNjI1NCA1LjM3MTkgMTEuOTk2IDExLjk5NyAxMS45OTUgNi42MjQ3LTZlLTQgMTEuOTk1LTUuMzcwOCAxMS45OTUtMTEuOTk1IDYuNGUtNCAtNi42MjU0LTUuMzY5OS0xMS45OTctMTEuOTk1LTExLjk5N3ptLTAuNjgzOCA5LjYyNWgxLjM2NTZ2MS42OTA2aDEuNjg4NnYxLjM2NTZoLTEuNjg4NnYxLjY4ODZoLTEuMzY1NnYtMS42ODg2aC0xLjY4ODZ2LTEuMzY1NmgxLjY4ODZ6IiBmaWxsPSIjMzMzIiBzdHJva2U9IiNkNmQ2ZDYiIHN0cm9rZS13aWR0aD0iLjM4NDMyIiBzdHlsZT0iLXdlYmtpdC1mb250LXNtb290aGluZzphbnRpYWxpYXNlZCIvPgo8L2c+CjxlbGxpcHNlIGN4PSI3MzguNzUiIGN5PSIxNTQ0IiByeD0iOC41NDkzIiByeT0iOC41NDg1IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIHN0cm9rZS13aWR0aD0iLjM5NTUzIi8+CjwvZz4KPGcgdHJhbnNmb3JtPSJtYXRyaXgoLTMwLjA4NSAxMC4yNTYgMTAuMjU2IDMwLjA4NSAxMzkwLjkgMTMwOS40KSIgZmlsbD0iI2Q2ZDZkNiIgc3Ryb2tlLXdpZHRoPSIuNDUyODYiPgo8cmVjdCB0cmFuc2Zvcm09InJvdGF0ZSgxMDAuMDcpIiB4PSIuMTU4MDciIHk9Ii0xNS44OTciIHdpZHRoPSIuODU3OTQiIGhlaWdodD0iLjc2NTI0IiByeD0iLjAzNjM1OCIgcnk9Ii4wMzYzNTgiLz4KPHJlY3QgdHJhbnNmb3JtPSJyb3RhdGUoMTAwLjA3KSIgeD0iLjg1MDYiIHk9Ii0xNS43NDgiIHdpZHRoPSIuNDg0NDEiIGhlaWdodD0iLjQ1NzQyIiByeD0iLjA0MjAwMiIgcnk9Ii4wNDIwMDIiLz4KPC9nPgo8L2c+CiAgPC9nPgo8L3N2Zz4="/></g><g transform="translate(44.8,9.5)"><image height="30px" width="2px" alt="*" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAyIDMwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIj4KICAgIDxwYXRoIGQ9Im0wLjUgMC41djI5IiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLW9wYWNpdHk9Ii4yNjI1Ii8+CiAgPC9nPgo8L3N2Zz4="/></g><g class="blocklyEditableText" transform="translate(54.8,10.4)" style="cursor: text;"><rect rx="4" ry="4" x="0" y="0" height="29.2" width="116.4609375" class="blocklyFieldRect" stroke="#3971bf" style="display: block; fill: rgb(65, 128, 217);"/><text class="blocklyText" dominant-baseline="central" style="fill: rgb(255, 255, 255);" x="8" y="14.6">simple motor</text></g><g transform="translate(179.2609375,16)"><text class="blocklyText" dominant-baseline="central" x="0" y="9">on</text></g><g transform="translate(270.3625,16)"><text class="blocklyText" dominant-baseline="central" x="0" y="9">with forward</text></g></g></g></svg>
+</div><dl class="py class">
+<dt class="sig sig-object py" id="pybricks.pupdevices.DCMotor">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DCMotor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">port</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">positive_direction</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">Direction.CLOCKWISE</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pybricks.pupdevices.DCMotor" title="Permalink to this definition">¶</a></dt>
+<dd><p>LEGO® Powered Up motor without rotation sensors.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>port</strong> (<a class="reference internal" href="../parameters/port.html#Port" title="Port"><em>Port</em></a>) – Port to which the motor is connected.</p></li>
+<li><p><strong>positive_direction</strong> (<a class="reference internal" href="../parameters/direction.html#Direction" title="Direction"><em>Direction</em></a>) – Which direction the motor should
+turn when you give a positive duty cycle value.</p></li>
+</ul>
+</dd>
+</dl>
+<div class="svg-container"><!-- Copyright (c) 2023 The Pybricks Authors. All rights reserved. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 457.53125 57.200000000000045" class="blocklySvg pybricks_renderer-renderer pybricks-zelos-light-theme" width="457.53125" height="57.200000000000045" style="background-color: transparent"><style xmlns="http://www.w3.org/1999/xhtml">.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyText,
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyFlyoutLabelText {
+font: bold 12pt "Helvetica Neue", "Segoe UI", Helvetica, sans-serif;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyText {
+fill: #fff;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyNonEditableText&gt;rect:not(.blocklyDropdownRect),
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyEditableText&gt;rect:not(.blocklyDropdownRect) {
+fill: #fff;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyNonEditableText&gt;text,
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyEditableText&gt;text,
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyNonEditableText&gt;g&gt;text,
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyEditableText&gt;g&gt;text {
+fill: #575E75;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyFlyoutLabelText {
+fill: #575E75;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyText.blocklyBubbleText {
+fill: #575E75;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyDraggable:not(.blocklyDisabled)
+ .blocklyEditableText:not(.editing):hover&gt;rect,
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyDraggable:not(.blocklyDisabled)
+ .blocklyEditableText:not(.editing):hover&gt;.blocklyPath {
+stroke: #fff;
+stroke-width: 2;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyHtmlInput {
+font-family: "Helvetica Neue", "Segoe UI", Helvetica, sans-serif;
+font-weight: bold;
+color: #575E75;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyDropdownText {
+fill: #fff !important;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme.blocklyWidgetDiv .goog-menuitem,
+.pybricks_renderer-renderer.pybricks-zelos-light-theme.blocklyDropDownDiv .goog-menuitem {
+font-family: "Helvetica Neue", "Segoe UI", Helvetica, sans-serif;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme.blocklyDropDownDiv .goog-menuitem-content {
+color: #fff;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyHighlightedConnectionPath {
+stroke: #ffffff;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyDisabled &gt; .blocklyOutlinePath {
+fill: url(#blocklyDisabledPattern8106945446883995)
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyInsertionMarker&gt;.blocklyPath {
+fill-opacity: 0.2;
+stroke: none;
+}
+
+.blocklySvg {
+  background-color: #fff;
+  outline: none;
+  overflow: hidden;  /* IE overflows by default. */
+  position: absolute;
+  display: block;
+}
+
+.blocklyWidgetDiv {
+  display: none;
+  position: absolute;
+  z-index: 99999;  /* big value for bootstrap3 compatibility */
+}
+
+.injectionDiv {
+  height: 100%;
+  position: relative;
+  overflow: hidden;  /* So blocks in drag surface disappear at edges */
+  touch-action: none;
+}
+
+.blocklyNonSelectable {
+  user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+}
+
+.blocklyBlockCanvas.blocklyCanvasTransitioning,
+.blocklyBubbleCanvas.blocklyCanvasTransitioning {
+  transition: transform .5s;
+}
+
+.blocklyTooltipDiv {
+  background-color: #ffffc7;
+  border: 1px solid #ddc;
+  box-shadow: 4px 4px 20px 1px rgba(0,0,0,.15);
+  color: #000;
+  display: none;
+  font: 9pt sans-serif;
+  opacity: .9;
+  padding: 2px;
+  position: absolute;
+  z-index: 100000;  /* big value for bootstrap3 compatibility */
+}
+
+.blocklyDropDownDiv {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  display: none;
+  border: 1px solid;
+  border-color: #dadce0;
+  background-color: #fff;
+  border-radius: 2px;
+  padding: 4px;
+  box-shadow: 0 0 3px 1px rgba(0,0,0,.3);
+}
+
+.blocklyDropDownDiv.blocklyFocused {
+  box-shadow: 0 0 6px 1px rgba(0,0,0,.3);
+}
+
+.blocklyDropDownContent {
+  max-height: 300px;  /* @todo: spec for maximum height. */
+  overflow: auto;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.blocklyDropDownArrow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  z-index: -1;
+  background-color: inherit;
+  border-color: inherit;
+}
+
+.blocklyDropDownButton {
+  display: inline-block;
+  float: left;
+  padding: 0;
+  margin: 4px;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid;
+  transition: box-shadow .1s;
+  cursor: pointer;
+}
+
+.blocklyArrowTop {
+  border-top: 1px solid;
+  border-left: 1px solid;
+  border-top-left-radius: 4px;
+  border-color: inherit;
+}
+
+.blocklyArrowBottom {
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+  border-bottom-right-radius: 4px;
+  border-color: inherit;
+}
+
+.blocklyResizeSE {
+  cursor: se-resize;
+  fill: #aaa;
+}
+
+.blocklyResizeSW {
+  cursor: sw-resize;
+  fill: #aaa;
+}
+
+.blocklyResizeLine {
+  stroke: #515A5A;
+  stroke-width: 1;
+}
+
+.blocklyHighlightedConnectionPath {
+  fill: none;
+  stroke: #fc3;
+  stroke-width: 4px;
+}
+
+.blocklyPathLight {
+  fill: none;
+  stroke-linecap: round;
+  stroke-width: 1;
+}
+
+.blocklySelected&gt;.blocklyPathLight {
+  display: none;
+}
+
+.blocklyDraggable {
+  cursor: grab;
+  cursor: -webkit-grab;
+}
+
+.blocklyDragging {
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+
+  /* Changes cursor on mouse down. Not effective in Firefox because of
+     https://bugzilla.mozilla.org/show_bug.cgi?id=771241 */
+.blocklyDraggable:active {
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+
+.blocklyDragging.blocklyDraggingDelete {
+  cursor: url("https://blockly-demo.appspot.com/static/media/handdelete.cur"), auto;
+}
+
+.blocklyDragging&gt;.blocklyPath,
+.blocklyDragging&gt;.blocklyPathLight {
+  fill-opacity: .8;
+  stroke-opacity: .8;
+}
+
+.blocklyDragging&gt;.blocklyPathDark {
+  display: none;
+}
+
+.blocklyDisabled&gt;.blocklyPath {
+  fill-opacity: .5;
+  stroke-opacity: .5;
+}
+
+.blocklyDisabled&gt;.blocklyPathLight,
+.blocklyDisabled&gt;.blocklyPathDark {
+  display: none;
+}
+
+.blocklyInsertionMarker&gt;.blocklyPath,
+.blocklyInsertionMarker&gt;.blocklyPathLight,
+.blocklyInsertionMarker&gt;.blocklyPathDark {
+  fill-opacity: .2;
+  stroke: none;
+}
+
+.blocklyMultilineText {
+  font-family: monospace;
+}
+
+.blocklyNonEditableText&gt;text {
+  pointer-events: none;
+}
+
+.blocklyFlyout {
+  position: absolute;
+  z-index: 20;
+}
+
+.blocklyText text {
+  cursor: default;
+}
+
+/*
+  Don't allow users to select text.  It gets annoying when trying to
+  drag a block and selected text moves instead.
+*/
+.blocklySvg text {
+  user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  cursor: inherit;
+}
+
+.blocklyHidden {
+  display: none;
+}
+
+.blocklyFieldDropdown:not(.blocklyHidden) {
+  display: block;
+}
+
+.blocklyIconGroup {
+  cursor: default;
+}
+
+.blocklyIconGroup:not(:hover),
+.blocklyIconGroupReadonly {
+  opacity: .6;
+}
+
+.blocklyIconShape {
+  fill: #00f;
+  stroke: #fff;
+  stroke-width: 1px;
+}
+
+.blocklyIconSymbol {
+  fill: #fff;
+}
+
+.blocklyMinimalBody {
+  margin: 0;
+  padding: 0;
+}
+
+.blocklyHtmlInput {
+  border: none;
+  border-radius: 4px;
+  height: 100%;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+  display: block;
+  box-sizing: border-box;
+}
+
+/* Remove the increase and decrease arrows on the field number editor */
+input.blocklyHtmlInput[type=number]::-webkit-inner-spin-button,
+input.blocklyHtmlInput[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.blocklyMainBackground {
+  stroke-width: 1;
+  stroke: #c6c6c6;  /* Equates to #ddd due to border being off-pixel. */
+}
+
+.blocklyMutatorBackground {
+  fill: #fff;
+  stroke: #ddd;
+  stroke-width: 1;
+}
+
+.blocklyFlyoutBackground {
+  fill: #ddd;
+  fill-opacity: .8;
+}
+
+.blocklyMainWorkspaceScrollbar {
+  z-index: 20;
+}
+
+.blocklyFlyoutScrollbar {
+  z-index: 30;
+}
+
+.blocklyScrollbarHorizontal,
+.blocklyScrollbarVertical {
+  position: absolute;
+  outline: none;
+}
+
+.blocklyScrollbarBackground {
+  opacity: 0;
+}
+
+.blocklyScrollbarHandle {
+  fill: #ccc;
+}
+
+.blocklyScrollbarBackground:hover+.blocklyScrollbarHandle,
+.blocklyScrollbarHandle:hover {
+  fill: #bbb;
+}
+
+/* Darken flyout scrollbars due to being on a grey background. */
+/* By contrast, workspace scrollbars are on a white background. */
+.blocklyFlyout .blocklyScrollbarHandle {
+  fill: #bbb;
+}
+
+.blocklyFlyout .blocklyScrollbarBackground:hover+.blocklyScrollbarHandle,
+.blocklyFlyout .blocklyScrollbarHandle:hover {
+  fill: #aaa;
+}
+
+.blocklyInvalidInput {
+  background: #faa;
+}
+
+.blocklyVerticalMarker {
+  stroke-width: 3px;
+  fill: rgba(255,255,255,.5);
+  pointer-events: none;
+}
+
+.blocklyComputeCanvas {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.blocklyNoPointerEvents {
+  pointer-events: none;
+}
+
+.blocklyContextMenu {
+  border-radius: 4px;
+  max-height: 100%;
+}
+
+.blocklyDropdownMenu {
+  border-radius: 2px;
+  padding: 0 !important;
+}
+
+.blocklyDropdownMenu .blocklyMenuItem {
+  /* 28px on the left for icon or checkbox. */
+  padding-left: 28px;
+}
+
+/* BiDi override for the resting state. */
+.blocklyDropdownMenu .blocklyMenuItemRtl {
+  /* Flip left/right padding for BiDi. */
+  padding-left: 5px;
+  padding-right: 28px;
+}
+
+.blocklyWidgetDiv .blocklyMenu {
+  background: #fff;
+  border: 1px solid transparent;
+  box-shadow: 0 0 3px 1px rgba(0,0,0,.3);
+  font: normal 13px Arial, sans-serif;
+  margin: 0;
+  outline: none;
+  padding: 4px 0;
+  position: absolute;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 100%;
+  z-index: 20000;  /* Arbitrary, but some apps depend on it... */
+}
+
+.blocklyWidgetDiv .blocklyMenu.blocklyFocused {
+  box-shadow: 0 0 6px 1px rgba(0,0,0,.3);
+}
+
+.blocklyDropDownDiv .blocklyMenu {
+  background: inherit;  /* Compatibility with gapi, reset from goog-menu */
+  border: inherit;  /* Compatibility with gapi, reset from goog-menu */
+  font: normal 13px "Helvetica Neue", Helvetica, sans-serif;
+  outline: none;
+  position: relative;  /* Compatibility with gapi, reset from goog-menu */
+  z-index: 20000;  /* Arbitrary, but some apps depend on it... */
+}
+
+/* State: resting. */
+.blocklyMenuItem {
+  border: none;
+  color: #000;
+  cursor: pointer;
+  list-style: none;
+  margin: 0;
+  /* 7em on the right for shortcut. */
+  min-width: 7em;
+  padding: 6px 15px;
+  white-space: nowrap;
+}
+
+/* State: disabled. */
+.blocklyMenuItemDisabled {
+  color: #ccc;
+  cursor: inherit;
+}
+
+/* State: hover. */
+.blocklyMenuItemHighlight {
+  background-color: rgba(0,0,0,.1);
+}
+
+/* State: selected/checked. */
+.blocklyMenuItemCheckbox {
+  height: 16px;
+  position: absolute;
+  width: 16px;
+}
+
+.blocklyMenuItemSelected .blocklyMenuItemCheckbox {
+  background: url(https://blockly-demo.appspot.com/static/media/sprites.png) no-repeat -48px -16px;
+  float: left;
+  margin-left: -24px;
+  position: static;  /* Scroll with the menu. */
+}
+
+.blocklyMenuItemRtl .blocklyMenuItemCheckbox {
+  float: right;
+  margin-right: -24px;
+}
+
+
+.blocklyZoom&gt;image, .blocklyZoom&gt;svg&gt;image {
+  opacity: .4;
+}
+
+.blocklyZoom&gt;image:hover, .blocklyZoom&gt;svg&gt;image:hover {
+  opacity: .6;
+}
+
+.blocklyZoom&gt;image:active, .blocklyZoom&gt;svg&gt;image:active {
+  opacity: .8;
+}
+
+
+.blocklyCommentForeignObject {
+  position: relative;
+  z-index: 0;
+}
+
+.blocklyCommentRect {
+  fill: #E7DE8E;
+  stroke: #bcA903;
+  stroke-width: 1px;
+}
+
+.blocklyCommentTarget {
+  fill: transparent;
+  stroke: #bcA903;
+}
+
+.blocklyCommentTargetFocused {
+  fill: none;
+}
+
+.blocklyCommentHandleTarget {
+  fill: none;
+}
+
+.blocklyCommentHandleTargetFocused {
+  fill: transparent;
+}
+
+.blocklyFocused&gt;.blocklyCommentRect {
+  fill: #B9B272;
+  stroke: #B9B272;
+}
+
+.blocklySelected&gt;.blocklyCommentTarget {
+  stroke: #fc3;
+  stroke-width: 3px;
+}
+
+.blocklyCommentDeleteIcon {
+  cursor: pointer;
+  fill: #000;
+  display: none;
+}
+
+.blocklySelected &gt; .blocklyCommentDeleteIcon {
+  display: block;
+}
+
+.blocklyDeleteIconShape {
+  fill: #000;
+  stroke: #000;
+  stroke-width: 1px;
+}
+
+.blocklyDeleteIconShape.blocklyDeleteIconHighlighted {
+  stroke: #fc3;
+}
+
+
+.blocklyCommentTextarea {
+  background-color: #fef49c;
+  border: 0;
+  display: block;
+  margin: 0;
+  outline: 0;
+  padding: 3px;
+  resize: none;
+  text-overflow: hidden;
+}
+
+
+.blocklyAngleCircle {
+  stroke: #444;
+  stroke-width: 1;
+  fill: #ddd;
+  fill-opacity: 0.8;
+}
+
+.blocklyAngleMarks {
+  stroke: #444;
+  stroke-width: 1;
+}
+
+.blocklyAngleGauge {
+  fill: #f88;
+  fill-opacity: 0.8;
+  pointer-events: none;
+}
+
+.blocklyAngleLine {
+  stroke: #f00;
+  stroke-width: 2;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+
+
+.blocklyColourTable {
+  border-collapse: collapse;
+  display: block;
+  outline: none;
+  padding: 1px;
+}
+
+.blocklyColourTable&gt;tr&gt;td {
+  border: 0.5px solid #888;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  height: 20px;
+  padding: 0;
+  width: 20px;
+}
+
+.blocklyColourTable&gt;tr&gt;td.blocklyColourHighlighted {
+  border-color: #eee;
+  box-shadow: 2px 2px 7px 2px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.blocklyColourSelected, .blocklyColourSelected:hover {
+  border-color: #eee !important;
+  outline: 1px solid #333;
+  position: relative;
+}
+
+
+.blocklyHtmlTextAreaInput {
+  font-family: monospace;
+  resize: none;
+  overflow: hidden;
+  height: 100%;
+  text-align: left;
+}
+
+.blocklyHtmlTextAreaInputOverflowedY {
+  overflow-y: scroll;
+}
+
+
+.blocklyFlyoutButton {
+  fill: #888;
+  cursor: default;
+}
+
+.blocklyFlyoutButtonShadow {
+  fill: #666;
+}
+
+.blocklyFlyoutButton:hover {
+  fill: #aaa;
+}
+
+.blocklyFlyoutLabel {
+  cursor: default;
+}
+
+.blocklyFlyoutLabelBackground {
+  opacity: 0;
+}
+
+
+.blocklyTreeRow:not(.blocklyTreeSelected):hover {
+  background-color: rgba(255, 255, 255, .2);
+}
+
+.blocklyToolboxDiv[layout="h"] .blocklyToolboxCategory {
+  margin: 1px 5px 1px 0;
+}
+
+.blocklyToolboxDiv[dir="RTL"][layout="h"] .blocklyToolboxCategory {
+  margin: 1px 0 1px 5px;
+}
+
+.blocklyTreeRow {
+  height: 22px;
+  line-height: 22px;
+  margin-bottom: 3px;
+  padding-right: 8px;
+  white-space: nowrap;
+}
+
+.blocklyToolboxDiv[dir="RTL"] .blocklyTreeRow {
+  margin-left: 8px;
+  padding-right: 0;
+}
+
+.blocklyTreeIcon {
+  background-image: url(https://blockly-demo.appspot.com/static/media/sprites.png);
+  height: 16px;
+  vertical-align: middle;
+  visibility: hidden;
+  width: 16px;
+}
+
+.blocklyTreeIconClosed {
+  background-position: -32px -1px;
+}
+
+.blocklyToolboxDiv[dir="RTL"] .blocklyTreeIconClosed {
+  background-position: 0 -1px;
+}
+
+.blocklyTreeSelected&gt;.blocklyTreeIconClosed {
+  background-position: -32px -17px;
+}
+
+.blocklyToolboxDiv[dir="RTL"] .blocklyTreeSelected&gt;.blocklyTreeIconClosed {
+  background-position: 0 -17px;
+}
+
+.blocklyTreeIconOpen {
+  background-position: -16px -1px;
+}
+
+.blocklyTreeSelected&gt;.blocklyTreeIconOpen {
+  background-position: -16px -17px;
+}
+
+.blocklyTreeLabel {
+  cursor: default;
+  font: 16px sans-serif;
+  padding: 0 3px;
+  vertical-align: middle;
+}
+
+.blocklyToolboxDelete .blocklyTreeLabel {
+  cursor: url("https://blockly-demo.appspot.com/static/media/handdelete.cur"), auto;
+}
+
+.blocklyTreeSelected .blocklyTreeLabel {
+  color: #fff;
+}
+
+
+.blocklyTreeSeparator {
+  border-bottom: solid #e5e5e5 1px;
+  height: 0;
+  margin: 5px 0;
+}
+
+.blocklyToolboxDiv[layout="h"] .blocklyTreeSeparator {
+  border-right: solid #e5e5e5 1px;
+  border-bottom: none;
+  height: auto;
+  margin: 0 5px 0 5px;
+  padding: 5px 0;
+  width: 0;
+}
+
+
+.blocklyToolboxDelete {
+  cursor: url("https://blockly-demo.appspot.com/static/media/handdelete.cur"), auto;
+}
+
+.blocklyToolboxGrab {
+  cursor: url("https://blockly-demo.appspot.com/static/media/handclosed.cur"), auto;
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+
+/* Category tree in Toolbox. */
+.blocklyToolboxDiv {
+  background-color: #ddd;
+  overflow-x: visible;
+  overflow-y: auto;
+  padding: 4px 0 4px 0;
+  position: absolute;
+  z-index: 70;  /* so blocks go under toolbox when dragging */
+  -webkit-tap-highlight-color: transparent;  /* issue #1345 */
+}
+
+.blocklyToolboxContents {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.blocklyToolboxContents:focus {
+  outline: none;
+}
+
+
+.blocklyColourTable {
+  border-collapse: collapse;
+  display: block;
+  outline: none;
+  padding: 1px;
+}
+
+.blocklyColourTable&gt;tr&gt;td {
+  border: 0.5px solid #888;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  height: 20px;
+  padding: 0;
+  width: 20px;
+}
+
+.blocklyColourTable&gt;tr&gt;td.blocklyColourHighlighted {
+  border-color: #eee;
+  box-shadow: 2px 2px 7px 2px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.blocklyColourSelected, .blocklyColourSelected:hover {
+  border-color: #eee !important;
+  outline: 1px solid #333;
+  position: relative;
+}
+
+
+.fieldColourSliderContainer {
+  padding: 4px;
+}
+.fieldColourSliderContainer hr {
+  border: none;
+  border-top: 1px solid #bbb;
+}
+.fieldColourSliderLabel {
+  display: flex;
+  justify-content: space-between;
+  font: 12pt "Helvetica Neue", "Segoe UI", Helvetica, sans-serif;
+}
+.fieldColourEyedropper {
+  appearance: none;
+  position: relative;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.fieldColourEyedropper:hover {
+  background: rgba(0,0,0,0.1)
+}
+.fieldColourEyedropper input {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.fieldColourEyedropper::before {
+  content: "Eyedropper";
+}
+.fieldColourEyedropper::after {
+  content: "";
+  margin-left: 8px;
+  width: 24px;
+  height: 24px;
+  background: currentColor;
+  pointer-events: none;
+  -webkit-mask-image: var(--customize-dial-symbol);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-image: var(--customize-dial-symbol);
+  mask-repeat: no-repeat;
+  mask-position: center;
+  --customize-dial-symbol: url('data:image/svg+xml,    &lt;svg xmlns="http://www.w3.org/2000/svg"          width="24px" height="24px"          viewBox="0 0 24 24"&gt;       &lt;path stroke="black" strokewidth="1.414" fill="none"             d="m 13 8 L 6 15 Q 3 18 2 21 Q 0 23 .5 23.5 Q 1 24 3 22                 Q 6 21 9 18 L 16 11"/&gt;       &lt;path fill="black"             d="m 12 7 Q 11 6 12 5 Q 13 4 14 5 Q 15 6 16 5 Q 20 -1 22.5 1.5                 Q 25 4 19 8 Q 18 9 19 10 Q 20 11 19 12 Q 18 13 17 12"/&gt;     &lt;/svg&gt;');
+}
+.fieldColourSlider {
+  -webkit-appearance: none;
+  width: 150px;
+  height: 24px;
+  margin: 4px 8px 24px 8px;
+  padding: 0;
+}
+.fieldColourSlider:last-child {
+  margin-bottom: 4px;
+}
+.fieldColourSlider:focus {
+  outline: none;
+}
+/* Webkit */
+.fieldColourSlider::-webkit-slider-runnable-track {
+  background: var(--slider-track-background);
+  border-radius: 8px;
+  height: 16px;
+}
+.fieldColourSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(0,0,0,.15);
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  margin-top: -4px;
+}
+/* Firefox */
+.fieldColourSlider::-moz-range-track {
+  background: var(--slider-track-background);
+  border-radius: 8px;
+  height: 16px;
+}
+.fieldColourSlider::-moz-range-thumb {
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(0,0,0,.15);
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+}
+.fieldColourSlider::-moz-focus-outer {
+  /* override the focus border style */
+  border: 0;
+}
+/* IE */
+.fieldColourSlider::-ms-track {
+  background: var(--slider-track-background);
+  border-radius: 12px;
+  width: 100%;
+  height: 24px;
+  /* remove default tick marks */
+  color: transparent;
+}
+.fieldColourSlider::-ms-fill-lower  {
+  background: transparent;
+}
+.fieldColourSlider::-ms-fill-upper  {
+  background: transparent;
+}
+.fieldColourSlider::-ms-thumb {
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(0,0,0,.15);
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+}
+
+
+  .controlsIconStyle {
+    opacity: 0.2;
+  }
+  .controlsIconStyle:hover {
+    opacity: 0.4;
+  }
+  .controlsIconStyle:active {
+    opacity: 0.6;
+  }
+  
+
+.blocklyMultiselect&gt;image, .blocklyMultiselect&gt;svg&gt;image {
+  opacity: .2;
+}
+
+.blocklyMultiselect&gt;image:hover, .blocklyMultiselect&gt;svg&gt;image:hover {
+  opacity: .4;
+}
+
+.blocklyMultiselect&gt;image:active, .blocklyMultiselect&gt;svg&gt;image:active {
+  opacity: .6;
+}
+
+</style><g transform="translate(1, 1)"><g data-id="s-sFQ?|Y7IO-3@.{uOpK" class="blocklyDraggable"><path class="blocklyPath" stroke="#3971bf" fill="#4c97ff" d=" m 0,0  m 0,4 a 4 4 0 0,1 4,-4  h 5  c 1.6666666666666667,0  2.5,0.75  3.3333333333333335,1.5  l 3.3333333333333335,3  c 0.8333333333333334,0.75  1.6666666666666667,1.5  3.3333333333333335,1.5  h 10  c 1.6666666666666667,0  2.5,-0.75  3.3333333333333335,-1.5  l 3.3333333333333335,-3  c 0.8333333333333334,-0.75  1.6666666666666667,-1.5  3.3333333333333335,-1.5  h 412.53125 a 4 4 0 0,1 4,4  v 6  V 43.2  V 45.2  V 45.2 a 4 4 0 0,1 -4,4  h -412.53125  c -1.6666666666666667,0  -2.5,0.75  -3.3333333333333335,1.5  l -3.3333333333333335,3  c -0.8333333333333334,0.75  -1.6666666666666667,1.5  -3.3333333333333335,1.5  h -10  c -1.6666666666666667,0  -2.5,-0.75  -3.3333333333333335,-1.5  l -3.3333333333333335,-3  c -0.8333333333333334,-0.75  -1.6666666666666667,-1.5  -3.3333333333333335,-1.5  h -5 a 4 4 0 0,1 -4,-4 z&#10;"/><g data-id="$UE706W(jedOyNaE6/`p" transform="translate(55, 8.600000000000001)" style="display: block;"><path class="blocklyPath" stroke="#3971bf" fill="#4180d9" d=" m 16,0  h 112.4609375 a 16 16 0 0,1 16,16  v 0 a 16 16 0 0,1 -16,16  V 32  h -112.4609375 a 16 16 0 0,1 -16,-16  v 0 a 16 16 0 0,1 16,-16 z&#10;"/><g class="blocklyEditableText" transform="translate(12,7)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="9">simple motor</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(108.4609375,3)"/></g></g><g data-id="93+-jT4:{70Px3C5V$K#" transform="translate(281.25, 6)" style="display: block;"><path class="blocklyPath" stroke="#3971bf" fill="#4180d9" d=" m 18.6,0  h 42.8234375 a 18.6 18.6 0 0,1 18.6,18.6  v 0 a 18.6 18.6 0 0,1 -18.6,18.6  V 37.2  h -42.8234375 a 18.6 18.6 0 0,1 -18.6,-18.6  v 0 a 18.6 18.6 0 0,1 18.6,-18.6 z&#10;"/><g class="blocklyEditableText" transform="translate(12,4.000000000000002)" style="cursor: text;"><rect rx="4" ry="4" x="0" y="0" height="29.2" width="33.796875" class="blocklyFieldRect" stroke="#3971bf" style="display: block;"/><text class="blocklyText" dominant-baseline="central" x="8" y="14.6">50</text></g><g transform="translate(53.796875,9.600000000000001)"><text class="blocklyText" dominant-baseline="central" x="0" y="9">%</text></g></g><g transform="translate(8,9.100000000000001)"><image height="30px" width="28px" alt="*" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAyOCAzMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzLCA1KSI+CiAgICA8cGF0aCBkPSJtMjQuNjgxIDE1LjUwNC0yLjI0My0xLjIzOTljMC4yMjY0LTEuMTY5NCAwLjIyNjQtMi4zNjg5IDAtMy41MzgzbDIuMjQzLTEuMjM5OWMwLjI1Nzk5LTAuMTQxMTMgMC4zNzM4Mi0wLjQzMzQ3IDAuMjg5NTgtMC43MDU2NC0wLjU4NDQzLTEuNzk0My0xLjU3OTUtMy40MTczLTIuODgtNC43NjgxLTAuMjAwMDgtMC4yMDY2NS0wLjUyNjUyLTAuMjU3MDYtMC43NzkyNC0wLjExNTkzbC0yLjI0MyAxLjIzOTljLTAuOTQyNDYtMC43NzYyMS0yLjAyNzEtMS4zNzYtMy4yMDEyLTEuNzY5MXYtMi40NzQ4YzAtMC4yODIyNi0wLjIwNTM0LTAuNTI5MjMtMC40OTQ5Mi0wLjU4OTcyLTEuOTMyMy0wLjQxMzMtMy45MTItMC4zOTMxNC01Ljc0OTUgMC0wLjI4OTU4IDAuMDYwNDg0LTAuNDk0OTIgMC4zMDc0Ni0wLjQ5NDkyIDAuNTg5NzJ2Mi40Nzk4Yy0xLjE2ODkgMC4zOTgxOC0yLjI1MzUgMC45OTc5OC0zLjIwMTIgMS43NjkxbC0yLjIzNzctMS4yMzk5Yy0wLjI1Nzk5LTAuMTQxMTMtMC41NzkxNy0wLjA5NTc2Ni0wLjc3OTI0IDAuMTE1OTMtMS4zMDA1IDEuMzQ1OC0yLjI5NTYgMi45Njg3LTIuODggNC43NjgxLTAuMDg5NTA3IDAuMjcyMTggMC4wMzE1OTEgMC41NjQ1MSAwLjI4OTU4IDAuNzA1NjRsMi4yNDMgMS4yMzk5Yy0wLjIyNjQgMS4xNjk0LTAuMjI2NCAyLjM2ODkgMCAzLjUzODNsLTIuMjQzIDEuMjM5OWMtMC4yNTc5OSAwLjE0MTEzLTAuMzczODMgMC40MzM0Ny0wLjI4OTU4IDAuNzA1NjQgMC41ODQ0MyAxLjc5NDMgMS41Nzk1IDMuNDE3MyAyLjg4IDQuNzY4MSAwLjIwMDA4IDAuMjA2NjUgMC41MjY1MSAwLjI1NzA2IDAuNzc5MjQgMC4xMTU5M2wyLjI0My0xLjIzOTljMC45NDI0NiAwLjc3NjIxIDIuMDI3MSAxLjM3NiAzLjIwMTIgMS43NjkxdjIuNDc5OGMwIDAuMjgyMjYgMC4yMDUzNCAwLjUyOTIzIDAuNDk0OTIgMC41ODk3MiAxLjkzMjMgMC40MTMzIDMuOTEyIDAuMzkzMTQgNS43NDk1IDAgMC4yODk1OC0wLjA2MDQ4IDAuNDk0OTItMC4zMDc0NiAwLjQ5NDkyLTAuNTg5NzJ2LTIuNDc5OGMxLjE2ODktMC4zOTgxOCAyLjI1MzUtMC45OTc5OCAzLjIwMTItMS43NjkxbDIuMjQzIDEuMjM5OWMwLjI1Nzk5IDAuMTQxMTMgMC41NzkxNiAwLjA5NTc3IDAuNzc5MjQtMC4xMTU5MyAxLjMwMDUtMS4zNDU4IDIuMjk1Ni0yLjk2ODcgMi44OC00Ljc2ODEgMC4wNzg5OC0wLjI3NzIyLTAuMDM2ODYtMC41Njk1Ni0wLjI5NDg1LTAuNzEwNjh6bS0xMi4xODQgMS4wMjMyYy0yLjMyMTkgMC00LjIxMjEtMS44MDk1LTQuMjEyMS00LjAzMjJzMS44OTAyLTQuMDMyMiA0LjIxMjEtNC4wMzIyYzIuMzIxOSAwIDQuMjEyMSAxLjgwOTUgNC4yMTIxIDQuMDMyMnMtMS44OTAyIDQuMDMyMi00LjIxMjEgNC4wMzIyeiIgZmlsbD0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIuMDUxNTE1Ii8+CiAgPC9nPgo8L3N2Zz4="/></g><g transform="translate(44,9.100000000000001)"><image height="30px" width="3px" alt="*" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAzIDMwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIj4KICAgIDxwYXRoIGQ9Im0yLjUgMC41djI5IiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLW9wYWNpdHk9Ii4yNjI1Ii8+CiAgPC9nPgo8L3N2Zz4="/></g><g transform="translate(207.4609375,15.600000000000001)"><text class="blocklyText" dominant-baseline="central" x="0" y="9">power at</text></g><g transform="translate(369.2734375,15.600000000000001)"><text class="blocklyText" dominant-baseline="central" x="0" y="9">duty cycle</text></g></g></g></svg>
+</div><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">dc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">duty</span></span></em><span class="sig-paren">)</span></dt>
+<dd><p>Rotates the motor at a given duty cycle (also known as “power”).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>duty</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>%</em>) – The duty cycle (-100.0 to 100).</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="svg-container"><!-- Copyright (c) 2023 The Pybricks Authors. All rights reserved. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 345.03125 52" class="blocklySvg pybricks_renderer-renderer pybricks-zelos-light-theme" width="345.03125" height="52" style="background-color: transparent"><style xmlns="http://www.w3.org/1999/xhtml">.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyText,
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyFlyoutLabelText {
+font: bold 12pt "Helvetica Neue", "Segoe UI", Helvetica, sans-serif;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyText {
+fill: #fff;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyNonEditableText&gt;rect:not(.blocklyDropdownRect),
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyEditableText&gt;rect:not(.blocklyDropdownRect) {
+fill: #fff;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyNonEditableText&gt;text,
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyEditableText&gt;text,
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyNonEditableText&gt;g&gt;text,
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyEditableText&gt;g&gt;text {
+fill: #575E75;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyFlyoutLabelText {
+fill: #575E75;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyText.blocklyBubbleText {
+fill: #575E75;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyDraggable:not(.blocklyDisabled)
+ .blocklyEditableText:not(.editing):hover&gt;rect,
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyDraggable:not(.blocklyDisabled)
+ .blocklyEditableText:not(.editing):hover&gt;.blocklyPath {
+stroke: #fff;
+stroke-width: 2;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyHtmlInput {
+font-family: "Helvetica Neue", "Segoe UI", Helvetica, sans-serif;
+font-weight: bold;
+color: #575E75;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyDropdownText {
+fill: #fff !important;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme.blocklyWidgetDiv .goog-menuitem,
+.pybricks_renderer-renderer.pybricks-zelos-light-theme.blocklyDropDownDiv .goog-menuitem {
+font-family: "Helvetica Neue", "Segoe UI", Helvetica, sans-serif;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme.blocklyDropDownDiv .goog-menuitem-content {
+color: #fff;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyHighlightedConnectionPath {
+stroke: #ffffff;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyDisabled &gt; .blocklyOutlinePath {
+fill: url(#blocklyDisabledPattern8106945446883995)
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyInsertionMarker&gt;.blocklyPath {
+fill-opacity: 0.2;
+stroke: none;
+}
+
+.blocklySvg {
+  background-color: #fff;
+  outline: none;
+  overflow: hidden;  /* IE overflows by default. */
+  position: absolute;
+  display: block;
+}
+
+.blocklyWidgetDiv {
+  display: none;
+  position: absolute;
+  z-index: 99999;  /* big value for bootstrap3 compatibility */
+}
+
+.injectionDiv {
+  height: 100%;
+  position: relative;
+  overflow: hidden;  /* So blocks in drag surface disappear at edges */
+  touch-action: none;
+}
+
+.blocklyNonSelectable {
+  user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+}
+
+.blocklyBlockCanvas.blocklyCanvasTransitioning,
+.blocklyBubbleCanvas.blocklyCanvasTransitioning {
+  transition: transform .5s;
+}
+
+.blocklyTooltipDiv {
+  background-color: #ffffc7;
+  border: 1px solid #ddc;
+  box-shadow: 4px 4px 20px 1px rgba(0,0,0,.15);
+  color: #000;
+  display: none;
+  font: 9pt sans-serif;
+  opacity: .9;
+  padding: 2px;
+  position: absolute;
+  z-index: 100000;  /* big value for bootstrap3 compatibility */
+}
+
+.blocklyDropDownDiv {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  display: none;
+  border: 1px solid;
+  border-color: #dadce0;
+  background-color: #fff;
+  border-radius: 2px;
+  padding: 4px;
+  box-shadow: 0 0 3px 1px rgba(0,0,0,.3);
+}
+
+.blocklyDropDownDiv.blocklyFocused {
+  box-shadow: 0 0 6px 1px rgba(0,0,0,.3);
+}
+
+.blocklyDropDownContent {
+  max-height: 300px;  /* @todo: spec for maximum height. */
+  overflow: auto;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.blocklyDropDownArrow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  z-index: -1;
+  background-color: inherit;
+  border-color: inherit;
+}
+
+.blocklyDropDownButton {
+  display: inline-block;
+  float: left;
+  padding: 0;
+  margin: 4px;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid;
+  transition: box-shadow .1s;
+  cursor: pointer;
+}
+
+.blocklyArrowTop {
+  border-top: 1px solid;
+  border-left: 1px solid;
+  border-top-left-radius: 4px;
+  border-color: inherit;
+}
+
+.blocklyArrowBottom {
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+  border-bottom-right-radius: 4px;
+  border-color: inherit;
+}
+
+.blocklyResizeSE {
+  cursor: se-resize;
+  fill: #aaa;
+}
+
+.blocklyResizeSW {
+  cursor: sw-resize;
+  fill: #aaa;
+}
+
+.blocklyResizeLine {
+  stroke: #515A5A;
+  stroke-width: 1;
+}
+
+.blocklyHighlightedConnectionPath {
+  fill: none;
+  stroke: #fc3;
+  stroke-width: 4px;
+}
+
+.blocklyPathLight {
+  fill: none;
+  stroke-linecap: round;
+  stroke-width: 1;
+}
+
+.blocklySelected&gt;.blocklyPathLight {
+  display: none;
+}
+
+.blocklyDraggable {
+  cursor: grab;
+  cursor: -webkit-grab;
+}
+
+.blocklyDragging {
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+
+  /* Changes cursor on mouse down. Not effective in Firefox because of
+     https://bugzilla.mozilla.org/show_bug.cgi?id=771241 */
+.blocklyDraggable:active {
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+
+.blocklyDragging.blocklyDraggingDelete {
+  cursor: url("https://blockly-demo.appspot.com/static/media/handdelete.cur"), auto;
+}
+
+.blocklyDragging&gt;.blocklyPath,
+.blocklyDragging&gt;.blocklyPathLight {
+  fill-opacity: .8;
+  stroke-opacity: .8;
+}
+
+.blocklyDragging&gt;.blocklyPathDark {
+  display: none;
+}
+
+.blocklyDisabled&gt;.blocklyPath {
+  fill-opacity: .5;
+  stroke-opacity: .5;
+}
+
+.blocklyDisabled&gt;.blocklyPathLight,
+.blocklyDisabled&gt;.blocklyPathDark {
+  display: none;
+}
+
+.blocklyInsertionMarker&gt;.blocklyPath,
+.blocklyInsertionMarker&gt;.blocklyPathLight,
+.blocklyInsertionMarker&gt;.blocklyPathDark {
+  fill-opacity: .2;
+  stroke: none;
+}
+
+.blocklyMultilineText {
+  font-family: monospace;
+}
+
+.blocklyNonEditableText&gt;text {
+  pointer-events: none;
+}
+
+.blocklyFlyout {
+  position: absolute;
+  z-index: 20;
+}
+
+.blocklyText text {
+  cursor: default;
+}
+
+/*
+  Don't allow users to select text.  It gets annoying when trying to
+  drag a block and selected text moves instead.
+*/
+.blocklySvg text {
+  user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  cursor: inherit;
+}
+
+.blocklyHidden {
+  display: none;
+}
+
+.blocklyFieldDropdown:not(.blocklyHidden) {
+  display: block;
+}
+
+.blocklyIconGroup {
+  cursor: default;
+}
+
+.blocklyIconGroup:not(:hover),
+.blocklyIconGroupReadonly {
+  opacity: .6;
+}
+
+.blocklyIconShape {
+  fill: #00f;
+  stroke: #fff;
+  stroke-width: 1px;
+}
+
+.blocklyIconSymbol {
+  fill: #fff;
+}
+
+.blocklyMinimalBody {
+  margin: 0;
+  padding: 0;
+}
+
+.blocklyHtmlInput {
+  border: none;
+  border-radius: 4px;
+  height: 100%;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+  display: block;
+  box-sizing: border-box;
+}
+
+/* Remove the increase and decrease arrows on the field number editor */
+input.blocklyHtmlInput[type=number]::-webkit-inner-spin-button,
+input.blocklyHtmlInput[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.blocklyMainBackground {
+  stroke-width: 1;
+  stroke: #c6c6c6;  /* Equates to #ddd due to border being off-pixel. */
+}
+
+.blocklyMutatorBackground {
+  fill: #fff;
+  stroke: #ddd;
+  stroke-width: 1;
+}
+
+.blocklyFlyoutBackground {
+  fill: #ddd;
+  fill-opacity: .8;
+}
+
+.blocklyMainWorkspaceScrollbar {
+  z-index: 20;
+}
+
+.blocklyFlyoutScrollbar {
+  z-index: 30;
+}
+
+.blocklyScrollbarHorizontal,
+.blocklyScrollbarVertical {
+  position: absolute;
+  outline: none;
+}
+
+.blocklyScrollbarBackground {
+  opacity: 0;
+}
+
+.blocklyScrollbarHandle {
+  fill: #ccc;
+}
+
+.blocklyScrollbarBackground:hover+.blocklyScrollbarHandle,
+.blocklyScrollbarHandle:hover {
+  fill: #bbb;
+}
+
+/* Darken flyout scrollbars due to being on a grey background. */
+/* By contrast, workspace scrollbars are on a white background. */
+.blocklyFlyout .blocklyScrollbarHandle {
+  fill: #bbb;
+}
+
+.blocklyFlyout .blocklyScrollbarBackground:hover+.blocklyScrollbarHandle,
+.blocklyFlyout .blocklyScrollbarHandle:hover {
+  fill: #aaa;
+}
+
+.blocklyInvalidInput {
+  background: #faa;
+}
+
+.blocklyVerticalMarker {
+  stroke-width: 3px;
+  fill: rgba(255,255,255,.5);
+  pointer-events: none;
+}
+
+.blocklyComputeCanvas {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.blocklyNoPointerEvents {
+  pointer-events: none;
+}
+
+.blocklyContextMenu {
+  border-radius: 4px;
+  max-height: 100%;
+}
+
+.blocklyDropdownMenu {
+  border-radius: 2px;
+  padding: 0 !important;
+}
+
+.blocklyDropdownMenu .blocklyMenuItem {
+  /* 28px on the left for icon or checkbox. */
+  padding-left: 28px;
+}
+
+/* BiDi override for the resting state. */
+.blocklyDropdownMenu .blocklyMenuItemRtl {
+  /* Flip left/right padding for BiDi. */
+  padding-left: 5px;
+  padding-right: 28px;
+}
+
+.blocklyWidgetDiv .blocklyMenu {
+  background: #fff;
+  border: 1px solid transparent;
+  box-shadow: 0 0 3px 1px rgba(0,0,0,.3);
+  font: normal 13px Arial, sans-serif;
+  margin: 0;
+  outline: none;
+  padding: 4px 0;
+  position: absolute;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 100%;
+  z-index: 20000;  /* Arbitrary, but some apps depend on it... */
+}
+
+.blocklyWidgetDiv .blocklyMenu.blocklyFocused {
+  box-shadow: 0 0 6px 1px rgba(0,0,0,.3);
+}
+
+.blocklyDropDownDiv .blocklyMenu {
+  background: inherit;  /* Compatibility with gapi, reset from goog-menu */
+  border: inherit;  /* Compatibility with gapi, reset from goog-menu */
+  font: normal 13px "Helvetica Neue", Helvetica, sans-serif;
+  outline: none;
+  position: relative;  /* Compatibility with gapi, reset from goog-menu */
+  z-index: 20000;  /* Arbitrary, but some apps depend on it... */
+}
+
+/* State: resting. */
+.blocklyMenuItem {
+  border: none;
+  color: #000;
+  cursor: pointer;
+  list-style: none;
+  margin: 0;
+  /* 7em on the right for shortcut. */
+  min-width: 7em;
+  padding: 6px 15px;
+  white-space: nowrap;
+}
+
+/* State: disabled. */
+.blocklyMenuItemDisabled {
+  color: #ccc;
+  cursor: inherit;
+}
+
+/* State: hover. */
+.blocklyMenuItemHighlight {
+  background-color: rgba(0,0,0,.1);
+}
+
+/* State: selected/checked. */
+.blocklyMenuItemCheckbox {
+  height: 16px;
+  position: absolute;
+  width: 16px;
+}
+
+.blocklyMenuItemSelected .blocklyMenuItemCheckbox {
+  background: url(https://blockly-demo.appspot.com/static/media/sprites.png) no-repeat -48px -16px;
+  float: left;
+  margin-left: -24px;
+  position: static;  /* Scroll with the menu. */
+}
+
+.blocklyMenuItemRtl .blocklyMenuItemCheckbox {
+  float: right;
+  margin-right: -24px;
+}
+
+
+.blocklyZoom&gt;image, .blocklyZoom&gt;svg&gt;image {
+  opacity: .4;
+}
+
+.blocklyZoom&gt;image:hover, .blocklyZoom&gt;svg&gt;image:hover {
+  opacity: .6;
+}
+
+.blocklyZoom&gt;image:active, .blocklyZoom&gt;svg&gt;image:active {
+  opacity: .8;
+}
+
+
+.blocklyCommentForeignObject {
+  position: relative;
+  z-index: 0;
+}
+
+.blocklyCommentRect {
+  fill: #E7DE8E;
+  stroke: #bcA903;
+  stroke-width: 1px;
+}
+
+.blocklyCommentTarget {
+  fill: transparent;
+  stroke: #bcA903;
+}
+
+.blocklyCommentTargetFocused {
+  fill: none;
+}
+
+.blocklyCommentHandleTarget {
+  fill: none;
+}
+
+.blocklyCommentHandleTargetFocused {
+  fill: transparent;
+}
+
+.blocklyFocused&gt;.blocklyCommentRect {
+  fill: #B9B272;
+  stroke: #B9B272;
+}
+
+.blocklySelected&gt;.blocklyCommentTarget {
+  stroke: #fc3;
+  stroke-width: 3px;
+}
+
+.blocklyCommentDeleteIcon {
+  cursor: pointer;
+  fill: #000;
+  display: none;
+}
+
+.blocklySelected &gt; .blocklyCommentDeleteIcon {
+  display: block;
+}
+
+.blocklyDeleteIconShape {
+  fill: #000;
+  stroke: #000;
+  stroke-width: 1px;
+}
+
+.blocklyDeleteIconShape.blocklyDeleteIconHighlighted {
+  stroke: #fc3;
+}
+
+
+.blocklyCommentTextarea {
+  background-color: #fef49c;
+  border: 0;
+  display: block;
+  margin: 0;
+  outline: 0;
+  padding: 3px;
+  resize: none;
+  text-overflow: hidden;
+}
+
+
+.blocklyAngleCircle {
+  stroke: #444;
+  stroke-width: 1;
+  fill: #ddd;
+  fill-opacity: 0.8;
+}
+
+.blocklyAngleMarks {
+  stroke: #444;
+  stroke-width: 1;
+}
+
+.blocklyAngleGauge {
+  fill: #f88;
+  fill-opacity: 0.8;
+  pointer-events: none;
+}
+
+.blocklyAngleLine {
+  stroke: #f00;
+  stroke-width: 2;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+
+
+.blocklyColourTable {
+  border-collapse: collapse;
+  display: block;
+  outline: none;
+  padding: 1px;
+}
+
+.blocklyColourTable&gt;tr&gt;td {
+  border: 0.5px solid #888;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  height: 20px;
+  padding: 0;
+  width: 20px;
+}
+
+.blocklyColourTable&gt;tr&gt;td.blocklyColourHighlighted {
+  border-color: #eee;
+  box-shadow: 2px 2px 7px 2px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.blocklyColourSelected, .blocklyColourSelected:hover {
+  border-color: #eee !important;
+  outline: 1px solid #333;
+  position: relative;
+}
+
+
+.blocklyHtmlTextAreaInput {
+  font-family: monospace;
+  resize: none;
+  overflow: hidden;
+  height: 100%;
+  text-align: left;
+}
+
+.blocklyHtmlTextAreaInputOverflowedY {
+  overflow-y: scroll;
+}
+
+
+.blocklyFlyoutButton {
+  fill: #888;
+  cursor: default;
+}
+
+.blocklyFlyoutButtonShadow {
+  fill: #666;
+}
+
+.blocklyFlyoutButton:hover {
+  fill: #aaa;
+}
+
+.blocklyFlyoutLabel {
+  cursor: default;
+}
+
+.blocklyFlyoutLabelBackground {
+  opacity: 0;
+}
+
+
+.blocklyTreeRow:not(.blocklyTreeSelected):hover {
+  background-color: rgba(255, 255, 255, .2);
+}
+
+.blocklyToolboxDiv[layout="h"] .blocklyToolboxCategory {
+  margin: 1px 5px 1px 0;
+}
+
+.blocklyToolboxDiv[dir="RTL"][layout="h"] .blocklyToolboxCategory {
+  margin: 1px 0 1px 5px;
+}
+
+.blocklyTreeRow {
+  height: 22px;
+  line-height: 22px;
+  margin-bottom: 3px;
+  padding-right: 8px;
+  white-space: nowrap;
+}
+
+.blocklyToolboxDiv[dir="RTL"] .blocklyTreeRow {
+  margin-left: 8px;
+  padding-right: 0;
+}
+
+.blocklyTreeIcon {
+  background-image: url(https://blockly-demo.appspot.com/static/media/sprites.png);
+  height: 16px;
+  vertical-align: middle;
+  visibility: hidden;
+  width: 16px;
+}
+
+.blocklyTreeIconClosed {
+  background-position: -32px -1px;
+}
+
+.blocklyToolboxDiv[dir="RTL"] .blocklyTreeIconClosed {
+  background-position: 0 -1px;
+}
+
+.blocklyTreeSelected&gt;.blocklyTreeIconClosed {
+  background-position: -32px -17px;
+}
+
+.blocklyToolboxDiv[dir="RTL"] .blocklyTreeSelected&gt;.blocklyTreeIconClosed {
+  background-position: 0 -17px;
+}
+
+.blocklyTreeIconOpen {
+  background-position: -16px -1px;
+}
+
+.blocklyTreeSelected&gt;.blocklyTreeIconOpen {
+  background-position: -16px -17px;
+}
+
+.blocklyTreeLabel {
+  cursor: default;
+  font: 16px sans-serif;
+  padding: 0 3px;
+  vertical-align: middle;
+}
+
+.blocklyToolboxDelete .blocklyTreeLabel {
+  cursor: url("https://blockly-demo.appspot.com/static/media/handdelete.cur"), auto;
+}
+
+.blocklyTreeSelected .blocklyTreeLabel {
+  color: #fff;
+}
+
+
+.blocklyTreeSeparator {
+  border-bottom: solid #e5e5e5 1px;
+  height: 0;
+  margin: 5px 0;
+}
+
+.blocklyToolboxDiv[layout="h"] .blocklyTreeSeparator {
+  border-right: solid #e5e5e5 1px;
+  border-bottom: none;
+  height: auto;
+  margin: 0 5px 0 5px;
+  padding: 5px 0;
+  width: 0;
+}
+
+
+.blocklyToolboxDelete {
+  cursor: url("https://blockly-demo.appspot.com/static/media/handdelete.cur"), auto;
+}
+
+.blocklyToolboxGrab {
+  cursor: url("https://blockly-demo.appspot.com/static/media/handclosed.cur"), auto;
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+
+/* Category tree in Toolbox. */
+.blocklyToolboxDiv {
+  background-color: #ddd;
+  overflow-x: visible;
+  overflow-y: auto;
+  padding: 4px 0 4px 0;
+  position: absolute;
+  z-index: 70;  /* so blocks go under toolbox when dragging */
+  -webkit-tap-highlight-color: transparent;  /* issue #1345 */
+}
+
+.blocklyToolboxContents {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.blocklyToolboxContents:focus {
+  outline: none;
+}
+
+
+.blocklyColourTable {
+  border-collapse: collapse;
+  display: block;
+  outline: none;
+  padding: 1px;
+}
+
+.blocklyColourTable&gt;tr&gt;td {
+  border: 0.5px solid #888;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  height: 20px;
+  padding: 0;
+  width: 20px;
+}
+
+.blocklyColourTable&gt;tr&gt;td.blocklyColourHighlighted {
+  border-color: #eee;
+  box-shadow: 2px 2px 7px 2px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.blocklyColourSelected, .blocklyColourSelected:hover {
+  border-color: #eee !important;
+  outline: 1px solid #333;
+  position: relative;
+}
+
+
+.fieldColourSliderContainer {
+  padding: 4px;
+}
+.fieldColourSliderContainer hr {
+  border: none;
+  border-top: 1px solid #bbb;
+}
+.fieldColourSliderLabel {
+  display: flex;
+  justify-content: space-between;
+  font: 12pt "Helvetica Neue", "Segoe UI", Helvetica, sans-serif;
+}
+.fieldColourEyedropper {
+  appearance: none;
+  position: relative;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.fieldColourEyedropper:hover {
+  background: rgba(0,0,0,0.1)
+}
+.fieldColourEyedropper input {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.fieldColourEyedropper::before {
+  content: "Eyedropper";
+}
+.fieldColourEyedropper::after {
+  content: "";
+  margin-left: 8px;
+  width: 24px;
+  height: 24px;
+  background: currentColor;
+  pointer-events: none;
+  -webkit-mask-image: var(--customize-dial-symbol);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-image: var(--customize-dial-symbol);
+  mask-repeat: no-repeat;
+  mask-position: center;
+  --customize-dial-symbol: url('data:image/svg+xml,    &lt;svg xmlns="http://www.w3.org/2000/svg"          width="24px" height="24px"          viewBox="0 0 24 24"&gt;       &lt;path stroke="black" strokewidth="1.414" fill="none"             d="m 13 8 L 6 15 Q 3 18 2 21 Q 0 23 .5 23.5 Q 1 24 3 22                 Q 6 21 9 18 L 16 11"/&gt;       &lt;path fill="black"             d="m 12 7 Q 11 6 12 5 Q 13 4 14 5 Q 15 6 16 5 Q 20 -1 22.5 1.5                 Q 25 4 19 8 Q 18 9 19 10 Q 20 11 19 12 Q 18 13 17 12"/&gt;     &lt;/svg&gt;');
+}
+.fieldColourSlider {
+  -webkit-appearance: none;
+  width: 150px;
+  height: 24px;
+  margin: 4px 8px 24px 8px;
+  padding: 0;
+}
+.fieldColourSlider:last-child {
+  margin-bottom: 4px;
+}
+.fieldColourSlider:focus {
+  outline: none;
+}
+/* Webkit */
+.fieldColourSlider::-webkit-slider-runnable-track {
+  background: var(--slider-track-background);
+  border-radius: 8px;
+  height: 16px;
+}
+.fieldColourSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(0,0,0,.15);
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  margin-top: -4px;
+}
+/* Firefox */
+.fieldColourSlider::-moz-range-track {
+  background: var(--slider-track-background);
+  border-radius: 8px;
+  height: 16px;
+}
+.fieldColourSlider::-moz-range-thumb {
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(0,0,0,.15);
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+}
+.fieldColourSlider::-moz-focus-outer {
+  /* override the focus border style */
+  border: 0;
+}
+/* IE */
+.fieldColourSlider::-ms-track {
+  background: var(--slider-track-background);
+  border-radius: 12px;
+  width: 100%;
+  height: 24px;
+  /* remove default tick marks */
+  color: transparent;
+}
+.fieldColourSlider::-ms-fill-lower  {
+  background: transparent;
+}
+.fieldColourSlider::-ms-fill-upper  {
+  background: transparent;
+}
+.fieldColourSlider::-ms-thumb {
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(0,0,0,.15);
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+}
+
+
+  .controlsIconStyle {
+    opacity: 0.2;
+  }
+  .controlsIconStyle:hover {
+    opacity: 0.4;
+  }
+  .controlsIconStyle:active {
+    opacity: 0.6;
+  }
+  
+
+.blocklyMultiselect&gt;image, .blocklyMultiselect&gt;svg&gt;image {
+  opacity: .2;
+}
+
+.blocklyMultiselect&gt;image:hover, .blocklyMultiselect&gt;svg&gt;image:hover {
+  opacity: .4;
+}
+
+.blocklyMultiselect&gt;image:active, .blocklyMultiselect&gt;svg&gt;image:active {
+  opacity: .6;
+}
+
+</style><g transform="translate(1, 1)"><g data-id="qBo{[(GZA;TnhE`+wc91" class="blocklyDraggable"><path class="blocklyPath" stroke="#3971bf" fill="#4c97ff" d=" m 0,0  m 0,4 a 4 4 0 0,1 4,-4  h 5  c 1.6666666666666667,0  2.5,0.75  3.3333333333333335,1.5  l 3.3333333333333335,3  c 0.8333333333333334,0.75  1.6666666666666667,1.5  3.3333333333333335,1.5  h 10  c 1.6666666666666667,0  2.5,-0.75  3.3333333333333335,-1.5  l 3.3333333333333335,-3  c 0.8333333333333334,-0.75  1.6666666666666667,-1.5  3.3333333333333335,-1.5  h 300.03125 a 4 4 0 0,1 4,4  v 6  V 38  V 40  V 40 a 4 4 0 0,1 -4,4  h -300.03125  c -1.6666666666666667,0  -2.5,0.75  -3.3333333333333335,1.5  l -3.3333333333333335,3  c -0.8333333333333334,0.75  -1.6666666666666667,1.5  -3.3333333333333335,1.5  h -10  c -1.6666666666666667,0  -2.5,-0.75  -3.3333333333333335,-1.5  l -3.3333333333333335,-3  c -0.8333333333333334,-0.75  -1.6666666666666667,-1.5  -3.3333333333333335,-1.5  h -5 a 4 4 0 0,1 -4,-4 z&#10;"/><g data-id="txCu%h:acZn{/Qb58^r)" transform="translate(55, 6)" style="display: block;"><path class="blocklyPath" stroke="#3971bf" fill="#4180d9" d=" m 16,0  h 112.4609375 a 16 16 0 0,1 16,16  v 0 a 16 16 0 0,1 -16,16  V 32  h -112.4609375 a 16 16 0 0,1 -16,-16  v 0 a 16 16 0 0,1 16,-16 z&#10;"/><g class="blocklyEditableText" transform="translate(12,7)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="9">simple motor</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(108.4609375,3)"/></g></g><g data-id="5IpG4?,#`,0m-Kr}Cd=J" transform="translate(249.234375, 6)" style="display: block;"><path class="blocklyPath" stroke="#3971bf" fill="#4180d9" d=" m 16,0  h 53.796875 a 16 16 0 0,1 16,16  v 0 a 16 16 0 0,1 -16,16  V 32  h -53.796875 a 16 16 0 0,1 -16,-16  v 0 a 16 16 0 0,1 16,-16 z&#10;"/><g class="blocklyEditableText" transform="translate(12,7)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="9">coast</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(49.796875,3)"/></g></g><g transform="translate(8,6.5)"><image height="30px" width="28px" alt="*" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAyOCAzMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzLCA1KSI+CiAgICA8cGF0aCBkPSJtMjQuNjgxIDE1LjUwNC0yLjI0My0xLjIzOTljMC4yMjY0LTEuMTY5NCAwLjIyNjQtMi4zNjg5IDAtMy41MzgzbDIuMjQzLTEuMjM5OWMwLjI1Nzk5LTAuMTQxMTMgMC4zNzM4Mi0wLjQzMzQ3IDAuMjg5NTgtMC43MDU2NC0wLjU4NDQzLTEuNzk0My0xLjU3OTUtMy40MTczLTIuODgtNC43NjgxLTAuMjAwMDgtMC4yMDY2NS0wLjUyNjUyLTAuMjU3MDYtMC43NzkyNC0wLjExNTkzbC0yLjI0MyAxLjIzOTljLTAuOTQyNDYtMC43NzYyMS0yLjAyNzEtMS4zNzYtMy4yMDEyLTEuNzY5MXYtMi40NzQ4YzAtMC4yODIyNi0wLjIwNTM0LTAuNTI5MjMtMC40OTQ5Mi0wLjU4OTcyLTEuOTMyMy0wLjQxMzMtMy45MTItMC4zOTMxNC01Ljc0OTUgMC0wLjI4OTU4IDAuMDYwNDg0LTAuNDk0OTIgMC4zMDc0Ni0wLjQ5NDkyIDAuNTg5NzJ2Mi40Nzk4Yy0xLjE2ODkgMC4zOTgxOC0yLjI1MzUgMC45OTc5OC0zLjIwMTIgMS43NjkxbC0yLjIzNzctMS4yMzk5Yy0wLjI1Nzk5LTAuMTQxMTMtMC41NzkxNy0wLjA5NTc2Ni0wLjc3OTI0IDAuMTE1OTMtMS4zMDA1IDEuMzQ1OC0yLjI5NTYgMi45Njg3LTIuODggNC43NjgxLTAuMDg5NTA3IDAuMjcyMTggMC4wMzE1OTEgMC41NjQ1MSAwLjI4OTU4IDAuNzA1NjRsMi4yNDMgMS4yMzk5Yy0wLjIyNjQgMS4xNjk0LTAuMjI2NCAyLjM2ODkgMCAzLjUzODNsLTIuMjQzIDEuMjM5OWMtMC4yNTc5OSAwLjE0MTEzLTAuMzczODMgMC40MzM0Ny0wLjI4OTU4IDAuNzA1NjQgMC41ODQ0MyAxLjc5NDMgMS41Nzk1IDMuNDE3MyAyLjg4IDQuNzY4MSAwLjIwMDA4IDAuMjA2NjUgMC41MjY1MSAwLjI1NzA2IDAuNzc5MjQgMC4xMTU5M2wyLjI0My0xLjIzOTljMC45NDI0NiAwLjc3NjIxIDIuMDI3MSAxLjM3NiAzLjIwMTIgMS43NjkxdjIuNDc5OGMwIDAuMjgyMjYgMC4yMDUzNCAwLjUyOTIzIDAuNDk0OTIgMC41ODk3MiAxLjkzMjMgMC40MTMzIDMuOTEyIDAuMzkzMTQgNS43NDk1IDAgMC4yODk1OC0wLjA2MDQ4IDAuNDk0OTItMC4zMDc0NiAwLjQ5NDkyLTAuNTg5NzJ2LTIuNDc5OGMxLjE2ODktMC4zOTgxOCAyLjI1MzUtMC45OTc5OCAzLjIwMTItMS43NjkxbDIuMjQzIDEuMjM5OWMwLjI1Nzk5IDAuMTQxMTMgMC41NzkxNiAwLjA5NTc3IDAuNzc5MjQtMC4xMTU5MyAxLjMwMDUtMS4zNDU4IDIuMjk1Ni0yLjk2ODcgMi44OC00Ljc2ODEgMC4wNzg5OC0wLjI3NzIyLTAuMDM2ODYtMC41Njk1Ni0wLjI5NDg1LTAuNzEwNjh6bS0xMi4xODQgMS4wMjMyYy0yLjMyMTkgMC00LjIxMjEtMS44MDk1LTQuMjEyMS00LjAzMjJzMS44OTAyLTQuMDMyMiA0LjIxMjEtNC4wMzIyYzIuMzIxOSAwIDQuMjEyMSAxLjgwOTUgNC4yMTIxIDQuMDMyMnMtMS44OTAyIDQuMDMyMi00LjIxMjEgNC4wMzIyeiIgZmlsbD0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIuMDUxNTE1Ii8+CiAgPC9nPgo8L3N2Zz4="/></g><g transform="translate(44,6.5)"><image height="30px" width="3px" alt="*" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAzIDMwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIj4KICAgIDxwYXRoIGQ9Im0yLjUgMC41djI5IiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLW9wYWNpdHk9Ii4yNjI1Ii8+CiAgPC9nPgo8L3N2Zz4="/></g><g transform="translate(207.4609375,13)"><text class="blocklyText" dominant-baseline="central" x="0" y="9">stop</text></g></g></g></svg>
+</div><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">stop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>Stops the motor and lets it spin freely.</p>
+<p>The motor gradually stops due to friction.</p>
+</dd></dl>
+
+<div class="svg-container"><!-- Copyright (c) 2023 The Pybricks Authors. All rights reserved. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 345.9296875 52" class="blocklySvg pybricks_renderer-renderer pybricks-zelos-light-theme" width="345.9296875" height="52" style="background-color: transparent"><style xmlns="http://www.w3.org/1999/xhtml">.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyText,
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyFlyoutLabelText {
+font: bold 12pt "Helvetica Neue", "Segoe UI", Helvetica, sans-serif;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyText {
+fill: #fff;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyNonEditableText&gt;rect:not(.blocklyDropdownRect),
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyEditableText&gt;rect:not(.blocklyDropdownRect) {
+fill: #fff;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyNonEditableText&gt;text,
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyEditableText&gt;text,
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyNonEditableText&gt;g&gt;text,
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyEditableText&gt;g&gt;text {
+fill: #575E75;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyFlyoutLabelText {
+fill: #575E75;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyText.blocklyBubbleText {
+fill: #575E75;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyDraggable:not(.blocklyDisabled)
+ .blocklyEditableText:not(.editing):hover&gt;rect,
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyDraggable:not(.blocklyDisabled)
+ .blocklyEditableText:not(.editing):hover&gt;.blocklyPath {
+stroke: #fff;
+stroke-width: 2;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyHtmlInput {
+font-family: "Helvetica Neue", "Segoe UI", Helvetica, sans-serif;
+font-weight: bold;
+color: #575E75;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyDropdownText {
+fill: #fff !important;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme.blocklyWidgetDiv .goog-menuitem,
+.pybricks_renderer-renderer.pybricks-zelos-light-theme.blocklyDropDownDiv .goog-menuitem {
+font-family: "Helvetica Neue", "Segoe UI", Helvetica, sans-serif;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme.blocklyDropDownDiv .goog-menuitem-content {
+color: #fff;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyHighlightedConnectionPath {
+stroke: #ffffff;
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyDisabled &gt; .blocklyOutlinePath {
+fill: url(#blocklyDisabledPattern8106945446883995)
+}
+.pybricks_renderer-renderer.pybricks-zelos-light-theme .blocklyInsertionMarker&gt;.blocklyPath {
+fill-opacity: 0.2;
+stroke: none;
+}
+
+.blocklySvg {
+  background-color: #fff;
+  outline: none;
+  overflow: hidden;  /* IE overflows by default. */
+  position: absolute;
+  display: block;
+}
+
+.blocklyWidgetDiv {
+  display: none;
+  position: absolute;
+  z-index: 99999;  /* big value for bootstrap3 compatibility */
+}
+
+.injectionDiv {
+  height: 100%;
+  position: relative;
+  overflow: hidden;  /* So blocks in drag surface disappear at edges */
+  touch-action: none;
+}
+
+.blocklyNonSelectable {
+  user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+}
+
+.blocklyBlockCanvas.blocklyCanvasTransitioning,
+.blocklyBubbleCanvas.blocklyCanvasTransitioning {
+  transition: transform .5s;
+}
+
+.blocklyTooltipDiv {
+  background-color: #ffffc7;
+  border: 1px solid #ddc;
+  box-shadow: 4px 4px 20px 1px rgba(0,0,0,.15);
+  color: #000;
+  display: none;
+  font: 9pt sans-serif;
+  opacity: .9;
+  padding: 2px;
+  position: absolute;
+  z-index: 100000;  /* big value for bootstrap3 compatibility */
+}
+
+.blocklyDropDownDiv {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+  display: none;
+  border: 1px solid;
+  border-color: #dadce0;
+  background-color: #fff;
+  border-radius: 2px;
+  padding: 4px;
+  box-shadow: 0 0 3px 1px rgba(0,0,0,.3);
+}
+
+.blocklyDropDownDiv.blocklyFocused {
+  box-shadow: 0 0 6px 1px rgba(0,0,0,.3);
+}
+
+.blocklyDropDownContent {
+  max-height: 300px;  /* @todo: spec for maximum height. */
+  overflow: auto;
+  overflow-x: hidden;
+  position: relative;
+}
+
+.blocklyDropDownArrow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  z-index: -1;
+  background-color: inherit;
+  border-color: inherit;
+}
+
+.blocklyDropDownButton {
+  display: inline-block;
+  float: left;
+  padding: 0;
+  margin: 4px;
+  border-radius: 4px;
+  outline: none;
+  border: 1px solid;
+  transition: box-shadow .1s;
+  cursor: pointer;
+}
+
+.blocklyArrowTop {
+  border-top: 1px solid;
+  border-left: 1px solid;
+  border-top-left-radius: 4px;
+  border-color: inherit;
+}
+
+.blocklyArrowBottom {
+  border-bottom: 1px solid;
+  border-right: 1px solid;
+  border-bottom-right-radius: 4px;
+  border-color: inherit;
+}
+
+.blocklyResizeSE {
+  cursor: se-resize;
+  fill: #aaa;
+}
+
+.blocklyResizeSW {
+  cursor: sw-resize;
+  fill: #aaa;
+}
+
+.blocklyResizeLine {
+  stroke: #515A5A;
+  stroke-width: 1;
+}
+
+.blocklyHighlightedConnectionPath {
+  fill: none;
+  stroke: #fc3;
+  stroke-width: 4px;
+}
+
+.blocklyPathLight {
+  fill: none;
+  stroke-linecap: round;
+  stroke-width: 1;
+}
+
+.blocklySelected&gt;.blocklyPathLight {
+  display: none;
+}
+
+.blocklyDraggable {
+  cursor: grab;
+  cursor: -webkit-grab;
+}
+
+.blocklyDragging {
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+
+  /* Changes cursor on mouse down. Not effective in Firefox because of
+     https://bugzilla.mozilla.org/show_bug.cgi?id=771241 */
+.blocklyDraggable:active {
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+
+.blocklyDragging.blocklyDraggingDelete {
+  cursor: url("https://blockly-demo.appspot.com/static/media/handdelete.cur"), auto;
+}
+
+.blocklyDragging&gt;.blocklyPath,
+.blocklyDragging&gt;.blocklyPathLight {
+  fill-opacity: .8;
+  stroke-opacity: .8;
+}
+
+.blocklyDragging&gt;.blocklyPathDark {
+  display: none;
+}
+
+.blocklyDisabled&gt;.blocklyPath {
+  fill-opacity: .5;
+  stroke-opacity: .5;
+}
+
+.blocklyDisabled&gt;.blocklyPathLight,
+.blocklyDisabled&gt;.blocklyPathDark {
+  display: none;
+}
+
+.blocklyInsertionMarker&gt;.blocklyPath,
+.blocklyInsertionMarker&gt;.blocklyPathLight,
+.blocklyInsertionMarker&gt;.blocklyPathDark {
+  fill-opacity: .2;
+  stroke: none;
+}
+
+.blocklyMultilineText {
+  font-family: monospace;
+}
+
+.blocklyNonEditableText&gt;text {
+  pointer-events: none;
+}
+
+.blocklyFlyout {
+  position: absolute;
+  z-index: 20;
+}
+
+.blocklyText text {
+  cursor: default;
+}
+
+/*
+  Don't allow users to select text.  It gets annoying when trying to
+  drag a block and selected text moves instead.
+*/
+.blocklySvg text {
+  user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  cursor: inherit;
+}
+
+.blocklyHidden {
+  display: none;
+}
+
+.blocklyFieldDropdown:not(.blocklyHidden) {
+  display: block;
+}
+
+.blocklyIconGroup {
+  cursor: default;
+}
+
+.blocklyIconGroup:not(:hover),
+.blocklyIconGroupReadonly {
+  opacity: .6;
+}
+
+.blocklyIconShape {
+  fill: #00f;
+  stroke: #fff;
+  stroke-width: 1px;
+}
+
+.blocklyIconSymbol {
+  fill: #fff;
+}
+
+.blocklyMinimalBody {
+  margin: 0;
+  padding: 0;
+}
+
+.blocklyHtmlInput {
+  border: none;
+  border-radius: 4px;
+  height: 100%;
+  margin: 0;
+  outline: none;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+  display: block;
+  box-sizing: border-box;
+}
+
+/* Remove the increase and decrease arrows on the field number editor */
+input.blocklyHtmlInput[type=number]::-webkit-inner-spin-button,
+input.blocklyHtmlInput[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.blocklyMainBackground {
+  stroke-width: 1;
+  stroke: #c6c6c6;  /* Equates to #ddd due to border being off-pixel. */
+}
+
+.blocklyMutatorBackground {
+  fill: #fff;
+  stroke: #ddd;
+  stroke-width: 1;
+}
+
+.blocklyFlyoutBackground {
+  fill: #ddd;
+  fill-opacity: .8;
+}
+
+.blocklyMainWorkspaceScrollbar {
+  z-index: 20;
+}
+
+.blocklyFlyoutScrollbar {
+  z-index: 30;
+}
+
+.blocklyScrollbarHorizontal,
+.blocklyScrollbarVertical {
+  position: absolute;
+  outline: none;
+}
+
+.blocklyScrollbarBackground {
+  opacity: 0;
+}
+
+.blocklyScrollbarHandle {
+  fill: #ccc;
+}
+
+.blocklyScrollbarBackground:hover+.blocklyScrollbarHandle,
+.blocklyScrollbarHandle:hover {
+  fill: #bbb;
+}
+
+/* Darken flyout scrollbars due to being on a grey background. */
+/* By contrast, workspace scrollbars are on a white background. */
+.blocklyFlyout .blocklyScrollbarHandle {
+  fill: #bbb;
+}
+
+.blocklyFlyout .blocklyScrollbarBackground:hover+.blocklyScrollbarHandle,
+.blocklyFlyout .blocklyScrollbarHandle:hover {
+  fill: #aaa;
+}
+
+.blocklyInvalidInput {
+  background: #faa;
+}
+
+.blocklyVerticalMarker {
+  stroke-width: 3px;
+  fill: rgba(255,255,255,.5);
+  pointer-events: none;
+}
+
+.blocklyComputeCanvas {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+.blocklyNoPointerEvents {
+  pointer-events: none;
+}
+
+.blocklyContextMenu {
+  border-radius: 4px;
+  max-height: 100%;
+}
+
+.blocklyDropdownMenu {
+  border-radius: 2px;
+  padding: 0 !important;
+}
+
+.blocklyDropdownMenu .blocklyMenuItem {
+  /* 28px on the left for icon or checkbox. */
+  padding-left: 28px;
+}
+
+/* BiDi override for the resting state. */
+.blocklyDropdownMenu .blocklyMenuItemRtl {
+  /* Flip left/right padding for BiDi. */
+  padding-left: 5px;
+  padding-right: 28px;
+}
+
+.blocklyWidgetDiv .blocklyMenu {
+  background: #fff;
+  border: 1px solid transparent;
+  box-shadow: 0 0 3px 1px rgba(0,0,0,.3);
+  font: normal 13px Arial, sans-serif;
+  margin: 0;
+  outline: none;
+  padding: 4px 0;
+  position: absolute;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 100%;
+  z-index: 20000;  /* Arbitrary, but some apps depend on it... */
+}
+
+.blocklyWidgetDiv .blocklyMenu.blocklyFocused {
+  box-shadow: 0 0 6px 1px rgba(0,0,0,.3);
+}
+
+.blocklyDropDownDiv .blocklyMenu {
+  background: inherit;  /* Compatibility with gapi, reset from goog-menu */
+  border: inherit;  /* Compatibility with gapi, reset from goog-menu */
+  font: normal 13px "Helvetica Neue", Helvetica, sans-serif;
+  outline: none;
+  position: relative;  /* Compatibility with gapi, reset from goog-menu */
+  z-index: 20000;  /* Arbitrary, but some apps depend on it... */
+}
+
+/* State: resting. */
+.blocklyMenuItem {
+  border: none;
+  color: #000;
+  cursor: pointer;
+  list-style: none;
+  margin: 0;
+  /* 7em on the right for shortcut. */
+  min-width: 7em;
+  padding: 6px 15px;
+  white-space: nowrap;
+}
+
+/* State: disabled. */
+.blocklyMenuItemDisabled {
+  color: #ccc;
+  cursor: inherit;
+}
+
+/* State: hover. */
+.blocklyMenuItemHighlight {
+  background-color: rgba(0,0,0,.1);
+}
+
+/* State: selected/checked. */
+.blocklyMenuItemCheckbox {
+  height: 16px;
+  position: absolute;
+  width: 16px;
+}
+
+.blocklyMenuItemSelected .blocklyMenuItemCheckbox {
+  background: url(https://blockly-demo.appspot.com/static/media/sprites.png) no-repeat -48px -16px;
+  float: left;
+  margin-left: -24px;
+  position: static;  /* Scroll with the menu. */
+}
+
+.blocklyMenuItemRtl .blocklyMenuItemCheckbox {
+  float: right;
+  margin-right: -24px;
+}
+
+
+.blocklyZoom&gt;image, .blocklyZoom&gt;svg&gt;image {
+  opacity: .4;
+}
+
+.blocklyZoom&gt;image:hover, .blocklyZoom&gt;svg&gt;image:hover {
+  opacity: .6;
+}
+
+.blocklyZoom&gt;image:active, .blocklyZoom&gt;svg&gt;image:active {
+  opacity: .8;
+}
+
+
+.blocklyCommentForeignObject {
+  position: relative;
+  z-index: 0;
+}
+
+.blocklyCommentRect {
+  fill: #E7DE8E;
+  stroke: #bcA903;
+  stroke-width: 1px;
+}
+
+.blocklyCommentTarget {
+  fill: transparent;
+  stroke: #bcA903;
+}
+
+.blocklyCommentTargetFocused {
+  fill: none;
+}
+
+.blocklyCommentHandleTarget {
+  fill: none;
+}
+
+.blocklyCommentHandleTargetFocused {
+  fill: transparent;
+}
+
+.blocklyFocused&gt;.blocklyCommentRect {
+  fill: #B9B272;
+  stroke: #B9B272;
+}
+
+.blocklySelected&gt;.blocklyCommentTarget {
+  stroke: #fc3;
+  stroke-width: 3px;
+}
+
+.blocklyCommentDeleteIcon {
+  cursor: pointer;
+  fill: #000;
+  display: none;
+}
+
+.blocklySelected &gt; .blocklyCommentDeleteIcon {
+  display: block;
+}
+
+.blocklyDeleteIconShape {
+  fill: #000;
+  stroke: #000;
+  stroke-width: 1px;
+}
+
+.blocklyDeleteIconShape.blocklyDeleteIconHighlighted {
+  stroke: #fc3;
+}
+
+
+.blocklyCommentTextarea {
+  background-color: #fef49c;
+  border: 0;
+  display: block;
+  margin: 0;
+  outline: 0;
+  padding: 3px;
+  resize: none;
+  text-overflow: hidden;
+}
+
+
+.blocklyAngleCircle {
+  stroke: #444;
+  stroke-width: 1;
+  fill: #ddd;
+  fill-opacity: 0.8;
+}
+
+.blocklyAngleMarks {
+  stroke: #444;
+  stroke-width: 1;
+}
+
+.blocklyAngleGauge {
+  fill: #f88;
+  fill-opacity: 0.8;
+  pointer-events: none;
+}
+
+.blocklyAngleLine {
+  stroke: #f00;
+  stroke-width: 2;
+  stroke-linecap: round;
+  pointer-events: none;
+}
+
+
+.blocklyColourTable {
+  border-collapse: collapse;
+  display: block;
+  outline: none;
+  padding: 1px;
+}
+
+.blocklyColourTable&gt;tr&gt;td {
+  border: 0.5px solid #888;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  height: 20px;
+  padding: 0;
+  width: 20px;
+}
+
+.blocklyColourTable&gt;tr&gt;td.blocklyColourHighlighted {
+  border-color: #eee;
+  box-shadow: 2px 2px 7px 2px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.blocklyColourSelected, .blocklyColourSelected:hover {
+  border-color: #eee !important;
+  outline: 1px solid #333;
+  position: relative;
+}
+
+
+.blocklyHtmlTextAreaInput {
+  font-family: monospace;
+  resize: none;
+  overflow: hidden;
+  height: 100%;
+  text-align: left;
+}
+
+.blocklyHtmlTextAreaInputOverflowedY {
+  overflow-y: scroll;
+}
+
+
+.blocklyFlyoutButton {
+  fill: #888;
+  cursor: default;
+}
+
+.blocklyFlyoutButtonShadow {
+  fill: #666;
+}
+
+.blocklyFlyoutButton:hover {
+  fill: #aaa;
+}
+
+.blocklyFlyoutLabel {
+  cursor: default;
+}
+
+.blocklyFlyoutLabelBackground {
+  opacity: 0;
+}
+
+
+.blocklyTreeRow:not(.blocklyTreeSelected):hover {
+  background-color: rgba(255, 255, 255, .2);
+}
+
+.blocklyToolboxDiv[layout="h"] .blocklyToolboxCategory {
+  margin: 1px 5px 1px 0;
+}
+
+.blocklyToolboxDiv[dir="RTL"][layout="h"] .blocklyToolboxCategory {
+  margin: 1px 0 1px 5px;
+}
+
+.blocklyTreeRow {
+  height: 22px;
+  line-height: 22px;
+  margin-bottom: 3px;
+  padding-right: 8px;
+  white-space: nowrap;
+}
+
+.blocklyToolboxDiv[dir="RTL"] .blocklyTreeRow {
+  margin-left: 8px;
+  padding-right: 0;
+}
+
+.blocklyTreeIcon {
+  background-image: url(https://blockly-demo.appspot.com/static/media/sprites.png);
+  height: 16px;
+  vertical-align: middle;
+  visibility: hidden;
+  width: 16px;
+}
+
+.blocklyTreeIconClosed {
+  background-position: -32px -1px;
+}
+
+.blocklyToolboxDiv[dir="RTL"] .blocklyTreeIconClosed {
+  background-position: 0 -1px;
+}
+
+.blocklyTreeSelected&gt;.blocklyTreeIconClosed {
+  background-position: -32px -17px;
+}
+
+.blocklyToolboxDiv[dir="RTL"] .blocklyTreeSelected&gt;.blocklyTreeIconClosed {
+  background-position: 0 -17px;
+}
+
+.blocklyTreeIconOpen {
+  background-position: -16px -1px;
+}
+
+.blocklyTreeSelected&gt;.blocklyTreeIconOpen {
+  background-position: -16px -17px;
+}
+
+.blocklyTreeLabel {
+  cursor: default;
+  font: 16px sans-serif;
+  padding: 0 3px;
+  vertical-align: middle;
+}
+
+.blocklyToolboxDelete .blocklyTreeLabel {
+  cursor: url("https://blockly-demo.appspot.com/static/media/handdelete.cur"), auto;
+}
+
+.blocklyTreeSelected .blocklyTreeLabel {
+  color: #fff;
+}
+
+
+.blocklyTreeSeparator {
+  border-bottom: solid #e5e5e5 1px;
+  height: 0;
+  margin: 5px 0;
+}
+
+.blocklyToolboxDiv[layout="h"] .blocklyTreeSeparator {
+  border-right: solid #e5e5e5 1px;
+  border-bottom: none;
+  height: auto;
+  margin: 0 5px 0 5px;
+  padding: 5px 0;
+  width: 0;
+}
+
+
+.blocklyToolboxDelete {
+  cursor: url("https://blockly-demo.appspot.com/static/media/handdelete.cur"), auto;
+}
+
+.blocklyToolboxGrab {
+  cursor: url("https://blockly-demo.appspot.com/static/media/handclosed.cur"), auto;
+  cursor: grabbing;
+  cursor: -webkit-grabbing;
+}
+
+/* Category tree in Toolbox. */
+.blocklyToolboxDiv {
+  background-color: #ddd;
+  overflow-x: visible;
+  overflow-y: auto;
+  padding: 4px 0 4px 0;
+  position: absolute;
+  z-index: 70;  /* so blocks go under toolbox when dragging */
+  -webkit-tap-highlight-color: transparent;  /* issue #1345 */
+}
+
+.blocklyToolboxContents {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+}
+
+.blocklyToolboxContents:focus {
+  outline: none;
+}
+
+
+.blocklyColourTable {
+  border-collapse: collapse;
+  display: block;
+  outline: none;
+  padding: 1px;
+}
+
+.blocklyColourTable&gt;tr&gt;td {
+  border: 0.5px solid #888;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-block;
+  height: 20px;
+  padding: 0;
+  width: 20px;
+}
+
+.blocklyColourTable&gt;tr&gt;td.blocklyColourHighlighted {
+  border-color: #eee;
+  box-shadow: 2px 2px 7px 2px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.blocklyColourSelected, .blocklyColourSelected:hover {
+  border-color: #eee !important;
+  outline: 1px solid #333;
+  position: relative;
+}
+
+
+.fieldColourSliderContainer {
+  padding: 4px;
+}
+.fieldColourSliderContainer hr {
+  border: none;
+  border-top: 1px solid #bbb;
+}
+.fieldColourSliderLabel {
+  display: flex;
+  justify-content: space-between;
+  font: 12pt "Helvetica Neue", "Segoe UI", Helvetica, sans-serif;
+}
+.fieldColourEyedropper {
+  appearance: none;
+  position: relative;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.fieldColourEyedropper:hover {
+  background: rgba(0,0,0,0.1)
+}
+.fieldColourEyedropper input {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.fieldColourEyedropper::before {
+  content: "Eyedropper";
+}
+.fieldColourEyedropper::after {
+  content: "";
+  margin-left: 8px;
+  width: 24px;
+  height: 24px;
+  background: currentColor;
+  pointer-events: none;
+  -webkit-mask-image: var(--customize-dial-symbol);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-image: var(--customize-dial-symbol);
+  mask-repeat: no-repeat;
+  mask-position: center;
+  --customize-dial-symbol: url('data:image/svg+xml,    &lt;svg xmlns="http://www.w3.org/2000/svg"          width="24px" height="24px"          viewBox="0 0 24 24"&gt;       &lt;path stroke="black" strokewidth="1.414" fill="none"             d="m 13 8 L 6 15 Q 3 18 2 21 Q 0 23 .5 23.5 Q 1 24 3 22                 Q 6 21 9 18 L 16 11"/&gt;       &lt;path fill="black"             d="m 12 7 Q 11 6 12 5 Q 13 4 14 5 Q 15 6 16 5 Q 20 -1 22.5 1.5                 Q 25 4 19 8 Q 18 9 19 10 Q 20 11 19 12 Q 18 13 17 12"/&gt;     &lt;/svg&gt;');
+}
+.fieldColourSlider {
+  -webkit-appearance: none;
+  width: 150px;
+  height: 24px;
+  margin: 4px 8px 24px 8px;
+  padding: 0;
+}
+.fieldColourSlider:last-child {
+  margin-bottom: 4px;
+}
+.fieldColourSlider:focus {
+  outline: none;
+}
+/* Webkit */
+.fieldColourSlider::-webkit-slider-runnable-track {
+  background: var(--slider-track-background);
+  border-radius: 8px;
+  height: 16px;
+}
+.fieldColourSlider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(0,0,0,.15);
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+  margin-top: -4px;
+}
+/* Firefox */
+.fieldColourSlider::-moz-range-track {
+  background: var(--slider-track-background);
+  border-radius: 8px;
+  height: 16px;
+}
+.fieldColourSlider::-moz-range-thumb {
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(0,0,0,.15);
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+}
+.fieldColourSlider::-moz-focus-outer {
+  /* override the focus border style */
+  border: 0;
+}
+/* IE */
+.fieldColourSlider::-ms-track {
+  background: var(--slider-track-background);
+  border-radius: 12px;
+  width: 100%;
+  height: 24px;
+  /* remove default tick marks */
+  color: transparent;
+}
+.fieldColourSlider::-ms-fill-lower  {
+  background: transparent;
+}
+.fieldColourSlider::-ms-fill-upper  {
+  background: transparent;
+}
+.fieldColourSlider::-ms-thumb {
+  background: #fff;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(0,0,0,.15);
+  cursor: pointer;
+  width: 24px;
+  height: 24px;
+}
+
+
+  .controlsIconStyle {
+    opacity: 0.2;
+  }
+  .controlsIconStyle:hover {
+    opacity: 0.4;
+  }
+  .controlsIconStyle:active {
+    opacity: 0.6;
+  }
+  
+
+.blocklyMultiselect&gt;image, .blocklyMultiselect&gt;svg&gt;image {
+  opacity: .2;
+}
+
+.blocklyMultiselect&gt;image:hover, .blocklyMultiselect&gt;svg&gt;image:hover {
+  opacity: .4;
+}
+
+.blocklyMultiselect&gt;image:active, .blocklyMultiselect&gt;svg&gt;image:active {
+  opacity: .6;
+}
+
+</style><g transform="translate(1, 1)"><g data-id="twDi?4Mm1LL!u2hoaAeh" class="blocklyDraggable"><path class="blocklyPath" stroke="#3971bf" fill="#4c97ff" d=" m 0,0  m 0,4 a 4 4 0 0,1 4,-4  h 5  c 1.6666666666666667,0  2.5,0.75  3.3333333333333335,1.5  l 3.3333333333333335,3  c 0.8333333333333334,0.75  1.6666666666666667,1.5  3.3333333333333335,1.5  h 10  c 1.6666666666666667,0  2.5,-0.75  3.3333333333333335,-1.5  l 3.3333333333333335,-3  c 0.8333333333333334,-0.75  1.6666666666666667,-1.5  3.3333333333333335,-1.5  h 300.9296875 a 4 4 0 0,1 4,4  v 6  V 38  V 40  V 40 a 4 4 0 0,1 -4,4  h -300.9296875  c -1.6666666666666667,0  -2.5,0.75  -3.3333333333333335,1.5  l -3.3333333333333335,3  c -0.8333333333333334,0.75  -1.6666666666666667,1.5  -3.3333333333333335,1.5  h -10  c -1.6666666666666667,0  -2.5,-0.75  -3.3333333333333335,-1.5  l -3.3333333333333335,-3  c -0.8333333333333334,-0.75  -1.6666666666666667,-1.5  -3.3333333333333335,-1.5  h -5 a 4 4 0 0,1 -4,-4 z&#10;"/><g data-id="$m)97zODM_[LamnP7SQ." transform="translate(55, 6)" style="display: block;"><path class="blocklyPath" stroke="#3971bf" fill="#4180d9" d=" m 16,0  h 112.4609375 a 16 16 0 0,1 16,16  v 0 a 16 16 0 0,1 -16,16  V 32  h -112.4609375 a 16 16 0 0,1 -16,-16  v 0 a 16 16 0 0,1 16,-16 z&#10;"/><g class="blocklyEditableText" transform="translate(12,7)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="9">simple motor</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(108.4609375,3)"/></g></g><g data-id=".!z,6oY1Mabu=P/-hU3T" transform="translate(249.234375, 6)" style="display: block;"><path class="blocklyPath" stroke="#3971bf" fill="#4180d9" d=" m 16,0  h 54.6953125 a 16 16 0 0,1 16,16  v 0 a 16 16 0 0,1 -16,16  V 32  h -54.6953125 a 16 16 0 0,1 -16,-16  v 0 a 16 16 0 0,1 16,-16 z&#10;"/><g class="blocklyEditableText" transform="translate(12,7)" style="cursor: default;"><text class="blocklyText blocklyDropdownText" dominant-baseline="central" text-anchor="start" x="0" y="9">brake</text><image style="display: none;"/><image height="12px" width="12px" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PHN2ZyBpZD0iTGF5ZXJfMSIgZGF0YS1uYW1lPSJMYXllciAxIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMi43MSIgaGVpZ2h0PSI4Ljc5IiB2aWV3Qm94PSIwIDAgMTIuNzEgOC43OSI+PHRpdGxlPmRyb3Bkb3duLWFycm93PC90aXRsZT48ZyBvcGFjaXR5PSIwLjEiPjxwYXRoIGQ9Ik0xMi43MSwyLjQ0QTIuNDEsMi40MSwwLDAsMSwxMiw0LjE2TDguMDgsOC4wOGEyLjQ1LDIuNDUsMCwwLDEtMy40NSwwTDAuNzIsNC4xNkEyLjQyLDIuNDIsMCwwLDEsMCwyLjQ0LDIuNDgsMi40OCwwLDAsMSwuNzEuNzFDMSwwLjQ3LDEuNDMsMCw2LjM2LDBTMTEuNzUsMC40NiwxMiwuNzFBMi40NCwyLjQ0LDAsMCwxLDEyLjcxLDIuNDRaIiBmaWxsPSIjMjMxZjIwIi8+PC9nPjxwYXRoIGQ9Ik02LjM2LDcuNzlhMS40MywxLjQzLDAsMCwxLTEtLjQyTDEuNDIsMy40NWExLjQ0LDEuNDQsMCwwLDEsMC0yYzAuNTYtLjU2LDkuMzEtMC41Niw5Ljg3LDBhMS40NCwxLjQ0LDAsMCwxLDAsMkw3LjM3LDcuMzdBMS40MywxLjQzLDAsMCwxLDYuMzYsNy43OVoiIGZpbGw9IiNmZmYiLz48L3N2Zz4=" transform="translate(50.6953125,3)"/></g></g><g transform="translate(8,6.5)"><image height="30px" width="28px" alt="*" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAyOCAzMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzLCA1KSI+CiAgICA8cGF0aCBkPSJtMjQuNjgxIDE1LjUwNC0yLjI0My0xLjIzOTljMC4yMjY0LTEuMTY5NCAwLjIyNjQtMi4zNjg5IDAtMy41MzgzbDIuMjQzLTEuMjM5OWMwLjI1Nzk5LTAuMTQxMTMgMC4zNzM4Mi0wLjQzMzQ3IDAuMjg5NTgtMC43MDU2NC0wLjU4NDQzLTEuNzk0My0xLjU3OTUtMy40MTczLTIuODgtNC43NjgxLTAuMjAwMDgtMC4yMDY2NS0wLjUyNjUyLTAuMjU3MDYtMC43NzkyNC0wLjExNTkzbC0yLjI0MyAxLjIzOTljLTAuOTQyNDYtMC43NzYyMS0yLjAyNzEtMS4zNzYtMy4yMDEyLTEuNzY5MXYtMi40NzQ4YzAtMC4yODIyNi0wLjIwNTM0LTAuNTI5MjMtMC40OTQ5Mi0wLjU4OTcyLTEuOTMyMy0wLjQxMzMtMy45MTItMC4zOTMxNC01Ljc0OTUgMC0wLjI4OTU4IDAuMDYwNDg0LTAuNDk0OTIgMC4zMDc0Ni0wLjQ5NDkyIDAuNTg5NzJ2Mi40Nzk4Yy0xLjE2ODkgMC4zOTgxOC0yLjI1MzUgMC45OTc5OC0zLjIwMTIgMS43NjkxbC0yLjIzNzctMS4yMzk5Yy0wLjI1Nzk5LTAuMTQxMTMtMC41NzkxNy0wLjA5NTc2Ni0wLjc3OTI0IDAuMTE1OTMtMS4zMDA1IDEuMzQ1OC0yLjI5NTYgMi45Njg3LTIuODggNC43NjgxLTAuMDg5NTA3IDAuMjcyMTggMC4wMzE1OTEgMC41NjQ1MSAwLjI4OTU4IDAuNzA1NjRsMi4yNDMgMS4yMzk5Yy0wLjIyNjQgMS4xNjk0LTAuMjI2NCAyLjM2ODkgMCAzLjUzODNsLTIuMjQzIDEuMjM5OWMtMC4yNTc5OSAwLjE0MTEzLTAuMzczODMgMC40MzM0Ny0wLjI4OTU4IDAuNzA1NjQgMC41ODQ0MyAxLjc5NDMgMS41Nzk1IDMuNDE3MyAyLjg4IDQuNzY4MSAwLjIwMDA4IDAuMjA2NjUgMC41MjY1MSAwLjI1NzA2IDAuNzc5MjQgMC4xMTU5M2wyLjI0My0xLjIzOTljMC45NDI0NiAwLjc3NjIxIDIuMDI3MSAxLjM3NiAzLjIwMTIgMS43NjkxdjIuNDc5OGMwIDAuMjgyMjYgMC4yMDUzNCAwLjUyOTIzIDAuNDk0OTIgMC41ODk3MiAxLjkzMjMgMC40MTMzIDMuOTEyIDAuMzkzMTQgNS43NDk1IDAgMC4yODk1OC0wLjA2MDQ4IDAuNDk0OTItMC4zMDc0NiAwLjQ5NDkyLTAuNTg5NzJ2LTIuNDc5OGMxLjE2ODktMC4zOTgxOCAyLjI1MzUtMC45OTc5OCAzLjIwMTItMS43NjkxbDIuMjQzIDEuMjM5OWMwLjI1Nzk5IDAuMTQxMTMgMC41NzkxNiAwLjA5NTc3IDAuNzc5MjQtMC4xMTU5MyAxLjMwMDUtMS4zNDU4IDIuMjk1Ni0yLjk2ODcgMi44OC00Ljc2ODEgMC4wNzg5OC0wLjI3NzIyLTAuMDM2ODYtMC41Njk1Ni0wLjI5NDg1LTAuNzEwNjh6bS0xMi4xODQgMS4wMjMyYy0yLjMyMTkgMC00LjIxMjEtMS44MDk1LTQuMjEyMS00LjAzMjJzMS44OTAyLTQuMDMyMiA0LjIxMjEtNC4wMzIyYzIuMzIxOSAwIDQuMjEyMSAxLjgwOTUgNC4yMTIxIDQuMDMyMnMtMS44OTAyIDQuMDMyMi00LjIxMjEgNC4wMzIyeiIgZmlsbD0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIuMDUxNTE1Ii8+CiAgPC9nPgo8L3N2Zz4="/></g><g transform="translate(44,6.5)"><image height="30px" width="3px" alt="*" xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCAzIDMwIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAsIDApIj4KICAgIDxwYXRoIGQ9Im0yLjUgMC41djI5IiBmaWxsPSJub25lIiBzdHJva2U9IiMwMDAiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIgc3Ryb2tlLW9wYWNpdHk9Ii4yNjI1Ii8+CiAgPC9nPgo8L3N2Zz4="/></g><g transform="translate(207.4609375,13)"><text class="blocklyText" dominant-baseline="central" x="0" y="9">stop</text></g></g></g></svg>
+</div><dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">brake</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>Passively brakes the motor.</p>
+<p>The motor stops due to friction, plus the voltage that
+is generated while the motor is still moving.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">settings</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">max_voltage</span></span></em><span class="sig-paren">)</span></dt>
+<dt class="sig sig-object py">
+<span class="sig-name descname"><span class="pre">settings</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="../micropython/builtins.html#ubuiltins.int" title="ubuiltins.int"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span></span></dt>
+<dd><p>Configures motor settings. If no arguments are given,
+this returns the current values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>max_voltage</strong> (<a class="reference internal" href="../signaltypes.html#numbers"><em>Number</em></a><em>, </em><em>mV</em>) – Maximum voltage applied to the motor during all motor commands.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<section id="making-a-train-drive-forever">
+<h3>Making a train drive forever<a class="headerlink" href="#making-a-train-drive-forever" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">DCMotor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize the motor.</span>
+<span class="n">train_motor</span> <span class="o">=</span> <span class="n">DCMotor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># Choose the &quot;power&quot; level for your train. Negative means reverse.</span>
+<span class="n">train_motor</span><span class="o">.</span><span class="n">dc</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="c1"># Keep doing nothing. The train just keeps going.</span>
+<span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="making-the-motor-move-back-and-forth">
+<h3>Making the motor move back and forth<a class="headerlink" href="#making-the-motor-move-back-and-forth" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">DCMotor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize a motor without rotation sensors on port A.</span>
+<span class="n">example_motor</span> <span class="o">=</span> <span class="n">DCMotor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># Make the motor go clockwise (forward) at 70% duty cycle (&quot;70% power&quot;).</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">dc</span><span class="p">(</span><span class="mi">70</span><span class="p">)</span>
+
+<span class="c1"># Wait for three seconds.</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">3000</span><span class="p">)</span>
+
+<span class="c1"># Make the motor go counterclockwise (backward) at 70% duty cycle.</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">dc</span><span class="p">(</span><span class="o">-</span><span class="mi">70</span><span class="p">)</span>
+
+<span class="c1"># Wait for three seconds.</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">3000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="changing-the-positive-direction">
+<h3>Changing the positive direction<a class="headerlink" href="#changing-the-positive-direction" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">DCMotor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span><span class="p">,</span> <span class="n">Direction</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize a motor without rotation sensors on port A,</span>
+<span class="c1"># with the positive direction as counterclockwise.</span>
+<span class="n">example_motor</span> <span class="o">=</span> <span class="n">DCMotor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">,</span> <span class="n">Direction</span><span class="o">.</span><span class="n">COUNTERCLOCKWISE</span><span class="p">)</span>
+
+<span class="c1"># When we choose a positive duty cycle, the motor now goes counterclockwise.</span>
+<span class="n">example_motor</span><span class="o">.</span><span class="n">dc</span><span class="p">(</span><span class="mi">70</span><span class="p">)</span>
+
+<span class="c1"># This is useful when your (train) motor is mounted in reverse or upside down.</span>
+<span class="c1"># By changing the positive direction, your script will be easier to read,</span>
+<span class="c1"># because a positive value now makes your train/robot go forward.</span>
+
+<span class="c1"># Wait for three seconds.</span>
+<span class="n">wait</span><span class="p">(</span><span class="mi">3000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="starting-and-stopping">
+<h3>Starting and stopping<a class="headerlink" href="#starting-and-stopping" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pybricks.pupdevices</span> <span class="kn">import</span> <span class="n">DCMotor</span>
+<span class="kn">from</span> <span class="nn">pybricks.parameters</span> <span class="kn">import</span> <span class="n">Port</span>
+<span class="kn">from</span> <span class="nn">pybricks.tools</span> <span class="kn">import</span> <span class="n">wait</span>
+
+<span class="c1"># Initialize a motor without rotation sensors on port A.</span>
+<span class="n">example_motor</span> <span class="o">=</span> <span class="n">DCMotor</span><span class="p">(</span><span class="n">Port</span><span class="o">.</span><span class="n">A</span><span class="p">)</span>
+
+<span class="c1"># Start and stop 10 times.</span>
+<span class="k">for</span> <span class="n">count</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Counter:&quot;</span><span class="p">,</span> <span class="n">count</span><span class="p">)</span>
+
+    <span class="n">example_motor</span><span class="o">.</span><span class="n">dc</span><span class="p">(</span><span class="mi">70</span><span class="p">)</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+
+    <span class="n">example_motor</span><span class="o">.</span><span class="n">stop</span><span class="p">()</span>
+    <span class="n">wait</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  
+
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
