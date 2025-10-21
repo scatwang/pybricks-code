@@ -31,7 +31,7 @@ export default function DownloadPicker() {
             clientId: googleClientId,
             developerKey: googleApiKey,
             viewId: 'DOCS',
-            viewMimeTypes: pythonFileMimeType,
+            viewMimeTypes: pythonFileMimeType + ',text/x-python-script',
             token: authToken,
             customScopes: ['https://www.googleapis.com/auth/drive'],
             setIncludeFolders: true,

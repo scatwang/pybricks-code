@@ -290,6 +290,7 @@ function* handleGoogleDriveDidSelectDownloadFiles(
             console.log(file);
             switch (file.mimeType) {
                 case '': // empty string means "could not be determined"
+                case 'text/x-python-script':
                 case pythonFileMimeType:
                     {
                         yield* put(googleDriveDownloadFile(file));
@@ -321,7 +322,7 @@ function* handleGoogleDriveDidSelectDownloadFiles(
                     break;
                 default:
                     throw new Error(
-                        `'${file.name}' has unsupported file type: ${file.type}`,
+                        `'${file.name}' has unsupported file type: ${file.mimeType} `,
                     );
             }
         }
