@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Copyright (c) 2022-2023 The Pybricks Authors
+// Copyright (c) 2022-2025 The Pybricks Authors
 
 import './installPybricksDialog.scss';
 import {
@@ -72,6 +72,8 @@ function getHubTypeFromMetadata(
             return Hub.Prime;
         case HubType.EssentialHub:
             return Hub.Essential;
+        case HubType.EV3:
+            return Hub.EV3;
         default:
             return fallback;
     }
@@ -89,6 +91,8 @@ function getHubTypeNameFromMetadata(metadata: FirmwareMetadata | undefined): str
             return 'SPIKE Prime/MINDSTORMS Robot Inventor hub';
         case HubType.EssentialHub:
             return 'SPIKE Essential hub';
+        case HubType.EV3:
+            return 'MINDSTORMS EV3 hub';
         default:
             return '?';
     }
@@ -142,11 +146,6 @@ const UnsupportedHubs: React.FunctionComponent = () => {
                         'selectHubPanel.notOnListButton.info.mindstorms.nxt',
                     )}
                 </li>
-                <li>
-                    {i18n.translate(
-                        'selectHubPanel.notOnListButton.info.mindstorms.ev3',
-                    )}
-                </li>
             </ul>
             <h4>
                 {i18n.translate('selectHubPanel.notOnListButton.info.poweredUp.title')}
@@ -168,6 +167,11 @@ const UnsupportedHubs: React.FunctionComponent = () => {
                 <li>
                     {i18n.translate(
                         'selectHubPanel.notOnListButton.info.poweredUp.mario',
+                    )}
+                </li>
+                <li>
+                    {i18n.translate(
+                        'selectHubPanel.notOnListButton.info.poweredUp.technicMove',
                     )}
                 </li>
             </ul>
@@ -453,7 +457,8 @@ export const InstallPybricksDialog: React.FunctionComponent = () => {
     const inProgress = useSelector(
         (s) =>
             s.firmware.isFirmwareFlashUsbDfuInProgress ||
-            s.firmware.isFirmwareRestoreOfficialDfuInProgress,
+            s.firmware.isFirmwareRestoreOfficialDfuInProgress ||
+            s.firmware.isFirmwareFlashEV3InProgress,
     );
     const dispatch = useDispatch();
     const [hubName, setHubName] = useState('');

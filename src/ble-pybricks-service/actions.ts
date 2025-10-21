@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Copyright (c) 2021-2024 The Pybricks Authors
+// Copyright (c) 2021-2025 The Pybricks Authors
 //
 // Actions for Bluetooth Low Energy Pybricks service
 
@@ -81,15 +81,17 @@ export const sendLegacyStartReplCommand = createAction((id: number) => ({
 /**
  * Action that requests a start user program to be sent.
  * @param id Unique identifier for this transaction.
- * @param slot The slot number of the user program to start.
+ * @param progId The program ID number of the user program to start.
  *
  * @since Pybricks Profile v1.4.0
  */
-export const sendStartUserProgramCommand = createAction((id: number, slot: number) => ({
-    type: 'blePybricksServiceCommand.action.sendStartUserProgram',
-    id,
-    slot,
-}));
+export const sendStartUserProgramCommand = createAction(
+    (id: number, progId: number) => ({
+        type: 'blePybricksServiceCommand.action.sendStartUserProgram',
+        id,
+        progId,
+    }),
+);
 
 /**
  * Action that requests to write user program metadata.
@@ -180,13 +182,15 @@ export const didFailToSendCommand = createAction((id: number, error: Error) => (
 /**
  * Action that represents a status report event received from the hub.
  * @param statusFlags The status flags.
- * @param slot The slot number of the user program that is running.
+ * @param progId The ID number of the user program that is running.
+ * @param selectedSlot The currently selected slot on the hub.
  */
 export const didReceiveStatusReport = createAction(
-    (statusFlags: number, slot: number) => ({
+    (statusFlags: number, runningProgId: number, selectedSlot: number) => ({
         type: 'blePybricksServiceEvent.action.didReceiveStatusReport',
         statusFlags,
-        slot,
+        runningProgId,
+        selectedSlot,
     }),
 );
 
@@ -224,13 +228,17 @@ export const eventProtocolError = createAction((error: Error) => ({
 /**
  * Action that is called when the Pybricks Hub Capbailities characteristic
  * is read.
+ *
+ * @since Pybricks Profile v1.2.0
+ * @changed numOfSlots added in v.1.5.0
  */
 export const blePybricksServiceDidReceiveHubCapabilities = createAction(
-    (maxWriteSize: number, flags: number, maxUserProgramSize: number) => ({
+    (maxWriteSize: number, flags: number, maxUserProgramSize: number, numOfSlots) => ({
         type: 'blePybricksServiceEvent.action.didReceiveHubCapabilities',
         maxWriteSize,
         flags,
         maxUserProgramSize,
+        numOfSlots,
     }),
 );
 

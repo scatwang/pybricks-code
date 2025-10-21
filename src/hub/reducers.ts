@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Copyright (c) 2020-2024 The Pybricks Authors
+// Copyright (c) 2020-2025 The Pybricks Authors
 
 import { Reducer, combineReducers } from 'redux';
 import * as semver from 'semver';
@@ -8,7 +8,12 @@ import {
     bleDidDisconnectPybricks,
     bleDisconnectPybricks,
 } from '../ble/actions';
-import { bleDIServiceDidReceiveSoftwareRevision } from '../ble-device-info-service/actions';
+import {
+    bleDIServiceDidReceiveFirmwareRevision,
+    bleDIServiceDidReceivePnPId,
+    bleDIServiceDidReceiveSoftwareRevision,
+} from '../ble-device-info-service/actions';
+import { getHubTypeName } from '../ble-device-info-service/protocol';
 import { HubType } from '../ble-lwp3-service/protocol';
 import {
     blePybricksServiceDidNotReceiveHubCapabilities,
@@ -21,6 +26,13 @@ import {
     Status,
     statusToFlag,
 } from '../ble-pybricks-service/protocol';
+import {
+    usbDidConnectPybricks,
+    usbDidDisconnectPybricks,
+    usbDidReceiveDeviceName,
+    usbDidReceiveFirmwareRevision,
+    usbDisconnectPybricks,
+} from '../usb/actions';
 import { pythonVersionToSemver } from '../utils/version';
 import {
     didFailToFinishDownload,
@@ -63,21 +75,31 @@ const runtime: Reducer<HubRuntimeState> = (
     // can't possibly be in any other state until we get a connect event.
     if (
         state === HubRuntimeState.Disconnected &&
-        !bleDidConnectPybricks.matches(action)
+        !bleDidConnectPybricks.matches(action) &&
+        !usbDidConnectPybricks.matches(action)
     ) {
         return state;
     }
 
-    if (bleDidConnectPybricks.matches(action)) {
+    if (
+        bleDidConnectPybricks.matches(action) ||
+        usbDidConnectPybricks.matches(action)
+    ) {
         return HubRuntimeState.Unknown;
     }
 
-    if (bleDisconnectPybricks.matches(action)) {
+    if (
+        bleDisconnectPybricks.matches(action) ||
+        usbDisconnectPybricks.matches(action)
+    ) {
         // disconnecting
         return HubRuntimeState.Unknown;
     }
 
-    if (bleDidDisconnectPybricks.matches(action)) {
+    if (
+        bleDidDisconnectPybricks.matches(action) ||
+        usbDidDisconnectPybricks.matches(action)
+    ) {
         return HubRuntimeState.Disconnected;
     }
 
@@ -139,6 +161,90 @@ const runtime: Reducer<HubRuntimeState> = (
         // failed to communicate, so state is unknown
         return HubRuntimeState.Unknown;
     }
+
+    return state;
+};
+
+const deviceName: Reducer<string> = (state = '', action) => {
+    if (
+        bleDidDisconnectPybricks.matches(action) ||
+        usbDidDisconnectPybricks.matches(action)
+    ) {
+        return '';
+    }
+
+    if (bleDidConnectPybricks.matches(action)) {
+        return action.name;
+    }
+
+    if (usbDidReceiveDeviceName.matches(action)) {
+        return action.deviceName;
+    }
+
+    return state;
+};
+
+const deviceType: Reducer<string> = (state = '', action) => {
+    if (
+        bleDidDisconnectPybricks.matches(action) ||
+        usbDidDisconnectPybricks.matches(action)
+    ) {
+        return '';
+    }
+
+    if (bleDIServiceDidReceivePnPId.matches(action)) {
+        return getHubTypeName(action.pnpId);
+    }
+
+    if (usbDidConnectPybricks.matches(action)) {
+        return getHubTypeName(action.pnpId);
+    }
+
+    return state;
+};
+
+const deviceFirmwareVersion: Reducer<string> = (state = '', action) => {
+    if (
+        bleDidDisconnectPybricks.matches(action) ||
+        usbDidDisconnectPybricks.matches(action)
+    ) {
+        return '';
+    }
+
+    if (bleDIServiceDidReceiveFirmwareRevision.matches(action)) {
+        return action.version;
+    }
+
+    if (usbDidReceiveFirmwareRevision.matches(action)) {
+        return action.version;
+    }
+
+    return state;
+};
+
+const deviceLowBatteryWarning: Reducer<boolean> = (state = false, action) => {
+    if (
+        bleDidDisconnectPybricks.matches(action) ||
+        usbDidDisconnectPybricks.matches(action)
+    ) {
+        return false;
+    }
+
+    if (didReceiveStatusReport.matches(action)) {
+        return Boolean(
+            action.statusFlags & statusToFlag(Status.BatteryLowVoltageWarning),
+        );
+    }
+
+    return state;
+};
+
+const deviceBatteryCharging: Reducer<boolean> = (state = false, action) => {
+    if (bleDidDisconnectPybricks.matches(action)) {
+        return false;
+    }
+
+    // TODO: hub does not currently have a status flag for this
 
     return state;
 };
@@ -275,8 +381,35 @@ const useLegacyStartUserProgram: Reducer<boolean> = (state = false, action) => {
     return state;
 };
 
+/*
+ * Returns number of available slots or 0 for slots not supported.
+ */
+const numOfSlots: Reducer<number> = (state = 0, action) => {
+    if (blePybricksServiceDidReceiveHubCapabilities.matches(action)) {
+        return action.numOfSlots;
+    }
+
+    return state;
+};
+
+/*
+ * Returns the currently selected slot on a connected hub.
+ */
+const selectedSlot: Reducer<number> = (state = 0, action) => {
+    if (didReceiveStatusReport.matches(action)) {
+        return action.selectedSlot;
+    }
+
+    return state;
+};
+
 export default combineReducers({
     runtime,
+    deviceName,
+    deviceType,
+    deviceFirmwareVersion,
+    deviceLowBatteryWarning,
+    deviceBatteryCharging,
     downloadProgress,
     maxBleWriteSize,
     maxUserProgramSize,
@@ -285,4 +418,6 @@ export default combineReducers({
     useLegacyDownload,
     useLegacyStdio,
     useLegacyStartUserProgram,
+    numOfSlots,
+    selectedSlot,
 });

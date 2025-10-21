@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Copyright (c) 2021-2024 The Pybricks Authors
+// Copyright (c) 2021-2025 The Pybricks Authors
 
 import { AnyAction } from 'redux';
 import {
@@ -7,9 +7,13 @@ import {
     bleDidDisconnectPybricks,
     bleDisconnectPybricks,
 } from '../ble/actions';
-import { bleDIServiceDidReceiveSoftwareRevision } from '../ble-device-info-service/actions';
-import { PnpId } from '../ble-device-info-service/protocol';
-import { HubType } from '../ble-lwp3-service/protocol';
+import {
+    bleDIServiceDidReceiveFirmwareRevision,
+    bleDIServiceDidReceivePnPId,
+    bleDIServiceDidReceiveSoftwareRevision,
+} from '../ble-device-info-service/actions';
+import { PnpId, PnpIdVendorIdSource } from '../ble-device-info-service/protocol';
+import { HubType, LegoCompanyId } from '../ble-lwp3-service/protocol';
 import {
     blePybricksServiceDidNotReceiveHubCapabilities,
     blePybricksServiceDidReceiveHubCapabilities,
@@ -40,12 +44,19 @@ type State = ReturnType<typeof reducers>;
 test('initial state', () => {
     expect(reducers(undefined, {} as AnyAction)).toMatchInlineSnapshot(`
         {
+          "deviceBatteryCharging": false,
+          "deviceFirmwareVersion": "",
+          "deviceLowBatteryWarning": false,
+          "deviceName": "",
+          "deviceType": "",
           "downloadProgress": null,
           "hasRepl": false,
           "maxBleWriteSize": 0,
           "maxUserProgramSize": 0,
+          "numOfSlots": 0,
           "preferredFileFormat": null,
           "runtime": "hub.runtime.disconnected",
+          "selectedSlot": 0,
           "useLegacyDownload": false,
           "useLegacyStartUserProgram": false,
           "useLegacyStdio": false,
@@ -158,7 +169,7 @@ describe('runtime', () => {
         expect(
             reducers(
                 { runtime: HubRuntimeState.Disconnected } as State,
-                didReceiveStatusReport(statusToFlag(Status.UserProgramRunning), 0),
+                didReceiveStatusReport(statusToFlag(Status.UserProgramRunning), 0, 0),
             ).runtime,
         ).toBe(HubRuntimeState.Disconnected);
 
@@ -166,7 +177,7 @@ describe('runtime', () => {
         expect(
             reducers(
                 { runtime: HubRuntimeState.Loading } as State,
-                didReceiveStatusReport(statusToFlag(Status.UserProgramRunning), 0),
+                didReceiveStatusReport(statusToFlag(Status.UserProgramRunning), 0, 0),
             ).runtime,
         ).toBe(HubRuntimeState.Loading);
 
@@ -174,7 +185,7 @@ describe('runtime', () => {
         expect(
             reducers(
                 { runtime: HubRuntimeState.Unknown } as State,
-                didReceiveStatusReport(statusToFlag(Status.UserProgramRunning), 0),
+                didReceiveStatusReport(statusToFlag(Status.UserProgramRunning), 0, 0),
             ).runtime,
         ).toBe(HubRuntimeState.Running);
 
@@ -182,7 +193,7 @@ describe('runtime', () => {
         expect(
             reducers(
                 { runtime: HubRuntimeState.Unknown } as State,
-                didReceiveStatusReport(0, 0),
+                didReceiveStatusReport(0, 0, 0),
             ).runtime,
         ).toBe(HubRuntimeState.Idle);
 
@@ -190,7 +201,7 @@ describe('runtime', () => {
         expect(
             reducers(
                 { runtime: HubRuntimeState.Running } as State,
-                didReceiveStatusReport(0, 0),
+                didReceiveStatusReport(0, 0, 0),
             ).runtime,
         ).toBe(HubRuntimeState.Idle);
 
@@ -198,7 +209,7 @@ describe('runtime', () => {
         expect(
             reducers(
                 { runtime: HubRuntimeState.StartingRepl } as State,
-                didReceiveStatusReport(0, 0),
+                didReceiveStatusReport(0, 0, 0),
             ).runtime,
         ).toBe(HubRuntimeState.StartingRepl);
 
@@ -206,7 +217,7 @@ describe('runtime', () => {
         expect(
             reducers(
                 { runtime: HubRuntimeState.StoppingUserProgram } as State,
-                didReceiveStatusReport(0, 0),
+                didReceiveStatusReport(0, 0, 0),
             ).runtime,
         ).toBe(HubRuntimeState.StoppingUserProgram);
     });
@@ -296,12 +307,96 @@ describe('runtime', () => {
     });
 });
 
+test('deviceName', () => {
+    const testId = 'test-id';
+    const testName = 'Test Name';
+
+    expect(
+        reducers({ deviceName: '' } as State, bleDidConnectPybricks(testId, testName))
+            .deviceName,
+    ).toBe(testName);
+
+    expect(
+        reducers({ deviceName: testName } as State, bleDidDisconnectPybricks())
+            .deviceName,
+    ).toBe('');
+});
+
+test('deviceType', () => {
+    expect(
+        reducers(
+            { deviceType: '' } as State,
+            bleDIServiceDidReceivePnPId({
+                vendorIdSource: PnpIdVendorIdSource.BluetoothSig,
+                vendorId: LegoCompanyId,
+                productId: HubType.MoveHub,
+                productVersion: 0,
+            }),
+        ).deviceType,
+    ).toBe('Move hub');
+
+    expect(
+        reducers({ deviceType: 'Move hub' } as State, bleDidDisconnectPybricks())
+            .deviceType,
+    ).toBe('');
+});
+
+test('deviceFirmwareVersion', () => {
+    const testVersion = '3.0.0';
+
+    expect(
+        reducers(
+            { deviceFirmwareVersion: '' } as State,
+            bleDIServiceDidReceiveFirmwareRevision(testVersion),
+        ).deviceFirmwareVersion,
+    ).toBe(testVersion);
+
+    expect(
+        reducers(
+            { deviceFirmwareVersion: testVersion } as State,
+            bleDidDisconnectPybricks(),
+        ).deviceFirmwareVersion,
+    ).toBe('');
+});
+
+test('deviceLowBatteryWarning', () => {
+    expect(
+        reducers(
+            { deviceLowBatteryWarning: false } as State,
+            didReceiveStatusReport(statusToFlag(Status.BatteryLowVoltageWarning), 0, 0),
+        ).deviceLowBatteryWarning,
+    ).toBeTruthy();
+
+    expect(
+        reducers(
+            { deviceLowBatteryWarning: true } as State,
+            didReceiveStatusReport(
+                ~statusToFlag(Status.BatteryLowVoltageWarning),
+                0,
+                0,
+            ),
+        ).deviceLowBatteryWarning,
+    ).toBeFalsy();
+
+    expect(
+        reducers({ deviceLowBatteryWarning: true } as State, bleDidDisconnectPybricks())
+            .deviceLowBatteryWarning,
+    ).toBeFalsy();
+});
+
+test('deviceBatteryCharging', () => {
+    expect(
+        reducers({ deviceBatteryCharging: true } as State, bleDidDisconnectPybricks())
+            .deviceBatteryCharging,
+    ).toBeFalsy();
+});
+
 describe('maxBleWriteSize', () => {
     test.each([100, 1000])('Pybricks Profile >= v1.2.0: %s', (size) => {
         expect(
             reducers(
                 { maxBleWriteSize: 0 } as State,
-                blePybricksServiceDidReceiveHubCapabilities(size, 0, 100),
+                blePybricksServiceDidReceiveHubCapabilities(size, 0, 100, 0),
             ).maxBleWriteSize,
         ).toBe(size);
     });
@@ -312,7 +407,7 @@ describe('maxUserProgramSize', () => {
         expect(
             reducers(
                 { maxUserProgramSize: 0 } as State,
-                blePybricksServiceDidReceiveHubCapabilities(23, 0, size),
+                blePybricksServiceDidReceiveHubCapabilities(23, 0, size, 0),
             ).maxUserProgramSize,
         ).toBe(size);
     });
@@ -340,7 +435,7 @@ describe('hasRepl', () => {
             expect(
                 reducers(
                     { hasRepl: true } as State,
-                    blePybricksServiceDidReceiveHubCapabilities(23, flag, 100),
+                    blePybricksServiceDidReceiveHubCapabilities(23, flag, 100, 0),
                 ).hasRepl,
             ).toBe(Boolean(flag & HubCapabilityFlag.HasRepl));
         },
@@ -374,6 +469,7 @@ describe('preferredFileFormat', () => {
                     23,
                     HubCapabilityFlag.UserProgramMultiMpy6,
                     100,
+                    0,
                 ),
             ).preferredFileFormat,
         ).toBe(FileFormat.MultiMpy6);
@@ -383,7 +479,7 @@ describe('preferredFileFormat', () => {
         expect(
             reducers(
                 { preferredFileFormat: FileFormat.MultiMpy6 } as State,
-                blePybricksServiceDidReceiveHubCapabilities(23, 0, 100),
+                blePybricksServiceDidReceiveHubCapabilities(23, 0, 100, 0),
             ).preferredFileFormat,
         ).toBeNull();
     });
@@ -403,7 +499,7 @@ describe('useLegacyDownload', () => {
         expect(
             reducers(
                 { useLegacyDownload: true } as State,
-                blePybricksServiceDidReceiveHubCapabilities(23, 0, 100),
+                blePybricksServiceDidReceiveHubCapabilities(23, 0, 100, 0),
             ).useLegacyDownload,
         ).toBeFalsy();
     });

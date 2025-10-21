@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Copyright (c) 2021-2024 The Pybricks Authors
+// Copyright (c) 2021-2025 The Pybricks Authors
 
 import { AsyncSaga } from '../../test';
 import {
@@ -35,11 +35,11 @@ describe('command encoder', () => {
             ],
         ],
         [
-            'start user program with slot',
+            'start user program with program id',
             sendStartUserProgramCommand(0, 0x2a),
             [
                 0x01, // start user program command
-                0x2a, // program slot
+                0x2a, // program ID
             ],
         ],
         [
@@ -174,7 +174,7 @@ describe('command encoder', () => {
 describe('event decoder', () => {
     test.each([
         [
-            'legacy status report',
+            'v1.3 status report',
             [
                 0x00, // status report event
                 0x01, // flags count LSB
@@ -182,7 +182,19 @@ describe('event decoder', () => {
                 0x00, // .
                 0x00, // flags count MSB
             ],
-            didReceiveStatusReport(0x00000001, 0),
+            didReceiveStatusReport(0x00000001, 0, 0),
+        ],
+        [
+            'v1.4 status report',
+            [
+                0x00, // status report event
+                0x01, // flags count LSB
+                0x00, // .
+                0x00, // .
+                0x00, // flags count MSB
+                0x80, // program ID
+            ],
+            didReceiveStatusReport(0x00000001, BuiltinProgramId.REPL, 0),
         ],
         [
             'status report',
@@ -192,9 +204,10 @@ describe('event decoder', () => {
                 0x00, // .
                 0x00, // .
                 0x00, // flags count MSB
-                0x80, // slot
+                0x80, // program ID
+                0x02, // selected slot
             ],
-            didReceiveStatusReport(0x00000001, BuiltinProgramId.REPL),
+            didReceiveStatusReport(0x00000001, BuiltinProgramId.REPL, 2),
         ],
         [
             'write stdout',

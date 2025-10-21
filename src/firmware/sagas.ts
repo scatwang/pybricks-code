@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: MIT
-// Copyright (c) 2020-2024 The Pybricks Authors
+// Copyright (c) 2020-2025 The Pybricks Authors
 
 import {
     FirmwareReader,
@@ -8,6 +8,8 @@ import {
     encodeHubName,
     metadataIsV100,
     metadataIsV110,
+    metadataIsV200,
+    metadataIsV210,
 } from '@pybricks/firmware';
 import cityHubZip from '@pybricks/firmware/build/cityhub.zip';
 import moveHubZip from '@pybricks/firmware/build/movehub.zip';
@@ -18,10 +20,12 @@ import { eventChannel } from 'redux-saga';
 import { ActionPattern } from 'redux-saga/effects';
 import {
     SagaGenerator,
+    actionChannel,
     all,
     call,
     cancel,
     delay,
+    fork,
     getContext,
     put,
     race,
@@ -61,9 +65,11 @@ import { BootloaderConnectionState } from '../lwp3-bootloader/reducers';
 import { compile, didCompile, didFailToCompile } from '../mpy/actions';
 import { RootState } from '../reducers';
 import { LegoUsbProductId, legoUsbVendorId } from '../usb';
-import { defined, ensureError, hex, maybe } from '../utils';
+import { assert, defined, ensureError, hex, maybe } from '../utils';
+import { createCountFunc } from '../utils/iter';
 import { crc32, fmod, sumComplement32 } from '../utils/math';
 import {
+    EV3OfficialFirmwareVersion,
     FailToFinishReasonType,
     HubError,
     MetadataProblem,
@@ -71,13 +77,20 @@ import {
     didFinish,
     didProgress,
     didStart,
+    firmwareDidFailToFlashEV3,
     firmwareDidFailToFlashUsbDfu,
     firmwareDidFailToRestoreOfficialDfu,
+    firmwareDidFailToRestoreOfficialEV3,
+    firmwareDidFlashEV3,
     firmwareDidFlashUsbDfu,
+    firmwareDidReceiveEV3Reply,
     firmwareDidRestoreOfficialDfu,
+    firmwareDidRestoreOfficialEV3,
+    firmwareFlashEV3,
     firmwareFlashUsbDfu,
     firmwareInstallPybricks,
     firmwareRestoreOfficialDfu,
+    firmwareRestoreOfficialEV3,
     flashFirmware,
 } from './actions';
 import { firmwareDfuWindowsDriverInstallDialogDialogShow } from './dfuWindowsDriverInstallDialog/actions';
@@ -333,6 +346,11 @@ function* loadFirmware(
         return { firmware, deviceId: metadata['device-id'] };
     }
 
+    assert(
+        metadataIsV200(metadata) || metadataIsV210(metadata),
+        'Expected metadata to be v2.x',
+    );
+
     const firmware = new Uint8Array(firmwareBase.length + 4);
     const firmwareView = new DataView(firmware.buffer);
 
@@ -351,6 +369,8 @@ function* loadFirmware(
                 );
             case 'crc32':
                 return crc32(firmwareIterator(firmwareView, metadata['checksum-size']));
+            case 'none':
+                return null;
             default:
                 return undefined;
         }
@@ -371,7 +391,9 @@ function* loadFirmware(
         throw new Error('unreachable');
     }
 
-    firmwareView.setUint32(firmwareBase.length, checksum, true);
+    if (checksum !== null) {
+        firmwareView.setUint32(firmwareBase.length, checksum, true);
+    }
 
     return { firmware, deviceId: metadata['device-id'] };
 }
@@ -689,7 +711,7 @@ function* handleFlashUsbDfu(action: ReturnType<typeof firmwareFlashUsbDfu>): Gen
     const defer = new Array<() => void>();
 
     try {
-        // not all web browsers support Web USB
+        // not all web browsers support WebUSB
         if (!navigator.usb) {
             yield* put(alertsShowAlert('firmware', 'noWebUsb'));
             yield* put(firmwareDidFailToFlashUsbDfu());
@@ -912,6 +934,27 @@ function* handleInstallPybricks(): Generator {
                 );
             }
             break;
+        case 'usb-ev3':
+            try {
+                const { firmware } = yield* loadFirmware(
+                    accepted.firmwareZip,
+                    accepted.hubName,
+                );
+
+                yield* put(firmwareFlashEV3(firmware.buffer as ArrayBuffer));
+            } catch (err) {
+                // istanbul ignore if
+                if (process.env.NODE_ENV !== 'test') {
+                    console.error(err);
+                }
+
+                yield* put(
+                    alertsShowAlert('alerts', 'unexpectedError', {
+                        error: ensureError(err),
+                    }),
+                );
+            }
+            break;
     }
 }
 
@@ -988,9 +1031,361 @@ function* handleRestoreOfficialDfu(
     }
 }
 
+const getNextEV3MessageId = createCountFunc();
+
+function* handleFlashEV3(action: ReturnType<typeof firmwareFlashEV3>): Generator {
+    if (navigator.hid === undefined) {
+        yield* put(alertsShowAlert('firmware', 'noWebHid'));
+        yield* put(firmwareDidFailToFlashEV3());
+        return;
+    }
+
+    const [hidDevices, hidDevicesError] = yield* call(() =>
+        maybe(
+            navigator.hid.requestDevice({
+                filters: [
+                    {
+                        vendorId: legoUsbVendorId,
+                        productId: LegoUsbProductId.Ev3Bootloader,
+                    },
+                ],
+            }),
+        ),
+    );
+
+    if (hidDevicesError) {
+        // TODO: show info message with tips on how to get EV3 into bootloader mode
+        console.error(hidDevicesError);
+        yield* put(firmwareDidFailToFlashEV3());
+        return;
+    }
+
+    defined(hidDevices);
+
+    if (hidDevices.length === 0) {
+        yield* put(
+            alertsShowAlert('alerts', 'unexpectedError', {
+                error: new Error('no EV3 HID devices found'),
+            }),
+        );
+        yield* put(firmwareDidFailToFlashEV3());
+        return;
+    }
+
+    // Only flash one device.
+    const hidDevice = hidDevices[0];
+
+    const exitStack: Array<() => Promise<void>> = [];
+    function* cleanup() {
+        for (const func of exitStack.reverse()) {
+            yield* call(() => func());
+        }
+    }
+
+    const [, openError] = yield* call(() => maybe(hidDevice.open()));
+    if (openError) {
+        console.error(openError);
+        yield* put(alertsShowAlert('alerts', 'unexpectedError', { error: openError }));
+        yield* put(firmwareDidFailToFlashEV3());
+        yield* cleanup();
+        return;
+    }
+
+    exitStack.push(() => hidDevice.close());
+
+    const inputChannel = eventChannel<HIDInputReportEvent>((emit) => {
+        hidDevice.addEventListener('inputreport', emit);
+        return () => hidDevice.removeEventListener('inputreport', emit);
+    });
+    exitStack.push(async () => inputChannel.close());
+
+    function* readInputReports(): SagaGenerator<void> {
+        for (;;) {
+            const event = yield* take(inputChannel);
+            if (event.data.byteLength === 0) {
+                continue; // ignore empty reports
+            }
+
+            const length = event.data.getInt16(0, true);
+            const replyNumber = event.data.getInt16(2, true);
+            const messageType = event.data.getUint8(4);
+            const replyCommand = event.data.getUint8(5);
+            const status = event.data.getUint8(6);
+            const payload = event.data.buffer.slice(7, 7 + length + 2);
+
+            console.debug(
+                `EV3 reply: length=${length}, replyNumber=${replyNumber}, messageType=${messageType}, replyCommand=${replyCommand}, status=${status}, payload=${payload}`,
+            );
+
+            yield* put(
+                firmwareDidReceiveEV3Reply(
+                    length,
+                    replyNumber,
+                    messageType,
+                    replyCommand,
+                    status,
+                    payload,
+                ),
+            );
+        }
+    }
+
+    const readInputReportsTask = yield* fork(readInputReports);
+    exitStack.push(async () => readInputReportsTask.cancel());
+
+    function* sendCommand(
+        command: number,
+        payload?: Uint8Array,
+    ): SagaGenerator<[DataView | undefined, Error | undefined]> {
+        // We need to start listing for reply before sending command in order
+        // to avoid race conditions.
+        const replyChannel = yield* actionChannel(firmwareDidReceiveEV3Reply);
+
+        // Send the command
+        const dataBuffer = new Uint8Array((payload?.byteLength ?? 0) + 6);
+        const data = new DataView(dataBuffer.buffer);
+
+        const messageId = getNextEV3MessageId() & 0xffff;
+
+        data.setInt16(0, (payload?.byteLength ?? 0) + 4, true);
+        data.setInt16(2, messageId, true);
+        data.setUint8(4, 0x01); // system command w/ reply
+        data.setUint8(5, command);
+        if (payload) {
+            dataBuffer.set(payload, 6);
+        }
+
+        const [, sendError] = yield* call(() => maybe(hidDevice.sendReport(0, data)));
+        if (sendError) {
+            replyChannel.close();
+            return [undefined, sendError];
+        }
+
+        const { reply, timeout } = yield* race({
+            reply: take(replyChannel),
+            timeout: delay(5000),
+        });
+
+        replyChannel.close();
+
+        if (timeout) {
+            return [undefined, new Error('Timeout waiting for EV3 reply')];
+        }
+
+        defined(reply);
+
+        if (reply.replyNumber !== messageId) {
+            return [
+                undefined,
+                new Error(
+                    `EV3 reply message ID mismatch: expected ${messageId}, got ${reply.replyNumber}`,
+                ),
+            ];
+        }
+
+        if (reply.replyCommand !== command) {
+            return [
+                undefined,
+                new Error(
+                    `EV3 reply command mismatch: expected ${command}, got ${reply.replyCommand}`,
+                ),
+            ];
+        }
+
+        if (reply.status !== 0) {
+            return [
+                undefined,
+                new Error(
+                    `EV3 reply status error: ${reply.status} for command ${command}`,
+                ),
+            ];
+        }
+
+        return [new DataView(reply.payload), undefined];
+    }
+
+    const [version, versionError] = yield* sendCommand(0xf6); // get version
+
+    if (versionError) {
+        yield* put(
+            alertsShowAlert('alerts', 'unexpectedError', {
+                error: ensureError(versionError),
+            }),
+        );
+        yield* put(firmwareDidFailToFlashEV3());
+        yield* cleanup();
+        return;
+    }
+
+    defined(version);
+
+    console.debug(
+        `EV3 bootloader version: ${version.getUint32(
+            0,
+            true,
+        )}, HW version: ${version.getUint32(4, true)}`,
+    );
+
+    // FIXME: should be called much earlier.
+    yield* put(didStart());
+
+    const sectorSize = 64 * 1024; // flash memory sector size
+    const maxPayloadSize = 1018; // maximum payload size for EV3 commands
+
+    for (let i = 0; i < action.firmware.byteLength; i += sectorSize) {
+        const sectorData = action.firmware.slice(i, i + sectorSize);
+        assert(sectorData.byteLength <= sectorSize, 'sector data too large');
+
+        const erasePayload = new DataView(new ArrayBuffer(8));
+        erasePayload.setUint32(0, i, true);
+        erasePayload.setUint32(4, sectorData.byteLength, true);
+        const [, eraseError] = yield* sendCommand(
+            0xf0,
+            new Uint8Array(erasePayload.buffer),
+        );
+
+        if (eraseError) {
+            yield* put(
+                alertsShowAlert('alerts', 'unexpectedError', {
+                    error: eraseError,
+                }),
+            );
+            // FIXME: should have a better error reason
+            yield* put(didFailToFinish(FailToFinishReasonType.Unknown, eraseError));
+            yield* put(firmwareDidFailToFlashEV3());
+            yield* cleanup();
+            return;
+        }
+
+        for (let j = 0; j < sectorData.byteLength; j += maxPayloadSize) {
+            const payload = sectorData.slice(j, j + maxPayloadSize);
+
+            const [, sendError] = yield* sendCommand(0xf2, new Uint8Array(payload));
+            if (sendError) {
+                yield* put(
+                    alertsShowAlert('alerts', 'unexpectedError', {
+                        error: sendError,
+                    }),
+                );
+                // FIXME: should have a better error reason
+                yield* put(didFailToFinish(FailToFinishReasonType.Unknown, sendError));
+                yield* put(firmwareDidFailToFlashEV3());
+                yield* cleanup();
+                return;
+            }
+        }
+
+        yield* put(
+            didProgress((i + sectorData.byteLength) / action.firmware.byteLength),
+        );
+
+        yield* put(
+            alertsShowAlert(
+                'firmware',
+                'flashProgress',
+                {
+                    action: 'flash',
+                    progress: (i + sectorData.byteLength) / action.firmware.byteLength,
+                },
+                firmwareBleProgressToastId,
+                true,
+            ),
+        );
+    }
+
+    yield* put(
+        alertsShowAlert(
+            'firmware',
+            'flashProgress',
+            {
+                action: 'flash',
+                progress: 1,
+            },
+            firmwareBleProgressToastId,
+            true,
+        ),
+    );
+
+    const [, rebootError] = yield* sendCommand(0xf4); // start app
+    if (rebootError) {
+        // FIXME: should have a better error reason
+        yield* put(didFailToFinish(FailToFinishReasonType.Unknown, rebootError));
+        yield* put(firmwareDidFailToFlashEV3());
+        yield* cleanup();
+        return;
+    }
+
+    yield* put(didFinish());
+
+    yield* cleanup();
+
+    yield* put(firmwareDidFlashEV3());
+}
+
+function getUrlForEV3FirmwareVersion(version: EV3OfficialFirmwareVersion): URL {
+    switch (version) {
+        case EV3OfficialFirmwareVersion.home:
+            return new URL('./assets/EV3_Firmware_V1.09H.bin', import.meta.url);
+        case EV3OfficialFirmwareVersion.education:
+            return new URL('./assets/ev3_firmware_v1.09e.bin', import.meta.url);
+        case EV3OfficialFirmwareVersion.makecode:
+            return new URL('./assets/ev3-image-1.10e.bin', import.meta.url);
+        default:
+            throw new Error(`unsupported EV3 firmware version: ${version}`);
+    }
+}
+
+function* handleRestoreOfficialEV3(
+    action: ReturnType<typeof firmwareRestoreOfficialEV3>,
+): Generator {
+    try {
+        const url = getUrlForEV3FirmwareVersion(action.version);
+
+        const response = yield* call(() => fetch(url));
+
+        if (!response.ok) {
+            // TODO: replace with proper alert
+            // istanbul ignore if
+            if (process.env.NODE_ENV !== 'test') {
+                console.error(response);
+            }
+            throw new Error('failed to fetch');
+        }
+
+        const firmwareBlob = yield* call(() => response.blob());
+        const firmware = yield* call(() => firmwareBlob.arrayBuffer());
+
+        yield* put(firmwareFlashEV3(firmware));
+
+        const { didFailToFlash } = yield* race({
+            didFlash: take(firmwareDidFlashEV3),
+            didFailToFlash: take(firmwareDidFailToFlashEV3),
+        });
+
+        if (didFailToFlash) {
+            yield* put(firmwareDidFailToRestoreOfficialEV3());
+            return;
+        }
+
+        yield* put(firmwareDidRestoreOfficialEV3());
+    } catch (err) {
+        // istanbul ignore if
+        if (process.env.NODE_ENV !== 'test') {
+            console.error(err);
+        }
+
+        yield* put(
+            alertsShowAlert('alerts', 'unexpectedError', { error: ensureError(err) }),
+        );
+        yield* put(firmwareDidFailToRestoreOfficialEV3());
+    }
+}
+
 export default function* (): Generator {
     yield* takeEvery(flashFirmware, handleFlashFirmware);
     yield* takeEvery(firmwareFlashUsbDfu, handleFlashUsbDfu);
     yield* takeEvery(firmwareInstallPybricks, handleInstallPybricks);
     yield* takeEvery(firmwareRestoreOfficialDfu, handleRestoreOfficialDfu);
+    yield* takeEvery(firmwareFlashEV3, handleFlashEV3);
+    yield* takeEvery(firmwareRestoreOfficialEV3, handleRestoreOfficialEV3);
 }
